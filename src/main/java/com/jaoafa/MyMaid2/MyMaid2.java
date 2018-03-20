@@ -11,6 +11,7 @@ import com.jaoafa.MyMaid2.Command.Cmd_AFK;
 import com.jaoafa.MyMaid2.Command.Cmd_City;
 import com.jaoafa.MyMaid2.Command.Cmd_Cmdb;
 import com.jaoafa.MyMaid2.Command.Cmd_DT;
+import com.jaoafa.MyMaid2.Command.Cmd_Home;
 import com.jaoafa.MyMaid2.Event.Event_CommandBlockLogger;
 import com.jaoafa.MyMaid2.Event.Event_LoginSuccessCheck;
 import com.jaoafa.MyMaid2.Event.Event_PlayerCheckPreLogin;
@@ -79,6 +80,7 @@ public class MyMaid2 extends JavaPlugin implements Listener {
 		getCommand("dt").setExecutor(new Cmd_DT(this)); // 2018/03/20
 		getCommand("city").setExecutor(new Cmd_City(this)); // 2018/03/20
 		getCommand("cmdb").setExecutor(new Cmd_Cmdb()); // 2018/03/21
+		getCommand("home").setExecutor(new Cmd_Home(this)); // 2018/03/21
 	}
 
 	/**

@@ -81,6 +81,14 @@ public class MySQL extends Database {
 				this.user, this.password);
 		return connection;
 	}
+
+	/**
+	 * Statementをチェックします。
+	 * @deprecated 使用の仕方によってはSQLインジェクションの被害にあう可能性があります。PreparedStatementを使用するべきです。
+	 * @param statement チェックするStatement
+	 * @return 更新の必要があれば新しいStatement。必要がなければ引数と同じStatement
+	 */
+	@Deprecated
 	public static Statement check(Statement statement){
 		try {
 			statement.executeQuery("SELECT * FROM chetab LIMIT 1");
@@ -105,7 +113,7 @@ public class MySQL extends Database {
 
 	/**
 	 * 新しいStatementを返します。
-	 * @deprecated 使用の仕方によってはSQLインジェクションの被害にあう可能性があります。
+	 * @deprecated 使用の仕方によってはSQLインジェクションの被害にあう可能性があります。PreparedStatementを使用するべきです。
 	 * @return 新しいStatement
 	 * @throws SQLException 新しいStatementの取得中にSQLExceptionが発生した場合
 	 * @throws ClassNotFoundException 新しいStatementの取得中にClassNotFoundExceptionが発生した場合

@@ -45,3 +45,11 @@ commands:
       usage: /<command> [ToPlayer]
       permission: mymaid.cmdb
       permission-message: You do not have permission to perform this command.
+   home:
+      description: ホームにテレポートします。
+      usage: |-
+             
+             /home: デフォルトのホームにテレポートします。
+             /home <Name>: Nameのホームにテレポートします。
+      permission: mymaid.home
+      permission-message: You do not have permission to perform this command.
