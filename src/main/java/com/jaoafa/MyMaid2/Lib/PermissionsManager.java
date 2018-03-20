@@ -12,7 +12,8 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.server.PluginDisableEvent;
 import org.bukkit.event.server.PluginEnableEvent;
 import org.bukkit.plugin.Plugin;
-import org.bukkit.plugin.java.JavaPlugin;
+
+import com.jaoafa.MyMaid2.MyMaid2Premise;
 
 import me.lucko.luckperms.LuckPerms;
 import me.lucko.luckperms.api.Group;
@@ -20,7 +21,7 @@ import me.lucko.luckperms.api.LuckPermsApi;
 import me.lucko.luckperms.api.User;
 import ru.tehkode.permissions.bukkit.PermissionsEx;
 
-public class PermissionsManager implements Listener {
+public class PermissionsManager extends MyMaid2Premise implements Listener {
 	/**
 	 * PermissionsExのステータス
 	 */
@@ -32,15 +33,13 @@ public class PermissionsManager implements Listener {
 
 	private static PermissionsPlugin SelectPermissionsPlugin = null;
 
-	JavaPlugin plugin;
-	public PermissionsManager(JavaPlugin plugin){
-		this.plugin = plugin;
+	public static void first(){
 		try{
 			checkPermissionsPluginAutoSelecter();
 		}catch(UnsupportedOperationException e){
 			e.printStackTrace();
 			Bukkit.getLogger().warning("権限管理プラグインが見つからないため、プラグインを停止します。");
-			Bukkit.getServer().getPluginManager().disablePlugin(this.plugin);
+			Bukkit.getServer().getPluginManager().disablePlugin(JavaPlugin());
 		}
 	}
 
@@ -341,7 +340,7 @@ public class PermissionsManager implements Listener {
 		}catch(UnsupportedOperationException e){
 			e.printStackTrace();
 			Bukkit.getLogger().warning("権限管理プラグインが見つからないため、プラグインを停止します。");
-			Bukkit.getServer().getPluginManager().disablePlugin(this.plugin);
+			Bukkit.getServer().getPluginManager().disablePlugin(JavaPlugin());
 		}
 	}
 
@@ -357,7 +356,7 @@ public class PermissionsManager implements Listener {
 		}catch(UnsupportedOperationException e){
 			e.printStackTrace();
 			Bukkit.getLogger().warning("権限管理プラグインが見つからないため、プラグインを停止します。");
-			Bukkit.getServer().getPluginManager().disablePlugin(this.plugin);
+			Bukkit.getServer().getPluginManager().disablePlugin(JavaPlugin());
 		}
 	}
 

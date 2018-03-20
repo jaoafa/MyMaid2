@@ -1,13 +1,27 @@
 package com.jaoafa.MyMaid2;
 
+import java.sql.Connection;
+import java.sql.SQLException;
+
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import com.jaoafa.MyMaid2.Command.Cmd_AFK;
+import com.jaoafa.MyMaid2.Event.Event_CommandBlockLogger;
+import com.jaoafa.MyMaid2.Event.Event_LoginSuccessCheck;
+import com.jaoafa.MyMaid2.Event.Event_PlayerCheckPreLogin;
+import com.jaoafa.MyMaid2.Lib.MySQL;
+import com.jaoafa.MyMaid2.Lib.PermissionsManager;
 
-public class MyMaid2 extends JavaPlugin {
+public class MyMaid2 extends JavaPlugin implements Listener {
 	public static String discordtoken = null;
+	public static String serverchat_id = null;
 	public static FileConfiguration conf;
+	public static String sqlserver = "jaoafa.com";
+	public static String sqluser;
+	public static String sqlpassword;
+	public static Connection c = null;
 
 	public static JavaPlugin javaplugin = null;
 	public static MyMaid2 mymaid2 = null;
@@ -27,13 +41,23 @@ public class MyMaid2 extends JavaPlugin {
 		javaplugin = this;
 		mymaid2 = this;
 
-		//コンフィグ読み込み
+		// 連携プラグインの確認
+		Load_Plugin("GeoipAPI");
+		if(!this.isEnabled()) return;
+
+		// PermissionsManager初期設定
+		PermissionsManager.first();
+		if(!this.isEnabled()) return;
+
+		// コンフィグ読み込み
 		Load_Config();
-		//リスナーを設定
+		if(!this.isEnabled()) return;
+
+		// リスナーを設定
 		Import_Listener();
-		//スケジュールタスクをスケジュ―リング
+		// スケジュールタスクをスケジュ―リング
 		Import_Task();
-		//コマンドを設定
+		// コマンドを設定
 		Import_Command_Executor();
 		getLogger().info("--------------------------------------------------");
 	}
@@ -60,7 +84,11 @@ public class MyMaid2 extends JavaPlugin {
 	 * @author mine_book000
 	 */
 	private void Import_Listener(){
-
+		// 日付は制作完了(登録)の日付
+		getServer().getPluginManager().registerEvents(this, this);
+		getServer().getPluginManager().registerEvents(new Event_PlayerCheckPreLogin(this), this); // 2018/03/20
+		getServer().getPluginManager().registerEvents(new Event_CommandBlockLogger(this), this); // 2018/03/20
+		getServer().getPluginManager().registerEvents(new Event_LoginSuccessCheck(this), this); // 2018/03/20
 	}
 
 	/**
@@ -75,6 +103,63 @@ public class MyMaid2 extends JavaPlugin {
 			getLogger().info("Discordへの接続に失敗しました。 [conf NotFound]");
 			getLogger().info("Disable MyMaid2...");
 			getServer().getPluginManager().disablePlugin(this);
+		}
+		if(conf.contains("serverchat_id")){
+			serverchat_id = (String) conf.get("serverchat_id");
+		}else{
+			serverchat_id = "250613942106193921"; // #server-chat
+		}
+
+		if(conf.contains("sqluser") && conf.contains("sqlpassword")){
+			sqluser = conf.getString("sqluser");
+			sqlpassword = conf.getString("sqlpassword");
+		}else{
+			getLogger().info("MySQL Connect err. [conf NotFound]");
+			getLogger().info("Disable AntiAlts2...");
+			getServer().getPluginManager().disablePlugin(this);
+			return;
+		}
+
+
+		if(conf.contains("sqlserver")){
+			sqlserver = (String) conf.get("sqlserver");
+		}
+
+		MySQL MySQL = new MySQL(sqlserver, "3306", "jaoafa", sqluser, sqlpassword);
+
+		try {
+			c = MySQL.openConnection();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			getLogger().info("MySQL Connect err. [ClassNotFoundException]");
+			getLogger().info("Disable AntiAlts2...");
+			getServer().getPluginManager().disablePlugin(this);
+			return;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			getLogger().info("MySQL Connect err. [SQLException: " + e.getSQLState() + "]");
+			getLogger().info("Disable AntiAlts2...");
+			getServer().getPluginManager().disablePlugin(this);
+			return;
+		}
+		getLogger().info("MySQL Connect successful.");
+	}
+
+
+
+	/**
+	 * 連携プラグイン確認
+	 * @author mine_book000
+	 */
+	private void Load_Plugin(String PluginName){
+		if(getServer().getPluginManager().isPluginEnabled(PluginName)){
+			getLogger().info("MyMaid2 Success(LOADED: " + PluginName + ")");
+			getLogger().info("Using " + PluginName);
+		}else{
+			getLogger().warning("MyMaid2 ERR(NOTLOADED: " + PluginName + ")");
+			getLogger().info("Disable MyMaid...");
+			getServer().getPluginManager().disablePlugin(this);
+			return;
 		}
 	}
 

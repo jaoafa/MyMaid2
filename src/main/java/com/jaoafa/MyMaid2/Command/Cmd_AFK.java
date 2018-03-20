@@ -10,6 +10,7 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.command.Command;
+import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -19,7 +20,7 @@ import org.bukkit.scheduler.BukkitTask;
 
 import com.jaoafa.MyMaid2.MyMaid2Premise;
 
-public class Cmd_AFK extends MyMaid2Premise {
+public class Cmd_AFK extends MyMaid2Premise implements CommandExecutor {
 	public Cmd_AFK() {}
 
 	private static Map<String, BukkitTask> afking = new HashMap<String, BukkitTask>();

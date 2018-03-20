@@ -22,7 +22,6 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -32,7 +31,7 @@ import org.json.simple.JSONObject;
 import com.jaoafa.MyMaid2.Lib.PermissionsManager;
 import com.jaoafa.MyMaid2.Lib.TitleSender;
 
-public abstract class MyMaid2Premise implements CommandExecutor {
+public abstract class MyMaid2Premise {
 	/**
 	 * ヘルプメッセージを設定・取得します。
 	 * @return ヘルプメッセージ
@@ -89,6 +88,67 @@ public abstract class MyMaid2Premise implements CommandExecutor {
 	}
 
 	/**
+	 * 管理部とモデレータにメッセージを送信します。
+	 * @param message 送信するメッセージ
+	 */
+	public void SendMessageToAdminModerator(String message){
+		for(Player p: Bukkit.getServer().getOnlinePlayers()) {
+			String group = PermissionsManager.getPermissionMainGroup(p);
+			if(group.equalsIgnoreCase("Admin") || group.equalsIgnoreCase("Moderator")) {
+				p.sendMessage("[MyMaid2] " + ChatColor.GREEN + message);
+			}
+		}
+	}
+
+	/**
+	 * 指定されたLocationに一番近いプレイヤーを取得します。
+	 * @param loc Location
+	 * @return 一番近いプレイヤー
+	 */
+	public Player getNearestPlayer(Location loc){
+		double closest = Double.MAX_VALUE;
+		Player closestp = null;
+		for(Player i : Bukkit.getOnlinePlayers()){
+			if(!i.getWorld().getUID().toString().equalsIgnoreCase(loc.getWorld().getUID().toString())){
+				continue; // 違うワールドならスキップ
+			}
+			double dist = i.getLocation().distance(loc);
+			if (closest == Double.MAX_VALUE || dist < closest){
+				closest = dist;
+				closestp = i;
+			}
+		}
+		if (closestp == null){
+			return null;
+		}
+		return closestp;
+	}
+
+	/**
+	 * 指定されたLocationに一番近いプレイヤーの距離を取得します。
+	 * @param loc Location
+	 * @return 一番近いプレイヤーの距離
+	 */
+	public double getNearestPlayerDistance(Location loc){
+		double closest = Double.MAX_VALUE;
+		Player closestp = null;
+		for(Player i : Bukkit.getOnlinePlayers()){
+			if(!i.getWorld().getUID().toString().equalsIgnoreCase(loc.getWorld().getUID().toString())){
+				continue; // 違うワールドならスキップ
+			}
+			double dist = i.getLocation().distance(loc);
+			if (closest == Double.MAX_VALUE || dist < closest){
+				closest = dist;
+				closestp = i;
+			}
+		}
+		if (closestp == null){
+			return -1;
+		}
+		return closest;
+	}
+
+	/**
 	 * Discordへメッセージを送信します。(#server-chat)
 	 * @param message 送信するメッセージ
 	 * @return 送信できたかどうか
@@ -104,7 +164,7 @@ public abstract class MyMaid2Premise implements CommandExecutor {
 
 		Map<String, String> contents = new HashMap<String, String>();
 		contents.put("content", message);
-		return postHttpJsonByJson("https://discordapp.com/api/channels/250613942106193921/messages", headers, contents);
+		return postHttpJsonByJson("https://discordapp.com/api/channels/" + MyMaid2.serverchat_id + "/messages", headers, contents);
 	}
 	/**
 	 * Discordへチャンネルを指定してメッセージを送信します。
@@ -238,12 +298,12 @@ public abstract class MyMaid2Premise implements CommandExecutor {
 
 		// Discordへ送信
 		StringWriter sw = new StringWriter();
-        PrintWriter pw = new PrintWriter(sw);
-        exception.printStackTrace(pw);
+		PrintWriter pw = new PrintWriter(sw);
+		exception.printStackTrace(pw);
 		boolean res = DiscordSend("293856671799967744", "MyMaidでエラーが発生しました。" + "\n"
-					+ "```" + sw.toString() + "```\n"
-					+ "Cause: `" + exception.getCause() + "`\n"
-					+ "報告ID: `" + id + "`");
+				+ "```" + sw.toString() + "```\n"
+				+ "Cause: `" + exception.getCause() + "`\n"
+				+ "報告ID: `" + id + "`");
 		if(res){
 			JavaPlugin().getLogger().info("Bugreport: Discord送信に成功");
 		}else{
@@ -266,28 +326,28 @@ public abstract class MyMaid2Premise implements CommandExecutor {
 	 */
 	public static int getGroundPos(Location loc) {
 
-	    // 最も高い位置にある非空気ブロックを取得
-	    loc = loc.getWorld().getHighestBlockAt(loc).getLocation();
+		// 最も高い位置にある非空気ブロックを取得
+		loc = loc.getWorld().getHighestBlockAt(loc).getLocation();
 
-	    // 最後に見つかった地上の高さ
-	    int ground = loc.getBlockY();
+		// 最後に見つかった地上の高さ
+		int ground = loc.getBlockY();
 
-	    // 下に向かって探索
-	    for (int y = loc.getBlockY(); y != 0; y--) {
-	        // 座標をセット
-	        loc.setY(y);
+		// 下に向かって探索
+		for (int y = loc.getBlockY(); y != 0; y--) {
+			// 座標をセット
+			loc.setY(y);
 
-	        // そこは太陽光が一定以上届く場所で、非固体ブロックで、ひとつ上も非固体ブロックか
-	        if (loc.getBlock().getLightFromSky() >= 8
-	                && !loc.getBlock().getType().isSolid()
-	                && !loc.clone().add(0, 1, 0).getBlock().getType().isSolid()) {
-	            // 地上の高さとして記憶しておく
-	            ground = y;
-	        }
-	    }
+			// そこは太陽光が一定以上届く場所で、非固体ブロックで、ひとつ上も非固体ブロックか
+			if (loc.getBlock().getLightFromSky() >= 8
+					&& !loc.getBlock().getType().isSolid()
+					&& !loc.clone().add(0, 1, 0).getBlock().getType().isSolid()) {
+				// 地上の高さとして記憶しておく
+				ground = y;
+			}
+		}
 
-	    // 地上の高さを返す
-	    return ground;
+		// 地上の高さを返す
+		return ground;
 	}
 
 	/**

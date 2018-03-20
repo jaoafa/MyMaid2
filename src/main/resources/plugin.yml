@@ -4,6 +4,7 @@ version: 0.0.1
 description: General Plugin Version 2
 database: true
 author: mine_book000
+softdepend: [PermissionsEx, LuckPerms, GeoipAPI]
 commands:
    afk:
       description: AFK(Away From Keyboard)モードをオン・オフにします。
