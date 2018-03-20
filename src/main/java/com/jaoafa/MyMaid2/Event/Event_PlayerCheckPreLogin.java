@@ -91,6 +91,7 @@ public class Event_PlayerCheckPreLogin extends MyMaid2Premise implements Listene
 				p.sendMessage("[MyMaid2-LoginChecker] " + ChatColor.GREEN + event.getName() + "==>" + reason);
 			}
 		}
+		DiscordSend("223582668132974594", "[MyMaid2-LoginChecker] " + event.getName() + "==>" + reason);
 	}
 	private void disallow(AsyncPlayerPreLoginEvent event, String reason, String message, String data){
 		event.disallow(Result.KICK_FULL,
@@ -104,5 +105,6 @@ public class Event_PlayerCheckPreLogin extends MyMaid2Premise implements Listene
 				p.sendMessage("[MyMaid2-LoginChecker] " + ChatColor.GREEN + event.getName() + "==>" + reason + " (" + data + ")");
 			}
 		}
+		DiscordSend("223582668132974594", "[MyMaid2-LoginChecker] " + event.getName() + "==>" + reason + " (" + data + ")");
 	}
 }
