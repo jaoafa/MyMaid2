@@ -24,7 +24,7 @@ public class Event_LoginSuccessCheck extends MyMaid2Premise implements Listener 
 			PreparedStatement statement = MySQL.getNewPreparedStatement("UPDATE login SET login_success = ? WHERE uuid = ? ORDER BY id DESC LIMIT 1");
 			statement.setInt(1, 1);
 			statement.setString(2, uuid);
-			statement.executeQuery();
+			statement.executeUpdate();
 		} catch (SQLException | ClassNotFoundException e) {
 			BugReporter(e);
 		}

@@ -84,3 +84,8 @@ commands:
       usage: "/wt <WorldID/WorldName>: 指定されたWorldIDもしくはWorldNameのワールドのスポーン地点にテレポートします。"
       permission: mymaid.wt
       permission-message: You do not have permission to perform this command.
+   discordlink:
+      description: DiscordアカウントとMinecraftアカウントを紐づけます。
+      usage: "/wt <AuthKey>: 指定されたAuthKeyに合うDiscordアカウントがあればそれと紐づけます。"
+      permission: mymaid.discordlink
+      permission-message: You do not have permission to perform this command.

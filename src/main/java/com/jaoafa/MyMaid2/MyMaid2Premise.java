@@ -25,7 +25,9 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 
 import com.jaoafa.MyMaid2.Lib.PermissionsManager;
 import com.jaoafa.MyMaid2.Lib.TitleSender;
@@ -166,6 +168,7 @@ public abstract class MyMaid2Premise {
 		contents.put("content", message);
 		return postHttpJsonByJson("https://discordapp.com/api/channels/" + MyMaid2.serverchat_id + "/messages", headers, contents);
 	}
+
 	/**
 	 * Discordへチャンネルを指定してメッセージを送信します。
 	 * @param channel 送信先のチャンネルID
@@ -184,6 +187,82 @@ public abstract class MyMaid2Premise {
 		Map<String, String> contents = new HashMap<String, String>();
 		contents.put("content", message);
 		return postHttpJsonByJson("https://discordapp.com/api/channels/" + channel + "/messages", headers, contents);
+	}
+
+
+	public static JSONArray DiscordGuildList(){
+		if(MyMaid2.discordtoken == null){
+			throw new NullPointerException("DiscordGuildListが呼び出されましたが、discordtokenが登録されていませんでした。");
+		}
+		Map<String, String> headers = new HashMap<String, String>();
+		headers.put("Content-Type", "application/json");
+		headers.put("Authorization", "Bot " + MyMaid2.discordtoken);
+		headers.put("User-Agent", "DiscordBot (https://jaoafa.com, v0.0.1)");
+
+		return getHttpJson("https://discordapp.com/api/guilds/189377932429492224/members?limit=1000", headers);
+	}
+
+	public static boolean DiscordAccountExist(String disid){
+		JSONArray List = DiscordGuildList();
+		for(int i = 0; i < List.size(); i++){
+			JSONObject user = (JSONObject) List.get(i);
+			JSONObject userdata = (JSONObject) user.get("user");
+			String id = (String) userdata.get("id");
+			if(id.equalsIgnoreCase(disid)){
+				return true;
+			}
+		}
+		return false;
+	}
+
+	private static JSONArray getHttpJson(String address, Map<String, String> headers){
+		StringBuilder builder = new StringBuilder();
+		try{
+			URL url = new URL(address);
+
+			HttpURLConnection connect = (HttpURLConnection) url.openConnection();
+			connect.setRequestMethod("GET");
+			if(headers != null){
+				for(Map.Entry<String, String> header : headers.entrySet()) {
+					connect.setRequestProperty(header.getKey(), header.getValue());
+				}
+			}
+
+			connect.connect();
+
+			if(connect.getResponseCode() != HttpURLConnection.HTTP_OK){
+				InputStream in = connect.getErrorStream();
+
+				BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+				String line;
+				while ((line = reader.readLine()) != null) {
+					builder.append(line);
+				}
+				in.close();
+				connect.disconnect();
+
+				System.out.println("DiscordWARN: " + connect.getResponseMessage());
+				BugReporter(new IOException(builder.toString()));
+				return null;
+			}
+
+			InputStream in = connect.getInputStream();
+
+			BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+			String line;
+			while ((line = reader.readLine()) != null) {
+				builder.append(line);
+			}
+			in.close();
+			connect.disconnect();
+			JSONParser parser = new JSONParser();
+			Object obj = parser.parse(builder.toString());
+			JSONArray json = (JSONArray) obj;
+			return json;
+		}catch(Exception e){
+			BugReporter(e);
+			return null;
+		}
 	}
 
 	@SuppressWarnings("unchecked")

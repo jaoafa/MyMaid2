@@ -13,6 +13,7 @@ import com.jaoafa.MyMaid2.Command.Cmd_Cmdb;
 import com.jaoafa.MyMaid2.Command.Cmd_DT;
 import com.jaoafa.MyMaid2.Command.Cmd_DedRain;
 import com.jaoafa.MyMaid2.Command.Cmd_DelHome;
+import com.jaoafa.MyMaid2.Command.Cmd_DiscordLink;
 import com.jaoafa.MyMaid2.Command.Cmd_G;
 import com.jaoafa.MyMaid2.Command.Cmd_Home;
 import com.jaoafa.MyMaid2.Command.Cmd_SetHome;
@@ -95,6 +96,7 @@ public class MyMaid2 extends JavaPlugin implements Listener {
 		getCommand("g").setExecutor(new Cmd_G(this)); // 2018/03/21
 		getCommand("dedrain").setExecutor(new Cmd_DedRain(this)); // 2018/03/21
 		getCommand("wt").setExecutor(new Cmd_WT(this)); // 2018/03/21
+		getCommand("discordlink").setExecutor(new Cmd_DiscordLink(this)); // 2018/03/21
 	}
 
 	/**

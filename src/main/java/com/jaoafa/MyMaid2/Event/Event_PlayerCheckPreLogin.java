@@ -80,7 +80,7 @@ public class Event_PlayerCheckPreLogin extends MyMaid2Premise implements Listene
 			statement.setString(5, countryName); // countryName
 			statement.setString(6, city); // city
 			statement.setString(7, permission); // permission
-			statement.executeQuery();
+			statement.executeUpdate();
 		} catch (SQLException | ClassNotFoundException e) {
 			BugReporter(e);
 		}

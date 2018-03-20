@@ -73,7 +73,7 @@ public class Event_CommandBlockLogger extends MyMaid2Premise implements Listener
 			statement.setInt(6, x);
 			statement.setInt(7, y);
 			statement.setInt(8, z);
-			statement.execute();
+			statement.executeUpdate();
 
 		} catch (SQLException | ClassNotFoundException e) {
 			BugReporter(e);

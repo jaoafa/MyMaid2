@@ -56,7 +56,7 @@ public class Event_PlayerQuit extends MyMaid2Premise implements Listener {
 			statement.setString(5, countryName); // countryName
 			statement.setString(6, city); // city
 			statement.setString(7, permission); // permission
-			statement.executeQuery();
+			statement.executeUpdate();
 		} catch (SQLException | ClassNotFoundException e) {
 			BugReporter(e);
 		}
