@@ -8,6 +8,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import com.jaoafa.MyMaid2.Command.Cmd_AFK;
+import com.jaoafa.MyMaid2.Command.Cmd_DT;
 import com.jaoafa.MyMaid2.Event.Event_CommandBlockLogger;
 import com.jaoafa.MyMaid2.Event.Event_LoginSuccessCheck;
 import com.jaoafa.MyMaid2.Event.Event_PlayerCheckPreLogin;
@@ -44,6 +45,7 @@ public class MyMaid2 extends JavaPlugin implements Listener {
 
 		// 連携プラグインの確認
 		Load_Plugin("GeoipAPI");
+		Load_Plugin("dynmap");
 		if(!this.isEnabled()) return;
 
 		// PermissionsManager初期設定
@@ -60,6 +62,8 @@ public class MyMaid2 extends JavaPlugin implements Listener {
 		Import_Task();
 		// コマンドを設定
 		Import_Command_Executor();
+		// Tabコンプリーターを設定
+		Import_Command_TabCompleter();
 		getLogger().info("--------------------------------------------------");
 	}
 
@@ -70,6 +74,16 @@ public class MyMaid2 extends JavaPlugin implements Listener {
 	private void Import_Command_Executor(){
 		// 日付は制作完了(登録)の日付
 		getCommand("afk").setExecutor(new Cmd_AFK()); // 2018/03/18
+		getCommand("dt").setExecutor(new Cmd_DT(this)); // 2018/03/20
+	}
+
+	/**
+	 * Tabコンプリーターの設定
+	 * @author mine_book000
+	 */
+	private void Import_Command_TabCompleter(){
+		// 日付は制作完了(登録)の日付
+		getCommand("dt").setTabCompleter(new Cmd_DT(this)); // 2018/03/20
 	}
 
 	/**

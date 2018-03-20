@@ -34,6 +34,11 @@
 			<id>TheCentralRepository</id>
 			<url>https://repo1.maven.org/maven2/</url>
 		</repository>
+		<!-- Dynmap API -->
+		<repository>
+			<id>mikeprimm-repo</id>
+			<url>http://repo.mikeprimm.com/</url>
+		</repository>
 	</repositories>
 
 	<dependencies>
@@ -80,6 +85,13 @@
 			<classifier>shaded</classifier>
 			<systemPath>${basedir}/lib/geoipAPI.jar</systemPath>
 			<scope>system</scope>
+		</dependency>
+		<!-- Dynmap API -->
+		<dependency>
+			<groupId>org.dynmap</groupId>
+			<artifactId>dynmap-api</artifactId>
+			<version>2.0</version>
+			<optional>true</optional>
 		</dependency>
 	</dependencies>
 </project>

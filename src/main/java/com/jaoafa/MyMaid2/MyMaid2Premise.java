@@ -71,6 +71,7 @@ public abstract class MyMaid2Premise {
 	 * @param cmd
 	 */
 	public void SendUsageMessage(CommandSender sender, Command cmd){
+		SendMessage(sender, cmd, "------- " + cmd.getName() + " --------");
 		SendMessage(sender, cmd, cmd.getDescription());
 		String CMDusage = cmd.getUsage();
 

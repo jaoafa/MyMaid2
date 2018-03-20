@@ -4,10 +4,22 @@ version: 0.0.1
 description: General Plugin Version 2
 database: true
 author: mine_book000
-softdepend: [PermissionsEx, LuckPerms, GeoipAPI]
+softdepend: [PermissionsEx, LuckPerms, GeoipAPI, dynmap]
 commands:
    afk:
       description: AFK(Away From Keyboard)モードをオン・オフにします。
       usage: "/<command>: AFK(Away From Keyboard)モードをオン・オフにします。"
       permission: mymaid.afk
+      permission-message: You do not have permission to perform this command.
+   dt:
+      description: Dynmapのマーカー地点にテレポートします。
+      usage: |-
+             
+             /dt [Player] <MarkerName...>: MarkerNameにテレポートします。Playerを指定した場合はそのPlayerをテレポートさせます。
+             /dt near: あなたの近くのマーカーを表示します。
+             /dt add <MarkerName> <MarkerType>: Markerを追加します。
+             /dt del <MarkerName> <MarkerType>: Markerを削除します。
+             /dt list: Markerリストを表示します。
+             /dt list <Page>: 指定されたページのMarkerリストを表示します。
+      permission: mymaid.dt
       permission-message: You do not have permission to perform this command.
