@@ -237,12 +237,14 @@ public class Cmd_DT extends MyMaid2Premise implements CommandExecutor, TabComple
 				// addとかdelとか以外 => プレイヤー名？
 				// /dt <Player> <MarkerName>
 				String playername = args[0];
-				Player player = Bukkit.getPlayer(playername);
+				Player player = Bukkit.getPlayerExact(playername);
 				if(player == null){
-					SendMessage(sender, cmd, "指定されたプレイヤー「" + playername +"」は見つかりませんでした。");
-					return true;
-				}else if(!player.isOnline()){
-					SendMessage(sender, cmd, "指定されたプレイヤー「" + playername +"」はオフラインです。");
+					SendMessage(sender, cmd, "指定されたプレイヤー「" + playername + "」は見つかりませんでした。");
+
+					Player any_chance_player = Bukkit.getPlayer(playername);
+					if(any_chance_player != null){
+						SendMessage(sender, cmd, "もしかして: " + any_chance_player.getName());
+					}
 					return true;
 				}
 				String markerlabel = args[1];
@@ -334,12 +336,14 @@ public class Cmd_DT extends MyMaid2Premise implements CommandExecutor, TabComple
 				// addとかdelとか以外 => プレイヤー名？
 				// /dt <Player> <MarkerName>
 				String playername = args[0];
-				Player player = Bukkit.getPlayer(playername);
+				Player player = Bukkit.getPlayerExact(playername);
 				if(player == null){
-					SendMessage(sender, cmd, "指定されたプレイヤー「" + playername +"」は見つかりませんでした。");
-					return true;
-				}else if(!player.isOnline()){
-					SendMessage(sender, cmd, "指定されたプレイヤー「" + playername +"」はオフラインです。");
+					SendMessage(sender, cmd, "指定されたプレイヤー「" + playername + "」は見つかりませんでした。");
+
+					Player any_chance_player = Bukkit.getPlayer(playername);
+					if(any_chance_player != null){
+						SendMessage(sender, cmd, "もしかして: " + any_chance_player.getName());
+					}
 					return true;
 				}
 				String markerlabel = "";
@@ -470,10 +474,14 @@ public class Cmd_DT extends MyMaid2Premise implements CommandExecutor, TabComple
 						return plugin.onTabComplete(sender, cmd, alias, args);
 					}
 
-					Player player = Bukkit.getPlayer(args[0]);
+					Player player = Bukkit.getPlayerExact(args[0]);
 					if(player == null){
-						return plugin.onTabComplete(sender, cmd, alias, args);
-					}else if(!player.isOnline()){
+						SendMessage(sender, cmd, "入力されているプレイヤー「" + args[0] + "」は見つかりません。");
+
+						Player any_chance_player = Bukkit.getPlayer(args[0]);
+						if(any_chance_player != null){
+							SendMessage(sender, cmd, "もしかして: " + any_chance_player.getName());
+						}
 						return plugin.onTabComplete(sender, cmd, alias, args);
 					}
 
@@ -533,10 +541,14 @@ public class Cmd_DT extends MyMaid2Premise implements CommandExecutor, TabComple
 						return plugin.onTabComplete(sender, cmd, alias, args);
 					}
 
-					Player player = Bukkit.getPlayer(args[0]);
+					Player player = Bukkit.getPlayerExact(args[0]);
 					if(player == null){
-						return plugin.onTabComplete(sender, cmd, alias, args);
-					}else if(!player.isOnline()){
+						SendMessage(sender, cmd, "入力されているプレイヤー「" + args[0] + "」は見つかりません。");
+
+						Player any_chance_player = Bukkit.getPlayer(args[0]);
+						if(any_chance_player != null){
+							SendMessage(sender, cmd, "もしかして: " + any_chance_player.getName());
+						}
 						return plugin.onTabComplete(sender, cmd, alias, args);
 					}
 
