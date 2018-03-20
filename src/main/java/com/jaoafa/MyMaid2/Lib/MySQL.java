@@ -103,6 +103,14 @@ public class MySQL extends Database {
 		}
 	}
 
+	/**
+	 * 新しいStatementを返します。
+	 * @deprecated 使用の仕方によってはSQLインジェクションの被害にあう可能性があります。
+	 * @return 新しいStatement
+	 * @throws SQLException 新しいStatementの取得中にSQLExceptionが発生した場合
+	 * @throws ClassNotFoundException 新しいStatementの取得中にClassNotFoundExceptionが発生した場合
+	 */
+	@Deprecated
 	public static Statement getNewStatement() throws SQLException, ClassNotFoundException{
 		Statement statement;
 		try {
@@ -113,12 +121,10 @@ public class MySQL extends Database {
 				MyMaid2.c = MySQL.openConnection();
 				statement = MyMaid2.c.createStatement();
 			} catch (ClassNotFoundException | SQLException e1) {
-				// TODO 自動生成された catch ブロック
 				MyMaid2Premise.BugReporter(e);
 				throw e1;
 			}
 		} catch (SQLException e) {
-			// TODO 自動生成された catch ブロック
 			MyMaid2Premise.BugReporter(e);
 			throw e;
 		}
@@ -127,6 +133,12 @@ public class MySQL extends Database {
 		return statement;
 	}
 
+	/**
+	 * 新しいPreparedStatementを返します。
+	 * @return 新しいPreparedStatement
+	 * @throws SQLException 新しいPreparedStatementの取得中にSQLExceptionが発生した場合
+	 * @throws ClassNotFoundException 新しいPreparedStatementの取得中にClassNotFoundExceptionが発生した場合
+	 */
 	public static PreparedStatement getNewPreparedStatement(String sql) throws SQLException, ClassNotFoundException{
 		PreparedStatement statement;
 		try {
