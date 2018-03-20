@@ -11,6 +11,7 @@ import com.jaoafa.MyMaid2.Command.Cmd_AFK;
 import com.jaoafa.MyMaid2.Event.Event_CommandBlockLogger;
 import com.jaoafa.MyMaid2.Event.Event_LoginSuccessCheck;
 import com.jaoafa.MyMaid2.Event.Event_PlayerCheckPreLogin;
+import com.jaoafa.MyMaid2.Event.Event_PlayerQuit;
 import com.jaoafa.MyMaid2.Lib.MySQL;
 import com.jaoafa.MyMaid2.Lib.PermissionsManager;
 
@@ -89,6 +90,7 @@ public class MyMaid2 extends JavaPlugin implements Listener {
 		getServer().getPluginManager().registerEvents(new Event_PlayerCheckPreLogin(this), this); // 2018/03/20
 		getServer().getPluginManager().registerEvents(new Event_CommandBlockLogger(this), this); // 2018/03/20
 		getServer().getPluginManager().registerEvents(new Event_LoginSuccessCheck(this), this); // 2018/03/20
+		getServer().getPluginManager().registerEvents(new Event_PlayerQuit(this), this); // 2018/03/20
 	}
 
 	/**

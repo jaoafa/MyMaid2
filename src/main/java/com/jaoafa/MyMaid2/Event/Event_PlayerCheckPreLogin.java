@@ -73,7 +73,7 @@ public class Event_PlayerCheckPreLogin extends MyMaid2Premise implements Listene
 
 		try {
 			Statement statement = MySQL.getNewStatement();
-			statement.executeUpdate("INSERT INTO login (player, uuid, ip, host, permission, date) VALUES ('" + name + "', '" + uuid.toString() + "', '" + ip + "', '" + host + "', '" + permission + "', CURRENT_TIMESTAMP);");
+			statement.executeUpdate("INSERT INTO login (player, uuid, ip, host, countryName, city, permission, date) VALUES ('" + name + "', '" + uuid.toString() + "', '" + ip + "', '" + host + "', '" + countryName + "', '" + city + "', '" + permission + "', CURRENT_TIMESTAMP);");
 		} catch (SQLException | ClassNotFoundException e) {
 			BugReporter(e);
 		}
