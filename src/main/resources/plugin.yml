@@ -86,3 +86,8 @@ commands:
              /dedrain <true/false>: 降水禁止設定を変更します。
       permission: mymaid.dedrain
       permission-message: You do not have permission to perform this command.
+   wt:
+      description: 他ワールドにテレポートできるようになります。
+      usage: "/wt <WorldID/WorldName>: 指定されたWorldIDもしくはWorldNameのワールドのスポーン地点にテレポートします。"
+      permission: mymaid.wt
+      permission-message: You do not have permission to perform this command.

@@ -16,6 +16,7 @@ import com.jaoafa.MyMaid2.Command.Cmd_DelHome;
 import com.jaoafa.MyMaid2.Command.Cmd_G;
 import com.jaoafa.MyMaid2.Command.Cmd_Home;
 import com.jaoafa.MyMaid2.Command.Cmd_SetHome;
+import com.jaoafa.MyMaid2.Command.Cmd_WT;
 import com.jaoafa.MyMaid2.Event.Event_AFK;
 import com.jaoafa.MyMaid2.Event.Event_CommandBlockLogger;
 import com.jaoafa.MyMaid2.Event.Event_DedRain;
@@ -92,6 +93,7 @@ public class MyMaid2 extends JavaPlugin implements Listener {
 		getCommand("delhome").setExecutor(new Cmd_DelHome(this)); // 2018/03/21
 		getCommand("g").setExecutor(new Cmd_G(this)); // 2018/03/21
 		getCommand("dedrain").setExecutor(new Cmd_DedRain(this)); // 2018/03/21
+		getCommand("wt").setExecutor(new Cmd_WT(this)); // 2018/03/21
 	}
 
 	/**
