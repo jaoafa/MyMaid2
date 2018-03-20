@@ -8,12 +8,12 @@ import org.bukkit.ChatColor;
 import org.bukkit.Effect;
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
@@ -56,15 +56,9 @@ public class Cmd_AFK extends MyMaid2Premise implements CommandExecutor {
 	 */
 	public static void setAFK_True(Player player){
 		if(getHeadICE(player)){
-			ItemStack[] is = player.getInventory().getArmorContents();
-			head.put(player.getName(), is[3]);
-			ItemStack[] headice = {
-					new ItemStack(Material.ICE),
-					new ItemStack(is[1]),
-					new ItemStack(is[2]),
-					new ItemStack(is[3])
-			};
-			player.getInventory().setArmorContents(headice);
+			PlayerInventory playerinv = player.getInventory();
+			head.put(player.getName(), playerinv.getHelmet());
+			player.getInventory().setHelmet(new ItemStack(Material.ICE));
 			player.updateInventory();
 		}
 
@@ -94,18 +88,16 @@ public class Cmd_AFK extends MyMaid2Premise implements CommandExecutor {
 	 * @author mine_book000
 	 */
 	public static void setAFK_False(Player player){
+		PlayerInventory playerinv = player.getInventory();
 		if(head.containsKey(player.getName()) && head.get(player.getName()) != null){
-			ItemStack[] is = player.getInventory().getArmorContents();
-
 			ItemStack olditem = head.get(player.getName());
 			if(olditem.getType() == Material.ICE){
 				olditem = new ItemStack(Material.AIR);
 			}
 
-			setArmorContents(player, olditem, is[1], is[2], is[3]);
+			playerinv.setHelmet(olditem);
 		}else{
-			ItemStack[] is = player.getInventory().getArmorContents();
-			setArmorContents(player, new ItemStack(Material.AIR), is[1], is[2], is[3]);
+			playerinv.setHelmet(new ItemStack(Material.AIR));
 		}
 
 		if(afking.get(player.getName()) != null){
@@ -163,24 +155,6 @@ public class Cmd_AFK extends MyMaid2Premise implements CommandExecutor {
     	}
 		@Override
 		public void run() {
-
-			if(player.getWorld().getName().equalsIgnoreCase("Summer2017")){
-				player.sendMessage("[Summer2017] " + ChatColor.GREEN + "ワールド「Summer2017」ではAFK状態になることができません。");
-				player.sendMessage("[Summer2017] " + ChatColor.GREEN + "Jao_Afaワールドに移動します…");
-				World world = Bukkit.getServer().getWorld("Jao_Afa");
-				if(world == null){
-					player.sendMessage("[Summer2017] " + ChatColor.GREEN + "「Jao_Afa」ワールドの取得に失敗しました。");
-					return;
-				}
-				Cmd_AFK.loc.put(player.getName(), player.getLocation());
-				Location loc = new Location(world, 0, 0, 0, 0, 0);
-				int y = getGroundPos(loc);
-				loc = new Location(world, 0, y, 0, 0, 0);
-				loc.add(0.5f,0f,0.5f);
-				player.teleport(loc);
-				return;
-			}
-
 			//player.getWorld().playSound(player.getLocation(),Sound.EXPLODE,1,1);
 			player.getWorld().playEffect(player.getLocation(), Effect.MOBSPAWNER_FLAMES, 0);
 			String listname = player.getPlayerListName();

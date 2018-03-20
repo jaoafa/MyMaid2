@@ -24,7 +24,6 @@ import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.json.simple.JSONObject;
 
@@ -349,24 +348,5 @@ public abstract class MyMaid2Premise {
 
 		// 地上の高さを返す
 		return ground;
-	}
-
-	/**
-	 * 使いにくいsetArmorContentsを使いやすくしたもの。
-	 * @param player 変更するプレイヤー
-	 * @param head ヘッド
-	 * @param chestplate チェストプレート
-	 * @param legging レギンス
-	 * @param boot ブーツ
-	 */
-	public static void setArmorContents(Player player, ItemStack head, ItemStack chestplate, ItemStack legging, ItemStack boot){
-		ItemStack[] contents = {
-				head,
-				chestplate,
-				legging,
-				boot
-		};
-		player.getInventory().setArmorContents(contents);
-		player.updateInventory();
 	}
 }
