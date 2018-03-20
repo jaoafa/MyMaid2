@@ -1,7 +1,7 @@
 package com.jaoafa.MyMaid2.Event;
 
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -21,8 +21,10 @@ public class Event_LoginSuccessCheck extends MyMaid2Premise implements Listener 
 	public void OnEvent_LoginSuccessCheck(PlayerJoinEvent event){
 		String uuid = event.getPlayer().getUniqueId().toString();
 		try {
-			Statement statement = MySQL.getNewStatement();
-			statement.executeUpdate("UPDATE login SET login_success = '1' WHERE uuid = '" + uuid + "' ORDER BY id DESC LIMIT 1");
+			PreparedStatement statement = MySQL.getNewPreparedStatement("UPDATE login SET login_success = ? WHERE uuid = ? ORDER BY id DESC LIMIT 1");
+			statement.setInt(1, 1);
+			statement.setString(2, uuid);
+			statement.executeQuery();
 		} catch (SQLException | ClassNotFoundException e) {
 			BugReporter(e);
 		}

@@ -1,8 +1,8 @@
 package com.jaoafa.MyMaid2.Event;
 
 import java.net.InetAddress;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.UUID;
 
 import org.bukkit.entity.Player;
@@ -48,8 +48,15 @@ public class Event_PlayerQuit extends MyMaid2Premise implements Listener {
 		}
 
 		try {
-			Statement statement = MySQL.getNewStatement();
-			statement.executeUpdate("INSERT INTO logout (player, uuid, ip, host, countryName, city, permission, date) VALUES ('" + player.getName() + "', '" + uuid.toString() + "', '" + ip + "', '" + host + "', '" + countryName + "', '" + city + "', '" + permission + "', CURRENT_TIMESTAMP);");
+			PreparedStatement statement = MySQL.getNewPreparedStatement("INSERT INTO logout (player, uuid, ip, host, countryName, city, permission) VALUES (?, ?, ?, ?, ?, ?, ?);");
+			statement.setString(1, name); // player
+			statement.setString(2, uuid.toString()); // uuid
+			statement.setString(3, ip); // ip
+			statement.setString(4, host); // host
+			statement.setString(5, countryName); // countryName
+			statement.setString(6, city); // city
+			statement.setString(7, permission); // permission
+			statement.executeQuery();
 		} catch (SQLException | ClassNotFoundException e) {
 			BugReporter(e);
 		}
