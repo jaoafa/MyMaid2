@@ -2,6 +2,7 @@ package com.jaoafa.MyMaid2.Lib;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -123,6 +124,28 @@ public class MySQL extends Database {
 		}
 
 		statement = MySQL.check(statement);
+		return statement;
+	}
+
+	public static PreparedStatement getNewPreparedStatement(String sql) throws SQLException, ClassNotFoundException{
+		PreparedStatement statement;
+		try {
+			statement = MyMaid2.c.prepareStatement(sql);
+		} catch (NullPointerException e) {
+			MySQL MySQL = new MySQL(MyMaid2.sqlserver, "3306", "jaoafa", MyMaid2.sqluser, MyMaid2.sqlpassword);
+			try {
+				MyMaid2.c = MySQL.openConnection();
+				statement = MyMaid2.c.prepareStatement(sql);
+			} catch (ClassNotFoundException | SQLException e1) {
+				// TODO 自動生成された catch ブロック
+				MyMaid2Premise.BugReporter(e);
+				throw e1;
+			}
+		} catch (SQLException e) {
+			// TODO 自動生成された catch ブロック
+			MyMaid2Premise.BugReporter(e);
+			throw e;
+		}
 		return statement;
 	}
 }

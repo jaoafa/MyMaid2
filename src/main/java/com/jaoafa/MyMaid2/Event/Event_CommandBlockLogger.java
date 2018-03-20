@@ -1,7 +1,7 @@
 package com.jaoafa.MyMaid2.Event;
 
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 import org.bukkit.block.CommandBlock;
 import org.bukkit.command.BlockCommandSender;
@@ -30,6 +30,22 @@ public class Event_CommandBlockLogger extends MyMaid2Premise implements Listener
 
 		String command = cmdb.getCommand();
 
+		if(command.startsWith("/testfor")){
+			return;
+		}else if(command.startsWith("testfor")){
+			return;
+		}else if(command.startsWith("/testforblock")){
+			return;
+		}else if(command.startsWith("testforblock")){
+			return;
+		}else if(command.startsWith("/testforblocks")){
+			return;
+		}else if(command.startsWith("testforblocks")){
+			return;
+		}else if(command.equals("")){
+			return;
+		}
+
 		Player nearestPlayer = getNearestPlayer(cmdb.getLocation());
 		String name, uuid;
 		if(nearestPlayer == null){
@@ -47,8 +63,18 @@ public class Event_CommandBlockLogger extends MyMaid2Premise implements Listener
 		int z = cmdb.getZ();
 
 		try {
-			Statement statement = MySQL.getNewStatement();
-			statement.executeUpdate("INSERT INTO cmdb_log (nearplayer, nearplayer_uuid, distance, command, world, x, y, z, date) VALUES ('" + name + "', '" + uuid + "', '" + nearestDistance + "', '" + command + ", '" + world + "', '" + x + "', '" + y + "', '" + z + "', CURRENT_TIMESTAMP);");
+			String sql = "INSERT INTO cmdb_log (nearplayer, nearplayer_uuid, distance, command, world, x, y, z) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
+			PreparedStatement statement = MySQL.getNewPreparedStatement(sql);
+			statement.setString(1, name);
+			statement.setString(2, uuid);
+			statement.setDouble(3, nearestDistance);
+			statement.setString(4, command);
+			statement.setString(5, world);
+			statement.setInt(6, x);
+			statement.setInt(7, y);
+			statement.setInt(8, z);
+			statement.execute();
+
 		} catch (SQLException | ClassNotFoundException e) {
 			BugReporter(e);
 		}
