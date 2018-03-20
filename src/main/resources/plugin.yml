@@ -53,3 +53,12 @@ commands:
              /home <Name>: Nameのホームにテレポートします。
       permission: mymaid.home
       permission-message: You do not have permission to perform this command.
+   g:
+      description: ゲームモードを変更します。
+      usage: |-
+             
+             /g: クリエイティブモードならスペクテイターモードに、スペクテイターモードならクリエイティブモードに、それ以外ならクリエイティブモードに変更します。
+             /g <0-3>: 指定された数値に合うゲームモードに変更します。
+             /g <0-3> <Player>: 指定したプレイヤーのゲームモードを指定された数値に合うゲームモードに変更します。
+      permission: mymaid.home
+      permission-message: You do not have permission to perform this command.

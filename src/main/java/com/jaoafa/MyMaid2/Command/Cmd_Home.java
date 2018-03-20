@@ -24,6 +24,11 @@ public class Cmd_Home extends MyMaid2Premise implements CommandExecutor, TabComp
 		this.plugin = plugin;
 	}
 	public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args){
+		if(args.length >= 1 && args[0].equalsIgnoreCase("help")){
+			SendUsageMessage(sender, cmd);
+			return true;
+		}
+
 		if (!(sender instanceof Player)) {
 			SendMessage(sender, cmd, "このコマンドはゲーム内から実行してください。");
 			return true;
