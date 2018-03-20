@@ -23,6 +23,7 @@ import com.jaoafa.MyMaid2.Event.Event_DedRain;
 import com.jaoafa.MyMaid2.Event.Event_LoginSuccessCheck;
 import com.jaoafa.MyMaid2.Event.Event_PlayerCheckPreLogin;
 import com.jaoafa.MyMaid2.Event.Event_PlayerQuit;
+import com.jaoafa.MyMaid2.Event.Event_QD_NOTSpectator;
 import com.jaoafa.MyMaid2.Lib.MySQL;
 import com.jaoafa.MyMaid2.Lib.PermissionsManager;
 import com.jaoafa.MyMaid2.Task.Task_AFK;
@@ -128,6 +129,7 @@ public class MyMaid2 extends JavaPlugin implements Listener {
 		getServer().getPluginManager().registerEvents(new Event_PlayerQuit(this), this); // 2018/03/20
 		getServer().getPluginManager().registerEvents(new Event_DedRain(this), this); // 2018/03/21
 		getServer().getPluginManager().registerEvents(new Event_AFK(), this); // 2018/03/21
+		getServer().getPluginManager().registerEvents(new Event_QD_NOTSpectator(), this); // 2018/03/21
 	}
 
 	/**

@@ -12,7 +12,7 @@ public class Cmd_DedRain extends MyMaid2Premise implements CommandExecutor {
 	public Cmd_DedRain(JavaPlugin plugin) {
 		this.plugin = plugin;
 	}
-	public static boolean flag;
+	public static boolean flag = true;
 	public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args){
 		if(args.length == 1){
 			String old = Boolean.toString(flag);

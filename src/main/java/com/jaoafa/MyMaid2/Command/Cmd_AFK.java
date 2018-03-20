@@ -5,7 +5,6 @@ import java.util.Map;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.Effect;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
@@ -14,11 +13,10 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
-import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
 
 import com.jaoafa.MyMaid2.MyMaid2Premise;
+import com.jaoafa.MyMaid2.Task.Task_AFKING;
 
 public class Cmd_AFK extends MyMaid2Premise implements CommandExecutor {
 	public Cmd_AFK() {}
@@ -73,7 +71,7 @@ public class Cmd_AFK extends MyMaid2Premise implements CommandExecutor {
 		TitleSender().setTime_tick(player, 0, 99999999, 0);
 
 		try{
-			BukkitTask task = new Cmd_AFK.afking(JavaPlugin(), player).runTaskTimer(JavaPlugin(), 0L, 5L);
+			BukkitTask task = new Task_AFKING(JavaPlugin(), player).runTaskTimer(JavaPlugin(), 0L, 5L);
 			Cmd_AFK.afking.put(player.getName(), task);
 		}catch(java.lang.NoClassDefFoundError e){
 			BugReporter(e);
@@ -144,24 +142,5 @@ public class Cmd_AFK extends MyMaid2Premise implements CommandExecutor {
 	 */
 	static boolean getHeadICE(Player player){
 		return true;
-	}
-
-	static public class afking extends BukkitRunnable{
-		JavaPlugin plugin;
-		Player player;
-    	public afking(JavaPlugin plugin, Player player) {
-    		this.plugin = plugin;
-    		this.player = player;
-    	}
-		@Override
-		public void run() {
-			//player.getWorld().playSound(player.getLocation(),Sound.EXPLODE,1,1);
-			player.getWorld().playEffect(player.getLocation(), Effect.MOBSPAWNER_FLAMES, 0);
-			String listname = player.getPlayerListName();
-			if(!listname.contains(ChatColor.DARK_GRAY + player.getName())){
-				listname = listname.replaceAll(player.getName(), ChatColor.DARK_GRAY + player.getName());
-				player.setPlayerListName(listname);
-			}
-		}
 	}
 }
