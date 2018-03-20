@@ -8,6 +8,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import com.jaoafa.MyMaid2.Command.Cmd_AFK;
+import com.jaoafa.MyMaid2.Command.Cmd_City;
 import com.jaoafa.MyMaid2.Command.Cmd_DT;
 import com.jaoafa.MyMaid2.Event.Event_CommandBlockLogger;
 import com.jaoafa.MyMaid2.Event.Event_LoginSuccessCheck;
@@ -75,6 +76,7 @@ public class MyMaid2 extends JavaPlugin implements Listener {
 		// 日付は制作完了(登録)の日付
 		getCommand("afk").setExecutor(new Cmd_AFK()); // 2018/03/18
 		getCommand("dt").setExecutor(new Cmd_DT(this)); // 2018/03/20
+		getCommand("city").setExecutor(new Cmd_City(this)); // 2018/03/20
 	}
 
 	/**

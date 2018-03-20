@@ -23,3 +23,20 @@ commands:
              /dt list <Page>: 指定されたページのMarkerリストを表示します。
       permission: mymaid.dt
       permission-message: You do not have permission to perform this command.
+   city:
+      description: 市の範囲を登録したり削除したりできます。
+      usage: |-
+             
+             /city addcorner: コーナーを追加
+             /city addcorner <Name>: 既存のエリアにコーナーを追加
+             /city undocorner: ひとつ前に追加したコーナーを削除
+             /city clearcorner: コーナーを削除
+             /city show: いまいる地点の情報を表示。(未完成)
+             /city add <Name> <Color>: エリアの範囲を色と共に設定(Dynmapに表示)
+             /city del <Name>: エリアの範囲を削除
+             /city setcolor <Name> <Color>: エリアの色を変更
+             /city editcorner <Name>: 指定されたエリアのコーナーエディタを使用してコーナーを編集
+             /city setdesc <Name> <Description>: エリアの説明を設定
+             /city show <Name>: エリアの情報を表示。
+      permission: mymaid.city
+      permission-message: You do not have permission to perform this command.
