@@ -40,3 +40,8 @@ commands:
              /city show <Name>: エリアの情報を表示。
       permission: mymaid.city
       permission-message: You do not have permission to perform this command.
+   cmdb:
+      description: コマンドブロックを与えます。
+      usage: /<command> [ToPlayer]
+      permission: mymaid.cmdb
+      permission-message: You do not have permission to perform this command.
