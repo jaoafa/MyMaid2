@@ -3,8 +3,6 @@ package com.jaoafa.MyMaid2.Command;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import org.bukkit.Location;
 import org.bukkit.command.Command;
@@ -56,7 +54,7 @@ public class Cmd_SetHome extends MyMaid2Premise implements CommandExecutor {
 				return true;
 			} catch (SQLException | ClassNotFoundException e) {
 				BugReporter(e);
-				SendMessage(sender, cmd, "操作に失敗しました。(SQLException)");
+				SendMessage(sender, cmd, "操作に失敗しました。");
 				SendMessage(sender, cmd, "詳しくはサーバコンソールをご確認ください");
 				SendMessage(sender, cmd, "再度実行しなおすと動作するかもしれません。");
 				return true;
@@ -64,8 +62,6 @@ public class Cmd_SetHome extends MyMaid2Premise implements CommandExecutor {
 		}else if(args.length == 1){
 			String name = args[0];
 			Location loc = player.getLocation();
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-			String create_at = sdf.format(new Date());
 			try {
 				PreparedStatement statement = MySQL.getNewPreparedStatement("SELECT * FROM home WHERE uuid = ? AND name = ?");
 				statement.setString(1, player.getUniqueId().toString());
@@ -92,6 +88,9 @@ public class Cmd_SetHome extends MyMaid2Premise implements CommandExecutor {
 				return true;
 			} catch (SQLException | ClassNotFoundException e) {
 				BugReporter(e);
+				SendMessage(sender, cmd, "操作に失敗しました。");
+				SendMessage(sender, cmd, "詳しくはサーバコンソールをご確認ください");
+				SendMessage(sender, cmd, "再度実行しなおすと動作するかもしれません。");
 				return true;
 			}
 		}

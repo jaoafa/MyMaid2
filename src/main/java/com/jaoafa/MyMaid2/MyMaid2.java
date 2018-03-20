@@ -11,6 +11,7 @@ import com.jaoafa.MyMaid2.Command.Cmd_AFK;
 import com.jaoafa.MyMaid2.Command.Cmd_City;
 import com.jaoafa.MyMaid2.Command.Cmd_Cmdb;
 import com.jaoafa.MyMaid2.Command.Cmd_DT;
+import com.jaoafa.MyMaid2.Command.Cmd_DelHome;
 import com.jaoafa.MyMaid2.Command.Cmd_G;
 import com.jaoafa.MyMaid2.Command.Cmd_Home;
 import com.jaoafa.MyMaid2.Command.Cmd_SetHome;
@@ -83,8 +84,9 @@ public class MyMaid2 extends JavaPlugin implements Listener {
 		getCommand("city").setExecutor(new Cmd_City(this)); // 2018/03/20
 		getCommand("cmdb").setExecutor(new Cmd_Cmdb()); // 2018/03/21
 		getCommand("home").setExecutor(new Cmd_Home(this)); // 2018/03/21
-		getCommand("g").setExecutor(new Cmd_G(this)); // 2018/03/21
 		getCommand("sethome").setExecutor(new Cmd_SetHome(this)); // 2018/03/21
+		getCommand("delhome").setExecutor(new Cmd_DelHome(this)); // 2018/03/21
+		getCommand("g").setExecutor(new Cmd_G(this)); // 2018/03/21
 	}
 
 	/**

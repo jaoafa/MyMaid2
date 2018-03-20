@@ -6,8 +6,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.bukkit.Bukkit;
-import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -18,81 +16,19 @@ import org.bukkit.plugin.java.JavaPlugin;
 import com.jaoafa.MyMaid2.MyMaid2Premise;
 import com.jaoafa.MyMaid2.Lib.MySQL;
 
-public class Cmd_Home extends MyMaid2Premise implements CommandExecutor, TabCompleter {
+public class Cmd_DelHome extends MyMaid2Premise implements CommandExecutor, TabCompleter {
 	JavaPlugin plugin;
-	public Cmd_Home(JavaPlugin plugin) {
+	public Cmd_DelHome(JavaPlugin plugin) {
 		this.plugin = plugin;
 	}
 	public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args){
-		if(args.length >= 1 && args[0].equalsIgnoreCase("help")){
-			SendUsageMessage(sender, cmd);
-			return true;
-		}
-
 		if (!(sender instanceof Player)) {
 			SendMessage(sender, cmd, "このコマンドはゲーム内から実行してください。");
 			return true;
 		}
 		Player player = (Player) sender;
 
-		if(args.length == 0){
-			try {
-				PreparedStatement statement = MySQL.getNewPreparedStatement("SELECT * FROM home WHERE uuid = ? AND name = ?");
-				statement.setString(1, player.getUniqueId().toString());
-				statement.setString(2, "default");
-
-				ResultSet res = statement.executeQuery();
-				if(res.next()){
-					Location loc = new Location(Bukkit.getWorld(res.getString("world")), res.getDouble("x"), res.getDouble("y"), res.getDouble("z"), res.getFloat("pitch"), res.getFloat("yaw"));
-					player.teleport(loc);
-					SendMessage(sender, cmd, "ホーム「default」にテレポートしました。");
-					return true;
-				}else{
-					SendMessage(sender, cmd, "ホーム「default」は見つかりませんでした。");
-					return true;
-				}
-
-			} catch (SQLException | ClassNotFoundException e) {
-				BugReporter(e);
-				SendMessage(sender, cmd, "操作に失敗しました。");
-				SendMessage(sender, cmd, "詳しくはサーバコンソールをご確認ください");
-				SendMessage(sender, cmd, "再度実行しなおすと動作するかもしれません。");
-				return true;
-			}
-		}else if(args.length == 1){
-			if(args[0].equalsIgnoreCase("list")){
-				try {
-					PreparedStatement statement = MySQL.getNewPreparedStatement("SELECT * FROM home WHERE uuid = ?");
-					statement.setString(1, player.getUniqueId().toString());
-
-					ResultSet res = statement.executeQuery();
-					SendMessage(sender, cmd, "----- " + player.getName() + "さんのホームリスト -----");
-					int i = 0;
-					while(res.next()){
-						String name = res.getString("name");
-						String world = res.getString("world");
-						double x = res.getDouble("x");
-						double y = res.getDouble("y");
-						double z = res.getDouble("z");
-						float yaw = res.getFloat("yaw");
-						float pitch = res.getFloat("pitch");
-						SendMessage(sender, cmd, name + ": " + world + " " + x + " " + y + " " + z + "(" + yaw + " " + pitch + ")");
-						i++;
-					}
-					if(i == 0){
-						SendMessage(sender, cmd, "見つかりませんでした。");
-						return true;
-					}
-				} catch (SQLException | ClassNotFoundException e) {
-					BugReporter(e);
-					SendMessage(sender, cmd, "操作に失敗しました。");
-					SendMessage(sender, cmd, "詳しくはサーバコンソールをご確認ください");
-					SendMessage(sender, cmd, "再度実行しなおすと動作するかもしれません。");
-					return true;
-				}
-				return true;
-			}
-
+		if(args.length == 1){
 			String name = args[0];
 			try {
 				PreparedStatement statement = MySQL.getNewPreparedStatement("SELECT * FROM home WHERE uuid = ? AND name = ?");
@@ -101,15 +37,16 @@ public class Cmd_Home extends MyMaid2Premise implements CommandExecutor, TabComp
 
 				ResultSet res = statement.executeQuery();
 				if(res.next()){
-					Location loc = new Location(Bukkit.getWorld(res.getString("world")), res.getDouble("x"), res.getDouble("y"), res.getDouble("z"), res.getFloat("pitch"), res.getFloat("yaw"));
-					player.teleport(loc);
-					SendMessage(sender, cmd, "ホーム「" + name + "」にテレポートしました。");
+					int id = res.getInt("id");
+					PreparedStatement statement2 = MySQL.getNewPreparedStatement("DELETE FROM home WHERE id = ?");
+					statement2.setInt(1, id);
+					statement.executeQuery();
+					SendMessage(sender, cmd, "ホーム「" + name + "」の削除に成功しました。");
 					return true;
 				}else{
-					SendMessage(sender, cmd, "ホーム「" + name + "」は見つかりませんでした。");
+					SendMessage(sender, cmd, "ホーム「" + name + "」の削除に失敗しました。");
 					return true;
 				}
-
 			} catch (SQLException | ClassNotFoundException e) {
 				BugReporter(e);
 				SendMessage(sender, cmd, "操作に失敗しました。");
@@ -128,7 +65,6 @@ public class Cmd_Home extends MyMaid2Premise implements CommandExecutor, TabComp
 		}
 		Player player = (Player) sender;
 
-
 		if (args.length == 1) {
 			if(args[0].length() == 0){
 				try {
@@ -141,9 +77,8 @@ public class Cmd_Home extends MyMaid2Premise implements CommandExecutor, TabComp
 					}
 					return returndata;
 				} catch (SQLException | ClassNotFoundException e) {
-					// TODO 自動生成された catch ブロック
-					e.printStackTrace();
-					SendMessage(sender, cmd, "操作に失敗しました。(SQLException)");
+					BugReporter(e);
+					SendMessage(sender, cmd, "操作に失敗しました。");
 					SendMessage(sender, cmd, "詳しくはサーバコンソールをご確認ください");
 					SendMessage(sender, cmd, "再度実行しなおすと動作するかもしれません。");
 					return plugin.onTabComplete(sender, cmd, alias, args);
@@ -162,9 +97,8 @@ public class Cmd_Home extends MyMaid2Premise implements CommandExecutor, TabComp
 					}
 					return returndata;
 				} catch (SQLException | ClassNotFoundException e) {
-					// TODO 自動生成された catch ブロック
-					e.printStackTrace();
-					SendMessage(sender, cmd, "操作に失敗しました。(SQLException)");
+					BugReporter(e);
+					SendMessage(sender, cmd, "操作に失敗しました。");
 					SendMessage(sender, cmd, "詳しくはサーバコンソールをご確認ください");
 					SendMessage(sender, cmd, "再度実行しなおすと動作するかもしれません。");
 					return plugin.onTabComplete(sender, cmd, alias, args);

@@ -8,7 +8,7 @@ softdepend: [PermissionsEx, LuckPerms, GeoipAPI, dynmap]
 commands:
    afk:
       description: AFK(Away From Keyboard)モードをオン・オフにします。
-      usage: "/<command>: AFK(Away From Keyboard)モードをオン・オフにします。"
+      usage: "/afk: AFK(Away From Keyboard)モードをオン・オフにします。(トグル)"
       permission: mymaid.afk
       permission-message: You do not have permission to perform this command.
    dt:
@@ -42,7 +42,10 @@ commands:
       permission-message: You do not have permission to perform this command.
    cmdb:
       description: コマンドブロックを与えます。
-      usage: /<command> [ToPlayer]
+      usage: |-
+             
+             /cmdb: メインハンドにコマンドブロックを設定します。すでに持っていたアイテムは別のスロットに移動するかドロップします。
+             /cmdb <Player>: 指定したプレイヤーのメインハンドにコマンドブロックを設定します。すでに持っていたアイテムは別のスロットに移動するかドロップします。
       permission: mymaid.cmdb
       permission-message: You do not have permission to perform this command.
    home:
@@ -59,6 +62,11 @@ commands:
              
              /sethome: デフォルト(default)でホームを設定します。上書きはできないため、事前に削除する必要があります。
              /sethome <Name>: 指定した名前でホームを設定します。上書きはできないため、事前に削除する必要があります。
+      permission: mymaid.sethome
+      permission-message: You do not have permission to perform this command.
+   delhome:
+      description: ホームを削除します。
+      usage: "/delhome <Name>: 指定された名前のホームを削除します。"
       permission: mymaid.sethome
       permission-message: You do not have permission to perform this command.
    g:
