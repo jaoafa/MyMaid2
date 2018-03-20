@@ -141,9 +141,8 @@ public class Cmd_Home extends MyMaid2Premise implements CommandExecutor, TabComp
 					}
 					return returndata;
 				} catch (SQLException | ClassNotFoundException e) {
-					// TODO 自動生成された catch ブロック
-					e.printStackTrace();
-					SendMessage(sender, cmd, "操作に失敗しました。(SQLException)");
+					BugReporter(e);
+					SendMessage(sender, cmd, "操作に失敗しました。");
 					SendMessage(sender, cmd, "詳しくはサーバコンソールをご確認ください");
 					SendMessage(sender, cmd, "再度実行しなおすと動作するかもしれません。");
 					return plugin.onTabComplete(sender, cmd, alias, args);
@@ -162,9 +161,8 @@ public class Cmd_Home extends MyMaid2Premise implements CommandExecutor, TabComp
 					}
 					return returndata;
 				} catch (SQLException | ClassNotFoundException e) {
-					// TODO 自動生成された catch ブロック
-					e.printStackTrace();
-					SendMessage(sender, cmd, "操作に失敗しました。(SQLException)");
+					BugReporter(e);
+					SendMessage(sender, cmd, "操作に失敗しました。");
 					SendMessage(sender, cmd, "詳しくはサーバコンソールをご確認ください");
 					SendMessage(sender, cmd, "再度実行しなおすと動作するかもしれません。");
 					return plugin.onTabComplete(sender, cmd, alias, args);

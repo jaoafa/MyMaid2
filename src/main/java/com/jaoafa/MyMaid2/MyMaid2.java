@@ -11,11 +11,13 @@ import com.jaoafa.MyMaid2.Command.Cmd_AFK;
 import com.jaoafa.MyMaid2.Command.Cmd_City;
 import com.jaoafa.MyMaid2.Command.Cmd_Cmdb;
 import com.jaoafa.MyMaid2.Command.Cmd_DT;
+import com.jaoafa.MyMaid2.Command.Cmd_DedRain;
 import com.jaoafa.MyMaid2.Command.Cmd_DelHome;
 import com.jaoafa.MyMaid2.Command.Cmd_G;
 import com.jaoafa.MyMaid2.Command.Cmd_Home;
 import com.jaoafa.MyMaid2.Command.Cmd_SetHome;
 import com.jaoafa.MyMaid2.Event.Event_CommandBlockLogger;
+import com.jaoafa.MyMaid2.Event.Event_DedRain;
 import com.jaoafa.MyMaid2.Event.Event_LoginSuccessCheck;
 import com.jaoafa.MyMaid2.Event.Event_PlayerCheckPreLogin;
 import com.jaoafa.MyMaid2.Event.Event_PlayerQuit;
@@ -87,6 +89,7 @@ public class MyMaid2 extends JavaPlugin implements Listener {
 		getCommand("sethome").setExecutor(new Cmd_SetHome(this)); // 2018/03/21
 		getCommand("delhome").setExecutor(new Cmd_DelHome(this)); // 2018/03/21
 		getCommand("g").setExecutor(new Cmd_G(this)); // 2018/03/21
+		getCommand("dedrain").setExecutor(new Cmd_DedRain(this)); // 2018/03/21
 	}
 
 	/**
@@ -96,6 +99,8 @@ public class MyMaid2 extends JavaPlugin implements Listener {
 	private void Import_Command_TabCompleter(){
 		// 日付は制作完了(登録)の日付
 		getCommand("dt").setTabCompleter(new Cmd_DT(this)); // 2018/03/20
+		getCommand("home").setTabCompleter(new Cmd_Home(this)); // 2018/03/21
+		getCommand("delhome").setTabCompleter(new Cmd_DelHome(this)); // 2018/03/21
 	}
 
 	/**
@@ -117,6 +122,7 @@ public class MyMaid2 extends JavaPlugin implements Listener {
 		getServer().getPluginManager().registerEvents(new Event_CommandBlockLogger(this), this); // 2018/03/20
 		getServer().getPluginManager().registerEvents(new Event_LoginSuccessCheck(this), this); // 2018/03/20
 		getServer().getPluginManager().registerEvents(new Event_PlayerQuit(this), this); // 2018/03/20
+		getServer().getPluginManager().registerEvents(new Event_DedRain(this), this); // 2018/03/20
 	}
 
 	/**

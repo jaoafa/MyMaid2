@@ -67,7 +67,7 @@ commands:
    delhome:
       description: ホームを削除します。
       usage: "/delhome <Name>: 指定された名前のホームを削除します。"
-      permission: mymaid.sethome
+      permission: mymaid.delhome
       permission-message: You do not have permission to perform this command.
    g:
       description: ゲームモードを変更します。
@@ -77,4 +77,12 @@ commands:
              /g <0-3>: 指定された数値に合うゲームモードに変更します。
              /g <0-3> <Player>: 指定したプレイヤーのゲームモードを指定された数値に合うゲームモードに変更します。
       permission: mymaid.g
+      permission-message: You do not have permission to perform this command.
+   dedrain:
+      description: 雨を降らすかどうか設定します。
+      usage: |-
+             
+             /dedrain: 現在の降水禁止設定を確認します。
+             /dedrain <true/false>: 降水禁止設定を変更します。
+      permission: mymaid.dedrain
       permission-message: You do not have permission to perform this command.
