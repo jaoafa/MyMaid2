@@ -45,7 +45,7 @@ public class Cmd_DelHome extends MyMaid2Premise implements CommandExecutor, TabC
 					int id = res.getInt("id");
 					PreparedStatement statement2 = MySQL.getNewPreparedStatement("DELETE FROM home WHERE id = ?");
 					statement2.setInt(1, id);
-					statement.executeUpdate();
+					statement2.executeUpdate();
 					SendMessage(sender, cmd, "ホーム「" + name + "」の削除に成功しました。");
 					return true;
 				}else{

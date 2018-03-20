@@ -101,7 +101,7 @@ public class Cmd_Home extends MyMaid2Premise implements CommandExecutor, TabComp
 
 				ResultSet res = statement.executeQuery();
 				if(res.next()){
-					Location loc = new Location(Bukkit.getWorld(res.getString("world")), res.getDouble("x"), res.getDouble("y"), res.getDouble("z"), res.getFloat("pitch"), res.getFloat("yaw"));
+					Location loc = new Location(Bukkit.getWorld(res.getString("world")), res.getDouble("x"), res.getDouble("y"), res.getDouble("z"), res.getFloat("yaw"), res.getFloat("pitch"));
 					player.teleport(loc);
 					SendMessage(sender, cmd, "ホーム「" + name + "」にテレポートしました。");
 					return true;

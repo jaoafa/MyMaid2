@@ -47,7 +47,7 @@ public class Cmd_SetHome extends MyMaid2Premise implements CommandExecutor {
 				statement2.setString(1, player.getName()); // player
 				statement2.setString(2, player.getUniqueId().toString()); // uuid
 				statement2.setString(3, "default"); // name
-				statement2.setString(4, loc.getWorld().toString()); // world
+				statement2.setString(4, loc.getWorld().getName()); // world
 				statement2.setDouble(5, loc.getX()); // x
 				statement2.setDouble(6, loc.getY()); // y
 				statement2.setDouble(7, loc.getZ()); // z
@@ -81,14 +81,14 @@ public class Cmd_SetHome extends MyMaid2Premise implements CommandExecutor {
 				statement2.setString(1, player.getName()); // player
 				statement2.setString(2, player.getUniqueId().toString()); // uuid
 				statement2.setString(3, name); // name
-				statement2.setString(4, loc.getWorld().toString()); // world
+				statement2.setString(4, loc.getWorld().getName()); // world
 				statement2.setDouble(5, loc.getX()); // x
 				statement2.setDouble(6, loc.getY()); // y
 				statement2.setDouble(7, loc.getZ()); // z
 				statement2.setFloat(8, loc.getYaw()); // yaw
 				statement2.setFloat(9, loc.getPitch()); // pitch
 
-				statement.executeUpdate();
+				statement2.executeUpdate();
 				SendMessage(sender, cmd, "「" + name + "」としてホームを設定しました。「/home " + name + "」と打つことでテレポートできます。");
 				return true;
 			} catch (SQLException | ClassNotFoundException e) {
