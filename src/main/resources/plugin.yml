@@ -14,7 +14,6 @@ commands:
    dt:
       description: Dynmapのマーカー地点にテレポートします。
       usage: |-
-             
              /dt [Player] <MarkerName...>: MarkerNameにテレポートします。Playerを指定した場合はそのPlayerをテレポートさせます。
              /dt near: あなたの近くのマーカーを表示します。
              /dt add <MarkerName> <MarkerType>: Markerを追加します。
@@ -26,7 +25,6 @@ commands:
    city:
       description: 市の範囲を登録したり削除したりできます。
       usage: |-
-             
              /city addcorner: コーナーを追加
              /city addcorner <Name>: 既存のエリアにコーナーを追加
              /city undocorner: ひとつ前に追加したコーナーを削除
@@ -43,7 +41,6 @@ commands:
    cmdb:
       description: コマンドブロックを与えます。
       usage: |-
-             
              /cmdb: メインハンドにコマンドブロックを設定します。すでに持っていたアイテムは別のスロットに移動するかドロップします。
              /cmdb <Player>: 指定したプレイヤーのメインハンドにコマンドブロックを設定します。すでに持っていたアイテムは別のスロットに移動するかドロップします。
       permission: mymaid.cmdb
@@ -51,7 +48,6 @@ commands:
    home:
       description: ホームにテレポートします。
       usage: |-
-             
              /home: デフォルトのホームにテレポートします。
              /home <Name>: Nameのホームにテレポートします。
       permission: mymaid.home
@@ -59,7 +55,6 @@ commands:
    sethome:
       description: ホームを設定します。
       usage: |-
-             
              /sethome: デフォルト(default)でホームを設定します。上書きはできないため、事前に削除する必要があります。
              /sethome <Name>: 指定した名前でホームを設定します。上書きはできないため、事前に削除する必要があります。
       permission: mymaid.sethome
@@ -72,7 +67,6 @@ commands:
    g:
       description: ゲームモードを変更します。
       usage: |-
-             
              /g: クリエイティブモードならスペクテイターモードに、スペクテイターモードならクリエイティブモードに、それ以外ならクリエイティブモードに変更します。
              /g <0-3>: 指定された数値に合うゲームモードに変更します。
              /g <0-3> <Player>: 指定したプレイヤーのゲームモードを指定された数値に合うゲームモードに変更します。
@@ -81,7 +75,6 @@ commands:
    dedrain:
       description: 雨を降らすかどうか設定します。
       usage: |-
-             
              /dedrain: 現在の降水禁止設定を確認します。
              /dedrain <true/false>: 降水禁止設定を変更します。
       permission: mymaid.dedrain
