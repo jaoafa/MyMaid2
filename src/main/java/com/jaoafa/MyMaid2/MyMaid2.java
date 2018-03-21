@@ -127,18 +127,26 @@ public class MyMaid2 extends JavaPlugin implements Listener {
 	 */
 	private void Import_Listener(){
 		// 日付は制作完了(登録)の日付
-		getServer().getPluginManager().registerEvents(this, this);
-		getServer().getPluginManager().registerEvents(new Event_PlayerCheckPreLogin(this), this); // 2018/03/20
-		getServer().getPluginManager().registerEvents(new Event_CommandBlockLogger(this), this); // 2018/03/20
-		getServer().getPluginManager().registerEvents(new Event_LoginSuccessCheck(this), this); // 2018/03/20
-		getServer().getPluginManager().registerEvents(new Event_PlayerQuit(this), this); // 2018/03/20
-		getServer().getPluginManager().registerEvents(new Event_DedRain(this), this); // 2018/03/21
-		getServer().getPluginManager().registerEvents(new Event_AFK(), this); // 2018/03/21
-		getServer().getPluginManager().registerEvents(new Event_QD_NOTSpectator(), this); // 2018/03/21
-		getServer().getPluginManager().registerEvents(new Event_MoveToChunkActionbar(), this); // 2018/03/21
-		getServer().getPluginManager().registerEvents(new Event_FarmNOBreak(), this); // 2018/03/21
-		getServer().getPluginManager().registerEvents(new Event_NOConcretePowderToConcrete(), this); // 2018/03/21
+		registEvent(this);
+		registEvent(new Event_PlayerCheckPreLogin(this));// 2018/03/20
+		registEvent(new Event_CommandBlockLogger(this));// 2018/03/20
+		registEvent(new Event_LoginSuccessCheck(this));// 2018/03/20
+		registEvent(new Event_PlayerQuit(this));// 2018/03/20
+		registEvent(new Event_DedRain(this));// 2018/03/21
+		registEvent(new Event_AFK());// 2018/03/21
+		registEvent(new Event_QD_NOTSpectator());// 2018/03/21
+		registEvent(new Event_MoveToChunkActionbar());// 2018/03/21
+		registEvent(new Event_FarmNOBreak());// 2018/03/21
+		registEvent(new Event_NOConcretePowderToConcrete());// 2018/03/21
 
+	}
+
+	/**
+	 * リスナー設定の簡略化用
+	 * @param listener Listener
+	 */
+	private void registEvent(Listener l) {
+		getServer().getPluginManager().registerEvents(l, this);
 	}
 
 	/**
