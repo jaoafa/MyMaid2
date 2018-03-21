@@ -109,7 +109,7 @@ public class PermissionsManager extends MyMaid2Premise implements Listener {
 				// プラグインが動作していない
 				throw new UnsupportedOperationException("権限管理プラグインが見つかりません！");
 			}
-			List<String> list = new ArrayList<String>();
+			List<String> list = new ArrayList<>();
 			Collection<String> groups = PermissionsEx.getPermissionManager().getGroupNames();
 			for(String group : groups){
 				if(PermissionsEx.getUser(player).inGroup(group)){
@@ -127,7 +127,7 @@ public class PermissionsManager extends MyMaid2Premise implements Listener {
 			if(LPplayer == null){
 				throw new IllegalArgumentException("指定されたプレイヤーは見つかりません。");
 			}
-			List<String> list = new ArrayList<String>();
+			List<String> list = new ArrayList<>();
 			String group = LPplayer.getPrimaryGroup();
 			list.add(group);
 			return list;
@@ -153,7 +153,7 @@ public class PermissionsManager extends MyMaid2Premise implements Listener {
 				// プラグインが動作していない
 				throw new UnsupportedOperationException("権限管理プラグインが見つかりません！");
 			}
-			List<String> list = new ArrayList<String>();
+			List<String> list = new ArrayList<>();
 			Collection<String> groups = PermissionsEx.getPermissionManager().getGroupNames();
 			for(String group : groups){
 				if(PermissionsEx.getUser(player).inGroup(group)){
@@ -173,7 +173,7 @@ public class PermissionsManager extends MyMaid2Premise implements Listener {
 			if(LPplayer == null){
 				throw new IllegalArgumentException("指定されたプレイヤーは見つかりません。");
 			}
-			List<String> list = new ArrayList<String>();
+			List<String> list = new ArrayList<>();
 			String group = LPplayer.getPrimaryGroup();
 			list.add(group);
 			return list;

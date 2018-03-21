@@ -76,7 +76,7 @@ public class Cmd_DelHome extends MyMaid2Premise implements CommandExecutor, TabC
 					PreparedStatement statement = MySQL.getNewPreparedStatement("SELECT * FROM home WHERE uuid = ?");
 					statement.setString(1, player.getUniqueId().toString());
 					ResultSet res = statement.executeQuery();
-					List<String> returndata = new ArrayList<String>();
+					List<String> returndata = new ArrayList<>();
 					while(res.next()){
 						returndata.add(res.getString("name"));
 					}
@@ -96,7 +96,7 @@ public class Cmd_DelHome extends MyMaid2Premise implements CommandExecutor, TabC
 					statement.setString(2, name + "%");
 
 					ResultSet res = statement.executeQuery();
-					List<String> returndata = new ArrayList<String>();
+					List<String> returndata = new ArrayList<>();
 					while(res.next()){
 						returndata.add(res.getString("name"));
 					}

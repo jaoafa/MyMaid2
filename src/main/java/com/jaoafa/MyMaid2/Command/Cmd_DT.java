@@ -128,7 +128,7 @@ public class Cmd_DT extends MyMaid2Premise implements CommandExecutor, TabComple
 				Player player = (Player) sender;
 				String markerlabel = args[0];
 
-				Map<String, Marker> Markers = new HashMap<String, Marker>();
+				Map<String, Marker> Markers = new HashMap<>();
 				for(MarkerSet markerset : markerapi.getMarkerSets()){
 					for(Marker marker : markerset.getMarkers()){
 						Markers.put(marker.getLabel(), marker);
@@ -164,7 +164,7 @@ public class Cmd_DT extends MyMaid2Premise implements CommandExecutor, TabComple
 				// マーカーの削除
 				// /dt del <MarkerName>
 				String markerlabel = args[1];
-				Map<String, Marker> Markers = new HashMap<String, Marker>();
+				Map<String, Marker> Markers = new HashMap<>();
 				for(MarkerSet markerset : markerapi.getMarkerSets()){
 					for(Marker marker : markerset.getMarkers()){
 						Markers.put(marker.getLabel(), marker);
@@ -249,7 +249,7 @@ public class Cmd_DT extends MyMaid2Premise implements CommandExecutor, TabComple
 				}
 				String markerlabel = args[1];
 
-				Map<String, Marker> Markers = new HashMap<String, Marker>();
+				Map<String, Marker> Markers = new HashMap<>();
 				for(MarkerSet markerset : markerapi.getMarkerSets()){
 					for(Marker marker : markerset.getMarkers()){
 						Markers.put(marker.getLabel(), marker);
@@ -288,7 +288,7 @@ public class Cmd_DT extends MyMaid2Premise implements CommandExecutor, TabComple
 				String markerlabel = args[1];
 				String markertype = args[2];
 
-				Map<String, MarkerSet> MarkersTypes = new HashMap<String, MarkerSet>();
+				Map<String, MarkerSet> MarkersTypes = new HashMap<>();
 				for(MarkerSet markerset : markerapi.getMarkerSets()){
 					MarkersTypes.put(markerset.getMarkerSetLabel(), markerset);
 				}
@@ -301,7 +301,7 @@ public class Cmd_DT extends MyMaid2Premise implements CommandExecutor, TabComple
 
 				MarkerSet MarkerType = MarkersTypes.get(markertype);
 
-				Map<String, Marker> Markers = new HashMap<String, Marker>();
+				Map<String, Marker> Markers = new HashMap<>();
 				for(MarkerSet markerset : markerapi.getMarkerSets()){
 					for(Marker marker : markerset.getMarkers()){
 						Markers.put(marker.getLabel(), marker);
@@ -355,7 +355,7 @@ public class Cmd_DT extends MyMaid2Premise implements CommandExecutor, TabComple
 					}
 					c++;
 				}
-				Map<String, Marker> Markers = new HashMap<String, Marker>();
+				Map<String, Marker> Markers = new HashMap<>();
 				for(MarkerSet markerset : markerapi.getMarkerSets()){
 					for(Marker marker : markerset.getMarkers()){
 						Markers.put(marker.getLabel(), marker);
@@ -405,7 +405,7 @@ public class Cmd_DT extends MyMaid2Premise implements CommandExecutor, TabComple
 					return plugin.onTabComplete(sender, cmd, alias, args);
 				}
 
-				List<String> tablist = new ArrayList<String>();
+				List<String> tablist = new ArrayList<>();
 				tablist.add("add");
 				tablist.add("del");
 				tablist.add("list");
@@ -425,7 +425,7 @@ public class Cmd_DT extends MyMaid2Premise implements CommandExecutor, TabComple
 					return plugin.onTabComplete(sender, cmd, alias, args);
 				}
 
-				List<String> tablist = new ArrayList<String>();
+				List<String> tablist = new ArrayList<>();
 				tablist.add("add");
 				tablist.add("del");
 				tablist.add("list");
@@ -437,7 +437,7 @@ public class Cmd_DT extends MyMaid2Premise implements CommandExecutor, TabComple
 						tablist.add(marker.getLabel());
 					}
 				}
-				List<String> tablistFor = new ArrayList<String>();
+				List<String> tablistFor = new ArrayList<>();
 				tablistFor.addAll(tablist);
 				for(String tab : tablistFor){
 					if(!tab.toLowerCase().startsWith(args[0].toLowerCase())){
@@ -458,7 +458,7 @@ public class Cmd_DT extends MyMaid2Premise implements CommandExecutor, TabComple
 						return plugin.onTabComplete(sender, cmd, alias, args);
 					}
 
-					List<String> tablist = new ArrayList<String>();
+					List<String> tablist = new ArrayList<>();
 					DynmapAPI dynmapapi = (DynmapAPI)dynmap;
 					MarkerAPI markerapi = dynmapapi.getMarkerAPI();
 					for(MarkerSet markerset : markerapi.getMarkerSets()){
@@ -486,7 +486,7 @@ public class Cmd_DT extends MyMaid2Premise implements CommandExecutor, TabComple
 					}
 
 
-					List<String> tablist = new ArrayList<String>();
+					List<String> tablist = new ArrayList<>();
 					DynmapAPI dynmapapi = (DynmapAPI)dynmap;
 					MarkerAPI markerapi = dynmapapi.getMarkerAPI();
 
@@ -495,7 +495,7 @@ public class Cmd_DT extends MyMaid2Premise implements CommandExecutor, TabComple
 							tablist.add(marker.getLabel());
 						}
 					}
-					List<String> tablistFor = new ArrayList<String>();
+					List<String> tablistFor = new ArrayList<>();
 					tablistFor.addAll(tablist);
 					for(String tab : tablistFor){
 						if(!tab.toLowerCase().startsWith(args[1].toLowerCase())){
@@ -515,7 +515,7 @@ public class Cmd_DT extends MyMaid2Premise implements CommandExecutor, TabComple
 						return plugin.onTabComplete(sender, cmd, alias, args);
 					}
 
-					List<String> tablist = new ArrayList<String>();
+					List<String> tablist = new ArrayList<>();
 					DynmapAPI dynmapapi = (DynmapAPI)dynmap;
 					MarkerAPI markerapi = dynmapapi.getMarkerAPI();
 					for(MarkerSet markerset : markerapi.getMarkerSets()){
@@ -523,7 +523,7 @@ public class Cmd_DT extends MyMaid2Premise implements CommandExecutor, TabComple
 							tablist.add(marker.getLabel());
 						}
 					}
-					List<String> tablistFor = new ArrayList<String>();
+					List<String> tablistFor = new ArrayList<>();
 					tablistFor.addAll(tablist);
 					for(String tab : tablistFor){
 						if(!tab.startsWith(args[1])){
@@ -553,7 +553,7 @@ public class Cmd_DT extends MyMaid2Premise implements CommandExecutor, TabComple
 					}
 
 
-					List<String> tablist = new ArrayList<String>();
+					List<String> tablist = new ArrayList<>();
 					DynmapAPI dynmapapi = (DynmapAPI)dynmap;
 					MarkerAPI markerapi = dynmapapi.getMarkerAPI();
 
@@ -562,7 +562,7 @@ public class Cmd_DT extends MyMaid2Premise implements CommandExecutor, TabComple
 							tablist.add(marker.getLabel());
 						}
 					}
-					List<String> tablistFor = new ArrayList<String>();
+					List<String> tablistFor = new ArrayList<>();
 					tablistFor.addAll(tablist);
 					for(String tab : tablistFor){
 						if(!tab.toLowerCase().startsWith(args[1].toLowerCase())){
@@ -585,7 +585,7 @@ public class Cmd_DT extends MyMaid2Premise implements CommandExecutor, TabComple
 						return plugin.onTabComplete(sender, cmd, alias, args);
 					}
 
-					List<String> tablist = new ArrayList<String>();
+					List<String> tablist = new ArrayList<>();
 					DynmapAPI dynmapapi = (DynmapAPI)dynmap;
 					MarkerAPI markerapi = dynmapapi.getMarkerAPI();
 
@@ -602,14 +602,14 @@ public class Cmd_DT extends MyMaid2Premise implements CommandExecutor, TabComple
 						return plugin.onTabComplete(sender, cmd, alias, args);
 					}
 
-					List<String> tablist = new ArrayList<String>();
+					List<String> tablist = new ArrayList<>();
 					DynmapAPI dynmapapi = (DynmapAPI)dynmap;
 					MarkerAPI markerapi = dynmapapi.getMarkerAPI();
 
 					for(MarkerSet markerset : markerapi.getMarkerSets()){
 						tablist.add(markerset.getMarkerSetLabel());
 					}
-					List<String> tablistFor = new ArrayList<String>();
+					List<String> tablistFor = new ArrayList<>();
 					tablistFor.addAll(tablist);
 					for(String tab : tablistFor){
 						if(!tab.toLowerCase().startsWith(args[2].toLowerCase())){

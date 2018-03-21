@@ -11,7 +11,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 import com.jaoafa.MyMaid2.Command.Cmd_AFK;
 
 public class Task_AFK {
-	public static Map<String,Long> afktime = new HashMap<String,Long>();
+	public static Map<String,Long> afktime = new HashMap<>();
 	/**
 	 * AFKチェックタスク(1分毎)
 	 * @author mine_book000

@@ -36,7 +36,7 @@ public class Cmd_City extends MyMaid2Premise implements CommandExecutor {
 	static final int LOCATION_X = 0;
 	static final int LOCATION_Z = 1;
 
-	Map<String, Set<Location>> Corner = new HashMap<String, Set<Location>>();
+	Map<String, Set<Location>> Corner = new HashMap<>();
 	public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args){
 		Plugin dynmap = plugin.getServer().getPluginManager().getPlugin("dynmap");
 		if(dynmap == null || !dynmap.isEnabled()){
@@ -117,7 +117,7 @@ public class Cmd_City extends MyMaid2Premise implements CommandExecutor {
 				MarkerSet markerset = markerapi.getMarkerSet("towns");
 				boolean bool = true;
 				for(AreaMarker areamarker : markerset.getAreaMarkers()){
-					List<Location> locs = new ArrayList<Location>();
+					List<Location> locs = new ArrayList<>();
 					for(int i = 0; i < areamarker.getCornerCount(); i++){
 						Location loc = new Location(Bukkit.getWorld(areamarker.getWorld()), areamarker.getCornerX(i), -114514, areamarker.getCornerZ(i));
 						locs.add(loc);
@@ -250,8 +250,8 @@ public class Cmd_City extends MyMaid2Premise implements CommandExecutor {
 					SendMessage(sender, cmd, "指定されたエリア名のエリアは見つかりませんでした。");
 					return true;
 				}
-				List<Double> Xs = new LinkedList<Double>();
-				List<Double> Zs = new LinkedList<Double>();
+				List<Double> Xs = new LinkedList<>();
+				List<Double> Zs = new LinkedList<>();
 				for(int i = 0; i < select.getCornerCount(); i++){
 					Xs.add(select.getCornerX(i));
 					Zs.add(select.getCornerZ(i));
@@ -312,8 +312,8 @@ public class Cmd_City extends MyMaid2Premise implements CommandExecutor {
 				}
 
 				MarkerSet set = markerapi.getMarkerSet("towns");
-				List<Double> Xs = new LinkedList<Double>();
-				List<Double> Zs = new LinkedList<Double>();
+				List<Double> Xs = new LinkedList<>();
+				List<Double> Zs = new LinkedList<>();
 				for(Location loc : corner){
 					Xs.add(new Double(loc.getBlockX()) + 0.5);
 					Zs.add(new Double(loc.getBlockZ()) + 0.5);
@@ -462,10 +462,10 @@ public class Cmd_City extends MyMaid2Premise implements CommandExecutor {
 			Location sest = new Location(Bukkit.getWorlds().get(0), min(locs, LOCATION_X), -114514, min(locs, LOCATION_Z));
 			boolean inDummyArea = false;
 			//ダミーエリアの生成
-			List<Location> dummysNW = new ArrayList<Location>();
-			List<Location> dummysNE = new ArrayList<Location>();
-			List<Location> dummysSW = new ArrayList<Location>();
-			List<Location> dummysSE = new ArrayList<Location>();
+			List<Location> dummysNW = new ArrayList<>();
+			List<Location> dummysNE = new ArrayList<>();
+			List<Location> dummysSW = new ArrayList<>();
+			List<Location> dummysSE = new ArrayList<>();
 			for (Location lc : locs) {
 				if (lc.getX() > nwst.getX() || lc.getZ() > nwst.getZ()) {
 					dummysNW.add(lc);

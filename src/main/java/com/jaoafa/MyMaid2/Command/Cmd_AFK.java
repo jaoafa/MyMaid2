@@ -21,9 +21,9 @@ import com.jaoafa.MyMaid2.Task.Task_AFKING;
 public class Cmd_AFK extends MyMaid2Premise implements CommandExecutor {
 	public Cmd_AFK() {}
 
-	private static Map<String, BukkitTask> afking = new HashMap<String, BukkitTask>();
-	private static Map<String, ItemStack> head = new HashMap<String, ItemStack>();
-	private static Map<String, Location> loc = new HashMap<String, Location>();
+	private static Map<String, BukkitTask> afking = new HashMap<>();
+	private static Map<String, ItemStack> head = new HashMap<>();
+	private static Map<String, Location> loc = new HashMap<>();
 	public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args){
 		if(args.length >= 1 && args[0].equalsIgnoreCase("help")){
 			SendUsageMessage(sender, cmd);

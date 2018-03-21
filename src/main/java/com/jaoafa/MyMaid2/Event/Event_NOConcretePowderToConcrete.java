@@ -23,7 +23,7 @@ public class Event_NOConcretePowderToConcrete extends MyMaid2Premise implements 
 			return;
 		}
 		Location loc = block.getLocation();
-		List<Particle> particles = new ArrayList<Particle>(Arrays.asList(Particle.values()));
+		List<Particle> particles = new ArrayList<>(Arrays.asList(Particle.values()));
 		particles.remove(Particle.MOB_APPEARANCE);
 
 

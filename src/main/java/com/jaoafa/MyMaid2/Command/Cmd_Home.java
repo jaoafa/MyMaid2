@@ -135,7 +135,7 @@ public class Cmd_Home extends MyMaid2Premise implements CommandExecutor, TabComp
 					PreparedStatement statement = MySQL.getNewPreparedStatement("SELECT * FROM home WHERE uuid = ?");
 					statement.setString(1, player.getUniqueId().toString());
 					ResultSet res = statement.executeQuery();
-					List<String> returndata = new ArrayList<String>();
+					List<String> returndata = new ArrayList<>();
 					while(res.next()){
 						returndata.add(res.getString("name"));
 					}
@@ -155,7 +155,7 @@ public class Cmd_Home extends MyMaid2Premise implements CommandExecutor, TabComp
 					statement.setString(2, name + "%");
 
 					ResultSet res = statement.executeQuery();
-					List<String> returndata = new ArrayList<String>();
+					List<String> returndata = new ArrayList<>();
 					while(res.next()){
 						returndata.add(res.getString("name"));
 					}

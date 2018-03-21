@@ -159,12 +159,12 @@ public abstract class MyMaid2Premise {
 		if(MyMaid2.discordtoken == null){
 			throw new NullPointerException("DiscordSendが呼び出されましたが、discordtokenが登録されていませんでした。");
 		}
-		Map<String, String> headers = new HashMap<String, String>();
+		Map<String, String> headers = new HashMap<>();
 		headers.put("Content-Type", "application/json");
 		headers.put("Authorization", "Bot " + MyMaid2.discordtoken);
 		headers.put("User-Agent", "DiscordBot (https://jaoafa.com, v0.0.1)");
 
-		Map<String, String> contents = new HashMap<String, String>();
+		Map<String, String> contents = new HashMap<>();
 		contents.put("content", message);
 		return postHttpJsonByJson("https://discordapp.com/api/channels/" + MyMaid2.serverchat_id + "/messages", headers, contents);
 	}
@@ -179,12 +179,12 @@ public abstract class MyMaid2Premise {
 		if(MyMaid2.discordtoken == null){
 			throw new NullPointerException("DiscordSendが呼び出されましたが、discordtokenが登録されていませんでした。");
 		}
-		Map<String, String> headers = new HashMap<String, String>();
+		Map<String, String> headers = new HashMap<>();
 		headers.put("Content-Type", "application/json");
 		headers.put("Authorization", "Bot " + MyMaid2.discordtoken);
 		headers.put("User-Agent", "DiscordBot (https://jaoafa.com, v0.0.1)");
 
-		Map<String, String> contents = new HashMap<String, String>();
+		Map<String, String> contents = new HashMap<>();
 		contents.put("content", message);
 		return postHttpJsonByJson("https://discordapp.com/api/channels/" + channel + "/messages", headers, contents);
 	}
@@ -194,7 +194,7 @@ public abstract class MyMaid2Premise {
 		if(MyMaid2.discordtoken == null){
 			throw new NullPointerException("DiscordGuildListが呼び出されましたが、discordtokenが登録されていませんでした。");
 		}
-		Map<String, String> headers = new HashMap<String, String>();
+		Map<String, String> headers = new HashMap<>();
 		headers.put("Content-Type", "application/json");
 		headers.put("Authorization", "Bot " + MyMaid2.discordtoken);
 		headers.put("User-Agent", "DiscordBot (https://jaoafa.com, v0.0.1)");
