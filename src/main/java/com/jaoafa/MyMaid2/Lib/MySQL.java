@@ -150,6 +150,16 @@ public class MySQL extends Database {
 	public static PreparedStatement getNewPreparedStatement(String sql) throws SQLException, ClassNotFoundException{
 		PreparedStatement statement;
 		try {
+			if(((System.currentTimeMillis() / 1000L) - MyMaid2.ConnectionCreate) >= 18000){
+				// com.mysql.jdbc.exceptions.jdbc4.CommunicationsExceptionの発生を防ぐため、最後にコネクションを作成したときから5時間以上経っていればコネクションを作り直す。
+				MySQL MySQL = new MySQL(MyMaid2.sqlserver, "3306", "jaoafa", MyMaid2.sqluser, MyMaid2.sqlpassword);
+				try {
+					MyMaid2.c = MySQL.openConnection();
+				} catch (ClassNotFoundException | SQLException e) {
+					MyMaid2Premise.BugReporter(e);
+					throw e;
+				}
+			}
 			statement = MyMaid2.c.prepareStatement(sql);
 		} catch (NullPointerException e) {
 			MySQL MySQL = new MySQL(MyMaid2.sqlserver, "3306", "jaoafa", MyMaid2.sqluser, MyMaid2.sqlpassword);
@@ -161,6 +171,7 @@ public class MySQL extends Database {
 				MyMaid2Premise.BugReporter(e);
 				throw e1;
 			}
+			MyMaid2.ConnectionCreate = System.currentTimeMillis() / 1000L;
 		} catch (SQLException e) {
 			// TODO 自動生成された catch ブロック
 			MyMaid2Premise.BugReporter(e);

@@ -40,6 +40,7 @@ public class MyMaid2 extends JavaPlugin implements Listener {
 	public static String sqluser;
 	public static String sqlpassword;
 	public static Connection c = null;
+	public static long ConnectionCreate = 0;
 
 	public static JavaPlugin javaplugin = null;
 	public static MyMaid2 mymaid2 = null;
@@ -187,6 +188,7 @@ public class MyMaid2 extends JavaPlugin implements Listener {
 
 		try {
 			c = MySQL.openConnection();
+			ConnectionCreate = System.currentTimeMillis() / 1000L;
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 			getLogger().info("MySQL Connect err. [ClassNotFoundException]");
