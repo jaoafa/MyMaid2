@@ -155,6 +155,7 @@ public class MySQL extends Database {
 				MySQL MySQL = new MySQL(MyMaid2.sqlserver, "3306", "jaoafa", MyMaid2.sqluser, MyMaid2.sqlpassword);
 				try {
 					MyMaid2.c = MySQL.openConnection();
+					MyMaid2.ConnectionCreate = System.currentTimeMillis() / 1000L;
 				} catch (ClassNotFoundException | SQLException e) {
 					MyMaid2Premise.BugReporter(e);
 					throw e;
@@ -165,13 +166,13 @@ public class MySQL extends Database {
 			MySQL MySQL = new MySQL(MyMaid2.sqlserver, "3306", "jaoafa", MyMaid2.sqluser, MyMaid2.sqlpassword);
 			try {
 				MyMaid2.c = MySQL.openConnection();
+				MyMaid2.ConnectionCreate = System.currentTimeMillis() / 1000L;
 				statement = MyMaid2.c.prepareStatement(sql);
 			} catch (ClassNotFoundException | SQLException e1) {
 				// TODO 自動生成された catch ブロック
 				MyMaid2Premise.BugReporter(e);
 				throw e1;
 			}
-			MyMaid2.ConnectionCreate = System.currentTimeMillis() / 1000L;
 		} catch (SQLException e) {
 			// TODO 自動生成された catch ブロック
 			MyMaid2Premise.BugReporter(e);
