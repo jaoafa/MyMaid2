@@ -428,4 +428,21 @@ public abstract class MyMaid2Premise {
 		// 地上の高さを返す
 		return ground;
 	}
+	/**
+	 * 指定された期間内かどうか
+	 * @param start 期間の開始
+	 * @param end 期間の終了
+	 * @return 期間内ならtrue、期間外ならfalse
+	 * @see http://www.yukun.info/blog/2009/02/java-jsp-gregoriancalendar-period.html
+	 */
+	public static boolean isPeriod(Date start, Date end){
+		Date now = new Date();
+		if(now.after(start)){
+			if(now.before(end)){
+				return true;
+			}
+		}
+
+		return false;
+	}
 }

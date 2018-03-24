@@ -93,5 +93,14 @@
 			<version>2.0</version>
 			<optional>true</optional>
 		</dependency>
+		<!-- Votifier -->
+		<dependency>
+			<groupId>com.vexsoftware</groupId>
+			<artifactId>votifier</artifactId>
+			<version>1.9</version>
+			<classifier>shaded</classifier>
+			<systemPath>${basedir}/lib/Votifier.jar</systemPath>
+			<scope>system</scope>
+		</dependency>
 	</dependencies>
 </project>

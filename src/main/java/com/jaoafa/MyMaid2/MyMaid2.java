@@ -28,6 +28,7 @@ import com.jaoafa.MyMaid2.Event.Event_NOConcretePowderToConcrete;
 import com.jaoafa.MyMaid2.Event.Event_PlayerCheckPreLogin;
 import com.jaoafa.MyMaid2.Event.Event_PlayerQuit;
 import com.jaoafa.MyMaid2.Event.Event_QD_NOTSpectator;
+import com.jaoafa.MyMaid2.Event.Event_VoteReceived;
 import com.jaoafa.MyMaid2.Lib.MySQL;
 import com.jaoafa.MyMaid2.Lib.PermissionsManager;
 import com.jaoafa.MyMaid2.Task.Task_AFK;
@@ -63,6 +64,7 @@ public class MyMaid2 extends JavaPlugin implements Listener {
 		// 連携プラグインの確認
 		Load_Plugin("GeoipAPI");
 		Load_Plugin("dynmap");
+		Load_Plugin("Votifier");
 		if(!this.isEnabled()) return;
 
 		// PermissionsManager初期設定
@@ -139,6 +141,7 @@ public class MyMaid2 extends JavaPlugin implements Listener {
 		registEvent(new Event_MoveToChunkActionbar());// 2018/03/21
 		registEvent(new Event_FarmNOBreak());// 2018/03/21
 		registEvent(new Event_NOConcretePowderToConcrete());// 2018/03/21
+		registEvent(new Event_VoteReceived(this));// 2018/03/24
 
 	}
 
