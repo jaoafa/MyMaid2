@@ -89,3 +89,11 @@ commands:
       usage: "/wt <AuthKey>: 指定されたAuthKeyに合うDiscordアカウントがあればそれと紐づけます。"
       permission: mymaid.discordlink
       permission-message: You do not have permission to perform this command.
+   spawn:
+      description: スポーン地点にテレポートします。
+      usage: |-
+             /spawn: ワールドの初期スポーン地点にテレポートします。
+             /spawn true: プレイヤーのスポーン地点にテレポートします。
+      permission: mymaid.spawn
+      permission-message: You do not have permission to perform this command.
+   dedrain:
