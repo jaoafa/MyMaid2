@@ -32,14 +32,17 @@ public class Event_JoinjaoPoint extends MyMaid2Premise implements Listener {
 		Calendar cal = Calendar.getInstance();
 		cal.setTimeZone(TimeZone.getTimeZone("Asia/Tokyo"));
 		cal.set(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH), 0, 0, 0);
-		int today = (int) (cal.getTimeInMillis() / 1000L);
+		SimpleDateFormat date_full = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		date_full.setTimeZone(TimeZone.getTimeZone("Asia/Tokyo"));
+		String today = date_full.format(cal.getTime());
 
 		SimpleDateFormat date = new SimpleDateFormat("yyyy/MM/dd");
 
 		try {
-			PreparedStatement statement = MySQL.getNewPreparedStatement("SELECT * FROM login WHERE uuid = ? AND date >= ?");
+			PreparedStatement statement = MySQL.getNewPreparedStatement("SELECT * FROM login WHERE uuid = ? AND date >= cast(? as datetime) AND login_success = ?");
 			statement.setString(1, uuid);
-			statement.setInt(2, today);
+			statement.setString(2, today);
+			statement.setBoolean(3, true);
 			ResultSet res = statement.executeQuery();
 			if(res.next()){
 				return;

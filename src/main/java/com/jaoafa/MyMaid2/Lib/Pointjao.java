@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.UUID;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 
@@ -279,9 +280,27 @@ public class Pointjao extends MyMaid2Premise {
 	 * @throws ClassNotFoundException 内部でClassNotFoundExceptionが発生した場合
 	 */
 	private void NoticeAndHistoryAdd(int jao, int next, NoticeType type, String reason) throws ClassNotFoundException, SQLException {
+		SendPlayerNotice(jao, next, type, reason);
 		DiscordNotice(jao, type, reason);
 		HistoryAdd(jao, next, type, reason);
 	}
+
+	/**
+	 * プレイヤーに対してjaoポイントの変化を通知する。
+	 * @param jao
+	 * @param next
+	 * @param type
+	 * @param reason
+	 */
+	private void SendPlayerNotice(int jao, int next, NoticeType type, String reason){
+		Player player = offplayer.getPlayer();
+		if(player == null){
+			return;
+		}
+		player.sendMessage("[POINT] " + ChatColor.GREEN + jao + "ポイントを" + type.getName() + "しました。現在" + next + "ポイント持っています。");
+		player.sendMessage("[POINT] " + ChatColor.GREEN + "理由: " + reason);
+	}
+
 	/**
 	 * Discord#toma_labに通知を出す
 	 * @param offplayer OfflinePlayer
