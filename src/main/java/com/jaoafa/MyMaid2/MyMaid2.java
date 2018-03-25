@@ -19,9 +19,11 @@ import com.jaoafa.MyMaid2.Command.Cmd_Head;
 import com.jaoafa.MyMaid2.Command.Cmd_Home;
 import com.jaoafa.MyMaid2.Command.Cmd_SetHome;
 import com.jaoafa.MyMaid2.Command.Cmd_Spawn;
+import com.jaoafa.MyMaid2.Command.Cmd_Test;
 import com.jaoafa.MyMaid2.Command.Cmd_WT;
 import com.jaoafa.MyMaid2.Command.Cmd_jao;
 import com.jaoafa.MyMaid2.Event.Event_AFK;
+import com.jaoafa.MyMaid2.Event.Event_Antijaoium;
 import com.jaoafa.MyMaid2.Event.Event_CommandBlockLogger;
 import com.jaoafa.MyMaid2.Event.Event_DedRain;
 import com.jaoafa.MyMaid2.Event.Event_FarmNOBreak;
@@ -112,6 +114,8 @@ public class MyMaid2 extends JavaPlugin implements Listener {
 		getCommand("spawn").setExecutor(new Cmd_Spawn(this)); // 2018/03/25
 		getCommand("jao").setExecutor(new Cmd_jao(this)); // 2018/03/25
 		getCommand("head").setExecutor(new Cmd_Head()); // 2018/03/25
+		getCommand("test").setExecutor(new Cmd_Test(this)); // 2018/03/25
+
 	}
 
 	/**
@@ -153,6 +157,7 @@ public class MyMaid2 extends JavaPlugin implements Listener {
 		registEvent(new Event_VoteReceived(this));// 2018/03/24
 		registEvent(new Event_PlayerCommandSendAdmin(this));// 2018/03/25
 		registEvent(new Event_JoinjaoPoint(this));// 2018/03/25
+		registEvent(new Event_Antijaoium(this));// 2018/03/25
 	}
 
 	/**
