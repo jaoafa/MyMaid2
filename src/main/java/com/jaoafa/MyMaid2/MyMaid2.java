@@ -187,7 +187,7 @@ public class MyMaid2 extends JavaPlugin implements Listener {
 			sqlpassword = conf.getString("sqlpassword");
 		}else{
 			getLogger().info("MySQL Connect err. [conf NotFound]");
-			getLogger().info("Disable AntiAlts2...");
+			getLogger().info("Disable MyMaid2...");
 			getServer().getPluginManager().disablePlugin(this);
 			return;
 		}
@@ -205,13 +205,13 @@ public class MyMaid2 extends JavaPlugin implements Listener {
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 			getLogger().info("MySQL Connect err. [ClassNotFoundException]");
-			getLogger().info("Disable AntiAlts2...");
+			getLogger().info("Disable MyMaid2...");
 			getServer().getPluginManager().disablePlugin(this);
 			return;
 		} catch (SQLException e) {
 			e.printStackTrace();
 			getLogger().info("MySQL Connect err. [SQLException: " + e.getSQLState() + "]");
-			getLogger().info("Disable AntiAlts2...");
+			getLogger().info("Disable MyMaid2...");
 			getServer().getPluginManager().disablePlugin(this);
 			return;
 		}
@@ -230,7 +230,7 @@ public class MyMaid2 extends JavaPlugin implements Listener {
 			getLogger().info("Using " + PluginName);
 		}else{
 			getLogger().warning("MyMaid2 ERR(NOTLOADED: " + PluginName + ")");
-			getLogger().info("Disable MyMaid...");
+			getLogger().info("Disable MyMaid2...");
 			getServer().getPluginManager().disablePlugin(this);
 			return;
 		}
