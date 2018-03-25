@@ -26,6 +26,7 @@ import com.jaoafa.MyMaid2.Event.Event_LoginSuccessCheck;
 import com.jaoafa.MyMaid2.Event.Event_MoveToChunkActionbar;
 import com.jaoafa.MyMaid2.Event.Event_NOConcretePowderToConcrete;
 import com.jaoafa.MyMaid2.Event.Event_PlayerCheckPreLogin;
+import com.jaoafa.MyMaid2.Event.Event_PlayerCommandSendAdmin;
 import com.jaoafa.MyMaid2.Event.Event_PlayerQuit;
 import com.jaoafa.MyMaid2.Event.Event_QD_NOTSpectator;
 import com.jaoafa.MyMaid2.Event.Event_VoteReceived;
@@ -142,7 +143,7 @@ public class MyMaid2 extends JavaPlugin implements Listener {
 		registEvent(new Event_FarmNOBreak());// 2018/03/21
 		registEvent(new Event_NOConcretePowderToConcrete());// 2018/03/21
 		registEvent(new Event_VoteReceived(this));// 2018/03/24
-
+		registEvent(new Event_PlayerCommandSendAdmin(this));// 2018/03/25
 	}
 
 	/**
