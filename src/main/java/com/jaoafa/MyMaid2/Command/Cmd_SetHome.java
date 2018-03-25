@@ -54,7 +54,7 @@ public class Cmd_SetHome extends MyMaid2Premise implements CommandExecutor {
 				statement2.setFloat(8, loc.getYaw()); // yaw
 				statement2.setFloat(9, loc.getPitch()); // pitch
 
-				statement.executeUpdate();
+				statement2.executeUpdate();
 				SendMessage(sender, cmd, "「default」としてホームを設定しました。「/home」と打つことでテレポートできます。");
 				return true;
 			} catch (SQLException | ClassNotFoundException e) {
