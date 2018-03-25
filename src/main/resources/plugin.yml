@@ -107,3 +107,10 @@ commands:
              /jao pay <Player> <Point> <Reason>: PlayerからReasonという理由でPointを支払います。
       permission: mymaid.jao
       permission-message: You do not have permission to perform this command.
+   head:
+      description: プレイヤーの頭ブロックを入手できます。
+      usage: |-
+             /head: メインハンドに自身の頭ブロックを設定します。すでに持っていたアイテムは別のスロットに移動するかドロップします。
+             /head <Player>: メインハンドに指定したプレイヤーの頭ブロックを設定します。すでに持っていたアイテムは別のスロットに移動するかドロップします。
+      permission: mymaid.jao
+      permission-message: You do not have permission to perform this command.
