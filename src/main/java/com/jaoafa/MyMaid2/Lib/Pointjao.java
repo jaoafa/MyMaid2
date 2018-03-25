@@ -20,45 +20,90 @@ public class Pointjao extends MyMaid2Premise {
 	/**
 	 * 指定したプレイヤーからjaoポイントデータを取得します。
 	 * @param player プレイヤー
+	 * @throws SQLException 内部でSQLExceptionが発生した場合
+	 * @throws ClassNotFoundException 内部でClassNotFoundExceptionが発生した場合
+	 * @throws NullPointerException 内部でNullPointerExceptionが発生した場合
 	 * @author mine_book000
 	 */
-	public Pointjao(Player player) {
+	public Pointjao(Player player) throws ClassNotFoundException, NullPointerException, SQLException {
 		if(player == null) throw new NullPointerException("We could not get the player.");
 		this.offplayer = player;
+
+		create();
 	}
 	/**
 	 * 指定したオフラインプレイヤーからjaoポイントデータを取得します。
 	 * @param offplayer オフラインプレイヤー
+	 * @deprecated プレイヤー名で検索するため、思い通りのプレイヤーを取得できない場合があります。
+	 * @throws SQLException 内部でSQLExceptionが発生した場合
+	 * @throws ClassNotFoundException 内部でClassNotFoundExceptionが発生した場合
+	 * @throws NullPointerException 内部でNullPointerExceptionが発生した場合
 	 * @author mine_book000
 	 */
-	public Pointjao(OfflinePlayer offplayer) {
+	@Deprecated
+	public Pointjao(OfflinePlayer offplayer) throws ClassNotFoundException, NullPointerException, SQLException {
 		if(offplayer == null) throw new NullPointerException("We could not get the player.");
 		this.offplayer = offplayer;
+
+		if(offplayer.hasPlayedBefore()){
+			create();
+		}else{
+			try{
+				getID();
+			}catch(UnsupportedOperationException e){
+				throw new UnsupportedOperationException("jao Point Data Not Found");
+			}
+		}
 	}
 	/**
 	 * 指定したプレイヤーネームからjaoポイントデータを取得します。
 	 * @param name プレイヤーネーム
 	 * @deprecated プレイヤー名で検索するため、思い通りのプレイヤーを取得できない場合があります。
-	 * @exception NullPointerException プレイヤーが取得できなかったとき
+	 * @throws SQLException 内部でSQLExceptionが発生した場合
+	 * @throws ClassNotFoundException 内部でClassNotFoundExceptionが発生した場合
+	 * @throws NullPointerException 内部でNullPointerExceptionが発生した場合
+	 * @throws UnsupportedOperationException jaoポイントデータが存在しない場合
 	 * @author mine_book000
 	 */
 	@Deprecated
-	public Pointjao(String name) throws NullPointerException {
+	public Pointjao(String name) throws NullPointerException, ClassNotFoundException, SQLException, UnsupportedOperationException {
 		OfflinePlayer offplayer = Bukkit.getOfflinePlayer(name);
 		if(offplayer == null) throw new NullPointerException("We could not get the player.");
 		this.offplayer = offplayer;
+
+		if(offplayer.hasPlayedBefore()){
+			create();
+		}else{
+			try{
+				getID();
+			}catch(UnsupportedOperationException e){
+				throw new UnsupportedOperationException("jao Point Data Not Found");
+			}
+		}
 	}
 	/**
 	 * 指定したプレイヤーUUIDからjaoポイントデータを取得します。
 	 * @param uuid プレイヤーのUUID
 	 * @deprecated プレイヤー名で検索するため、思い通りのプレイヤーを取得できない場合があります。
-	 * @exception NullPointerException プレイヤーが取得できなかったとき
+	 * @throws SQLException 内部でSQLExceptionが発生した場合
+	 * @throws ClassNotFoundException 内部でClassNotFoundExceptionが発生した場合
+	 * @throws NullPointerException 内部でNullPointerExceptionが発生した場合
 	 * @author mine_book000
 	 */
-	public Pointjao(UUID uuid) throws NullPointerException {
+	public Pointjao(UUID uuid) throws NullPointerException, ClassNotFoundException, SQLException {
 		OfflinePlayer offplayer = Bukkit.getOfflinePlayer(uuid);
 		if(offplayer == null) throw new NullPointerException("We could not get the player.");
 		this.offplayer = offplayer;
+
+		if(offplayer.hasPlayedBefore()){
+			create();
+		}else{
+			try{
+				getID();
+			}catch(UnsupportedOperationException e){
+				throw new UnsupportedOperationException("jao Point Data Not Found");
+			}
+		}
 	}
 
 	/**
@@ -79,6 +124,47 @@ public class Pointjao extends MyMaid2Premise {
 			return res.getInt("id");
 		}else{
 			throw new UnsupportedOperationException("Could not get ID.");
+		}
+	}
+	/**
+	 * jaoポイントデータを作成する
+	 * @return 作成できたかどうか
+	 * @throws SQLException 内部でSQLExceptionが発生した場合
+	 * @throws ClassNotFoundException 内部でClassNotFoundExceptionが発生した場合
+	 * @throws NullPointerException 内部でNullPointerExceptionが発生した場合
+	 */
+	public boolean create() throws ClassNotFoundException, SQLException, NullPointerException {
+		if(offplayer == null) throw new NullPointerException("We could not get the player.");
+		if(exists()) return false;
+		PreparedStatement statement = MySQL.getNewPreparedStatement("INSERT INTO jaopoint (player, uuid, jao) VALUES (?, ?, ?);");
+		statement.setString(1, offplayer.getName()); // player
+		statement.setString(2, offplayer.getUniqueId().toString()); // uuid
+		statement.setInt(3, 0);
+		int count = statement.executeUpdate();
+		if(count != 0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	/**
+	 * jaoポイントデータが存在するかどうかを確認します。
+	 * @return 存在するかどうか
+	 * @throws SQLException 内部でSQLExceptionが発生した場合
+	 * @throws ClassNotFoundException 内部でClassNotFoundExceptionが発生した場合
+	 * @throws NullPointerException 内部でNullPointerExceptionが発生した場合
+	 * @throws UnsupportedOperationException 内部でUnsupportedOperationExceptionが発生した場合
+	 * @author mine_book000
+	 */
+	public boolean exists() throws SQLException, ClassNotFoundException, NullPointerException, UnsupportedOperationException {
+		if(offplayer == null) throw new NullPointerException("We could not get the player.");
+		PreparedStatement statement = MySQL.getNewPreparedStatement("SELECT * FROM jaopoint WHERE uuid = ? ORDER BY id DESC");
+		statement.setString(1, offplayer.getUniqueId().toString()); // uuid
+		ResultSet res = statement.executeQuery();
+		if(res.next()){
+			return true;
+		}else{
+			return false;
 		}
 	}
 	/**
@@ -141,9 +227,9 @@ public class Pointjao extends MyMaid2Premise {
 		PreparedStatement statement = MySQL.getNewPreparedStatement("UPDATE jaopoint SET jao = ? WHERE id = ? ORDER BY id DESC");
 		statement.setInt(1, newjao);
 		statement.setInt(2, id);
-		int count =  statement.executeUpdate();
+		int count = statement.executeUpdate();
 		if(count != 0){
-			NoticeAndHistoryAdd(newjao, add, NoticeType.Use, reason);
+			NoticeAndHistoryAdd(add, newjao, NoticeType.Add, reason);
 			return true;
 		}else{
 			return false;
@@ -177,7 +263,7 @@ public class Pointjao extends MyMaid2Premise {
 		statement.setInt(2, id);
 		int count =  statement.executeUpdate();
 		if(count != 0){
-			NoticeAndHistoryAdd(newjao, use, NoticeType.Use, reason);
+			NoticeAndHistoryAdd(use, newjao, NoticeType.Use, reason);
 			return true;
 		}else{
 			return false;
@@ -208,9 +294,9 @@ public class Pointjao extends MyMaid2Premise {
 	private void DiscordNotice(int jao, NoticeType type, String reason){
 		if(offplayer == null) throw new NullPointerException("We could not get the player.");
 		if(offplayer.getUniqueId() == null){
-			DiscordSend("293856671799967744", ":scroll:**jaoPoint Logger**: " + offplayer.getName() + "に" + jao + "ポイントを" + type.getName() + "しました。\n" + "理由: " + reason + "\n" + "***警告: UUIDがnullを返しました。***");
+			DiscordSend("293856671799967744", ":scroll:**jaoPoint Logger**: " + offplayer.getName() + type.getConjunction() + jao + "ポイントを" + type.getName() + "しました。\n" + "理由: " + reason + "\n" + "***警告: UUIDがnullを返しました。***");
 		}else{
-			DiscordSend("293856671799967744", ":scroll:**jaoPoint Logger**: " + offplayer.getName() + "に" + jao + "ポイントを" + type.getName() + "しました。\n" + "理由: " + reason);
+			DiscordSend("293856671799967744", ":scroll:**jaoPoint Logger**: " + offplayer.getName() + type.getConjunction() + jao + "ポイントを" + type.getName() + "しました。\n" + "理由: " + reason);
 		}
 	}
 
@@ -225,7 +311,7 @@ public class Pointjao extends MyMaid2Premise {
 	 * @throws ClassNotFoundException 内部でClassNotFoundExceptionが発生した場合
 	 */
 	private boolean HistoryAdd(int jao, int next, NoticeType type, String reason) throws ClassNotFoundException, SQLException {
-		PreparedStatement statement = MySQL.getNewPreparedStatement("INSERT INTO jaopoint (player, uuid, type, point, reason, nowpoint, description) VALUES (?, ?, ?, ?, ?, ?, ?);");
+		PreparedStatement statement = MySQL.getNewPreparedStatement("INSERT INTO jaopoint_history (player, uuid, type, point, reason, nowpoint, description) VALUES (?, ?, ?, ?, ?, ?, ?);");
 		statement.setString(1, offplayer.getName());
 		statement.setString(2, offplayer.getUniqueId().toString());
 		statement.setString(3, type.name());
@@ -246,16 +332,21 @@ public class Pointjao extends MyMaid2Premise {
 	 * @author mine_book000
 	 */
 	public enum NoticeType {
-		Add("加算"),
-		Use("減算");
+		Add("加算", "に"),
+		Use("減算", "から");
 
 		private String name;
-		NoticeType(String name) {
+		private String conjunction;
+		NoticeType(String name, String conjunction) {
 			this.name = name;
+			this.conjunction = conjunction;
 		}
 
 		public String getName(){
 			return name;
+		}
+		public String getConjunction(){
+			return conjunction;
 		}
 	}
 }

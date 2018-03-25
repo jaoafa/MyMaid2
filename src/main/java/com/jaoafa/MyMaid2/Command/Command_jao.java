@@ -25,6 +25,7 @@ public class Command_jao extends MyMaid2Premise implements CommandExecutor {
 	public Command_jao(JavaPlugin plugin) {
 		this.plugin = plugin;
 	}
+	@SuppressWarnings("deprecation")
 	public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args){
 		if(args.length >= 1 && args[0].equalsIgnoreCase("help")){
 			SendUsageMessage(sender, cmd);
@@ -32,12 +33,14 @@ public class Command_jao extends MyMaid2Premise implements CommandExecutor {
 		}
 
 		if(args.length == 1){
-			@SuppressWarnings("deprecation")
 			OfflinePlayer offplayer = Bukkit.getOfflinePlayer(args[0]);
 			try{
 				Pointjao Pjao = new Pointjao(offplayer);
 				int now = Pjao.get();
 				SendMessage(sender, cmd, "現在" + offplayer.getName() + "が所持しているポイント数は" + now + "ポイントです。");
+				return true;
+			}catch(UnsupportedOperationException e){
+				SendMessage(sender, cmd, "jaoポイントデータが存在しません。");
 				return true;
 			}catch(NullPointerException e){
 				SendMessage(sender, cmd, "プレイヤーが見つかりません。");
@@ -54,7 +57,6 @@ public class Command_jao extends MyMaid2Premise implements CommandExecutor {
 			// /jao use player point reason
 			if(args[0].equalsIgnoreCase("add")){
 				// /jao add player point reason
-				@SuppressWarnings("deprecation")
 				OfflinePlayer offplayer = Bukkit.getOfflinePlayer(args[1]);
 				if(offplayer == null){
 					SendMessage(sender, cmd, "プレイヤーが見つかりません。");
@@ -114,6 +116,9 @@ public class Command_jao extends MyMaid2Premise implements CommandExecutor {
 						SendMessage(sender, cmd, "プレイヤー「" +  offplayer.getName() + "」に" + point + "ポイントを追加できませんでした。");
 					}
 					return true;
+				}catch(UnsupportedOperationException e){
+					SendMessage(sender, cmd, "jaoポイントデータが存在しません。");
+					return true;
 				}catch(NullPointerException e){
 					SendMessage(sender, cmd, "プレイヤーが見つかりません。");
 					return true;
@@ -126,7 +131,6 @@ public class Command_jao extends MyMaid2Premise implements CommandExecutor {
 				}
 			}else if(args[0].equalsIgnoreCase("use")){
 				// /jao use player point reason
-				@SuppressWarnings("deprecation")
 				OfflinePlayer offplayer = Bukkit.getOfflinePlayer(args[1]);
 				if(offplayer == null){
 					SendMessage(sender, cmd, "プレイヤーが見つかりません。");
@@ -186,6 +190,9 @@ public class Command_jao extends MyMaid2Premise implements CommandExecutor {
 						SendMessage(sender, cmd, "プレイヤー「" +  offplayer.getName() + "」から" + point + "ポイントを減算できませんでした。");
 					}
 					return true;
+				}catch(UnsupportedOperationException e){
+					SendMessage(sender, cmd, "jaoポイントデータが存在しません。");
+					return true;
 				}catch(NullPointerException e){
 					SendMessage(sender, cmd, "プレイヤーが見つかりません。");
 					return true;
@@ -204,7 +211,6 @@ public class Command_jao extends MyMaid2Premise implements CommandExecutor {
 				}
 				Player player = (Player) sender;
 
-				@SuppressWarnings("deprecation")
 				OfflinePlayer offplayer = Bukkit.getOfflinePlayer(args[1]);
 				if(offplayer == null){
 					SendMessage(sender, cmd, "プレイヤーが見つかりません。");
@@ -252,6 +258,9 @@ public class Command_jao extends MyMaid2Premise implements CommandExecutor {
 						SendMessage(sender, cmd, "プレイヤー「" +  offplayer.getName() + "」から" + point + "ポイントを減算できませんでした。");
 					}
 					return true;
+				}catch(UnsupportedOperationException e){
+					SendMessage(sender, cmd, "jaoポイントデータが存在しません。");
+					return true;
 				}catch(NullPointerException e){
 					SendMessage(sender, cmd, "プレイヤーが見つかりません。");
 					return true;
@@ -273,6 +282,9 @@ public class Command_jao extends MyMaid2Premise implements CommandExecutor {
 			Pointjao Pjao = new Pointjao(player);
 			int now = Pjao.get();
 			SendMessage(sender, cmd, "現在あなたが所持しているポイント数は" + now + "ポイントです。");
+			return true;
+		}catch(UnsupportedOperationException e){
+			SendMessage(sender, cmd, "jaoポイントデータが存在しません。");
 			return true;
 		}catch(NullPointerException e){
 			SendMessage(sender, cmd, "プレイヤーが見つかりません。");
