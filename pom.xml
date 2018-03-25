@@ -102,7 +102,7 @@
 			<systemPath>${basedir}/lib/Votifier.jar</systemPath>
 			<scope>system</scope>
 		</dependency>
-		<!-- Votifier -->
+		<!-- jaoSuperAchievement -->
 		<dependency>
 			<groupId>com.jaoafa</groupId>
 			<artifactId>jaoSuperAchievement</artifactId>
