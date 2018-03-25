@@ -96,4 +96,14 @@ commands:
              /spawn true: プレイヤーのスポーン地点にテレポートします。
       permission: mymaid.spawn
       permission-message: You do not have permission to perform this command.
-   dedrain:
+   jao:
+      description: jaoポイントの確認・送受信などを行えます。
+      usage: |-
+             /jao: あなたのjaoポイント残高を確認します。
+             /jao history: あなたのjaoポイントを履歴を表示します。
+             /jao help: このヘルプを表示します。
+             /jao add <Player> <Point> <Reason>: PlayerにReasonという理由でPointを追加します。
+             /jao use <Player> <Point> <Reason>: PlayerからReasonという理由でPointを減算します。
+             /jao pay <Player> <Point> <Reason>: PlayerからReasonという理由でPointを支払います。
+      permission: mymaid.jao
+      permission-message: You do not have permission to perform this command.

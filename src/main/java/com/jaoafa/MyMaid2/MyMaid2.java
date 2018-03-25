@@ -19,6 +19,7 @@ import com.jaoafa.MyMaid2.Command.Cmd_Home;
 import com.jaoafa.MyMaid2.Command.Cmd_SetHome;
 import com.jaoafa.MyMaid2.Command.Cmd_Spawn;
 import com.jaoafa.MyMaid2.Command.Cmd_WT;
+import com.jaoafa.MyMaid2.Command.Command_jao;
 import com.jaoafa.MyMaid2.Event.Event_AFK;
 import com.jaoafa.MyMaid2.Event.Event_CommandBlockLogger;
 import com.jaoafa.MyMaid2.Event.Event_DedRain;
@@ -106,6 +107,7 @@ public class MyMaid2 extends JavaPlugin implements Listener {
 		getCommand("wt").setExecutor(new Cmd_WT(this)); // 2018/03/21
 		getCommand("discordlink").setExecutor(new Cmd_DiscordLink(this)); // 2018/03/21
 		getCommand("spawn").setExecutor(new Cmd_Spawn(this)); // 2018/03/25
+		getCommand("jao").setExecutor(new Command_jao(this)); // 2018/03/25
 	}
 
 	/**
