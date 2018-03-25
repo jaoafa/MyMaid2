@@ -20,9 +20,9 @@ import org.bukkit.plugin.java.JavaPlugin;
 import com.jaoafa.MyMaid2.MyMaid2Premise;
 import com.jaoafa.MyMaid2.Lib.Pointjao;
 
-public class Command_jao extends MyMaid2Premise implements CommandExecutor {
+public class Cmd_jao extends MyMaid2Premise implements CommandExecutor {
 	JavaPlugin plugin;
-	public Command_jao(JavaPlugin plugin) {
+	public Cmd_jao(JavaPlugin plugin) {
 		this.plugin = plugin;
 	}
 	@SuppressWarnings("deprecation")

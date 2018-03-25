@@ -4,7 +4,7 @@ version: 0.0.1
 description: General Plugin Version 2
 database: true
 author: mine_book000
-softdepend: [PermissionsEx, LuckPerms, GeoipAPI, dynmap, Votifier]
+softdepend: [PermissionsEx, LuckPerms, GeoipAPI, dynmap, Votifier, jaoSuperAchievement]
 commands:
    afk:
       description: AFK(Away From Keyboard)モードをオン・オフにします。
@@ -113,4 +113,9 @@ commands:
              /head: メインハンドに自身の頭ブロックを設定します。すでに持っていたアイテムは別のスロットに移動するかドロップします。
              /head <Player>: メインハンドに指定したプレイヤーの頭ブロックを設定します。すでに持っていたアイテムは別のスロットに移動するかドロップします。
       permission: mymaid.jao
+      permission-message: You do not have permission to perform this command.
+   test:
+      description: TEST
+      usage: TEST
+      permission: mymaid.test
       permission-message: You do not have permission to perform this command.
