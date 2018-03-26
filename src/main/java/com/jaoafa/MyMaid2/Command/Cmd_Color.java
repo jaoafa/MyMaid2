@@ -6,13 +6,14 @@ import java.util.Map;
 
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
+import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import com.jaoafa.MyMaid2.MyMaid2Premise;
 import com.jaoafa.MyMaid2.Lib.PlayerVoteData;
 
-public class Cmd_Color extends MyMaid2Premise {
+public class Cmd_Color extends MyMaid2Premise implements CommandExecutor {
 	public Cmd_Color() {}
 	public static Map<String,ChatColor> color = new HashMap<>();
 	public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args){
@@ -79,12 +80,32 @@ public class Cmd_Color extends MyMaid2Premise {
 				SendMessage(sender, cmd, "指定された色は選択できませんでした。");
 				return true;
 			}
-			Cmd_Color.color.put(player.getName(), color);
-			player.setPlayerListName(Cmd_Color.color.get(player.getName()) + "■" + ChatColor.WHITE + player.getName());
+			Cmd_Color.color.put(player.getUniqueId().toString(), color);
+			player.setPlayerListName(Cmd_Color.color.get(player.getUniqueId().toString()) + "■" + ChatColor.WHITE + player.getName());
 			SendMessage(sender, cmd, "四角色を「" + color + "■" + ChatColor.GREEN + "」に変更しました。");
 			return true;
 		}
-
-		return true;
+		PlayerVoteData pvd = new PlayerVoteData(player);
+		int i;
+		try{
+			i = pvd.get();
+		}catch(ClassNotFoundException | SQLException e){
+			BugReporter(e);
+			SendMessage(sender, cmd, "操作に失敗しました。");
+			SendMessage(sender, cmd, "詳しくはサーバコンソールをご確認ください");
+			SendMessage(sender, cmd, "再度実行しなおすと動作するかもしれません。");
+			return true;
+		}
+		if(i < 200){
+  			SendMessage(sender, cmd, "投票数が200回を超えていないため、四角色を閲覧する権限がありません。");
+			return true;
+  		}
+		if(color.containsKey(player.getUniqueId().toString()) && color.get(player.getUniqueId().toString()) != null){
+			SendMessage(sender, cmd, "「" + color.get(player.getName()) + "■" + ChatColor.GREEN + " (" + color.get(player.getName()).name() +")」に指定されています。");
+			return true;
+		}else{
+			SendMessage(sender, cmd, "デフォルト色のLIGHT_PURPLEに指定されています。");
+			return true;
+		}
 	}
 }

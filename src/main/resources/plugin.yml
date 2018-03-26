@@ -119,3 +119,8 @@ commands:
       usage: TEST
       permission: mymaid.test
       permission-message: You do not have permission to perform this command.
+   test:
+      description: TEST
+      usage: TEST
+      permission: mymaid.test
+      permission-message: You do not have permission to perform this command.

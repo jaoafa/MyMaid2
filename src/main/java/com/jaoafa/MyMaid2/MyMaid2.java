@@ -10,6 +10,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import com.jaoafa.MyMaid2.Command.Cmd_AFK;
 import com.jaoafa.MyMaid2.Command.Cmd_City;
 import com.jaoafa.MyMaid2.Command.Cmd_Cmdb;
+import com.jaoafa.MyMaid2.Command.Cmd_Color;
 import com.jaoafa.MyMaid2.Command.Cmd_DT;
 import com.jaoafa.MyMaid2.Command.Cmd_DedRain;
 import com.jaoafa.MyMaid2.Command.Cmd_DelHome;
@@ -115,7 +116,7 @@ public class MyMaid2 extends JavaPlugin implements Listener {
 		getCommand("jao").setExecutor(new Cmd_jao(this)); // 2018/03/25
 		getCommand("head").setExecutor(new Cmd_Head()); // 2018/03/25
 		getCommand("test").setExecutor(new Cmd_Test(this)); // 2018/03/25
-
+		getCommand("color").setExecutor(new Cmd_Color()); // 2018/03/26
 	}
 
 	/**
