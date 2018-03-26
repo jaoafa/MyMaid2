@@ -65,6 +65,55 @@ public class PlayerVoteData {
 	}
 
 	/**
+	 * プレイヤーの投票数データを作成する<br>
+	 * ※初めての投票時に作成すること！
+	 * @return 作成できたかどうか
+	 * @throws SQLException 内部でSQLExceptionが発生した場合
+	 * @throws ClassNotFoundException 内部でClassNotFoundExceptionが発生した場合
+	 * @throws NullPointerException 内部でNullPointerExceptionが発生した場合
+	 */
+	public boolean create() throws ClassNotFoundException, SQLException, NullPointerException {
+		if(offplayer == null) throw new NullPointerException("We could not get the player.");
+		if(exists()) return false;
+		PreparedStatement statement = MySQL.getNewPreparedStatement("INSERT INTO vote (player, uuid, count, first, lasttime, last) VALUES (?, ?, ?, ?, ?, ?);");
+		statement.setString(1, offplayer.getName()); // player
+		statement.setString(2, offplayer.getUniqueId().toString()); // uuid
+		statement.setInt(3, 1);
+
+		SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		String date = format.format(new Date());
+		statement.setString(4, date);
+		statement.setString(5, date);
+		statement.setString(5, date);
+		int count = statement.executeUpdate();
+		if(count != 0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	/**
+	 * プレイヤーの投票数データが存在するかどうかを確認します。
+	 * @return 存在するかどうか
+	 * @throws SQLException 内部でSQLExceptionが発生した場合
+	 * @throws ClassNotFoundException 内部でClassNotFoundExceptionが発生した場合
+	 * @throws NullPointerException 内部でNullPointerExceptionが発生した場合
+	 * @throws UnsupportedOperationException 内部でUnsupportedOperationExceptionが発生した場合
+	 * @author mine_book000
+	 */
+	public boolean exists() throws SQLException, ClassNotFoundException, NullPointerException, UnsupportedOperationException {
+		if(offplayer == null) throw new NullPointerException("We could not get the player.");
+		PreparedStatement statement = MySQL.getNewPreparedStatement("SELECT * FROM vote WHERE uuid = ? ORDER BY id DESC");
+		statement.setString(1, offplayer.getUniqueId().toString()); // uuid
+		ResultSet res = statement.executeQuery();
+		if(res.next()){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	/**
 	 * プレイヤーの投票数に1つ追加します。
 	 * @return 実行できたかどうか
 	 * @throws ClassNotFoundException 内部でClassNotFoundExceptionが発生した場合
@@ -73,6 +122,10 @@ public class PlayerVoteData {
 	 */
 	public boolean add() throws ClassNotFoundException, SQLException, NullPointerException {
 		if(offplayer == null) throw new NullPointerException("We could not get the player.");
+		if(!exists()){
+			create();
+			return true;
+		}
 		int next = get() + 1;
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		PreparedStatement statement = MySQL.getNewPreparedStatement("UPDATE vote SET count = ?, lasttime = ?, last = ? WHERE id = ?");
