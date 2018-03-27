@@ -18,6 +18,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scoreboard.Team;
 
 import com.jaoafa.MyMaid2.MyMaid2Premise;
+import com.jaoafa.MyMaid2.Command.Cmd_Color;
 
 public class SKKColors extends MyMaid2Premise {
 	public static Map<String, Integer> votecount = new HashMap<String, Integer>();
@@ -143,6 +144,7 @@ public class SKKColors extends MyMaid2Premise {
 		FileConfiguration data = YamlConfiguration.loadConfiguration(file);
 		data.set("JoinMessageList", MessageList);
 		data.set("LastText", LastText);
+		data.set("Color", Cmd_Color.color);
 		try {
 			data.save(file);
 			return true;
@@ -170,6 +172,17 @@ public class SKKColors extends MyMaid2Premise {
 				for(Entry<String, Object> p: LastText.entrySet()){
 					String LastTextStr = (String) p.getValue();
 					SKKColors.LastText.put(p.getKey(), LastTextStr);
+				}
+			}
+		}else{
+			return false;
+		}
+		if(data.contains("Color")){
+			Map<String, Object> Color = data.getConfigurationSection("Color").getValues(true);
+			if(Color.size() != 0){
+				for(Entry<String, Object> p: Color.entrySet()){
+					ChatColor color = (ChatColor) p.getValue();
+					Cmd_Color.color.put(p.getKey(), color);
 				}
 			}
 		}else{

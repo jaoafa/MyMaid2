@@ -30,7 +30,6 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 import com.jaoafa.MyMaid2.Lib.PermissionsManager;
-import com.jaoafa.MyMaid2.Lib.TitleSender;
 
 public abstract class MyMaid2Premise {
 	/**
@@ -40,14 +39,6 @@ public abstract class MyMaid2Premise {
 	/*public abstract String getHelpMessage();
 
 	public abstract MyMaid2Premise_Usage[] getUsage();*/
-
-	public static TitleSender TitleSender = null;
-	public static TitleSender TitleSender(){
-		if(TitleSender == null){
-			TitleSender = new TitleSender();
-		}
-		return TitleSender;
-	}
 
 	public static JavaPlugin JavaPlugin(){
 		if(MyMaid2.javaplugin == null){

@@ -24,6 +24,7 @@ import org.dynmap.markers.MarkerAPI;
 import org.dynmap.markers.MarkerIcon;
 import org.dynmap.markers.MarkerSet;
 
+import com.connorlinfoot.titleapi.TitleAPI;
 import com.jaoafa.MyMaid2.MyMaid2Premise;
 
 public class Cmd_DT extends MyMaid2Premise implements CommandExecutor, TabCompleter {
@@ -143,8 +144,7 @@ public class Cmd_DT extends MyMaid2Premise implements CommandExecutor, TabComple
 					Location loc = new Location(world, x, y, z);
 					loc.add(0.5f, 0f, 0.5f);
 					player.teleport(loc);
-					TitleSender().setTime_second(player, 2, 5, 2);
-					TitleSender().sendTitle(player, "", ChatColor.AQUA +  "You have been teleported to " + markerlabel + "!");
+					TitleAPI.sendTitle(player, 2, 5, 2, "", ChatColor.AQUA +  "You have been teleported to " + markerlabel + "!");
 					DiscordSend("*[" + player.getName() + ": " + player.getName() + " to " + markerlabel + "]*");
 					Bukkit.broadcastMessage(ChatColor.GRAY + "[" + ChatColor.ITALIC + player.getName() + ChatColor.GRAY + ": " + ChatColor.ITALIC + player.getName() + ChatColor.GRAY + " は " + ChatColor.ITALIC + markerlabel + ChatColor.GRAY + " にワープしました]");
 					return true;
@@ -264,8 +264,7 @@ public class Cmd_DT extends MyMaid2Premise implements CommandExecutor, TabComple
 					Location loc = new Location(world, x, y, z);
 					loc.add(0.5f, 0f, 0.5f);
 					player.teleport(loc);
-					TitleSender().setTime_second(player, 2, 5, 2);
-					TitleSender().sendTitle(player, "", ChatColor.AQUA +  "You have been teleported to " + markerlabel + "!");
+					TitleAPI.sendTitle(player, 2, 5, 2, "", ChatColor.AQUA +  "You have been teleported to " + markerlabel + "!");
 					DiscordSend("*[" + sender.getName() + ": " + player.getName() + " to " + markerlabel + "]*");
 					Bukkit.broadcastMessage(ChatColor.GRAY + "[" + ChatColor.ITALIC + sender.getName() + ChatColor.GRAY + ": " + ChatColor.ITALIC + player.getName() + ChatColor.GRAY + " は " + ChatColor.ITALIC + markerlabel + ChatColor.GRAY + " にワープしました]");
 					return true;
@@ -370,8 +369,7 @@ public class Cmd_DT extends MyMaid2Premise implements CommandExecutor, TabComple
 					Location loc = new Location(world, x, y, z);
 					loc.add(0.5f, 0f, 0.5f);
 					player.teleport(loc);
-					TitleSender().setTime_second(player, 2, 5, 2);
-					TitleSender().sendTitle(player, "", ChatColor.AQUA +  "You have been teleported to " + markerlabel + "!");
+					TitleAPI.sendTitle(player, 2, 5, 2, "", ChatColor.AQUA +  "You have been teleported to " + markerlabel + "!");
 					DiscordSend("*[" + sender.getName() + ": " + player.getName() + " to " + markerlabel + "]*");
 					Bukkit.broadcastMessage(ChatColor.GRAY + "[" + ChatColor.ITALIC + sender.getName() + ChatColor.GRAY + ": " + ChatColor.ITALIC + player.getName() + ChatColor.GRAY + " は " + ChatColor.ITALIC + markerlabel + ChatColor.GRAY + " にワープしました]");
 					return true;

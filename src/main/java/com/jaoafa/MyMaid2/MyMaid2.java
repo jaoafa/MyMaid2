@@ -15,6 +15,7 @@ import com.jaoafa.MyMaid2.Command.Cmd_DT;
 import com.jaoafa.MyMaid2.Command.Cmd_DedRain;
 import com.jaoafa.MyMaid2.Command.Cmd_DelHome;
 import com.jaoafa.MyMaid2.Command.Cmd_DiscordLink;
+import com.jaoafa.MyMaid2.Command.Cmd_Elytra;
 import com.jaoafa.MyMaid2.Command.Cmd_G;
 import com.jaoafa.MyMaid2.Command.Cmd_Head;
 import com.jaoafa.MyMaid2.Command.Cmd_Home;
@@ -28,6 +29,7 @@ import com.jaoafa.MyMaid2.Event.Event_Antijaoium;
 import com.jaoafa.MyMaid2.Event.Event_CommandBlockLogger;
 import com.jaoafa.MyMaid2.Event.Event_DedRain;
 import com.jaoafa.MyMaid2.Event.Event_FarmNOBreak;
+import com.jaoafa.MyMaid2.Event.Event_JoinHeaderFooterChange;
 import com.jaoafa.MyMaid2.Event.Event_JoinjaoPoint;
 import com.jaoafa.MyMaid2.Event.Event_LoginSuccessCheck;
 import com.jaoafa.MyMaid2.Event.Event_MoveToChunkActionbar;
@@ -36,10 +38,15 @@ import com.jaoafa.MyMaid2.Event.Event_PlayerCheckPreLogin;
 import com.jaoafa.MyMaid2.Event.Event_PlayerCommandSendAdmin;
 import com.jaoafa.MyMaid2.Event.Event_PlayerQuit;
 import com.jaoafa.MyMaid2.Event.Event_QD_NOTSpectator;
+import com.jaoafa.MyMaid2.Event.Event_QuitHeaderFooterChange;
+import com.jaoafa.MyMaid2.Event.Event_SKKColor;
 import com.jaoafa.MyMaid2.Event.Event_VoteReceived;
 import com.jaoafa.MyMaid2.Lib.MySQL;
 import com.jaoafa.MyMaid2.Lib.PermissionsManager;
-import com.jaoafa.MyMaid2.Task.Task_AFK;
+import com.jaoafa.MyMaid2.Lib.SKKColors;
+import com.jaoafa.MyMaid2.Lib.TPSChecker;
+import com.jaoafa.MyMaid2.Task.TPSChange;
+import com.jaoafa.MyMaid2.Task.Task_AFK.AFKChecker;
 
 public class MyMaid2 extends JavaPlugin implements Listener {
 	public static String discordtoken = null;
@@ -92,6 +99,9 @@ public class MyMaid2 extends JavaPlugin implements Listener {
 		Import_Command_Executor();
 		// Tabコンプリーターを設定
 		Import_Command_TabCompleter();
+
+		SKKColors.first(this);
+		TPSChecker.OnEnable_TPSSetting();
 		getLogger().info("--------------------------------------------------");
 	}
 
@@ -117,6 +127,7 @@ public class MyMaid2 extends JavaPlugin implements Listener {
 		getCommand("head").setExecutor(new Cmd_Head()); // 2018/03/25
 		getCommand("test").setExecutor(new Cmd_Test(this)); // 2018/03/25
 		getCommand("color").setExecutor(new Cmd_Color()); // 2018/03/26
+		getCommand("elytra").setExecutor(new Cmd_Elytra(this)); // 2018/03/27
 	}
 
 	/**
@@ -135,7 +146,8 @@ public class MyMaid2 extends JavaPlugin implements Listener {
 	 * @author mine_book000
 	 */
 	private void Import_Task(){
-		new Task_AFK.AFKChecker().runTaskTimer(this, 0L, 1200L);
+		new AFKChecker().runTaskTimer(this, 0L, 1200L);
+		new TPSChange().runTaskTimer(this, 0L, 1200L);
 	}
 
 	/**
@@ -159,6 +171,9 @@ public class MyMaid2 extends JavaPlugin implements Listener {
 		registEvent(new Event_PlayerCommandSendAdmin(this));// 2018/03/25
 		registEvent(new Event_JoinjaoPoint(this));// 2018/03/25
 		registEvent(new Event_Antijaoium(this));// 2018/03/25
+		registEvent(new Event_SKKColor(this));// 2018/03/26
+		registEvent(new Event_JoinHeaderFooterChange(this));// 2018/03/26
+		registEvent(new Event_QuitHeaderFooterChange(this));// 2018/03/26
 	}
 
 	/**
@@ -249,6 +264,6 @@ public class MyMaid2 extends JavaPlugin implements Listener {
 	 */
 	@Override
 	public void onDisable() {
-
+		SKKColors.Save();
 	}
 }

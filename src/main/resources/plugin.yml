@@ -119,8 +119,15 @@ commands:
       usage: TEST
       permission: mymaid.test
       permission-message: You do not have permission to perform this command.
-   test:
-      description: TEST
-      usage: TEST
-      permission: mymaid.test
+   color:
+      description: チャット欄の四角色を取得・変更します。
+      usage: |-
+             /color: 現在の四角指定色を取得します。
+             /color <Color>: 四角色を変更します。
+      permission: mymaid.color
+      permission-message: You do not have permission to perform this command.
+   elytra:
+      description: エリトラと花火を装備します。
+      usage: "/elytra: エリトラと花火を装備します。"
+      permission: mymaid.elytra
       permission-message: You do not have permission to perform this command.

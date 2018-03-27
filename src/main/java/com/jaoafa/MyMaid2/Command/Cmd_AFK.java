@@ -15,6 +15,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.scheduler.BukkitTask;
 
+import com.connorlinfoot.titleapi.TitleAPI;
 import com.jaoafa.MyMaid2.MyMaid2Premise;
 import com.jaoafa.MyMaid2.Task.Task_AFKING;
 import com.jaoafa.jaoSuperAchievement.jaoAchievement.AchievementType;
@@ -74,9 +75,7 @@ public class Cmd_AFK extends MyMaid2Premise implements CommandExecutor {
 		String listname = player.getPlayerListName().replaceAll(player.getName(), ChatColor.DARK_GRAY + player.getName());
 		player.setPlayerListName(listname);
 
-		TitleSender().setTime_tick(player, 0, 99999999, 0);
-		TitleSender().sendTitle(player, ChatColor.RED + "AFK NOW!", ChatColor.BLUE + "" + ChatColor.BOLD + "When you are back, please enter the command '/afk'.");
-		TitleSender().setTime_tick(player, 0, 99999999, 0);
+		TitleAPI.sendTitle(player, 0, 99999999, 0, ChatColor.RED + "AFK NOW!", ChatColor.BLUE + "" + ChatColor.BOLD + "When you are back, please enter the command '/afk' or Move.");
 
 		try{
 			BukkitTask task = new Task_AFKING(JavaPlugin(), player).runTaskTimer(JavaPlugin(), 0L, 5L);
@@ -117,7 +116,7 @@ public class Cmd_AFK extends MyMaid2Premise implements CommandExecutor {
 		String listname = player.getPlayerListName().replaceAll(player.getName(), ChatColor.WHITE + player.getName());
 		player.setPlayerListName(listname);
 
-		TitleSender().resetTitle(player);
+		TitleAPI.clearTitle(player);
 
 		if(loc.containsKey(player.getName())){
 			player.teleport(loc.get(player.getName()));
