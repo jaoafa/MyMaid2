@@ -28,7 +28,7 @@ public class TPSChange extends BukkitRunnable {
 			double tps1m_double = Double.parseDouble(tps1m);
 			tps1mcolor = TPSChecker.TPSColor(tps1m_double);
 
-			if(tps1m_double <= 11 && OldTps1mColor > 11){
+			if(tps1m_double <= 15 && OldTps1mColor > 15){
 				// やばいぞ
 				Bukkit.broadcastMessage("[TPSChecker] " + ChatColor.RED + "ちょっと待って！TPSがかなり下がっています！(" + tps1m + " / 20)");
 				Bukkit.broadcastMessage("[TPSChecker] " + ChatColor.RED + "意図的なサーバへの負荷をかける行為は「サーバルール」の「サーバシステムに危害を加えない。」に違反すると判断される場合があります。あなたの行動が負荷になっていないかぜひ確認してみてください。");

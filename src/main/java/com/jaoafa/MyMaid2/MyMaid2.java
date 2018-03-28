@@ -19,6 +19,7 @@ import com.jaoafa.MyMaid2.Command.Cmd_Elytra;
 import com.jaoafa.MyMaid2.Command.Cmd_G;
 import com.jaoafa.MyMaid2.Command.Cmd_Head;
 import com.jaoafa.MyMaid2.Command.Cmd_Home;
+import com.jaoafa.MyMaid2.Command.Cmd_Messenger;
 import com.jaoafa.MyMaid2.Command.Cmd_SetHome;
 import com.jaoafa.MyMaid2.Command.Cmd_Spawn;
 import com.jaoafa.MyMaid2.Command.Cmd_Test;
@@ -46,6 +47,7 @@ import com.jaoafa.MyMaid2.Lib.MySQL;
 import com.jaoafa.MyMaid2.Lib.PermissionsManager;
 import com.jaoafa.MyMaid2.Lib.SKKColors;
 import com.jaoafa.MyMaid2.Lib.TPSChecker;
+import com.jaoafa.MyMaid2.Task.AutoMessenger;
 import com.jaoafa.MyMaid2.Task.TPSChange;
 import com.jaoafa.MyMaid2.Task.Task_AFK.AFKChecker;
 
@@ -130,6 +132,7 @@ public class MyMaid2 extends JavaPlugin implements Listener {
 		getCommand("test").setExecutor(new Cmd_Test(this)); // 2018/03/25
 		getCommand("color").setExecutor(new Cmd_Color()); // 2018/03/26
 		getCommand("elytra").setExecutor(new Cmd_Elytra(this)); // 2018/03/27
+		getCommand("messenger").setExecutor(new Cmd_Messenger(this)); // 2018/03/29
 	}
 
 	/**
@@ -150,6 +153,7 @@ public class MyMaid2 extends JavaPlugin implements Listener {
 	private void Import_Task(){
 		new AFKChecker().runTaskTimer(this, 0L, 1200L);
 		new TPSChange().runTaskTimer(this, 0L, 1200L);
+		new AutoMessenger().runTaskTimer(this, 0L, 12000L);
 	}
 
 	/**
