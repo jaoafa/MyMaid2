@@ -8,6 +8,7 @@ import java.util.List;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -43,7 +44,12 @@ public class Cmd_Home extends MyMaid2Premise implements CommandExecutor, TabComp
 
 				ResultSet res = statement.executeQuery();
 				if(res.next()){
-					Location loc = new Location(Bukkit.getWorld(res.getString("world")), res.getDouble("x"), res.getDouble("y"), res.getDouble("z"), res.getFloat("pitch"), res.getFloat("yaw"));
+					World world = Bukkit.getWorld(res.getString("world"));
+					if(world == null){
+						SendMessage(sender, cmd, "指定されたホームのワールドが取得できませんでした。");
+						return true;
+					}
+					Location loc = new Location(world, res.getDouble("x"), res.getDouble("y"), res.getDouble("z"), res.getFloat("pitch"), res.getFloat("yaw"));
 					player.teleport(loc);
 					SendMessage(sender, cmd, "ホーム「default」にテレポートしました。");
 					return true;
@@ -101,7 +107,12 @@ public class Cmd_Home extends MyMaid2Premise implements CommandExecutor, TabComp
 
 				ResultSet res = statement.executeQuery();
 				if(res.next()){
-					Location loc = new Location(Bukkit.getWorld(res.getString("world")), res.getDouble("x"), res.getDouble("y"), res.getDouble("z"), res.getFloat("yaw"), res.getFloat("pitch"));
+					World world = Bukkit.getWorld(res.getString("world"));
+					if(world == null){
+						SendMessage(sender, cmd, "指定されたホームのワールドが取得できませんでした。");
+						return true;
+					}
+					Location loc = new Location(world, res.getDouble("x"), res.getDouble("y"), res.getDouble("z"), res.getFloat("yaw"), res.getFloat("pitch"));
 					player.teleport(loc);
 					SendMessage(sender, cmd, "ホーム「" + name + "」にテレポートしました。");
 					return true;

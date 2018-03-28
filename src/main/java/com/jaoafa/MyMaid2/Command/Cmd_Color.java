@@ -101,7 +101,7 @@ public class Cmd_Color extends MyMaid2Premise implements CommandExecutor {
 			return true;
   		}
 		if(color.containsKey(player.getUniqueId().toString()) && color.get(player.getUniqueId().toString()) != null){
-			SendMessage(sender, cmd, "「" + color.get(player.getName()) + "■" + ChatColor.GREEN + " (" + color.get(player.getName()).name() +")」に指定されています。");
+			SendMessage(sender, cmd, "「" + color.get(player.getUniqueId().toString()) + "■" + ChatColor.GREEN + " (" + color.get(player.getUniqueId().toString()).name() +")」に指定されています。");
 			return true;
 		}else{
 			SendMessage(sender, cmd, "デフォルト色のLIGHT_PURPLEに指定されています。");

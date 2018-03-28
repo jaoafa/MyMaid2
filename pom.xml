@@ -117,5 +117,11 @@
 			<systemPath>${basedir}/lib/TitleAPI.jar</systemPath>
 			<scope>system</scope>
 		</dependency>
+		<!-- MinecraftJPVoteMissFiller -->
+		<dependency>
+			<groupId>com.jaoafa</groupId>
+			<artifactId>MinecraftJPVoteMissFiller</artifactId>
+			<version>0.0.1</version>
+		</dependency>
 	</dependencies>
 </project>

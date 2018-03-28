@@ -144,7 +144,12 @@ public class SKKColors extends MyMaid2Premise {
 		FileConfiguration data = YamlConfiguration.loadConfiguration(file);
 		data.set("JoinMessageList", MessageList);
 		data.set("LastText", LastText);
-		data.set("Color", Cmd_Color.color);
+
+		Map<String,String> color = new HashMap<>();
+		for(Entry<String, ChatColor> c : Cmd_Color.color.entrySet()){
+			color.put(c.getKey(), c.getValue().name());
+		}
+		data.set("Color", color);
 		try {
 			data.save(file);
 			return true;
@@ -181,7 +186,11 @@ public class SKKColors extends MyMaid2Premise {
 			Map<String, Object> Color = data.getConfigurationSection("Color").getValues(true);
 			if(Color.size() != 0){
 				for(Entry<String, Object> p: Color.entrySet()){
-					ChatColor color = (ChatColor) p.getValue();
+					String c = (String) p.getValue();
+					ChatColor color = ChatColor.valueOf(c);
+					if(color == null){
+						continue;
+					}
 					Cmd_Color.color.put(p.getKey(), color);
 				}
 			}
@@ -205,8 +214,8 @@ public class SKKColors extends MyMaid2Premise {
 				return ChatColor.BLACK;
 				/*}else if(EBan.isEBan(player)){
 			return ChatColor.DARK_GRAY;*/
-				/*}else if(Color.color.containsKey(player.getName())){
-			return Color.color.get(player.getName());*/
+			}else if(Cmd_Color.color.containsKey(player.getUniqueId().toString())){
+				return Cmd_Color.color.get(player.getUniqueId().toString());
 			}else if(pvd.exists()){
 				int i = pvd.get();
 				if(i >= 0 && i <= 5){

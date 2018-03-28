@@ -40,6 +40,7 @@ import com.jaoafa.MyMaid2.Event.Event_PlayerQuit;
 import com.jaoafa.MyMaid2.Event.Event_QD_NOTSpectator;
 import com.jaoafa.MyMaid2.Event.Event_QuitHeaderFooterChange;
 import com.jaoafa.MyMaid2.Event.Event_SKKColor;
+import com.jaoafa.MyMaid2.Event.Event_VoteMissFillerEvent;
 import com.jaoafa.MyMaid2.Event.Event_VoteReceived;
 import com.jaoafa.MyMaid2.Lib.MySQL;
 import com.jaoafa.MyMaid2.Lib.PermissionsManager;
@@ -81,6 +82,7 @@ public class MyMaid2 extends JavaPlugin implements Listener {
 		Load_Plugin("dynmap");
 		Load_Plugin("Votifier");
 		Load_Plugin("jaoSuperAchievement");
+		Load_Plugin("MinecraftJPVoteMissFiller");
 		if(!this.isEnabled()) return;
 
 		// PermissionsManager初期設定
@@ -174,6 +176,7 @@ public class MyMaid2 extends JavaPlugin implements Listener {
 		registEvent(new Event_SKKColor(this));// 2018/03/26
 		registEvent(new Event_JoinHeaderFooterChange(this));// 2018/03/26
 		registEvent(new Event_QuitHeaderFooterChange(this));// 2018/03/26
+		registEvent(new Event_VoteMissFillerEvent(this));// 2018/03/27
 	}
 
 	/**
