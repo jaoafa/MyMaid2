@@ -146,3 +146,8 @@ commands:
       usage: "/selector <Selector>: Selectorが適切かどうか調べます。"
       permission: mymaid.selector
       permission-message: You do not have permission to perform this command.
+   chat:
+      description: 偽のプレイヤーをしゃべらせます。
+      usage: "/chat <FakePlayer> <Message...>: 偽のプレイヤーをしゃべらせます。"
+      permission: mymaid.chat
+      permission-message: You do not have permission to perform this command.

@@ -8,6 +8,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import com.jaoafa.MyMaid2.Command.Cmd_AFK;
+import com.jaoafa.MyMaid2.Command.Cmd_Chat;
 import com.jaoafa.MyMaid2.Command.Cmd_City;
 import com.jaoafa.MyMaid2.Command.Cmd_Cmdb;
 import com.jaoafa.MyMaid2.Command.Cmd_Color;
@@ -136,6 +137,7 @@ public class MyMaid2 extends JavaPlugin implements Listener {
 		getCommand("elytra").setExecutor(new Cmd_Elytra(this)); // 2018/03/27
 		getCommand("messenger").setExecutor(new Cmd_Messenger(this)); // 2018/03/29
 		getCommand("selector").setExecutor(new Cmd_Selector(this)); // 2018/03/29
+		getCommand("chat").setExecutor(new Cmd_Chat(this)); // 2018/03/29
 	}
 
 	/**
