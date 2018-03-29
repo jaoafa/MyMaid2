@@ -14,6 +14,7 @@ import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.net.ssl.HttpsURLConnection;
@@ -435,5 +436,20 @@ public abstract class MyMaid2Premise {
 		}
 
 		return false;
+	}
+
+	/**
+	 * リストの内容をStringにし、その間にglueを挟んで返す(PHPのimplodeと同等)
+	 * @see https://qiita.com/rkowase/items/7e73468d421c16add76d
+	 * @param list リスト
+	 * @param glue 挟むテキスト
+	 * @return 処理したテキスト
+	 */
+	public static <T> String implode(List<T> list, String glue) {
+	    StringBuilder sb = new StringBuilder();
+	    for (T e : list) {
+	        sb.append(glue).append(e);
+	    }
+	    return sb.substring(glue.length());
 	}
 }

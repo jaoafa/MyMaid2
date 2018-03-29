@@ -135,9 +135,14 @@ commands:
       description: 定期メッセージについての設定をします。
       usage: |-
              /messenger list: メッセージのリストを表示します。
-		 /messenger broadcast: メッセージを今すぐランダムに1つ放送します。
-		 /messenger broadcast <MessageID>: メッセージを今すぐMessageIDのメッセージを放送します。
-		 /messenger add <Message>: メッセージを追加します。
-		 /messenger del <MessageID>: 指定されたメッセージIDのメッセージを削除します
+             /messenger broadcast: メッセージを今すぐランダムに1つ放送します。
+             /messenger broadcast <MessageID>: メッセージを今すぐMessageIDのメッセージを放送します。
+             /messenger add <Message>: メッセージを追加します。
+             /messenger del <MessageID>: 指定されたメッセージIDのメッセージを削除します
       permission: mymaid.messenger
+      permission-message: You do not have permission to perform this command.
+   selector:
+      description: Selectorが適切かどうか調べます。
+      usage: "/selector <Selector>: Selectorが適切かどうか調べます。"
+      permission: mymaid.selector
       permission-message: You do not have permission to perform this command.

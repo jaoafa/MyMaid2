@@ -20,6 +20,7 @@ import com.jaoafa.MyMaid2.Command.Cmd_G;
 import com.jaoafa.MyMaid2.Command.Cmd_Head;
 import com.jaoafa.MyMaid2.Command.Cmd_Home;
 import com.jaoafa.MyMaid2.Command.Cmd_Messenger;
+import com.jaoafa.MyMaid2.Command.Cmd_Selector;
 import com.jaoafa.MyMaid2.Command.Cmd_SetHome;
 import com.jaoafa.MyMaid2.Command.Cmd_Spawn;
 import com.jaoafa.MyMaid2.Command.Cmd_Test;
@@ -32,6 +33,7 @@ import com.jaoafa.MyMaid2.Event.Event_DedRain;
 import com.jaoafa.MyMaid2.Event.Event_FarmNOBreak;
 import com.jaoafa.MyMaid2.Event.Event_JoinHeaderFooterChange;
 import com.jaoafa.MyMaid2.Event.Event_JoinjaoPoint;
+import com.jaoafa.MyMaid2.Event.Event_Kill_kill;
 import com.jaoafa.MyMaid2.Event.Event_LoginSuccessCheck;
 import com.jaoafa.MyMaid2.Event.Event_MoveToChunkActionbar;
 import com.jaoafa.MyMaid2.Event.Event_NOConcretePowderToConcrete;
@@ -133,6 +135,7 @@ public class MyMaid2 extends JavaPlugin implements Listener {
 		getCommand("color").setExecutor(new Cmd_Color()); // 2018/03/26
 		getCommand("elytra").setExecutor(new Cmd_Elytra(this)); // 2018/03/27
 		getCommand("messenger").setExecutor(new Cmd_Messenger(this)); // 2018/03/29
+		getCommand("selector").setExecutor(new Cmd_Selector(this)); // 2018/03/29
 	}
 
 	/**
@@ -181,6 +184,7 @@ public class MyMaid2 extends JavaPlugin implements Listener {
 		registEvent(new Event_JoinHeaderFooterChange(this));// 2018/03/26
 		registEvent(new Event_QuitHeaderFooterChange(this));// 2018/03/26
 		registEvent(new Event_VoteMissFillerEvent(this));// 2018/03/27
+		registEvent(new Event_Kill_kill(this));// 2018/03/29
 	}
 
 	/**
