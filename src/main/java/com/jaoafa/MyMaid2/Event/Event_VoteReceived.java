@@ -106,9 +106,9 @@ public class Event_VoteReceived extends MyMaid2Premise implements Listener {
 
 		SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		Bukkit.broadcastMessage("[MyMaid] " + ChatColor.GREEN + "プレイヤー「" + name + "」が投票をしました！(現在の投票数:" + i + "回)");
-		Bukkit.broadcastMessage("[MyMaid] " + ChatColor.GREEN + "投票をよろしくお願いします！ https://bitly.com/jfvote");
+		Bukkit.broadcastMessage("[MyMaid] " + ChatColor.GREEN + "投票をよろしくお願いします！ https://jaoafa.com/vote");
 		DiscordSend("プレイヤー「" + name + "」が投票をしました！(現在の投票数:" + i + "回)");
-		DiscordSend("投票をよろしくお願いします！ minecraft.jp/servers/jaoafa.com/vote");
+		DiscordSend("投票をよろしくお願いします！ https://jaoafa.com/vote");
 		DiscordSend("254166905852657675", ":inbox_tray:**投票を受信しました。(" + format.format(new Date()) + ")**\n"
 				+ "プレイヤー: `"  + name + "`\n"
 				+ "投票前カウント: " + oldVote + "\n"
