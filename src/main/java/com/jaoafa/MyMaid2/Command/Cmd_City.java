@@ -345,7 +345,8 @@ public class Cmd_City extends MyMaid2Premise implements CommandExecutor {
 				Corner.remove(player.getName());
 				DiscordSend("254166905852657675", "::cityscape:**Cityデータが追加されました。(" + sdf.format(new Date()) + ")**\n"
 						+ "プレイヤー: `"  + player.getName() + "`\n"
-						+ "市名: `" + area.getLabel() + "`");
+						+ "市名: `" + area.getLabel() + "`\n"
+						+ "市色: " + color + " (16進数: " + colorint + ")");
 				return true;
 			}else if(args[0].equalsIgnoreCase("setcolor")){
 				// /city color <Name> <Color> - エリアの色を変更
