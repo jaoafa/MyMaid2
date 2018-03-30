@@ -1,6 +1,8 @@
 package com.jaoafa.MyMaid2.Command;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
@@ -50,6 +52,7 @@ public class Cmd_City extends MyMaid2Premise implements CommandExecutor {
 		Player player = (Player) sender;
 		DynmapAPI dynmapapi = (DynmapAPI) dynmap;
 		MarkerAPI markerapi = dynmapapi.getMarkerAPI();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 
 		if(args.length >= 1 && args[0].equalsIgnoreCase("help")){
 			SendUsageMessage(sender, cmd);
@@ -214,6 +217,9 @@ public class Cmd_City extends MyMaid2Premise implements CommandExecutor {
 					if(areamarker.getLabel().equals(cityName)){
 						areamarker.deleteMarker();
 						SendMessage(sender, cmd, "指定されたエリア名のエリアを削除しました。");
+						DiscordSend("254166905852657675", "::cityscape:**Cityデータが削除されました。(" + sdf.format(new Date()) + ")**\n"
+								+ "プレイヤー: `"  + player.getName() + "`\n"
+								+ "市名: `" + areamarker.getLabel() + "`");
 						return true;
 					}
 				}
@@ -264,7 +270,6 @@ public class Cmd_City extends MyMaid2Premise implements CommandExecutor {
 				select.setCornerLocations(ArrXs, ArrZs);
 				SendMessage(sender, cmd, "エリア「" + select.getLabel() + "」に新しいコーナーを追加しました。");
 				SendMessage(sender, cmd, "順番を変更したりする場合は、「/city editcorner <Name>」コマンドをお使いください。");
-				return true;
 			}else if(args[0].equalsIgnoreCase("editcorner")){
 				SendMessage(sender, cmd, "システム障害が多くみられるため、一時的にeditcornerの使用を停止しています。");
 				return true;
@@ -338,6 +343,9 @@ public class Cmd_City extends MyMaid2Premise implements CommandExecutor {
 				area.setLineStyle(area.getLineWeight(), area.getLineOpacity(), colorint);
 				SendMessage(sender, cmd, "登録に成功しました。");
 				Corner.remove(player.getName());
+				DiscordSend("254166905852657675", "::cityscape:**Cityデータが追加されました。(" + sdf.format(new Date()) + ")**\n"
+						+ "プレイヤー: `"  + player.getName() + "`\n"
+						+ "市名: `" + area.getLabel() + "`");
 				return true;
 			}else if(args[0].equalsIgnoreCase("setcolor")){
 				// /city color <Name> <Color> - エリアの色を変更
@@ -364,6 +372,10 @@ public class Cmd_City extends MyMaid2Premise implements CommandExecutor {
 				}
 				select.setLineStyle(select.getLineWeight(), select.getLineOpacity(), newcolorint);
 				SendMessage(sender, cmd, "エリア色の変更に成功しました。");
+				DiscordSend("254166905852657675", "::cityscape:**Cityデータが変更されました。(" + sdf.format(new Date()) + ") - SETCOLOR**\n"
+						+ "プレイヤー: `"  + player.getName() + "`\n"
+						+ "市名: `" + select.getLabel() + "`\n"
+						+ "新市色: " + color + " (16進数: " + newcolorint + ")");
 				return true;
 			}else if(args[0].equalsIgnoreCase("setdesc")){
 				String cityName = args[1];
@@ -388,6 +400,10 @@ public class Cmd_City extends MyMaid2Premise implements CommandExecutor {
 				desc = htmlspecialchars(desc);
 				select.setDescription("<b>" + select.getLabel() + "</b><br />" +  desc);
 				SendMessage(sender, cmd, "指定されたエリア名のエリアへ説明文を追加しました。");
+				DiscordSend("254166905852657675", "::cityscape:**Cityデータが変更されました。(" + sdf.format(new Date()) + ") - SETDESC**\n"
+						+ "プレイヤー: `"  + player.getName() + "`\n"
+						+ "市名: `" + select.getLabel() + "`\n"
+						+ "新説明: " + desc);
 				return true;
 			}
 		}else if(args.length >= 3){
@@ -414,6 +430,10 @@ public class Cmd_City extends MyMaid2Premise implements CommandExecutor {
 				desc = htmlspecialchars(desc);
 				select.setDescription("<b>" + select.getLabel() + "</b><br />" +  desc);
 				SendMessage(sender, cmd, "指定されたエリア名のエリアへ説明文を追加しました。");
+				DiscordSend("254166905852657675", "::cityscape:**Cityデータが変更されました。(" + sdf.format(new Date()) + ") - SETDESC**\n"
+						+ "プレイヤー: `"  + player.getName() + "`\n"
+						+ "市名: `" + select.getLabel() + "`\n"
+						+ "新説明: " + desc);
 				return true;
 			}
 		}

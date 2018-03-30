@@ -139,6 +139,7 @@ commands:
              /messenger broadcast <MessageID>: メッセージを今すぐMessageIDのメッセージを放送します。
              /messenger add <Message>: メッセージを追加します。
              /messenger del <MessageID>: 指定されたメッセージIDのメッセージを削除します
+             /messenger setspeaker <Speaker>: メッセージのスピーカーを変更します。
       permission: mymaid.messenger
       permission-message: You do not have permission to perform this command.
    selector:

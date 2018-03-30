@@ -120,6 +120,12 @@ public class Messenger extends MyMaid2Premise {
 	 */
 	public static void setSpeaker(String speaker){
 		Messenger.speaker = speaker;
+		try {
+			SaveMessenger();
+		} catch (Exception e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+		}
 	}
 
 	/**
@@ -160,7 +166,7 @@ public class Messenger extends MyMaid2Premise {
 		String date = new SimpleDateFormat("HH:mm:ss").format(new Date());
 		for(Player play: Bukkit.getServer().getOnlinePlayers()) {
 			String msg = message.replaceAll("%player%", play.getName());
-			play.sendMessage(ChatColor.GRAY + "["+ date + "]" + ChatColor.GOLD + "└( ・з・)┘" + ChatColor.WHITE +  ": " + msg);
+			play.sendMessage(ChatColor.GRAY + "["+ date + "]" + ChatColor.GOLD + speaker + ChatColor.WHITE +  ": " + msg);
 		}
 	}
 

@@ -42,6 +42,7 @@ public class Cmd_Messenger extends MyMaid2Premise implements CommandExecutor {
 					String group = PermissionsManager.getPermissionMainGroup(p);
 					if(!group.equalsIgnoreCase("Admin") && !group.equalsIgnoreCase("Moderator")){
 						SendMessage(sender, cmd, "このコマンドは管理部のみ使用可能です。");
+						return true;
 					}
 				}else if(!(sender instanceof ConsoleCommandSender)){
 					SendMessage(sender, cmd, "このコマンドはサーバ内もしくはコンソールから実行可能です。");
@@ -65,12 +66,39 @@ public class Cmd_Messenger extends MyMaid2Premise implements CommandExecutor {
 					SendMessage(sender, cmd, "メッセージ「" + message + "」の追加処理に失敗しました。");
 				}
 				return true;
+			}else if(args[0].equalsIgnoreCase("setspeaker")){
+				if (sender instanceof Player) {
+					Player p = (Player) sender;
+					String group = PermissionsManager.getPermissionMainGroup(p);
+					if(!group.equalsIgnoreCase("Admin") && !group.equalsIgnoreCase("Moderator")){
+						SendMessage(sender, cmd, "このコマンドは管理部のみ使用可能です。");
+						return true;
+					}
+				}else if(!(sender instanceof ConsoleCommandSender)){
+					SendMessage(sender, cmd, "このコマンドはサーバ内もしくはコンソールから実行可能です。");
+					return true;
+				}
+
+				String speaker = "";
+				int c = 1;
+				while(args.length > c){
+					speaker += args[c];
+					if(args.length != (c+1)){
+						speaker += " ";
+					}
+					c++;
+				}
+
+				Messenger.setSpeaker(speaker);
+				SendMessage(sender, cmd, "スピーカーを「" + speaker + "」に変更しました。");
+				return true;
 			}else if(args[0].equalsIgnoreCase("del")){
 				if (sender instanceof Player) {
 					Player p = (Player) sender;
 					String group = PermissionsManager.getPermissionMainGroup(p);
 					if(!group.equalsIgnoreCase("Admin") && !group.equalsIgnoreCase("Moderator")){
 						SendMessage(sender, cmd, "このコマンドは管理部のみ使用可能です。");
+						return true;
 					}
 				}else if(!(sender instanceof ConsoleCommandSender)){
 					SendMessage(sender, cmd, "このコマンドはサーバ内もしくはコンソールから実行可能です。");
