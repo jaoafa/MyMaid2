@@ -126,9 +126,9 @@ public class Cmd_WT extends MyMaid2Premise implements CommandExecutor {
 				SendMessage(sender, cmd, play.getName() + "が「Jao_Afa_Old」ワールドにテレポートしました。");
 				SendMessage(play, cmd, "「Jao_Afa_Old」ワールドにテレポートしました。");
 				return true;
-			}else if(args[0].equalsIgnoreCase("3")){
+			}else if(args[1].equalsIgnoreCase("3")){
 				// SandBox
-				World world = Bukkit.getServer().getWorld("Sandbox");
+				World world = Bukkit.getServer().getWorld("SandBox");
 				if(world == null){
 					SendMessage(sender, cmd, "「SandBox」ワールドの取得に失敗しました。");
 					return true;
