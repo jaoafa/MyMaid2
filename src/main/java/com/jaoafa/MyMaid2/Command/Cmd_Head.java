@@ -32,7 +32,7 @@ public class Cmd_Head extends MyMaid2Premise implements CommandExecutor {
 			ItemStack skull = new ItemStack(Material.SKULL_ITEM);
 			SkullMeta skullMeta = (SkullMeta) skull.getItemMeta();
 			skull.setDurability((short) 3);
-			skullMeta.setOwningPlayer(player);
+			skullMeta.setOwningPlayer(offplayer);
 			skull.setItemMeta(skullMeta);
 			PlayerInventory inv = player.getInventory();
 			ItemStack main = inv.getItemInMainHand();
