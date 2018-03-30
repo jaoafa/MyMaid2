@@ -102,10 +102,7 @@ public abstract class MyMaid2Premise {
 	public Player getNearestPlayer(Location loc){
 		double closest = Double.MAX_VALUE;
 		Player closestp = null;
-		for(Player i : Bukkit.getOnlinePlayers()){
-			if(!i.getWorld().getUID().toString().equalsIgnoreCase(loc.getWorld().getUID().toString())){
-				continue; // 違うワールドならスキップ
-			}
+		for(Player i : loc.getWorld().getPlayers()){
 			double dist = i.getLocation().distance(loc);
 			if (closest == Double.MAX_VALUE || dist < closest){
 				closest = dist;
@@ -126,10 +123,7 @@ public abstract class MyMaid2Premise {
 	public double getNearestPlayerDistance(Location loc){
 		double closest = Double.MAX_VALUE;
 		Player closestp = null;
-		for(Player i : Bukkit.getOnlinePlayers()){
-			if(!i.getWorld().getUID().toString().equalsIgnoreCase(loc.getWorld().getUID().toString())){
-				continue; // 違うワールドならスキップ
-			}
+		for(Player i : loc.getWorld().getPlayers()){
 			double dist = i.getLocation().distance(loc);
 			if (closest == Double.MAX_VALUE || dist < closest){
 				closest = dist;
