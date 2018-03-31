@@ -21,6 +21,7 @@ import com.jaoafa.MyMaid2.Command.Cmd_G;
 import com.jaoafa.MyMaid2.Command.Cmd_Head;
 import com.jaoafa.MyMaid2.Command.Cmd_Home;
 import com.jaoafa.MyMaid2.Command.Cmd_Messenger;
+import com.jaoafa.MyMaid2.Command.Cmd_Player;
 import com.jaoafa.MyMaid2.Command.Cmd_Selector;
 import com.jaoafa.MyMaid2.Command.Cmd_SetHome;
 import com.jaoafa.MyMaid2.Command.Cmd_Spawn;
@@ -138,6 +139,7 @@ public class MyMaid2 extends JavaPlugin implements Listener {
 		getCommand("messenger").setExecutor(new Cmd_Messenger(this)); // 2018/03/29
 		getCommand("selector").setExecutor(new Cmd_Selector(this)); // 2018/03/29
 		getCommand("chat").setExecutor(new Cmd_Chat(this)); // 2018/03/29
+		getCommand("player").setExecutor(new Cmd_Player(this)); // 2018/03/31
 	}
 
 	/**

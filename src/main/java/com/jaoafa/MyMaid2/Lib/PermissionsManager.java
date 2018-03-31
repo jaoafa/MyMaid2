@@ -174,8 +174,10 @@ public class PermissionsManager extends MyMaid2Premise implements Listener {
 				throw new IllegalArgumentException("指定されたプレイヤーは見つかりません。");
 			}
 			List<String> list = new ArrayList<>();
-			String group = LPplayer.getPrimaryGroup();
-			list.add(group);
+			String groupname = LPplayer.getPrimaryGroup();
+			Group group = LPApi.getGroup(groupname);
+			if(group == null) throw new InternalError("Groupがnullです。");
+			list.add(group.getFriendlyName());
 			return list;
 		}else{
 			throw new UnsupportedOperationException("権限管理プラグインが選択されていません！");
@@ -219,7 +221,6 @@ public class PermissionsManager extends MyMaid2Premise implements Listener {
 			String groupname = LPplayer.getPrimaryGroup();
 			Group group = LPApi.getGroup(groupname);
 			if(group == null) throw new InternalError("Groupがnullです。");
-
 			return group.getFriendlyName();
 		}else{
 			throw new UnsupportedOperationException("権限管理プラグインが選択されていません！");

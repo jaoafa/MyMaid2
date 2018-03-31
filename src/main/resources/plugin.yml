@@ -152,3 +152,8 @@ commands:
       usage: "/chat <FakePlayer> <Message...>: 偽のプレイヤーをしゃべらせます。"
       permission: mymaid.chat
       permission-message: You do not have permission to perform this command.
+   player:
+      description: プレイヤーの現在の権限を確認します。
+      usage: "/player [Player]: プレイヤーの現在の権限を確認します。"
+      permission: mymaid.player
+      permission-message: You do not have permission to perform this command.
