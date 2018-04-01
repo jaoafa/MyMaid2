@@ -1,5 +1,6 @@
 package com.jaoafa.MyMaid2.Event;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,6 +27,7 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 import com.jaoafa.MyMaid2.MyMaid2Premise;
+import com.jaoafa.MyMaid2.Lib.Jail;
 import com.jaoafa.jaoSuperAchievement.jaoAchievement.AchievementType;
 import com.jaoafa.jaoSuperAchievement.jaoAchievement.Achievementjao;
 
@@ -84,6 +86,7 @@ public class Event_Antijaoium extends MyMaid2Premise implements Listener {
 		}
 	}
 
+	@SuppressWarnings("deprecation")
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void InvClick(InventoryClickEvent event) {
 		if (!(event.getWhoClicked() instanceof Player)) {
@@ -141,9 +144,14 @@ public class Event_Antijaoium extends MyMaid2Premise implements Listener {
 						+ "実績の解除中に問題が発生しました。もう一度お試しください。");
 				return;
 			}
-			//Jail.JailAdd(player, Bukkit.getOfflinePlayer("jaotan"), "jaoium所持", true);
+			try {
+				Jail.JailAdd(player, Bukkit.getOfflinePlayer("jaotan"), "jaoium所持", true);
+			} catch (ClassNotFoundException | NullPointerException | SQLException e) {
+				BugReporter(e);
+			}
 		}
 	}
+	@SuppressWarnings("deprecation")
 	@EventHandler(ignoreCancelled = true)
     public void onPlayerItemHeldEvent(PlayerItemHeldEvent event){
 		Player player = event.getPlayer();
@@ -195,7 +203,11 @@ public class Event_Antijaoium extends MyMaid2Premise implements Listener {
 						+ "実績の解除中に問題が発生しました。もう一度お試しください。");
 				return;
 			}
-			//Jail.JailAdd(player, Bukkit.getOfflinePlayer("jaotan"), "jaoium所持", true);
+			try {
+				Jail.JailAdd(player, Bukkit.getOfflinePlayer("jaotan"), "jaoium所持", true);
+			} catch (ClassNotFoundException | NullPointerException | SQLException e) {
+				BugReporter(e);
+			}
 		}
 	}
 
@@ -248,6 +260,7 @@ public class Event_Antijaoium extends MyMaid2Premise implements Listener {
 			//Jail.JailAdd(player, Bukkit.getOfflinePlayer("jaotan"), "jaoium所持", true);
 		}
 	}
+	@SuppressWarnings("deprecation")
 	@EventHandler
     public void onProjectileLaunchEvent(ProjectileLaunchEvent event){
 		if (!(event.getEntity().getShooter() instanceof Player)) {
@@ -302,10 +315,15 @@ public class Event_Antijaoium extends MyMaid2Premise implements Listener {
 						+ "実績の解除中に問題が発生しました。もう一度お試しください。");
 				return;
 			}
-			//Jail.JailAdd(player, Bukkit.getOfflinePlayer("jaotan"), "jaoium所持", true);
+			try {
+				Jail.JailAdd(player, Bukkit.getOfflinePlayer("jaotan"), "jaoium所持", true);
+			} catch (ClassNotFoundException | NullPointerException | SQLException e) {
+				BugReporter(e);
+			}
 			event.setCancelled(true);
 		}
 	}
+	@SuppressWarnings("deprecation")
 	@EventHandler
     public void onPotionSplashEvent(PotionSplashEvent event){
 		if (!(event.getEntity().getShooter() instanceof Player)) {
@@ -360,7 +378,11 @@ public class Event_Antijaoium extends MyMaid2Premise implements Listener {
 				return;
 			}
 			Bukkit.broadcastMessage("[jaoium_Checker] " + ChatColor.GREEN + "プレイヤー「" + player.getName() + "」からjaoiumと同等の性能を持つアイテムが検出されました。");
-			//Jail.JailAdd(player, Bukkit.getOfflinePlayer("jaotan"), "jaoium所持", true);
+			try {
+				Jail.JailAdd(player, Bukkit.getOfflinePlayer("jaotan"), "jaoium所持", true);
+			} catch (ClassNotFoundException | NullPointerException | SQLException e) {
+				BugReporter(e);
+			}
 			event.setCancelled(true);
 		}
 	}

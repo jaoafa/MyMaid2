@@ -157,3 +157,18 @@ commands:
       usage: "/player [Player]: プレイヤーの現在の権限を確認します。"
       permission: mymaid.player
       permission-message: You do not have permission to perform this command.
+   eban:
+      description: 指定されたプレイヤーをEBanしたり、解除したりできます。 ※このコマンドは一部を除き管理部・モデレーターのみ使用できます。
+      usage: |-
+             /eban add <Player> <Reason>: Reasonという理由でPlayerをEBanします。
+             /eban remove <Player>: PlayerをEBanを解除します。
+             /eban status [Player]: プレイヤーが指定されていればそのプレイヤーのステータスを表示し、指定されていなければ現在のEBan状況を表示します。
+   jail:
+      description: 南の楽園関連の処理をします。
+      usage: |-
+             /jail add <Player> [Reason]: プレイヤーを南の楽園に移動し、出られなくします。
+             /jail remove <Player>: プレイヤーを南の楽園リストから削除します。
+             /jail list: 南の楽園リストを表示します。
+             /jail area <Player> <true|false>: プレイヤーが南の楽園から出られるかどうかを設定します。
+             /jail block <Player> <true|false>: プレイヤーがコマンドを実行できるかを設定します。
+             /jail lasttext <Text>: 遺言を残します。

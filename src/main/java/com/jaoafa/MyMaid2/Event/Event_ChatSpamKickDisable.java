@@ -15,7 +15,7 @@ public class Event_ChatSpamKickDisable extends MyMaid2Premise implements Listene
 	}
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onPlayerKickEvent(PlayerKickEvent event){
-		if(event.getReason().equals("disconnect.spam")){
+		if(event.getReason().equals("Kicked for spamming")){
 			event.setCancelled(true);
 			return;
 		}

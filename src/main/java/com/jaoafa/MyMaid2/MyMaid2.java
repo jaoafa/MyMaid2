@@ -16,10 +16,12 @@ import com.jaoafa.MyMaid2.Command.Cmd_DT;
 import com.jaoafa.MyMaid2.Command.Cmd_DedRain;
 import com.jaoafa.MyMaid2.Command.Cmd_DelHome;
 import com.jaoafa.MyMaid2.Command.Cmd_DiscordLink;
+import com.jaoafa.MyMaid2.Command.Cmd_EBan;
 import com.jaoafa.MyMaid2.Command.Cmd_Elytra;
 import com.jaoafa.MyMaid2.Command.Cmd_G;
 import com.jaoafa.MyMaid2.Command.Cmd_Head;
 import com.jaoafa.MyMaid2.Command.Cmd_Home;
+import com.jaoafa.MyMaid2.Command.Cmd_Jail;
 import com.jaoafa.MyMaid2.Command.Cmd_Messenger;
 import com.jaoafa.MyMaid2.Command.Cmd_Player;
 import com.jaoafa.MyMaid2.Command.Cmd_Selector;
@@ -33,7 +35,9 @@ import com.jaoafa.MyMaid2.Event.Event_Antijaoium;
 import com.jaoafa.MyMaid2.Event.Event_ChatSpamKickDisable;
 import com.jaoafa.MyMaid2.Event.Event_CommandBlockLogger;
 import com.jaoafa.MyMaid2.Event.Event_DedRain;
+import com.jaoafa.MyMaid2.Event.Event_EBan;
 import com.jaoafa.MyMaid2.Event.Event_FarmNOBreak;
+import com.jaoafa.MyMaid2.Event.Event_Jail;
 import com.jaoafa.MyMaid2.Event.Event_JoinHeaderFooterChange;
 import com.jaoafa.MyMaid2.Event.Event_JoinjaoPoint;
 import com.jaoafa.MyMaid2.Event.Event_Kill_kill;
@@ -141,6 +145,9 @@ public class MyMaid2 extends JavaPlugin implements Listener {
 		getCommand("selector").setExecutor(new Cmd_Selector(this)); // 2018/03/29
 		getCommand("chat").setExecutor(new Cmd_Chat(this)); // 2018/03/29
 		getCommand("player").setExecutor(new Cmd_Player(this)); // 2018/03/31
+		getCommand("eban").setExecutor(new Cmd_EBan(this)); // 2018/04/01
+		getCommand("jail").setExecutor(new Cmd_Jail(this)); // 2018/04/01
+
 	}
 
 	/**
@@ -152,6 +159,7 @@ public class MyMaid2 extends JavaPlugin implements Listener {
 		getCommand("dt").setTabCompleter(new Cmd_DT(this)); // 2018/03/20
 		getCommand("home").setTabCompleter(new Cmd_Home(this)); // 2018/03/21
 		getCommand("delhome").setTabCompleter(new Cmd_DelHome(this)); // 2018/03/21
+		getCommand("jail").setTabCompleter(new Cmd_Jail(this)); // 2018/04/01
 	}
 
 	/**
@@ -191,6 +199,8 @@ public class MyMaid2 extends JavaPlugin implements Listener {
 		registEvent(new Event_VoteMissFillerEvent(this));// 2018/03/27
 		registEvent(new Event_Kill_kill(this));// 2018/03/29
 		registEvent(new Event_ChatSpamKickDisable(this));// 2018/04/01
+		registEvent(new Event_EBan(this));// 2018/04/01
+		registEvent(new Event_Jail(this));// 2018/04/01
 	}
 
 	/**
