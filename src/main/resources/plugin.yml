@@ -174,6 +174,21 @@ commands:
              /jail lasttext <Text>: 遺言を残します。
    hat:
       description: 手に持っているブロックを頭に載せます。
-      usage: "/player [Player]: プレイヤーの現在の権限を確認します。"
-      permission: mymaid.player
+      usage: "/hat: 手に持っているブロックを頭に載せます。"
+      permission: mymaid.hat
+      permission-message: You do not have permission to perform this command.
+   body:
+      description: 手に持っているブロックを背中に装備します。
+      usage: "/body: 手に持っているブロックを背中に装備します。"
+      permission: mymaid.body
+      permission-message: You do not have permission to perform this command.
+   leg:
+      description: 手に持っているブロックを背中につけます。
+      usage: "/leg: 手に持っているブロックを背中につけます。"
+      permission: mymaid.leg
+      permission-message: You do not have permission to perform this command.
+   boots:
+      description: 手に持っているブロックを足につけます。
+      usage: "/boots: 手に持っているブロックを足につけます。"
+      permission: mymaid.boots
       permission-message: You do not have permission to perform this command.

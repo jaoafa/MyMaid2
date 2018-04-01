@@ -8,6 +8,8 @@ import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import com.jaoafa.MyMaid2.Command.Cmd_AFK;
+import com.jaoafa.MyMaid2.Command.Cmd_Body;
+import com.jaoafa.MyMaid2.Command.Cmd_Boots;
 import com.jaoafa.MyMaid2.Command.Cmd_Chat;
 import com.jaoafa.MyMaid2.Command.Cmd_City;
 import com.jaoafa.MyMaid2.Command.Cmd_Cmdb;
@@ -23,6 +25,7 @@ import com.jaoafa.MyMaid2.Command.Cmd_Hat;
 import com.jaoafa.MyMaid2.Command.Cmd_Head;
 import com.jaoafa.MyMaid2.Command.Cmd_Home;
 import com.jaoafa.MyMaid2.Command.Cmd_Jail;
+import com.jaoafa.MyMaid2.Command.Cmd_Leg;
 import com.jaoafa.MyMaid2.Command.Cmd_Messenger;
 import com.jaoafa.MyMaid2.Command.Cmd_Player;
 import com.jaoafa.MyMaid2.Command.Cmd_Selector;
@@ -149,6 +152,9 @@ public class MyMaid2 extends JavaPlugin implements Listener {
 		getCommand("eban").setExecutor(new Cmd_EBan(this)); // 2018/04/01
 		getCommand("jail").setExecutor(new Cmd_Jail(this)); // 2018/04/01
 		getCommand("hat").setExecutor(new Cmd_Hat(this)); // 2018/04/01
+		getCommand("body").setExecutor(new Cmd_Body(this)); // 2018/04/01
+		getCommand("leg").setExecutor(new Cmd_Leg(this)); // 2018/04/01
+		getCommand("boots").setExecutor(new Cmd_Boots(this)); // 2018/04/01
 	}
 
 	/**

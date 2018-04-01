@@ -54,6 +54,7 @@ public class PlayerVoteData {
 	 */
 	public int get() throws ClassNotFoundException, SQLException, UnsupportedOperationException, NullPointerException {
 		if(offplayer == null) throw new NullPointerException("We could not get the player.");
+		if(!exists()) return 0;
 		PreparedStatement statement = MySQL.getNewPreparedStatement("SELECT * FROM vote WHERE id = ?");
 		statement.setInt(1, getID());
 		ResultSet res = statement.executeQuery();
@@ -84,7 +85,7 @@ public class PlayerVoteData {
 		String date = format.format(new Date());
 		statement.setString(4, date);
 		statement.setString(5, date);
-		statement.setString(5, date);
+		statement.setString(6, date);
 		int count = statement.executeUpdate();
 		if(count != 0){
 			return true;

@@ -28,6 +28,11 @@ public class Cmd_Color extends MyMaid2Premise implements CommandExecutor {
 		}
 		Player player = (Player) sender;
 		if(args.length == 1){
+			if(args[0].equalsIgnoreCase("remove")){
+				Cmd_Color.color.remove(player.getUniqueId().toString());
+				SendMessage(sender, cmd, "四角色をリセットしました。");
+				return true;
+			}
 			PlayerVoteData pvd = new PlayerVoteData(player);
 			int i;
 			try{

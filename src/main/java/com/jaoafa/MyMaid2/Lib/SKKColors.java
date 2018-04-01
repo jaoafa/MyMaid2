@@ -304,6 +304,9 @@ public class SKKColors extends MyMaid2Premise {
 				return ChatColor.RED + player.getName() + ChatColor.YELLOW + " joined the game.";
 			}
 			PlayerVoteData pvd = new PlayerVoteData(player);
+			if(!pvd.exists()){
+				return null;
+			}
 			int i = pvd.get();
 			String result = "";
 			if(i < 20){
