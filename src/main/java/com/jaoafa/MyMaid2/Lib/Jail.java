@@ -35,7 +35,7 @@ import org.json.simple.parser.ParseException;
 
 import com.jaoafa.MyMaid2.MyMaid2Premise;
 
-public class Jail extends MyMaid2Premise{
+public class Jail extends MyMaid2Premise {
 	// 2017/10/30 Update: UUID管理に変更
 	private static Set<String> Jail = new HashSet<String>();
 	private static Map<String, Boolean> block = new HashMap<String, Boolean>();

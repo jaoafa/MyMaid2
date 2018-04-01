@@ -19,6 +19,7 @@ import com.jaoafa.MyMaid2.Command.Cmd_DiscordLink;
 import com.jaoafa.MyMaid2.Command.Cmd_EBan;
 import com.jaoafa.MyMaid2.Command.Cmd_Elytra;
 import com.jaoafa.MyMaid2.Command.Cmd_G;
+import com.jaoafa.MyMaid2.Command.Cmd_Hat;
 import com.jaoafa.MyMaid2.Command.Cmd_Head;
 import com.jaoafa.MyMaid2.Command.Cmd_Home;
 import com.jaoafa.MyMaid2.Command.Cmd_Jail;
@@ -147,7 +148,7 @@ public class MyMaid2 extends JavaPlugin implements Listener {
 		getCommand("player").setExecutor(new Cmd_Player(this)); // 2018/03/31
 		getCommand("eban").setExecutor(new Cmd_EBan(this)); // 2018/04/01
 		getCommand("jail").setExecutor(new Cmd_Jail(this)); // 2018/04/01
-
+		getCommand("hat").setExecutor(new Cmd_Hat(this)); // 2018/04/01
 	}
 
 	/**

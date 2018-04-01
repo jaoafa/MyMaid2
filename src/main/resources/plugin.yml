@@ -172,3 +172,8 @@ commands:
              /jail area <Player> <true|false>: プレイヤーが南の楽園から出られるかどうかを設定します。
              /jail block <Player> <true|false>: プレイヤーがコマンドを実行できるかを設定します。
              /jail lasttext <Text>: 遺言を残します。
+   hat:
+      description: 手に持っているブロックを頭に載せます。
+      usage: "/player [Player]: プレイヤーの現在の権限を確認します。"
+      permission: mymaid.player
+      permission-message: You do not have permission to perform this command.
