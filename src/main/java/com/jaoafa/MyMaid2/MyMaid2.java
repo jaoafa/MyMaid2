@@ -30,6 +30,7 @@ import com.jaoafa.MyMaid2.Command.Cmd_WT;
 import com.jaoafa.MyMaid2.Command.Cmd_jao;
 import com.jaoafa.MyMaid2.Event.Event_AFK;
 import com.jaoafa.MyMaid2.Event.Event_Antijaoium;
+import com.jaoafa.MyMaid2.Event.Event_ChatSpamKickDisable;
 import com.jaoafa.MyMaid2.Event.Event_CommandBlockLogger;
 import com.jaoafa.MyMaid2.Event.Event_DedRain;
 import com.jaoafa.MyMaid2.Event.Event_FarmNOBreak;
@@ -189,6 +190,7 @@ public class MyMaid2 extends JavaPlugin implements Listener {
 		registEvent(new Event_QuitHeaderFooterChange(this));// 2018/03/26
 		registEvent(new Event_VoteMissFillerEvent(this));// 2018/03/27
 		registEvent(new Event_Kill_kill(this));// 2018/03/29
+		registEvent(new Event_ChatSpamKickDisable(this));// 2018/04/01
 	}
 
 	/**
