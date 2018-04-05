@@ -192,3 +192,8 @@ commands:
       usage: "/boots: 手に持っているブロックを足につけます。"
       permission: mymaid.boots
       permission-message: You do not have permission to perform this command.
+   ck:
+      description: 近くの誰も乗っていないトロッコを削除します。
+      usage: "/ck: 近くの誰も乗っていないトロッコを削除します。"
+      permission: mymaid.ck
+      permission-message: You do not have permission to perform this command.

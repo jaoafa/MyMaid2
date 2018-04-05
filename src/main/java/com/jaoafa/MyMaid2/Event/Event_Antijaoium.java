@@ -96,11 +96,11 @@ public class Event_Antijaoium extends MyMaid2Premise implements Listener {
 		Inventory inventory = event.getInventory();
 		Inventory clickedinventory = event.getClickedInventory();
 		ItemStack[] is = inventory.getContents();
-		/*if(Jail.isJail(player)){
+		if(Jail.isJail(player)){
 			return;
-		}*/
+		}
 		Boolean jaoium = false;
-		for(int n=0; n != is.length; n++)
+		for(int n=0; n < is.length; n++)
 		{
 			if(is[n] == null){
 				continue;
@@ -119,7 +119,7 @@ public class Event_Antijaoium extends MyMaid2Premise implements Listener {
 		}
 		if(clickedinventory != null) {
 			is = clickedinventory.getContents();
-			for(int n=0; n != is.length; n++)
+			for(int n=0; n < is.length; n++)
 			{
 				if(is[n] == null){
 					continue;
@@ -159,7 +159,7 @@ public class Event_Antijaoium extends MyMaid2Premise implements Listener {
 		Inventory enderchestinventory = player.getEnderChest();
 		ItemStack[] is = inventory.getContents();
 		Boolean jaoium = false;
-		for(int n=0; n != is.length; n++)
+		for(int n=0; n < is.length; n++)
 		{
 			if(is[n] == null){
 				continue;
@@ -178,7 +178,7 @@ public class Event_Antijaoium extends MyMaid2Premise implements Listener {
 		}
 		if(enderchestinventory != null) {
 			is = enderchestinventory.getContents();
-			for(int n=0; n != is.length; n++)
+			for(int n=0; n < is.length; n++)
 			{
 				if(is[n] == null){
 					continue;
@@ -211,14 +211,15 @@ public class Event_Antijaoium extends MyMaid2Premise implements Listener {
 		}
 	}
 
-    @EventHandler(ignoreCancelled = true)
+    @SuppressWarnings("deprecation")
+	@EventHandler(ignoreCancelled = true)
 	public void onPlayerInteractEvent(PlayerInteractEvent event){
 		Player player = event.getPlayer();
 		Inventory inventory = player.getInventory();
 		Inventory enderchestinventory = player.getEnderChest();
 		ItemStack[] is = inventory.getContents();
 		Boolean jaoium = false;
-		for(int n=0; n != is.length; n++)
+		for(int n=0; n < is.length; n++)
 		{
 			if(is[n] == null){
 				continue;
@@ -237,7 +238,7 @@ public class Event_Antijaoium extends MyMaid2Premise implements Listener {
 		}
 		if(enderchestinventory != null) {
 			is = enderchestinventory.getContents();
-			for(int n=0; n != is.length; n++)
+			for(int n=0; n < is.length; n++)
 			{
 				if(is[n] == null){
 					continue;
@@ -257,7 +258,12 @@ public class Event_Antijaoium extends MyMaid2Premise implements Listener {
 		}
 		if(jaoium){
 			Bukkit.broadcastMessage("[jaoium_Checker] " + ChatColor.GREEN + "プレイヤー「" + player.getName() + "」からjaoiumと同等の性能を持つアイテムが検出されました。");
-			//Jail.JailAdd(player, Bukkit.getOfflinePlayer("jaotan"), "jaoium所持", true);
+			try {
+				Jail.JailAdd(player, Bukkit.getOfflinePlayer("jaotan"), "jaoium所持", true);
+			} catch (ClassNotFoundException | NullPointerException | SQLException e) {
+				// TODO 自動生成された catch ブロック
+				e.printStackTrace();
+			}
 		}
 	}
 	@SuppressWarnings("deprecation")
@@ -271,7 +277,7 @@ public class Event_Antijaoium extends MyMaid2Premise implements Listener {
 		Inventory enderchestinventory = player.getEnderChest();
 		ItemStack[] is = inventory.getContents();
 		Boolean jaoium = false;
-		for(int n=0; n != is.length; n++)
+		for(int n=0; n < is.length; n++)
 		{
 			if(is[n] == null){
 				continue;
@@ -290,7 +296,7 @@ public class Event_Antijaoium extends MyMaid2Premise implements Listener {
 		}
 		if(enderchestinventory != null) {
 			is = enderchestinventory.getContents();
-			for(int n=0; n != is.length; n++)
+			for(int n=0; n < is.length; n++)
 			{
 				if(is[n] == null){
 					continue;
@@ -334,7 +340,7 @@ public class Event_Antijaoium extends MyMaid2Premise implements Listener {
 		Inventory enderchestinventory = player.getEnderChest();
 		ItemStack[] is = inventory.getContents();
 		Boolean jaoium = false;
-		for(int n=0; n != is.length; n++)
+		for(int n=0; n < is.length; n++)
 		{
 			if(is[n] == null){
 				continue;
@@ -353,7 +359,7 @@ public class Event_Antijaoium extends MyMaid2Premise implements Listener {
 		}
 		if(enderchestinventory != null) {
 			is = enderchestinventory.getContents();
-			for(int n=0; n != is.length; n++)
+			for(int n=0; n < is.length; n++)
 			{
 				if(is[n] == null){
 					continue;

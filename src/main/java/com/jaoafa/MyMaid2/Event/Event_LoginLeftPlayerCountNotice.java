@@ -22,7 +22,7 @@ public class Event_LoginLeftPlayerCountNotice extends MyMaid2Premise implements 
 	@EventHandler
 	public void OnEvent_LoginPlayerCountNotice(PlayerJoinEvent event){
 		SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
-		Bukkit.broadcastMessage(ChatColor.GRAY + "["+ sdf.format(new Date()) + "]" + ChatColor.GOLD + "■" + ChatColor.WHITE + "jaotan: 現在『" + (Bukkit.getServer().getOnlinePlayers().size() - 1) + "人』がログインしています");
+		Bukkit.broadcastMessage(ChatColor.GRAY + "["+ sdf.format(new Date()) + "]" + ChatColor.GOLD + "■" + ChatColor.WHITE + "jaotan: 現在『" + Bukkit.getServer().getOnlinePlayers().size() + "人』がログインしています");
 	}
 
 	@EventHandler
