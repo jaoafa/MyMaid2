@@ -43,6 +43,7 @@ import com.jaoafa.MyMaid2.Event.Event_DedRain;
 import com.jaoafa.MyMaid2.Event.Event_EBan;
 import com.jaoafa.MyMaid2.Event.Event_FarmNOBreak;
 import com.jaoafa.MyMaid2.Event.Event_Jail;
+import com.jaoafa.MyMaid2.Event.Event_JoinAutoQPPE;
 import com.jaoafa.MyMaid2.Event.Event_JoinHeaderFooterChange;
 import com.jaoafa.MyMaid2.Event.Event_JoinjaoPoint;
 import com.jaoafa.MyMaid2.Event.Event_Kill_kill;
@@ -75,6 +76,7 @@ public class MyMaid2 extends JavaPlugin implements Listener {
 	public static String sqlpassword;
 	public static Connection c = null;
 	public static long ConnectionCreate = 0;
+	public static String MCBansRepAPI = null;
 
 	public static JavaPlugin javaplugin = null;
 	public static MyMaid2 mymaid2 = null;
@@ -212,6 +214,7 @@ public class MyMaid2 extends JavaPlugin implements Listener {
 		registEvent(new Event_EBan(this));// 2018/04/01
 		registEvent(new Event_Jail(this));// 2018/04/01
 		registEvent(new Event_LoginLeftPlayerCountNotice(this));// 2018/04/01
+		registEvent(new Event_JoinAutoQPPE(this));// 2018/04/07
 	}
 
 	/**
@@ -275,6 +278,12 @@ public class MyMaid2 extends JavaPlugin implements Listener {
 			return;
 		}
 		getLogger().info("MySQL Connect successful.");
+
+		if(conf.contains("MCBansRepAPI")){
+			MCBansRepAPI = (String) conf.get("MCBansRepAPI");
+		}else{
+			getLogger().warning("コンフィグにMCBansのReputationを取得するためのAPIが記載されていなかったため、Reputationチェックは動作しません。");
+		}
 	}
 
 
