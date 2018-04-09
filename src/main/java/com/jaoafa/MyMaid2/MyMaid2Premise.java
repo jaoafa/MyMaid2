@@ -14,8 +14,8 @@ import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.net.ssl.HttpsURLConnection;
 
@@ -439,7 +439,7 @@ public abstract class MyMaid2Premise {
 	 * @param glue 挟むテキスト
 	 * @return 処理したテキスト
 	 */
-	public static <T> String implode(List<T> list, String glue) {
+	public static <T> String implode(Set<T> list, String glue) {
 	    StringBuilder sb = new StringBuilder();
 	    for (T e : list) {
 	        sb.append(glue).append(e);

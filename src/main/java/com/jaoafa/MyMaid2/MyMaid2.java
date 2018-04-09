@@ -47,7 +47,7 @@ import com.jaoafa.MyMaid2.Event.Event_Jail;
 import com.jaoafa.MyMaid2.Event.Event_JoinAutoQPPE;
 import com.jaoafa.MyMaid2.Event.Event_JoinHeaderFooterChange;
 import com.jaoafa.MyMaid2.Event.Event_JoinjaoPoint;
-import com.jaoafa.MyMaid2.Event.Event_Kill_kill;
+import com.jaoafa.MyMaid2.Event.Event_AntiProblemCommand;
 import com.jaoafa.MyMaid2.Event.Event_LoginLeftPlayerCountNotice;
 import com.jaoafa.MyMaid2.Event.Event_LoginSuccessCheck;
 import com.jaoafa.MyMaid2.Event.Event_MoveToChunkActionbar;
@@ -212,7 +212,7 @@ public class MyMaid2 extends JavaPlugin implements Listener {
 		registEvent(new Event_JoinHeaderFooterChange(this));// 2018/03/26
 		registEvent(new Event_QuitHeaderFooterChange(this));// 2018/03/26
 		registEvent(new Event_VoteMissFillerEvent(this));// 2018/03/27
-		registEvent(new Event_Kill_kill(this));// 2018/03/29
+		registEvent(new Event_AntiProblemCommand(this));// 2018/03/29
 		registEvent(new Event_ChatSpamKickDisable(this));// 2018/04/01
 		registEvent(new Event_EBan(this));// 2018/04/01
 		registEvent(new Event_Jail(this));// 2018/04/01

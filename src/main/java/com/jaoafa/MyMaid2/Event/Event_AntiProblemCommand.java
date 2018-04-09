@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -17,17 +18,50 @@ import com.jaoafa.MyMaid2.MyMaid2Premise;
 import com.jaoafa.MyMaid2.Lib.ParseSelector;
 import com.jaoafa.MyMaid2.Lib.PermissionsManager;
 
-public class Event_Kill_kill extends MyMaid2Premise implements Listener {
+public class Event_AntiProblemCommand extends MyMaid2Premise implements Listener {
 	JavaPlugin plugin;
-	public Event_Kill_kill(JavaPlugin plugin) {
+	public Event_AntiProblemCommand(JavaPlugin plugin) {
 		this.plugin = plugin;
 	}
 	@EventHandler
-	public void onEvent_Kill_kill(PlayerCommandPreprocessEvent event){
+	public void onEvent_AntiProblemCommand(PlayerCommandPreprocessEvent event){
 		String command = event.getMessage();
 		Player player = event.getPlayer();
 		String[] args = command.split(" ", 0);
-		if(args.length >= 2){
+		if(args.length == 1){
+			if(args[0].equalsIgnoreCase("/god")){
+				// /godコマンド規制
+				player.chat("オ、オオwwwwwwwwオレアルファwwwwwwww最近めっちょふぁぼられてんねんオレwwwwwwwwエゴサとかかけるとめっちょ人気やねんwwwwァァァァァァァwwwクソアルファを見下しながら食べるエビフィレオは一段とウメェなァァァァwwwwwwww");
+				event.setCancelled(true);
+				return;
+			}else if(args[0].equalsIgnoreCase("/pl") || args[0].equalsIgnoreCase("/bukkit:pl")){
+				// /plコマンド規制
+				player.chat("なんか静かですね。街の中にはギャラルホルンもいないし本部とはえらい違いだ。");
+				player.chat("ああ。火星の戦力は軒並み向こうに回してんのかもな。");
+				player.chat("まっそんなのもう関係ないですけどね！");
+				player.chat("上機嫌だな。");
+				player.chat("そりゃそうですよ！みんな助かるし、タカキも頑張ってたし、俺も頑張らないと！");
+				player.chat("ああ。（そうだ。俺たちが今まで積み上げてきたもんは全部無駄じゃなかった。これからも俺たちが立ち止まらないかぎり道は続く）");
+				player.chat("ぐわっ！");
+				player.chat("団長？何やってんだよ？団長！");
+				player.chat("ぐっ！うおぉ～～！");
+				player.chat("うおっ！あっ！");
+				player.chat("はぁはぁはぁ・・・。なんだよ、結構当たんじゃねぇか。ふっ・・・。");
+				player.chat("だ・・・団長・・・。あっ・・・あぁ・・・。");
+				player.chat("なんて声出してやがる・・・ライド。");
+				player.chat("だって・・・だって・・・。");
+				player.chat("俺は鉄華団団長オルガ・イツカだぞ。こんくれぇなんてこたぁねぇ。");
+				player.chat("そんな・・・俺なんかのために・・・。");
+				player.chat("団員を守んのは俺の仕事だ。");
+				player.chat("でも！");
+				player.chat("いいから行くぞ。皆が待ってんだ。それに・・・。");
+
+				player.chat("俺は止まんねぇからよ、お前らが止まんねぇかぎり、その先に俺はいるぞ！");
+				player.chat("だからよ、止まるんじゃねぇぞ・・・。");
+				event.setCancelled(true);
+				return;
+			}
+		}else if(args.length >= 2){
 			List<String> LeastOne = new ArrayList<String>();
 			LeastOne.add("r");
 			LeastOne.add("type");
@@ -35,6 +69,7 @@ public class Event_Kill_kill extends MyMaid2Premise implements Listener {
 			LeastOne.add("name");
 
 			if(args[0].equalsIgnoreCase("/kill")){
+				// /killコマンド規制
 				boolean killflag = false;
 				String group = PermissionsManager.getPermissionMainGroup(player);
 				if(group.equalsIgnoreCase("Limited")){
@@ -46,6 +81,10 @@ public class Event_Kill_kill extends MyMaid2Premise implements Listener {
 				}
 				if(args[1].equalsIgnoreCase("@e")){
 					// Jail.JailAdd(player, Bukkit.getOfflinePlayer("jaotan"), "コマンド「/kill @e」の実行", false);
+					player.chat("キリトかなーやっぱりww");
+					player.chat("自分は思わないんだけど周りにキリトに似てるってよく言われるwww");
+					player.chat("こないだDQNに絡まれた時も気が付いたら意識無くて周りに人が血だらけで倒れてたしなwww");
+					player.chat("ちなみに彼女もアスナに似てる(聞いてないw)");
 					event.setCancelled(true);
 					return;
 				}
@@ -57,19 +96,18 @@ public class Event_Kill_kill extends MyMaid2Premise implements Listener {
 					event.setCancelled(true);
 					return;
 				}
-				if(args[1].equalsIgnoreCase("@e")){
-					player.sendMessage("[COMMAND] " + ChatColor.GREEN + "kill @eはサーバー内のすべてのエンティティが削除されてしまうので使用できません");
-					event.setCancelled(true);
-					return;
-				}
 				if(args[1].equalsIgnoreCase("@a")){
-					player.sendMessage("[COMMAND] " + ChatColor.GREEN + "kill @aはサーバー内のすべてのプレイヤーが殺害されてしまうので使用できません");
+					player.chat("キリトかなーやっぱw");
+					player.chat("一応オタクだけど彼女いるし、俺って退けない性格だしそこら辺とかめっちゃ似てるって言われる()");
+					player.chat("握力も31キロあってクラスの女子にたかられる←彼女いるからやめろ！笑");
+					player.chat("俺、これでも中1ですよ？");
 					event.setCancelled(true);
 					return;
 				}
 				if(args[1].startsWith("@e")){
 					if(group.equalsIgnoreCase("QPPE") || group.equalsIgnoreCase("Default")){
-						player.sendMessage("[COMMAND] " + ChatColor.GREEN + "└( ・з・)┘");
+						player.chat("最後にキレたのは高2のころかな。オタクだからってウェイ系に絡まれたときw");
+						player.chat("最初は微笑してたんだけど、推しを貶されて気づいたらウェイ系は意識無くなってて、25人くらいに取り押さえられてたw記憶無いけど、ひたすら笑顔で殴ってたらしいw俺ってサイコパスなのかもなww");
 						event.setCancelled(true);
 						return;
 					}
@@ -79,7 +117,7 @@ public class Event_Kill_kill extends MyMaid2Premise implements Listener {
 						ParseSelector parser = new ParseSelector(args[1]);
 						if(!parser.isValidValues()){
 							player.sendMessage("[COMMAND] " + ChatColor.GREEN + "指定されたセレクターは適切でありません。");
-							List<String> unvalids = parser.getUnValidValues();
+							Set<String> unvalids = parser.getUnValidValues();
 							player.sendMessage("[COMMAND] " + ChatColor.GREEN + "不適切だったセレクター引数: " + implode(unvalids, ", "));
 							event.setCancelled(true);
 							return;
@@ -136,6 +174,7 @@ public class Event_Kill_kill extends MyMaid2Premise implements Listener {
 				}
 			}
 			if(args[0].equalsIgnoreCase("/minecraft:kill")){
+				// /minecraft:killコマンド規制
 				boolean killflag = false;
 				String group = PermissionsManager.getPermissionMainGroup(player);
 				if(group.equalsIgnoreCase("Limited")){
@@ -145,6 +184,15 @@ public class Event_Kill_kill extends MyMaid2Premise implements Listener {
 				}else if(group.equalsIgnoreCase("Default")){
 					killflag = true;
 				}
+				if(args[1].equalsIgnoreCase("@e")){
+					// Jail.JailAdd(player, Bukkit.getOfflinePlayer("jaotan"), "コマンド「/kill @e」の実行", false);
+					player.chat("キリトかなーやっぱりww");
+					player.chat("自分は思わないんだけど周りにキリトに似てるってよく言われるwww");
+					player.chat("こないだDQNに絡まれた時も気が付いたら意識無くて周りに人が血だらけで倒れてたしなwww");
+					player.chat("ちなみに彼女もアスナに似てる(聞いてないw)");
+					event.setCancelled(true);
+					return;
+				}
 				if(killflag){
 					SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
 					Bukkit.broadcastMessage(ChatColor.GRAY + "["+ timeFormat.format(new Date()) + "]" + ChatColor.GOLD + "■" + ChatColor.WHITE + "jaotan: " + player.getName() + "ごときが" + args[1] + "を殺そうだなんて図が高いわ！ " + player.getName() + "が死ね！");
@@ -153,24 +201,22 @@ public class Event_Kill_kill extends MyMaid2Premise implements Listener {
 					event.setCancelled(true);
 					return;
 				}
-				if(args[1].equalsIgnoreCase("@e")){
-					player.sendMessage("[COMMAND] " + ChatColor.GREEN + "kill @eはサーバー内のすべてのエンティティが削除されてしまうので使用できません");
-					event.setCancelled(true);
-					return;
-				}
 				if(args[1].equalsIgnoreCase("@a")){
-					player.sendMessage("[COMMAND] " + ChatColor.GREEN + "kill @aはサーバー内のすべてのプレイヤーが殺害されてしまうので使用できません");
+					player.chat("キリトかなーやっぱw");
+					player.chat("一応オタクだけど彼女いるし、俺って退けない性格だしそこら辺とかめっちゃ似てるって言われる()");
+					player.chat("握力も31キロあってクラスの女子にたかられる←彼女いるからやめろ！笑");
+					player.chat("俺、これでも中1ですよ？");
 					event.setCancelled(true);
 					return;
 				}
 				if(args[1].startsWith("@e")){
 					if(group.equalsIgnoreCase("QPPE") || group.equalsIgnoreCase("Default")){
-						player.sendMessage("[COMMAND] " + ChatColor.GREEN + "└( ・з・)┘");
+						player.chat("最後にキレたのは高2のころかな。オタクだからってウェイ系に絡まれたときw");
+						player.chat("最初は微笑してたんだけど、推しを貶されて気づいたらウェイ系は意識無くなってて、25人くらいに取り押さえられてたw記憶無いけど、ひたすら笑顔で殴ってたらしいw俺ってサイコパスなのかもなww");
 						event.setCancelled(true);
 						return;
 					}
 				}
-
 				if(args[1].startsWith("@e")){
 					try {
 						ParseSelector parser = new ParseSelector(args[1]);
@@ -229,6 +275,33 @@ public class Event_Kill_kill extends MyMaid2Premise implements Listener {
 						return;
 					}
 				}
+			}
+			if(args[0].equalsIgnoreCase("/pex")){
+				if(args[1].equalsIgnoreCase("promote")){
+					// /pex promoteコマンド規制
+					player.chat("(◞‸◟) ｻﾊﾞｵﾁﾅｲｰﾅ? ﾎﾜｯｳｳﾞｼﾞｸｼﾞｸﾞｨﾝﾉﾝﾞﾝﾞﾝﾞﾝﾞﾍﾟﾗﾚｸﾞｼﾞｭﾁﾞ…ﾇﾇﾉｮｩﾂﾋﾞｮﾝﾇｽﾞｨｺｹｰｯﾝｦｯ…ｶﾅｼﾐ…");
+					event.setCancelled(true);
+					return;
+				}
+			}
+			if(args[0].equalsIgnoreCase("//calc") || args[0].equalsIgnoreCase("/worldedit:/calc")){
+				// /calcコマンド規制
+				player.chat("オ、オオwwwwwwwwオレアタマ良いwwwwwwww最近めっちょ成績あがってんねんオレwwwwwwwwエゴサとかかけるとめっちょ人気やねんwwwwァァァァァァァwwwクソハゲアタマを見下しながら食べるフライドチキンは一段とウメェなァァァァwwwwwwww");
+				event.setCancelled(true);
+				return;
+			}
+		}
+		for(String arg : args){
+			// @eをふくむもの
+			if(arg.equalsIgnoreCase("@e")){
+				player.chat("開けてみたいでしょ～？");
+				player.chat("うん、みたーい！");
+				player.chat("行きますよー！");
+				player.chat("はい！");
+				player.chat("せーのっ！");
+				player.chat("あぁ～！水素の音ォ〜！！");
+				event.setCancelled(true);
+				return;
 			}
 		}
 	}

@@ -1,10 +1,11 @@
 package com.jaoafa.MyMaid2.Lib;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -166,13 +167,18 @@ public class ParseSelector {
 			}
 		}
 		if(args.containsKey("type")){
+			boolean TypeCheck = false;
 			for(EntityType type : EntityType.values()){
 				if(!"Player".equals(args.get("type"))){
-					if(!type.getName().equalsIgnoreCase(args.get("type"))){
-						return false;
+					if(type.getName() == null){
+						continue;
+					}
+					if(type.getName().equalsIgnoreCase(args.get("type"))){
+						TypeCheck = true;
 					}
 				}
 			}
+			if(!TypeCheck) return false;
 		}
 		return true;
 	}
@@ -181,8 +187,8 @@ public class ParseSelector {
 	 * @return どの引数が適当でないか
 	 */
 	@SuppressWarnings("deprecation")
-	public List<String> getUnValidValues(){
-		List<String> unvalid = new ArrayList<>();
+	public Set<String> getUnValidValues(){
+		Set<String> unvalid = new HashSet<>();
 		if(valid == false){
 			unvalid.add("ALL");
 		}
@@ -207,13 +213,18 @@ public class ParseSelector {
 			}
 		}
 		if(args.containsKey("type")){
+			boolean TypeCheck = false;
 			for(EntityType type : EntityType.values()){
 				if(!"Player".equals(args.get("type"))){
-					if(!type.getName().equalsIgnoreCase(args.get("type"))){
-						unvalid.add("TYPE:" + args.get("type"));
+					if(type.getName() == null){
+						continue;
+					}
+					if(type.getName().equalsIgnoreCase(args.get("type"))){
+						TypeCheck = true;
 					}
 				}
 			}
+			if(!TypeCheck) unvalid.add("TYPE:" + args.get("type"));
 		}
 		return unvalid;
 	}
