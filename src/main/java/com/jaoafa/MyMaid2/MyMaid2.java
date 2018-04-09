@@ -31,6 +31,7 @@ import com.jaoafa.MyMaid2.Command.Cmd_Messenger;
 import com.jaoafa.MyMaid2.Command.Cmd_Player;
 import com.jaoafa.MyMaid2.Command.Cmd_Selector;
 import com.jaoafa.MyMaid2.Command.Cmd_SetHome;
+import com.jaoafa.MyMaid2.Command.Cmd_Sign;
 import com.jaoafa.MyMaid2.Command.Cmd_Spawn;
 import com.jaoafa.MyMaid2.Command.Cmd_Test;
 import com.jaoafa.MyMaid2.Command.Cmd_WT;
@@ -57,6 +58,7 @@ import com.jaoafa.MyMaid2.Event.Event_PlayerQuit;
 import com.jaoafa.MyMaid2.Event.Event_QD_NOTSpectator;
 import com.jaoafa.MyMaid2.Event.Event_QuitHeaderFooterChange;
 import com.jaoafa.MyMaid2.Event.Event_SKKColor;
+import com.jaoafa.MyMaid2.Event.Event_SignClick;
 import com.jaoafa.MyMaid2.Event.Event_VoteMissFillerEvent;
 import com.jaoafa.MyMaid2.Event.Event_VoteReceived;
 import com.jaoafa.MyMaid2.Lib.MySQL;
@@ -159,7 +161,8 @@ public class MyMaid2 extends JavaPlugin implements Listener {
 		getCommand("body").setExecutor(new Cmd_Body(this)); // 2018/04/01
 		getCommand("leg").setExecutor(new Cmd_Leg(this)); // 2018/04/01
 		getCommand("boots").setExecutor(new Cmd_Boots(this)); // 2018/04/01
-		getCommand("boots").setExecutor(new Cmd_Ck(this)); // 2018/04/05
+		getCommand("ck").setExecutor(new Cmd_Ck(this)); // 2018/04/05
+		getCommand("sign").setExecutor(new Cmd_Sign(this)); // 2018/04/09
 	}
 
 	/**
@@ -215,6 +218,7 @@ public class MyMaid2 extends JavaPlugin implements Listener {
 		registEvent(new Event_Jail(this));// 2018/04/01
 		registEvent(new Event_LoginLeftPlayerCountNotice(this));// 2018/04/01
 		registEvent(new Event_JoinAutoQPPE(this));// 2018/04/07
+		registEvent(new Event_SignClick(this));// 2018/04/09
 	}
 
 	/**

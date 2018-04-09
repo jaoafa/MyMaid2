@@ -197,3 +197,8 @@ commands:
       usage: "/ck: 近くの誰も乗っていないトロッコを削除します。"
       permission: mymaid.ck
       permission-message: You do not have permission to perform this command.
+   sign:
+      description: すでに設置した看板のテキストを変更します。
+      usage: "/sign <Line> <Text>: すでに設置した看板の指定した行のテキストを変更します。"
+      permission: mymaid.sign
+      permission-message: You do not have permission to perform this command.
