@@ -78,9 +78,13 @@ public class Cmd_Ck extends MyMaid2Premise implements CommandExecutor {
 					continue;
 				}
 				if(args.length == 1){
-					if(min > Integer.parseInt(args[0])){
-						minecart = null;
-						continue;
+					try{
+						if(min > Integer.parseInt(args[0])){
+							minecart = null;
+							continue;
+						}
+					}catch(NumberFormatException e){
+						// なにもしない
 					}
 				}
 				if(minecart != null){
