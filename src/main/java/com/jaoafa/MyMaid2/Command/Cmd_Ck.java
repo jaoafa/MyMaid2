@@ -84,6 +84,11 @@ public class Cmd_Ck extends MyMaid2Premise implements CommandExecutor {
 					}
 				}
 				if(minecart != null){
+					if(args.length == 1 && args[0].equalsIgnoreCase("true")){
+						for(Entity e : minecart.getPassengers()){
+							e.remove();
+						}
+					}
 					minecart.remove();
 					SendMessage(sender, cmd, "トロッコ「" + minecart.getName() + "(UUID:" + minecart.getUniqueId() +")」を削除しました。");
 				}

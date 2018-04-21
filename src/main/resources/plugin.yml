@@ -194,7 +194,9 @@ commands:
       permission-message: You do not have permission to perform this command.
    ck:
       description: 近くの誰も乗っていないトロッコを削除します。
-      usage: "/ck: 近くの誰も乗っていないトロッコを削除します。"
+      usage: |-
+             /ck: 近くの誰も乗っていないトロッコを削除します。乗っているエンティティがいても削除しません。
+             /ck true: 近くの誰も乗っていないトロッコを削除します。また、乗っているエンティティも削除します。
       permission: mymaid.ck
       permission-message: You do not have permission to perform this command.
    sign:
