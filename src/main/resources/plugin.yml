@@ -17,7 +17,7 @@ commands:
              /dt [Player] <MarkerName...>: MarkerNameにテレポートします。Playerを指定した場合はそのPlayerをテレポートさせます。
              /dt near: あなたの近くのマーカーを表示します。
              /dt add <MarkerName> <MarkerType>: Markerを追加します。
-             /dt del <MarkerName> <MarkerType>: Markerを削除します。
+             /dt del <MarkerName>: Markerを削除します。
              /dt list: Markerリストを表示します。
              /dt list <Page>: 指定されたページのMarkerリストを表示します。
       permission: mymaid.dt
