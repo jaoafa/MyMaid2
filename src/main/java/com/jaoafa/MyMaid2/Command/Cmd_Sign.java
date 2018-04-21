@@ -41,31 +41,26 @@ public class Cmd_Sign extends MyMaid2Premise implements CommandExecutor {
 		}
 
 		Sign sign = signlist.get(player.getUniqueId().toString());
-		if(args[0].equalsIgnoreCase("set")){
-			String regex = "^[1-4]$"; //正規表現
-			Pattern p = Pattern.compile(regex);
-			Matcher m = p.matcher(args[1]);
-			if (!m.find()){
-				SendMessage(sender, cmd, "エラーが発生しました。看板の行番号:1～4を入力してください。");
-				return true;
-			}
-
-			String text = "";
-			int c = 2;
-			while(args.length > c){
-				text += args[c];
-				if(args.length != (c+1)){
-					text+=" ";
-				}
-				c++;
-			}
-	        sign.setLine(Integer.parseInt(args[1])-1, text);
-	        sign.update();
-	        SendMessage(sender, cmd, "書き換えを行いました。");
-		}else{
-			SendMessage(sender, cmd, "setを指定してください");
+		String regex = "^[1-4]$"; //正規表現
+		Pattern p = Pattern.compile(regex);
+		Matcher m = p.matcher(args[0]);
+		if (!m.find()){
+			SendMessage(sender, cmd, "エラーが発生しました。看板の行番号:1～4を入力してください。");
 			return true;
 		}
+
+		String text = "";
+		int c = 1;
+		while(args.length > c){
+			text += args[c];
+			if(args.length != (c+1)){
+				text+=" ";
+			}
+			c++;
+		}
+        sign.setLine(Integer.parseInt(args[0])-1, text);
+        sign.update();
+        SendMessage(sender, cmd, "書き換えを行いました。");
 		return true;
 
 	}
