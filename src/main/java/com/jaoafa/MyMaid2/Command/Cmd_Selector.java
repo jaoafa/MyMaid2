@@ -1,7 +1,7 @@
 package com.jaoafa.MyMaid2.Command;
 
-import java.util.List;
 import java.util.Map.Entry;
+import java.util.Set;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -35,7 +35,7 @@ public class Cmd_Selector extends MyMaid2Premise implements CommandExecutor {
 				return true;
 			}else{
 				SendMessage(sender, cmd, "指定されたセレクターは適切ではありません。");
-				List<String> unvalids = parser.getUnValidValues();
+				Set<String> unvalids = parser.getUnValidValues();
 				SendMessage(sender, cmd, "不適切だったセレクター引数: " + implode(unvalids, ", "));
 				return true;
 			}

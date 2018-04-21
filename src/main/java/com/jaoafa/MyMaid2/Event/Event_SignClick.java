@@ -25,7 +25,7 @@ public class Event_SignClick implements Listener {
 	    Material material = clickedBlock.getType();
 	    if (material == Material.SIGN_POST || material == Material.WALL_SIGN) {
 	        Sign sign = (Sign) clickedBlock.getState();
-	        Cmd_Sign.signlist.put(event.getPlayer().getName(), sign);
+	        Cmd_Sign.signlist.put(event.getPlayer().getUniqueId().toString(), sign);
 	        int x = sign.getX();
 	        int y = sign.getY();
 	        int z = sign.getZ();
