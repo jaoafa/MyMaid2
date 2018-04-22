@@ -19,6 +19,7 @@ import org.json.simple.parser.JSONParser;
 import com.jaoafa.MyMaid2.MyMaid2;
 import com.jaoafa.MyMaid2.MyMaid2Premise;
 import com.jaoafa.MyMaid2.Lib.PermissionsManager;
+import com.jaoafa.MyMaid2.Lib.Discord.DiscordEmbed;
 
 public class Event_JoinAutoQPPE extends MyMaid2Premise implements Listener {
 	JavaPlugin plugin;
@@ -55,12 +56,28 @@ public class Event_JoinAutoQPPE extends MyMaid2Premise implements Listener {
 
 		String reputation = (String)json.get("reputation");
 
+		boolean jaotanAutoUp;
 		if(reputation.equalsIgnoreCase("10")){
 			plugin.getLogger().warning("Reputation: " + reputation + " -> UP to QPPE");
 			PermissionsManager.setPermissionsGroup(player, "QPPE");
+			jaotanAutoUp = true;
 		}else{
 			plugin.getLogger().warning("Reputation: " + reputation + " -> NOT UP");
+			jaotanAutoUp = false;
 		}
+
+		DiscordEmbed embed = new DiscordEmbed();
+		embed.setTitle("New Player Join Info");
+		embed.setUrl("https://jaoafa.com/user/" + uuid.toString());
+		embed.setDescription("新規プレイヤーがサーバにログインしました！\n※タイトルをクリックするとユーザページを開きます。");
+		embed.setAuthor("jaotan", "https://jaoafa.com/", "https://jaoafa.com/wp-content/uploads/2018/03/IMG_20180326_070515.jpg", "https://jaoafa.com/wp-content/uploads/2018/03/IMG_20180326_070515.jpg");
+		embed.addFields("プレイヤーID", player.getName(), false);
+		embed.addFields("評価値", reputation + " / 10", false);
+		embed.addFields("jaotanによる自動通過", String.valueOf(jaotanAutoUp), false);
+		embed.addFields("プレイヤー数", Bukkit.getServer().getOnlinePlayers().size() + "人", false);
+		embed.addFields("プレイヤー", implode(Bukkit.getServer().getOnlinePlayers(), ", "), false);
+
+		DiscordSend("223582668132974594", "", embed);
 	}
 
 	private static JSONObject getHttpJson(String address){

@@ -12,6 +12,7 @@ import java.io.StringWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.text.SimpleDateFormat;
+import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -31,6 +32,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 import com.jaoafa.MyMaid2.Lib.PermissionsManager;
+import com.jaoafa.MyMaid2.Lib.Discord.DiscordEmbed;
 
 public abstract class MyMaid2Premise {
 	/**
@@ -175,6 +177,28 @@ public abstract class MyMaid2Premise {
 		return postHttpJsonByJson("https://discordapp.com/api/channels/" + channel + "/messages", headers, contents);
 	}
 
+	/**
+	 * Discordへチャンネルを指定してメッセージを送信します。
+	 * @param channel 送信先のチャンネルID
+	 * @param message 送信するメッセージ
+	 * @param embed 送信するEmbed
+	 * @return 送信できたかどうか
+	 */
+	@SuppressWarnings("unchecked")
+	public static boolean DiscordSend(String channel, String message, DiscordEmbed embed){
+		if(MyMaid2.discordtoken == null){
+			throw new NullPointerException("DiscordSendが呼び出されましたが、discordtokenが登録されていませんでした。");
+		}
+		Map<String, String> headers = new HashMap<>();
+		headers.put("Content-Type", "application/json");
+		headers.put("Authorization", "Bot " + MyMaid2.discordtoken);
+		headers.put("User-Agent", "DiscordBot (https://jaoafa.com, v0.0.1)");
+
+		JSONObject paramobj = new JSONObject();
+		paramobj.put("content", message);
+		paramobj.put("embed", embed.buildJSON());
+		return postHttpJsonByJsonObj("https://discordapp.com/api/channels/" + channel + "/messages", headers, paramobj);
+	}
 
 	public static JSONArray DiscordGuildList(){
 		if(MyMaid2.discordtoken == null){
@@ -272,6 +296,58 @@ public abstract class MyMaid2Premise {
 			for(Map.Entry<String, String> content : contents.entrySet()){
 				paramobj.put(content.getKey(), content.getValue());
 			}
+			out.write(paramobj.toJSONString());
+			out.close();
+
+			connect.connect();
+
+			if(connect.getResponseCode() != HttpURLConnection.HTTP_OK){
+				InputStream in = connect.getErrorStream();
+
+				BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+				String line;
+				while ((line = reader.readLine()) != null) {
+					builder.append(line);
+				}
+				in.close();
+				connect.disconnect();
+
+				Bukkit.getLogger().warning("DiscordWARN: " + builder.toString());
+				return false;
+			}
+
+			InputStream in = connect.getInputStream();
+
+			BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+			String line;
+			while ((line = reader.readLine()) != null) {
+				builder.append(line);
+			}
+			in.close();
+			connect.disconnect();
+			return true;
+		}catch(Exception e){
+			e.printStackTrace();
+			return false;
+		}
+	}
+	private static boolean postHttpJsonByJsonObj(String address, Map<String, String> headers, JSONObject paramobj){
+		StringBuilder builder = new StringBuilder();
+		try{
+			URL url = new URL(address);
+
+			HttpsURLConnection connect = (HttpsURLConnection)url.openConnection();
+			connect.setRequestMethod("POST");
+
+			if(headers != null){
+				for(Map.Entry<String, String> header : headers.entrySet()){
+					connect.setRequestProperty(header.getKey(), header.getValue());
+				}
+			}
+
+			connect.setDoOutput(true);
+			OutputStreamWriter out = new OutputStreamWriter(connect.getOutputStream());
+
 			out.write(paramobj.toJSONString());
 			out.close();
 
@@ -443,6 +519,13 @@ public abstract class MyMaid2Premise {
 	    StringBuilder sb = new StringBuilder();
 	    for (T e : list) {
 	        sb.append(glue).append(e);
+	    }
+	    return sb.substring(glue.length());
+	}
+	public static <T> String implode(Collection<? extends Player> list, String glue) {
+	    StringBuilder sb = new StringBuilder();
+	    for (Player e : list) {
+	        sb.append(glue).append(e.getName());
 	    }
 	    return sb.substring(glue.length());
 	}
