@@ -29,12 +29,18 @@ public class Event_AntiProblemCommand extends MyMaid2Premise implements Listener
 		Player player = event.getPlayer();
 		String[] args = command.split(" ", 0);
 		if(args.length == 1){
-			if(args[0].equalsIgnoreCase("/god")){
+
+		}else if(args.length >= 1){
+			if(args[0].equalsIgnoreCase("/god") || args[0].equalsIgnoreCase("/worldguard:god")){
 				// /godコマンド規制
 				player.chat("オ、オオwwwwwwwwオレアルファwwwwwwww最近めっちょふぁぼられてんねんオレwwwwwwwwエゴサとかかけるとめっちょ人気やねんwwwwァァァァァァァwwwクソアルファを見下しながら食べるエビフィレオは一段とウメェなァァァァwwwwwwww");
 				event.setCancelled(true);
 				return;
 			}else if(args[0].equalsIgnoreCase("/pl") || args[0].equalsIgnoreCase("/bukkit:pl")){
+				String group = PermissionsManager.getPermissionMainGroup(player);
+				if(group.equalsIgnoreCase("Admin") || group.equalsIgnoreCase("Moderator")) {
+					return;
+				}
 				// /plコマンド規制
 				player.chat("なんか静かですね。街の中にはギャラルホルンもいないし本部とはえらい違いだ。");
 				player.chat("ああ。火星の戦力は軒並み向こうに回してんのかもな。");
