@@ -290,7 +290,7 @@ public class Event_AntiProblemCommand extends MyMaid2Premise implements Listener
 					return;
 				}
 			}
-			if(args[0].equalsIgnoreCase("//calc") || args[0].equalsIgnoreCase("/worldedit:/calc")){
+			if(args[0].equalsIgnoreCase("//calc") || args[0].equalsIgnoreCase("/worldedit:/calc") || args[0].equalsIgnoreCase("//eval") || args[0].equalsIgnoreCase("/worldedit:/eval")){
 				// /calcコマンド規制
 				player.chat("オ、オオwwwwwwwwオレアタマ良いwwwwwwww最近めっちょ成績あがってんねんオレwwwwwwwwエゴサとかかけるとめっちょ人気やねんwwwwァァァァァァァwwwクソハゲアタマを見下しながら食べるフライドチキンは一段とウメェなァァァァwwwwwwww");
 				event.setCancelled(true);
