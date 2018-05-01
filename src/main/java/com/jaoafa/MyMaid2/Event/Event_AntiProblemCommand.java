@@ -28,9 +28,7 @@ public class Event_AntiProblemCommand extends MyMaid2Premise implements Listener
 		String command = event.getMessage();
 		Player player = event.getPlayer();
 		String[] args = command.split(" ", 0);
-		if(args.length == 1){
-
-		}else if(args.length >= 1){
+		if(args.length >= 1){
 			if(args[0].equalsIgnoreCase("/god") || args[0].equalsIgnoreCase("/worldguard:god")){
 				// /godコマンド規制
 				player.chat("オ、オオwwwwwwwwオレアルファwwwwwwww最近めっちょふぁぼられてんねんオレwwwwwwwwエゴサとかかけるとめっちょ人気やねんwwwwァァァァァァァwwwクソアルファを見下しながら食べるエビフィレオは一段とウメェなァァァァwwwwwwww");
