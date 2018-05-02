@@ -213,3 +213,8 @@ commands:
              /account setdesc <Description>: jaoアカウントに自己紹介を追加します。
       permission: mymaid.account
       permission-message: You do not have permission to perform this command.
+   pin:
+      description: アカウントアクティベーションを行います。
+      usage: "/pin <Code>: アカウントアクティベーションを行います。"
+      permission: mymaid.pin
+      permission-message: You do not have permission to perform this command.

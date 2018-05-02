@@ -275,6 +275,56 @@ public abstract class MyMaid2Premise {
 		}
 	}
 
+	protected static JSONObject getHttpsJson(String address, Map<String, String> headers){
+		StringBuilder builder = new StringBuilder();
+		try{
+			URL url = new URL(address);
+
+			HttpsURLConnection connect = (HttpsURLConnection) url.openConnection();
+			connect.setRequestMethod("GET");
+			if(headers != null){
+				for(Map.Entry<String, String> header : headers.entrySet()) {
+					connect.setRequestProperty(header.getKey(), header.getValue());
+				}
+			}
+
+			connect.connect();
+
+			if(connect.getResponseCode() != HttpURLConnection.HTTP_OK){
+				InputStream in = connect.getErrorStream();
+
+				BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+				String line;
+				while ((line = reader.readLine()) != null) {
+					builder.append(line);
+				}
+				in.close();
+				connect.disconnect();
+
+				System.out.println("ConnectWARN: " + connect.getResponseMessage());
+				BugReporter(new IOException(builder.toString()));
+				return null;
+			}
+
+			InputStream in = connect.getInputStream();
+
+			BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+			String line;
+			while ((line = reader.readLine()) != null) {
+				builder.append(line);
+			}
+			in.close();
+			connect.disconnect();
+			JSONParser parser = new JSONParser();
+			Object obj = parser.parse(builder.toString());
+			JSONObject json = (JSONObject) obj;
+			return json;
+		}catch(Exception e){
+			BugReporter(e);
+			return null;
+		}
+	}
+
 	protected static String getHttpsString(String address){
 		StringBuilder builder = new StringBuilder();
 		System.out.println("getHttpsJsonURL: " + address);
