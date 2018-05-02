@@ -8,6 +8,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import com.jaoafa.MyMaid2.Command.Cmd_AFK;
+import com.jaoafa.MyMaid2.Command.Cmd_Account;
 import com.jaoafa.MyMaid2.Command.Cmd_Body;
 import com.jaoafa.MyMaid2.Command.Cmd_Boots;
 import com.jaoafa.MyMaid2.Command.Cmd_Chat;
@@ -164,6 +165,7 @@ public class MyMaid2 extends JavaPlugin implements Listener {
 		getCommand("boots").setExecutor(new Cmd_Boots(this)); // 2018/04/01
 		getCommand("ck").setExecutor(new Cmd_Ck(this)); // 2018/04/05
 		getCommand("sign").setExecutor(new Cmd_Sign(this)); // 2018/04/09
+		getCommand("account").setExecutor(new Cmd_Account(this)); // 2018/05/01
 	}
 
 	/**
@@ -289,6 +291,10 @@ public class MyMaid2 extends JavaPlugin implements Listener {
 			MCBansRepAPI = (String) conf.get("MCBansRepAPI");
 		}else{
 			getLogger().warning("コンフィグにMCBansのReputationを取得するためのAPIが記載されていなかったため、Reputationチェックは動作しません。");
+		}
+
+		if(conf.contains("jaoAccountAPI")){
+			Cmd_Account.jaoAccountAPI = (String) conf.get("jaoAccountAPI");
 		}
 	}
 

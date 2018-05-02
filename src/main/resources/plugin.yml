@@ -204,3 +204,12 @@ commands:
       usage: "/sign <Line> <Text>: すでに設置した看板の指定した行のテキストを変更します。"
       permission: mymaid.sign
       permission-message: You do not have permission to perform this command.
+   account:
+      description: jaoアカウントに関連した作業が行えます。
+      usage: |-
+             /account: jaoアカウントの情報を取得します。
+             /account create: jaoアカウントを作成します。
+             /account reset: jaoアカウントのパスワードをリセットします。
+             /account setdesc <Description>: jaoアカウントに自己紹介を追加します。
+      permission: mymaid.account
+      permission-message: You do not have permission to perform this command.

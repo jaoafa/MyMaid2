@@ -154,7 +154,7 @@ public abstract class MyMaid2Premise {
 
 		Map<String, String> contents = new HashMap<>();
 		contents.put("content", message);
-		return postHttpJsonByJson("https://discordapp.com/api/channels/" + MyMaid2.serverchat_id + "/messages", headers, contents);
+		return postHttpsJsonByJson("https://discordapp.com/api/channels/" + MyMaid2.serverchat_id + "/messages", headers, contents);
 	}
 
 	/**
@@ -174,7 +174,7 @@ public abstract class MyMaid2Premise {
 
 		Map<String, String> contents = new HashMap<>();
 		contents.put("content", message);
-		return postHttpJsonByJson("https://discordapp.com/api/channels/" + channel + "/messages", headers, contents);
+		return postHttpsJsonByJson("https://discordapp.com/api/channels/" + channel + "/messages", headers, contents);
 	}
 
 	/**
@@ -197,7 +197,7 @@ public abstract class MyMaid2Premise {
 		JSONObject paramobj = new JSONObject();
 		paramobj.put("content", message);
 		paramobj.put("embed", embed.buildJSON());
-		return postHttpJsonByJsonObj("https://discordapp.com/api/channels/" + channel + "/messages", headers, paramobj);
+		return postHttpsJsonByJsonObj("https://discordapp.com/api/channels/" + channel + "/messages", headers, paramobj);
 	}
 
 	public static JSONArray DiscordGuildList(){
@@ -275,8 +275,51 @@ public abstract class MyMaid2Premise {
 		}
 	}
 
+	protected static String getHttpsString(String address){
+		StringBuilder builder = new StringBuilder();
+		System.out.println("getHttpsJsonURL: " + address);
+		try{
+			URL url = new URL(address);
+
+			HttpsURLConnection connect = (HttpsURLConnection) url.openConnection();
+			connect.setRequestMethod("GET");
+
+			connect.connect();
+
+			if(connect.getResponseCode() != HttpURLConnection.HTTP_OK){
+				InputStream in = connect.getErrorStream();
+
+				BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+				String line;
+				while ((line = reader.readLine()) != null) {
+					builder.append(line);
+				}
+				in.close();
+				connect.disconnect();
+
+				System.out.println("getHttpsJsonWARN: " + connect.getResponseMessage());
+				BugReporter(new IOException(builder.toString()));
+				return null;
+			}
+
+			InputStream in = connect.getInputStream();
+
+			BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+			String line;
+			while ((line = reader.readLine()) != null) {
+				builder.append(line);
+			}
+			in.close();
+			connect.disconnect();
+			return builder.toString();
+		}catch(Exception e){
+			BugReporter(e);
+			return null;
+		}
+	}
+
 	@SuppressWarnings("unchecked")
-	private static boolean postHttpJsonByJson(String address, Map<String, String> headers, Map<String, String> contents){
+	private static boolean postHttpsJsonByJson(String address, Map<String, String> headers, Map<String, String> contents){
 		StringBuilder builder = new StringBuilder();
 		try{
 			URL url = new URL(address);
@@ -331,7 +374,7 @@ public abstract class MyMaid2Premise {
 			return false;
 		}
 	}
-	private static boolean postHttpJsonByJsonObj(String address, Map<String, String> headers, JSONObject paramobj){
+	private static boolean postHttpsJsonByJsonObj(String address, Map<String, String> headers, JSONObject paramobj){
 		StringBuilder builder = new StringBuilder();
 		try{
 			URL url = new URL(address);
