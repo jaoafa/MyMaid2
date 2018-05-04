@@ -34,7 +34,7 @@ public class Event_AntiProblemCommand extends MyMaid2Premise implements Listener
 				player.chat("オ、オオwwwwwwwwオレアルファwwwwwwww最近めっちょふぁぼられてんねんオレwwwwwwwwエゴサとかかけるとめっちょ人気やねんwwwwァァァァァァァwwwクソアルファを見下しながら食べるエビフィレオは一段とウメェなァァァァwwwwwwww");
 				event.setCancelled(true);
 				return;
-			}else if(args[0].equalsIgnoreCase("/pl") || args[0].equalsIgnoreCase("/bukkit:pl")){
+			}else if(args[0].equalsIgnoreCase("/pl") || args[0].equalsIgnoreCase("/bukkit:pl") || args[0].equalsIgnoreCase("/plugins") || args[0].equalsIgnoreCase("/bukkit:plugins")){
 				String group = PermissionsManager.getPermissionMainGroup(player);
 				if(group.equalsIgnoreCase("Admin") || group.equalsIgnoreCase("Moderator")) {
 					return;
