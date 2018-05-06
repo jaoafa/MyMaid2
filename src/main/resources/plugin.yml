@@ -218,3 +218,8 @@ commands:
       usage: "/pin <Code>: アカウントアクティベーションを行います。"
       permission: mymaid.pin
       permission-message: You do not have permission to perform this command.
+   respawn:
+      description: 指定したプレイヤーをリスポーンさせます。
+      usage: "/respawn <Player>: 指定したプレイヤーをリスポーンさせます。"
+      permission: mymaid.respawn
+      permission-message: You do not have permission to perform this command.
