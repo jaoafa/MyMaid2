@@ -29,7 +29,7 @@ public class Cmd_Sign extends MyMaid2Premise implements CommandExecutor {
 			SendMessage(sender, cmd, "このコマンドはゲーム内から実行してください。");
 			return true;
 		}
-		if(args.length == 0 || args.length == 1){
+		if(args.length == 0){
 			SendUsageMessage(sender, cmd);
 			return true;
 		}
