@@ -29,6 +29,9 @@ public class Task_AFK {
 				if(player.getGameMode() == GameMode.SPECTATOR){
 					continue; // スペクテイターモードは誰かにくっついて動いててもMoveイベント発生しないので無視
 				}
+				if(player.isInsideVehicle()){
+					continue; // トロッコ関連はMoveイベント発生しないっぽい？
+				}
 				long nowtime = System.currentTimeMillis();
 				long lastmovetime = afktime.get(player.getName());
 				long sa = nowtime - lastmovetime; // 前回移動した時間から現在の時間の差を求めて3分差があったらAFK扱い
