@@ -86,7 +86,7 @@ public class Event_PlayerCheckPreLogin extends MyMaid2Premise implements Listene
 		}
 	}
 
-	private void disallow(AsyncPlayerPreLoginEvent event, String reason, String message){
+	private void disallow(AsyncPlayerPreLoginEvent event, String message, String reason){
 		event.disallow(Result.KICK_FULL,
 				ChatColor.RED + "[Login Denied! - Reason: " + reason + "]\n"
 						+ ChatColor.RESET + message
@@ -95,23 +95,23 @@ public class Event_PlayerCheckPreLogin extends MyMaid2Premise implements Listene
 		for(Player p: Bukkit.getServer().getOnlinePlayers()) {
 			String group = PermissionsManager.getPermissionMainGroup(p);
 			if(group.equalsIgnoreCase("Admin") || group.equalsIgnoreCase("Moderator") || group.equalsIgnoreCase("Regular")) {
-				p.sendMessage("[MyMaid2-LoginChecker] " + ChatColor.GREEN + event.getName() + "==>" + reason);
+				p.sendMessage("[MyMaid2-LoginChecker] " + ChatColor.GREEN + event.getName() + "==>[" + reason + "] " + ChatColor.stripColor(reason));
 			}
 		}
-		DiscordSend("223582668132974594", "[MyMaid2-LoginChecker] " + event.getName() + "==>" + reason);
+		DiscordSend("223582668132974594", "[MyMaid2-LoginChecker] " + event.getName() + "==>[" + reason + "] " + ChatColor.stripColor(message));
 	}
-	private void disallow(AsyncPlayerPreLoginEvent event, String reason, String message, String data){
+	private void disallow(AsyncPlayerPreLoginEvent event, String message, String reason, String data){
 		event.disallow(Result.KICK_FULL,
 				ChatColor.RED + "[Login Denied! - Reason: " + reason + "]\n"
-						+ ChatColor.RESET + message
+						+ ChatColor.RESET + message + "\n"
 						+ ChatColor.RESET + ChatColor.WHITE + "もしこの判定が誤判定と思われる場合は、サイト内お問い合わせからお問い合わせを行ってください。\n"
 						+ "公式Discordでお問い合わせをして頂いても構いません。");
 		for(Player p: Bukkit.getServer().getOnlinePlayers()) {
 			String group = PermissionsManager.getPermissionMainGroup(p);
 			if(group.equalsIgnoreCase("Admin") || group.equalsIgnoreCase("Moderator") || group.equalsIgnoreCase("Regular")) {
-				p.sendMessage("[MyMaid2-LoginChecker] " + ChatColor.GREEN + event.getName() + "==>" + reason + " (" + data + ")");
+				p.sendMessage("[MyMaid2-LoginChecker] " + ChatColor.GREEN + event.getName() + "==>[" + reason + "] " + ChatColor.stripColor(reason) + " (" + data + ")");
 			}
 		}
-		DiscordSend("223582668132974594", "[MyMaid2-LoginChecker] " + event.getName() + "==>" + reason + " (" + data + ")");
+		DiscordSend("223582668132974594", "[MyMaid2-LoginChecker] " + event.getName() + "==>[" + reason + "] " + ChatColor.stripColor(reason) + " (" + data + ")");
 	}
 }
