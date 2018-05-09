@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
@@ -149,6 +150,7 @@ public class Event_Antijaoium extends MyMaid2Premise implements Listener {
 			} catch (ClassNotFoundException | NullPointerException | SQLException e) {
 				BugReporter(e);
 			}
+			checkjaoiumLocation(player);
 		}
 	}
 	@SuppressWarnings("deprecation")
@@ -208,6 +210,7 @@ public class Event_Antijaoium extends MyMaid2Premise implements Listener {
 			} catch (ClassNotFoundException | NullPointerException | SQLException e) {
 				BugReporter(e);
 			}
+			checkjaoiumLocation(player);
 		}
 	}
 
@@ -264,6 +267,7 @@ public class Event_Antijaoium extends MyMaid2Premise implements Listener {
 				// TODO 自動生成された catch ブロック
 				e.printStackTrace();
 			}
+			checkjaoiumLocation(player);
 		}
 	}
 	@SuppressWarnings("deprecation")
@@ -326,6 +330,7 @@ public class Event_Antijaoium extends MyMaid2Premise implements Listener {
 			} catch (ClassNotFoundException | NullPointerException | SQLException e) {
 				BugReporter(e);
 			}
+			checkjaoiumLocation(player);
 			event.setCancelled(true);
 		}
 	}
@@ -389,6 +394,7 @@ public class Event_Antijaoium extends MyMaid2Premise implements Listener {
 			} catch (ClassNotFoundException | NullPointerException | SQLException e) {
 				BugReporter(e);
 			}
+			checkjaoiumLocation(player);
 			event.setCancelled(true);
 		}
 	}
@@ -403,5 +409,11 @@ public class Event_Antijaoium extends MyMaid2Premise implements Listener {
 		if(jaoium){
 			event.setCancelled(true);
 		}
+	}
+	private void checkjaoiumLocation(Player player){
+		Location loc = player.getLocation();
+		DiscordSend("223582668132974594", "**jaoium Location Notice**\n"
+				+ "Player: " + player.getName() + "\n"
+				+ "Location: " + loc.getBlockX() + " " + loc.getBlockY() + " " + loc.getBlockZ());
 	}
 }
