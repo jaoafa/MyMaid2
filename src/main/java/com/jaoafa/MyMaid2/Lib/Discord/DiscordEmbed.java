@@ -4,6 +4,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.LinkedHashSet;
+import java.util.Locale;
 import java.util.Set;
 import java.util.TimeZone;
 
@@ -26,6 +27,8 @@ public class DiscordEmbed {
 	private Set<FieldEmbed> fields = new LinkedHashSet<>(); // fields infomation(fields object)
 
 	public DiscordEmbed(){
+		Locale.setDefault(Locale.JAPAN);
+		TimeZone.setDefault(TimeZone.getTimeZone("Asia/Tokyo"));
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm'Z'");
 		df.setTimeZone(TimeZone.getTimeZone("Asia/Tokyo"));
 		timestamp = df.format(new Date());
