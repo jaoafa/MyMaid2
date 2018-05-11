@@ -10,6 +10,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import com.jaoafa.MyMaid2.Command.Cmd_AFK;
 import com.jaoafa.MyMaid2.Command.Cmd_Account;
 import com.jaoafa.MyMaid2.Command.Cmd_Body;
+import com.jaoafa.MyMaid2.Command.Cmd_Book;
 import com.jaoafa.MyMaid2.Command.Cmd_Boots;
 import com.jaoafa.MyMaid2.Command.Cmd_Chat;
 import com.jaoafa.MyMaid2.Command.Cmd_City;
@@ -172,6 +173,7 @@ public class MyMaid2 extends JavaPlugin implements Listener {
 		getCommand("pin").setExecutor(new Cmd_Pin(this)); // 2018/05/02
 		getCommand("respawn").setExecutor(new Cmd_Respawn(this)); // 2018/05/06
 		getCommand("testment").setExecutor(new Cmd_Testment(this)); // 2018/05/09
+		getCommand("book").setExecutor(new Cmd_Book(this)); // 2018/05/12
 	}
 
 	/**

@@ -228,8 +228,14 @@ commands:
       usage: "/testment <Message>: Jailでの遺言を残します。"
       permission: mymaid.testment
       permission-message: You do not have permission to perform this command.
-   issue:
-      description: 対話形式で不具合の報告をします。
-      usage: "/issue: 対話形式で不具合の報告を開始します。"
-      permission: mymaid.issue
+   book:
+      description: 本を販売したり購入したりできます。
+      usage: |-
+             /book list: 本リストを表示します。
+             /book list <Page>: 指定されたページの本リストを表示します。
+             /book sell <jaoPoint>: 手に持っている本を指定したjaoPoint数で販売します。
+             /book get <Name|ID>: NameもしくはIDに合う本を購入します。
+             /book delete <Name|ID>: NameもしくはIDに合う本を販売終了します。販売者のみ実行できます。
+             /book history <Name|ID>: NameもしくはIDに合う本のログリストを表示します。
+      permission: mymaid.book
       permission-message: You do not have permission to perform this command.
