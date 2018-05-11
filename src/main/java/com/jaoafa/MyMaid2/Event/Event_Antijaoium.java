@@ -112,7 +112,7 @@ public class Event_Antijaoium extends MyMaid2Premise implements Listener {
 				PotionMeta potion = (PotionMeta) hand.getItemMeta();
 				jaoium = isjaoium(potion.getCustomEffects());
 				if(jaoium){
-					inventory.clear(n);
+					if(inventory.getItem(n) != null) inventory.clear(n);
 				}
 			}
 		}
@@ -131,7 +131,7 @@ public class Event_Antijaoium extends MyMaid2Premise implements Listener {
 					PotionMeta potion = (PotionMeta) hand.getItemMeta();
 					jaoium = isjaoium(potion.getCustomEffects());
 					if(jaoium){
-						inventory.clear(n);
+						clickedinventory.clear(n);
 					}
 				}
 			}
@@ -191,7 +191,7 @@ public class Event_Antijaoium extends MyMaid2Premise implements Listener {
 					PotionMeta potion = (PotionMeta) hand.getItemMeta();
 					jaoium = isjaoium(potion.getCustomEffects());
 					if(jaoium){
-						inventory.clear(n);
+						enderchestinventory.clear(n);
 					}
 				}
 			}
@@ -252,7 +252,7 @@ public class Event_Antijaoium extends MyMaid2Premise implements Listener {
 					PotionMeta potion = (PotionMeta) hand.getItemMeta();
 					jaoium = isjaoium(potion.getCustomEffects());
 					if(jaoium){
-						inventory.clear(n);
+						enderchestinventory.clear(n);
 					}
 				}
 			}
@@ -311,7 +311,7 @@ public class Event_Antijaoium extends MyMaid2Premise implements Listener {
 					PotionMeta potion = (PotionMeta) hand.getItemMeta();
 					jaoium = isjaoium(potion.getCustomEffects());
 					if(jaoium){
-						inventory.clear(n);
+						enderchestinventory.clear(n);
 					}
 				}
 			}
@@ -374,7 +374,7 @@ public class Event_Antijaoium extends MyMaid2Premise implements Listener {
 					PotionMeta potion = (PotionMeta) hand.getItemMeta();
 					jaoium = isjaoium(potion.getCustomEffects());
 					if(jaoium){
-						inventory.clear(n);
+						enderchestinventory.clear(n);
 					}
 				}
 			}
@@ -413,6 +413,6 @@ public class Event_Antijaoium extends MyMaid2Premise implements Listener {
 		Location loc = player.getLocation();
 		DiscordSend("223582668132974594", "**jaoium Location Notice**\n"
 				+ "Player: " + player.getName() + "\n"
-				+ "Location: " + loc.getBlockX() + " " + loc.getBlockY() + " " + loc.getBlockZ());
+				+ "Location: " + loc.getWorld().getName() + " " + loc.getBlockX() + " " + loc.getBlockY() + " " + loc.getBlockZ());
 	}
 }

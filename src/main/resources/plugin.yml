@@ -223,3 +223,13 @@ commands:
       usage: "/respawn <Player>: 指定したプレイヤーをリスポーンさせます。"
       permission: mymaid.respawn
       permission-message: You do not have permission to perform this command.
+   testment:
+      description: Jailでの遺言を残します。
+      usage: "/testment <Message>: Jailでの遺言を残します。"
+      permission: mymaid.testment
+      permission-message: You do not have permission to perform this command.
+   issue:
+      description: 対話形式で不具合の報告をします。
+      usage: "/issue: 対話形式で不具合の報告を開始します。"
+      permission: mymaid.issue
+      permission-message: You do not have permission to perform this command.

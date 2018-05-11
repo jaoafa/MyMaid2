@@ -37,6 +37,7 @@ import com.jaoafa.MyMaid2.Command.Cmd_SetHome;
 import com.jaoafa.MyMaid2.Command.Cmd_Sign;
 import com.jaoafa.MyMaid2.Command.Cmd_Spawn;
 import com.jaoafa.MyMaid2.Command.Cmd_Test;
+import com.jaoafa.MyMaid2.Command.Cmd_Testment;
 import com.jaoafa.MyMaid2.Command.Cmd_WT;
 import com.jaoafa.MyMaid2.Command.Cmd_jao;
 import com.jaoafa.MyMaid2.Event.Event_AFK;
@@ -170,6 +171,7 @@ public class MyMaid2 extends JavaPlugin implements Listener {
 		getCommand("account").setExecutor(new Cmd_Account(this)); // 2018/05/01
 		getCommand("pin").setExecutor(new Cmd_Pin(this)); // 2018/05/02
 		getCommand("respawn").setExecutor(new Cmd_Respawn(this)); // 2018/05/06
+		getCommand("testment").setExecutor(new Cmd_Testment(this)); // 2018/05/09
 	}
 
 	/**
