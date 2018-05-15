@@ -146,12 +146,12 @@ public class Event_Antijaoium extends MyMaid2Premise implements Listener {
 						+ "実績の解除中に問題が発生しました。もう一度お試しください。");
 				return;
 			}
+			checkjaoiumLocation(player);
 			try {
 				Jail.JailAdd(player, Bukkit.getOfflinePlayer("jaotan"), "jaoium所持", true);
 			} catch (ClassNotFoundException | NullPointerException | SQLException e) {
 				BugReporter(e);
 			}
-			checkjaoiumLocation(player);
 		}
 	}
 	@SuppressWarnings("deprecation")
@@ -206,12 +206,12 @@ public class Event_Antijaoium extends MyMaid2Premise implements Listener {
 						+ "実績の解除中に問題が発生しました。もう一度お試しください。");
 				return;
 			}
+			checkjaoiumLocation(player);
 			try {
 				Jail.JailAdd(player, Bukkit.getOfflinePlayer("jaotan"), "jaoium所持", true);
 			} catch (ClassNotFoundException | NullPointerException | SQLException e) {
 				BugReporter(e);
 			}
-			checkjaoiumLocation(player);
 		}
 	}
 
@@ -262,13 +262,13 @@ public class Event_Antijaoium extends MyMaid2Premise implements Listener {
 		}
 		if(jaoium){
 			Bukkit.broadcastMessage("[jaoium_Checker] " + ChatColor.GREEN + "プレイヤー「" + player.getName() + "」からjaoiumと同等の性能を持つアイテムが検出されました。");
+			checkjaoiumLocation(player);
 			try {
 				Jail.JailAdd(player, Bukkit.getOfflinePlayer("jaotan"), "jaoium所持", true);
 			} catch (ClassNotFoundException | NullPointerException | SQLException e) {
 				// TODO 自動生成された catch ブロック
 				e.printStackTrace();
 			}
-			checkjaoiumLocation(player);
 		}
 	}
 	@SuppressWarnings("deprecation")
@@ -325,12 +325,12 @@ public class Event_Antijaoium extends MyMaid2Premise implements Listener {
 				player.sendMessage(AchievementAPI.getPrefix() + "実績の解除中に問題が発生しました。もう一度お試しください。");
 				return;
 			}
+			checkjaoiumLocation(player);
 			try {
 				Jail.JailAdd(player, Bukkit.getOfflinePlayer("jaotan"), "jaoium所持", true);
 			} catch (ClassNotFoundException | NullPointerException | SQLException e) {
 				BugReporter(e);
 			}
-			checkjaoiumLocation(player);
 			event.setCancelled(true);
 		}
 	}
@@ -388,12 +388,12 @@ public class Event_Antijaoium extends MyMaid2Premise implements Listener {
 				return;
 			}
 			Bukkit.broadcastMessage("[jaoium_Checker] " + ChatColor.GREEN + "プレイヤー「" + player.getName() + "」からjaoiumと同等の性能を持つアイテムが検出されました。");
+			checkjaoiumLocation(player);
 			try {
 				Jail.JailAdd(player, Bukkit.getOfflinePlayer("jaotan"), "jaoium所持", true);
 			} catch (ClassNotFoundException | NullPointerException | SQLException e) {
 				BugReporter(e);
 			}
-			checkjaoiumLocation(player);
 			event.setCancelled(true);
 		}
 	}
