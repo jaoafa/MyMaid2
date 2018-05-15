@@ -10,6 +10,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Minecart;
 import org.bukkit.entity.minecart.RideableMinecart;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -90,7 +91,7 @@ public class Cmd_Ck extends MyMaid2Premise implements CommandExecutor {
 				if(minecart != null){
 					if(args.length == 1 && args[0].equalsIgnoreCase("true")){
 						for(Entity e : minecart.getPassengers()){
-							e.remove();
+							if(e.getType() != EntityType.PLAYER) e.remove();
 						}
 					}
 					minecart.remove();
