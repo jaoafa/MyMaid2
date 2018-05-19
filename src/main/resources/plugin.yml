@@ -239,3 +239,15 @@ commands:
              /book history <Name|ID>: NameもしくはIDに合う本のログリストを表示します。
       permission: mymaid.book
       permission-message: You do not have permission to perform this command.
+   report:
+      description: 管理部に報告します。
+      usage: "/report <Message>: 管理部に報告します。"
+      permission: mymaid.report
+      permission-message: You do not have permission to perform this command.
+   wtp:
+      description: ワールドを超えてテレポートできます。
+      usage: |-
+             /wtp <World> <X> <Y> <Z>: <World>の<X> <Y> <Z>座標にテレポートします。
+             /wtp <Player> <World> <X> <Y> <Z>: <Player>を<World>の<X> <Y> <Z>座標にテレポートします。
+      permission: mymaid.wtp
+      permission-message: You do not have permission to perform this command.

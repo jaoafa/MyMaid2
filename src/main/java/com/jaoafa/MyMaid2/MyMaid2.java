@@ -32,6 +32,7 @@ import com.jaoafa.MyMaid2.Command.Cmd_Leg;
 import com.jaoafa.MyMaid2.Command.Cmd_Messenger;
 import com.jaoafa.MyMaid2.Command.Cmd_Pin;
 import com.jaoafa.MyMaid2.Command.Cmd_Player;
+import com.jaoafa.MyMaid2.Command.Cmd_Report;
 import com.jaoafa.MyMaid2.Command.Cmd_Respawn;
 import com.jaoafa.MyMaid2.Command.Cmd_Selector;
 import com.jaoafa.MyMaid2.Command.Cmd_SetHome;
@@ -40,6 +41,7 @@ import com.jaoafa.MyMaid2.Command.Cmd_Spawn;
 import com.jaoafa.MyMaid2.Command.Cmd_Test;
 import com.jaoafa.MyMaid2.Command.Cmd_Testment;
 import com.jaoafa.MyMaid2.Command.Cmd_WT;
+import com.jaoafa.MyMaid2.Command.Cmd_Wtp;
 import com.jaoafa.MyMaid2.Command.Cmd_jao;
 import com.jaoafa.MyMaid2.Event.Event_AFK;
 import com.jaoafa.MyMaid2.Event.Event_AntiProblemCommand;
@@ -174,6 +176,8 @@ public class MyMaid2 extends JavaPlugin implements Listener {
 		getCommand("respawn").setExecutor(new Cmd_Respawn(this)); // 2018/05/06
 		getCommand("testment").setExecutor(new Cmd_Testment(this)); // 2018/05/09
 		getCommand("book").setExecutor(new Cmd_Book(this)); // 2018/05/12
+		getCommand("report").setExecutor(new Cmd_Report(this)); // 2018/05/19
+		getCommand("wtp").setExecutor(new Cmd_Wtp(this)); // 2018/05/19
 	}
 
 	/**

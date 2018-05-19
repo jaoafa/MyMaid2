@@ -284,6 +284,26 @@ public class Event_AntiProblemCommand extends MyMaid2Premise implements Listener
 
 				event.setCancelled(true);
 				return;
+			}else if(args[0].equalsIgnoreCase("/ban") || args[0].equalsIgnoreCase("/bukkit:ban") || args[0].equalsIgnoreCase("/mcbans:ban")){
+				String group = PermissionsManager.getPermissionMainGroup(player);
+				if(group.equalsIgnoreCase("Admin") || group.equalsIgnoreCase("Moderator")) {
+					return;
+				}
+				// /plコマンド規制
+				player.chat("ここに表示されるメッセージを募集中！！！詳しくはDiscord#debeloperまで。");
+
+				event.setCancelled(true);
+				return;
+			}else if(args[0].equalsIgnoreCase("/kick") || args[0].equalsIgnoreCase("/bukkit:kick") || args[0].equalsIgnoreCase("/mcbans:kick")){
+				String group = PermissionsManager.getPermissionMainGroup(player);
+				if(group.equalsIgnoreCase("Admin") || group.equalsIgnoreCase("Moderator")) {
+					return;
+				}
+				// /plコマンド規制
+				player.chat("ここに表示されるメッセージを募集中！！！詳しくはDiscord#debeloperまで。");
+
+				event.setCancelled(true);
+				return;
 			}else if(args[0].equalsIgnoreCase("/minecraft:?") || args[0].equalsIgnoreCase("/?") || args[0].equalsIgnoreCase("/bukkit:?") || args[0].equalsIgnoreCase("/minecraft:help") ||  args[0].equalsIgnoreCase("/help") || args[0].equalsIgnoreCase("/bukkit:help")){
 				String group = PermissionsManager.getPermissionMainGroup(player);
 				if(group.equalsIgnoreCase("Admin") || group.equalsIgnoreCase("Moderator")) {
