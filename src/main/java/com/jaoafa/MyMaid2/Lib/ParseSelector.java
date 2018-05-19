@@ -66,7 +66,7 @@ public class ParseSelector {
 	 * ParseSelectorクラスの作成
 	 * @param SelectorText セレクター
 	 * @return ParseSelectorクラス
-	 * @throws IllegalArgumentException 指定されたセレクターが適切でなかった場合に発生します。!
+	 * @throws IllegalArgumentException 指定されたセレクターが適切でなかった場合に発生します。
 	 * @author mine_book000
 	 */
 	public ParseSelector(String SelectorText) throws IllegalArgumentException{
