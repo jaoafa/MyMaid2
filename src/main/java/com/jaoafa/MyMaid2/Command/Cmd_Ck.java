@@ -12,6 +12,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Minecart;
+import org.bukkit.entity.Player;
 import org.bukkit.entity.minecart.RideableMinecart;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -28,8 +29,8 @@ public class Cmd_Ck extends MyMaid2Premise implements CommandExecutor {
 			BlockCommandSender cmdb = (BlockCommandSender) sender;
 			List<Entity> entitys = cmdb.getBlock().getWorld().getEntities();
 			double min = 1.79769313486231570E+308;
-			org.bukkit.entity.Player player = null;
-			for(org.bukkit.entity.Player p: Bukkit.getServer().getOnlinePlayers()){
+			Player player = null;
+			for(Player p: Bukkit.getServer().getOnlinePlayers()){
 				Location location_p = p.getLocation();
 				double distance;
 				try{

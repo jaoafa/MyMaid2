@@ -22,7 +22,7 @@ public class Cmd_Body extends MyMaid2Premise implements CommandExecutor {
 			return true;
 		}
 
-		if (!(sender instanceof org.bukkit.entity.Player)) {
+		if (!(sender instanceof Player)) {
 			SendMessage(sender, cmd, "このコマンドはゲーム内から実行してください。");
 			return true;
 		}

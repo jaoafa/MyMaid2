@@ -188,7 +188,7 @@ public class Event_Jail implements Listener {
     }
 	@EventHandler
     public void onProjectileLaunchEvent(ProjectileLaunchEvent event){
-		if (!(event.getEntity().getShooter() instanceof org.bukkit.entity.Player)) {
+		if (!(event.getEntity().getShooter() instanceof Player)) {
 			return;
 		}
 		Player player = (Player) event.getEntity().getShooter();
@@ -199,7 +199,7 @@ public class Event_Jail implements Listener {
 	}
 	@EventHandler
     public void onPotionSplashEvent(PotionSplashEvent event){
-		if (!(event.getEntity().getShooter() instanceof org.bukkit.entity.Player)) {
+		if (!(event.getEntity().getShooter() instanceof Player)) {
 			return;
 		}
 		Player player = (Player) event.getEntity().getShooter();

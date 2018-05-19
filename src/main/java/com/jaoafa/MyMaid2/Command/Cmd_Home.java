@@ -133,7 +133,7 @@ public class Cmd_Home extends MyMaid2Premise implements CommandExecutor, TabComp
 		return true;
 	}
 	public List<String> onTabComplete(CommandSender sender, Command cmd, String alias, String[] args) {
-		if (!(sender instanceof org.bukkit.entity.Player)) {
+		if (!(sender instanceof Player)) {
 			SendMessage(sender, cmd, "このコマンドはゲーム内から実行してください。");
 			return plugin.onTabComplete(sender, cmd, alias, args);
 		}
