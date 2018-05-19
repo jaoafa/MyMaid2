@@ -84,8 +84,8 @@ public class Event_AntiProblemCommand extends MyMaid2Premise implements Listener
 						ParseSelector parser = new ParseSelector(args[1]);
 						if(!parser.isValidValues()){
 							player.sendMessage("[COMMAND] " + ChatColor.GREEN + "指定されたセレクターは適切でありません。");
-							Set<String> unvalids = parser.getUnValidValues();
-							player.sendMessage("[COMMAND] " + ChatColor.GREEN + "不適切だったセレクター引数: " + implode(unvalids, ", "));
+							Set<String> invalids = parser.getInValidValues();
+							player.sendMessage("[COMMAND] " + ChatColor.GREEN + "不適切だったセレクター引数: " + implode(invalids, ", "));
 							event.setCancelled(true);
 							return;
 						}

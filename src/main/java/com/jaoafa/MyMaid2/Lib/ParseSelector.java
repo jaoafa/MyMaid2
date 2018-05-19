@@ -187,29 +187,29 @@ public class ParseSelector {
 	 * @return どの引数が適当でないか
 	 */
 	@SuppressWarnings("deprecation")
-	public Set<String> getUnValidValues(){
-		Set<String> unvalid = new HashSet<>();
+	public Set<String> getInValidValues(){
+		Set<String> invalid = new HashSet<>();
 		if(valid == false){
-			unvalid.add("ALL");
+			invalid.add("ALL");
 		}
 		if(args.containsKey("x")){
 			if(!isNumber(args.get("x"))){
-				unvalid.add("x");
+				invalid.add("x");
 			}
 		}
 		if(args.containsKey("y")){
 			if(!isNumber(args.get("y"))){
-				unvalid.add("y");
+				invalid.add("y");
 			}
 		}
 		if(args.containsKey("z")){
 			if(!isNumber(args.get("z"))){
-				unvalid.add("z");
+				invalid.add("z");
 			}
 		}
 		if(args.containsKey("r")){
 			if(!isNumber(args.get("r"))){
-				unvalid.add("r");
+				invalid.add("r");
 			}
 		}
 		if(args.containsKey("type")){
@@ -224,9 +224,9 @@ public class ParseSelector {
 					}
 				}
 			}
-			if(!TypeCheck) unvalid.add("TYPE:" + args.get("type"));
+			if(!TypeCheck) invalid.add("TYPE:" + args.get("type"));
 		}
-		return unvalid;
+		return invalid;
 	}
 	/**
 	 * セレクターを取得する(@付き)

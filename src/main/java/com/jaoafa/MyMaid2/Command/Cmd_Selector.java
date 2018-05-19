@@ -35,8 +35,8 @@ public class Cmd_Selector extends MyMaid2Premise implements CommandExecutor {
 				return true;
 			}else{
 				SendMessage(sender, cmd, "指定されたセレクターは適切ではありません。");
-				Set<String> unvalids = parser.getUnValidValues();
-				SendMessage(sender, cmd, "不適切だったセレクター引数: " + implode(unvalids, ", "));
+				Set<String> invalids = parser.getInValidValues();
+				SendMessage(sender, cmd, "不適切だったセレクター引数: " + implode(invalids, ", "));
 				return true;
 			}
 		}catch(IllegalArgumentException e){
