@@ -49,12 +49,13 @@ public class Event_JoinAutoQPPE extends MyMaid2Premise implements Listener {
 		}
 
 		Boolean status = (Boolean) json.get("status");
+		String reputation = "取得失敗";
 		if(!status){
 			plugin.getLogger().warning("Reputationチェックが正常に完了しませんでした。");
 			return;
+		}else{
+			reputation = (String) json.get("reputation");
 		}
-
-		String reputation = (String)json.get("reputation");
 
 		boolean jaotanAutoUp;
 		if(reputation.equalsIgnoreCase("10")){
@@ -117,7 +118,9 @@ public class Event_JoinAutoQPPE extends MyMaid2Premise implements Listener {
 			in.close();
 			connect.disconnect();
 			JSONParser parser = new JSONParser();
-			Object obj = parser.parse(builder.toString());
+			String res = builder.toString();
+			Bukkit.getLogger().warning("MCBansRepAPIRES: " + res);
+			Object obj = parser.parse(res);
 			JSONObject json = (JSONObject) obj;
 			return json;
 		}catch(Exception e){
