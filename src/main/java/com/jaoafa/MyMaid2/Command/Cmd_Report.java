@@ -18,7 +18,7 @@ public class Cmd_Report extends MyMaid2Premise implements CommandExecutor {
 			return true;
 		}
 		String message = "<@&189381504059572224>\n__**[REPORT]**__ ``" + sender.getName() + "`` reported --> ```";
-		int c = 1;
+		int c = 0;
 		while(args.length > c){
 			message += args[c];
 			if(args.length != (c+1)){
