@@ -402,7 +402,6 @@ public class Cmd_Ck extends MyMaid2Premise implements CommandExecutor {
 
 			cart.remove();
 			removeCartCount++; // 削除したので削除トロッコ数増加
-			return;
 		}
 		SendMessage(sender, cmd, "トロッコを" + removeCartCount + " / " + checkCartCount + "個削除しました。");
 		return;
@@ -476,7 +475,6 @@ public class Cmd_Ck extends MyMaid2Premise implements CommandExecutor {
 
 			cart.remove();
 			removeCartCount++; // 削除したので削除トロッコ数増加
-			return;
 		}
 		SendMessage(sender, cmd, "トロッコを" + removeCartCount + " / " + checkCartCount + "個削除しました。");
 		return;
@@ -536,7 +534,6 @@ public class Cmd_Ck extends MyMaid2Premise implements CommandExecutor {
 
 			cart.remove();
 			removeCartCount++; // 削除したので削除トロッコ数増加
-			return;
 		}
 		SendMessage(sender, cmd, "トロッコを" + removeCartCount + "個削除しました。");
 		return;
