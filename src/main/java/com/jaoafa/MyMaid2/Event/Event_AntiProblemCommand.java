@@ -52,6 +52,7 @@ public class Event_AntiProblemCommand extends MyMaid2Premise implements Listener
 					player.chat("自分は思わないんだけど周りにキリトに似てるってよく言われるwww");
 					player.chat("こないだDQNに絡まれた時も気が付いたら意識無くて周りに人が血だらけで倒れてたしなwww");
 					player.chat("ちなみに彼女もアスナに似てる(聞いてないw)");
+					player.chat("(私は\"" + command + "\"コマンドを使用しました。)");
 					event.setCancelled(true);
 					return;
 				}
@@ -60,6 +61,7 @@ public class Event_AntiProblemCommand extends MyMaid2Premise implements Listener
 					player.chat("一応オタクだけど彼女いるし、俺って退けない性格だしそこら辺とかめっちゃ似てるって言われる()");
 					player.chat("握力も31キロあってクラスの女子にたかられる←彼女いるからやめろ！笑");
 					player.chat("俺、これでも中1ですよ？");
+					player.chat("(私は\"" + command + "\"コマンドを使用しました。)");
 					event.setCancelled(true);
 					return;
 				}
@@ -67,6 +69,7 @@ public class Event_AntiProblemCommand extends MyMaid2Premise implements Listener
 					if(group.equalsIgnoreCase("QPPE") || group.equalsIgnoreCase("Default")){
 						player.chat("最後にキレたのは高2のころかな。オタクだからってウェイ系に絡まれたときw");
 						player.chat("最初は微笑してたんだけど、推しを貶されて気づいたらウェイ系は意識無くなってて、25人くらいに取り押さえられてたw記憶無いけど、ひたすら笑顔で殴ってたらしいw俺ってサイコパスなのかもなww");
+						player.chat("(私は\"" + command + "\"コマンドを使用しました。)");
 						event.setCancelled(true);
 						return;
 					}
@@ -157,6 +160,7 @@ public class Event_AntiProblemCommand extends MyMaid2Premise implements Listener
 					player.chat("自分は思わないんだけど周りにキリトに似てるってよく言われるwww");
 					player.chat("こないだDQNに絡まれた時も気が付いたら意識無くて周りに人が血だらけで倒れてたしなwww");
 					player.chat("ちなみに彼女もアスナに似てる(聞いてないw)");
+					player.chat("(私は\"" + command + "\"コマンドを使用しました。)");
 					event.setCancelled(true);
 					return;
 				}
@@ -165,6 +169,7 @@ public class Event_AntiProblemCommand extends MyMaid2Premise implements Listener
 					player.chat("一応オタクだけど彼女いるし、俺って退けない性格だしそこら辺とかめっちゃ似てるって言われる()");
 					player.chat("握力も31キロあってクラスの女子にたかられる←彼女いるからやめろ！笑");
 					player.chat("俺、これでも中1ですよ？");
+					player.chat("(私は\"" + command + "\"コマンドを使用しました。)");
 					event.setCancelled(true);
 					return;
 				}
@@ -172,6 +177,7 @@ public class Event_AntiProblemCommand extends MyMaid2Premise implements Listener
 					if(group.equalsIgnoreCase("QPPE") || group.equalsIgnoreCase("Default")){
 						player.chat("最後にキレたのは高2のころかな。オタクだからってウェイ系に絡まれたときw");
 						player.chat("最初は微笑してたんだけど、推しを貶されて気づいたらウェイ系は意識無くなってて、25人くらいに取り押さえられてたw記憶無いけど、ひたすら笑顔で殴ってたらしいw俺ってサイコパスなのかもなww");
+						player.chat("(私は\"" + command + "\"コマンドを使用しました。)");
 						event.setCancelled(true);
 						return;
 					}
@@ -247,6 +253,7 @@ public class Event_AntiProblemCommand extends MyMaid2Premise implements Listener
 				if(args[1].equalsIgnoreCase("promote")){
 					// /pex promoteコマンド規制
 					player.chat("(◞‸◟) ｻﾊﾞｵﾁﾅｲｰﾅ? ﾎﾜｯｳｳﾞｼﾞｸｼﾞｸﾞｨﾝﾉﾝﾞﾝﾞﾝﾞﾝﾞﾍﾟﾗﾚｸﾞｼﾞｭﾁﾞ…ﾇﾇﾉｮｩﾂﾋﾞｮﾝﾇｽﾞｨｺｹｰｯﾝｦｯ…ｶﾅｼﾐ…");
+					player.chat("(私は\"" + command + "\"コマンドを使用しました。)");
 					event.setCancelled(true);
 					return;
 				}
@@ -254,6 +261,7 @@ public class Event_AntiProblemCommand extends MyMaid2Premise implements Listener
 			if(args[0].equalsIgnoreCase("//calc") || args[0].equalsIgnoreCase("/worldedit:/calc") || args[0].equalsIgnoreCase("//eval") || args[0].equalsIgnoreCase("/worldedit:/eval")){
 				// /calcコマンド規制
 				player.chat("オ、オオwwwwwwwwオレアタマ良いwwwwwwww最近めっちょ成績あがってんねんオレwwwwwwwwエゴサとかかけるとめっちょ人気やねんwwwwァァァァァァァwwwクソハゲアタマを見下しながら食べるフライドチキンは一段とウメェなァァァァwwwwwwww");
+				player.chat("(私は\"" + command + "\"コマンドを使用しました。)");
 				event.setCancelled(true);
 				return;
 			}
@@ -262,6 +270,7 @@ public class Event_AntiProblemCommand extends MyMaid2Premise implements Listener
 			if(args[0].equalsIgnoreCase("/god") || args[0].equalsIgnoreCase("/worldguard:god")){
 				// /godコマンド規制
 				player.chat("オ、オオwwwwwwwwオレアルファwwwwwwww最近めっちょふぁぼられてんねんオレwwwwwwwwエゴサとかかけるとめっちょ人気やねんwwwwァァァァァァァwwwクソアルファを見下しながら食べるエビフィレオは一段とウメェなァァァァwwwwwwww");
+				player.chat("(私は\"" + command + "\"コマンドを使用しました。)");
 				event.setCancelled(true);
 				return;
 			}else if(args[0].equalsIgnoreCase("/pl") || args[0].equalsIgnoreCase("/bukkit:pl") || args[0].equalsIgnoreCase("/plugins") || args[0].equalsIgnoreCase("/bukkit:plugins")){
@@ -271,6 +280,7 @@ public class Event_AntiProblemCommand extends MyMaid2Premise implements Listener
 				}
 				// /plコマンド規制
 				player.chat("ここに表示されるメッセージを募集中！！！詳しくはDiscord#debeloperまで。");
+				player.chat("(私は\"" + command + "\"コマンドを使用しました。)");
 
 				event.setCancelled(true);
 				return;
@@ -281,6 +291,7 @@ public class Event_AntiProblemCommand extends MyMaid2Premise implements Listener
 				}
 				// /plコマンド規制
 				player.chat("ここに表示されるメッセージを募集中！！！詳しくはDiscord#debeloperまで。");
+				player.chat("(私は\"" + command + "\"コマンドを使用しました。)");
 
 				event.setCancelled(true);
 				return;
@@ -291,6 +302,7 @@ public class Event_AntiProblemCommand extends MyMaid2Premise implements Listener
 				}
 				// /plコマンド規制
 				player.chat("ここに表示されるメッセージを募集中！！！詳しくはDiscord#debeloperまで。");
+				player.chat("(私は\"" + command + "\"コマンドを使用しました。)");
 
 				event.setCancelled(true);
 				return;
@@ -299,17 +311,7 @@ public class Event_AntiProblemCommand extends MyMaid2Premise implements Listener
 				if(group.equalsIgnoreCase("Admin") || group.equalsIgnoreCase("Moderator")) {
 					return;
 				}
-				// /plコマンド規制
-				player.chat("ここに表示されるメッセージを募集中！！！詳しくはDiscord#debeloperまで。");
-
-				event.setCancelled(true);
-				return;
-			}else if(args[0].equalsIgnoreCase("/minecraft:?") || args[0].equalsIgnoreCase("/?") || args[0].equalsIgnoreCase("/bukkit:?") || args[0].equalsIgnoreCase("/minecraft:help") ||  args[0].equalsIgnoreCase("/help") || args[0].equalsIgnoreCase("/bukkit:help")){
-				String group = PermissionsManager.getPermissionMainGroup(player);
-				if(group.equalsIgnoreCase("Admin") || group.equalsIgnoreCase("Moderator")) {
-					return;
-				}
-				// helpコマンド規制、オルガ英訳検討
+				// /plコマンド規制、オルガ英訳検討
 				player.chat("Something is quiet. There is no Gallarhorn in the city and it is a different difference from the headquarters.");
 				player.chat("Ah. I wonder if the fighting power of Mars is turned towards the plane.");
 				player.chat("Wait a moment like that, but it does not matter!");
@@ -333,7 +335,72 @@ public class Event_AntiProblemCommand extends MyMaid2Premise implements Listener
 
 				player.chat("I will not stop, as long as you do not stop, I'll be there before that!");
 				player.chat("That's why, Don't you ever stop!");
+				player.chat("(私は\"" + command + "\"コマンドを使用しました。)");
 				player.setHealth(0.0D);
+				event.setCancelled(true);
+				return;
+			}else if(args[0].equalsIgnoreCase("/minecraft:?") || args[0].equalsIgnoreCase("/?") || args[0].equalsIgnoreCase("/bukkit:?") || args[0].equalsIgnoreCase("/minecraft:help") ||  args[0].equalsIgnoreCase("/help") || args[0].equalsIgnoreCase("/bukkit:help")){
+				String group = PermissionsManager.getPermissionMainGroup(player);
+				if(group.equalsIgnoreCase("Admin") || group.equalsIgnoreCase("Moderator")) {
+					return;
+				}
+				// helpコマンド規制
+				player.chat("ﾀｯﾀｯﾀﾀｯﾀｯwwwﾀｯﾀｯﾀｯwww");
+				player.chat("ﾀｯﾀｯﾀﾀｯﾀｯﾀｯﾀｯﾀｯﾀｯ三└(┐卍^o^)卍ﾄﾞｩﾙﾙﾙﾙﾄﾞﾄﾞ");
+				player.chat("ﾃﾃﾃﾃﾃｰﾃﾃﾃﾃﾃﾃﾃﾃﾃﾃwwwﾃﾃﾃﾃﾃｰﾃﾃﾃﾃﾃﾃｰwwwﾃﾃﾃﾃﾃﾃｰﾃﾃﾃﾃﾃﾃﾃﾃﾃﾃwwwﾃﾃﾃﾃﾃｰﾃﾃ");
+				player.chat("ﾄﾞﾄﾞﾝ(　･´ｰ･｀)ﾄﾞﾝ！");
+				player.chat("XXホモぉ┌(┌＾o＾)┐");
+				player.chat("GGホモぉ┌(┌＾o＾)┐");
+				player.chat("(っ'ヮ'c)ﾌｧｧｧｧﾌｧﾌｧﾌｧﾌｧﾌｧｧｧｧｧwww");
+				player.chat("ﾎﾞｯｽｺﾞｫｫｫwww ");
+				player.chat("XXホモぉ┌(┌＾o＾)┐");
+				player.chat("GGホモぉ┌(┌＾o＾)┐");
+				player.chat("(っ'ヮ'c)ﾌｧｧｧｧﾌｧﾌｧﾌｧﾌｧﾌｧｽﾞﾝﾁｬｯﾁｬ💃ｽﾞﾝﾁｬｯﾁｬ💃");
+				player.chat("XXホモぉ┌(┌＾o＾)┐");
+				player.chat("GGホモぉ┌(┌＾o＾)┐");
+				player.chat("(っ'ヮ'c)ﾌｧｧｧｧﾌｧﾌｧﾌｧﾌｧﾌｧｧｧｧｧwww");
+				player.chat("ﾎﾞｯｽｺﾞｫｫｫwww");
+				player.chat("XXホモぉ┌(┌＾o＾)┐");
+				player.chat("GGホモぉ┌(┌＾o＾)┐");
+				player.chat("(っ'ヮ'c)ﾌｧｧｧｧﾌｧﾌｧﾌｧﾌｧﾌｧｽﾞﾝﾁｬ(ง ˙ω˙)วｽﾞﾝﾁｬ(ง ˙ω˙)ว");
+				player.chat("ﾄﾞﾝｯﾄﾞﾝｯ('ω'乂)ｲｶｰﾝwwwﾀﾞｯﾀﾝ⊂二二（ ＾ω＾）二⊃ﾌﾞｰﾝwww");
+				player.chat("ﾃﾃﾃﾃﾃｰﾃﾃﾃﾃﾃﾃﾃﾃﾃﾃwwwﾃﾃﾃﾃﾃｰﾃﾃﾃﾃﾃﾃｰwwwﾃﾃﾃﾃﾃｰﾃﾃﾃﾃﾃﾃﾃﾃﾃﾃwwwﾃﾃﾃﾃﾃｰﾃﾃ");
+				player.chat("ﾄﾞﾄﾞﾝ(　･´ｰ･｀)ﾄﾞﾝ！");
+				player.chat("インド人を右にィ(´･∀･｀)");
+				player.chat("インド人を右にィ（ ՞ਊ ՞）☝");
+				player.chat("インド人を右にィ(´･∀･｀)");
+				player.chat("インド人を右にィ（☝ ՞ਊ ՞）☝");
+				player.chat("インド人を右にィ(´･∀･｀)");
+				player.chat("インド人を右にィ（☝ ՞ਊ ՞）☝");
+				player.chat("インドインドインド人!!");
+				player.chat("インド人をﾙﾙﾙﾙﾙyyyyy");
+				player.chat("ﾗﾝｯﾃﾝﾝﾃｪﾗﾝｯﾃﾝﾝﾃｪwwwﾗﾝﾗﾝﾗﾝ( ﾟдﾟ)");
+				player.chat("ﾗﾝｯﾃﾝﾝﾃｪﾙﾝﾊﾞｶｩwwwﾗﾝｯﾃﾝﾝﾃｪﾙﾝﾊﾞｶｩﾃｼｭｶﾝﾃﾙｩｩｩwwwwww");
+				player.chat("ヤブ医者ﾊﾞｽﾀｰヤブ医者ﾊﾞｽﾀｰ(^^)");
+				player.chat("ヤブ医者ヤブ医者ヤブ医者ﾊﾞｽﾀｰ(^^)");
+				player.chat("ヤブ医者ﾊﾞｽﾀｰヤブ医者ﾊﾞｽﾀｰ(^^)");
+				player.chat("ﾊﾞﾊﾞﾊﾞﾊﾞﾌﾞﾌﾞﾌﾞﾌﾞﾍﾞﾍﾞﾍﾞﾍﾞﾊﾞｽﾀｰ(^^)");
+				player.chat("全品100円50円引きwww全品100円50円引き");
+				player.chat("全品100円50円引きwww全品100円50円引き");
+				player.chat("全品100円50円引き");
+				player.chat("ﾃﾃﾃﾃ|ω･)وﾞ ㌧㌧ﾄﾞｯﾄﾞｯ三└(┐卍^o^)卍ﾄﾞｩﾙﾙﾙﾙﾄﾞﾄﾞ");
+				player.chat("全品100円50円引きwww全品100円50円引き");
+				player.chat("┣¨┣¨┣¨┣(꒪ͧд꒪ͧ)┣¨┣¨┣¨┣¨");
+				player.chat("┣¨┣¨┣¨┣(꒪ͧд꒪ͧ)┣¨┣¨┣¨┣¨");
+				player.chat("ﾄﾞﾄﾞﾄﾞｩﾙﾙ(((卍 ･Θ･)卍ﾄﾞｩﾙﾙﾙﾄﾞﾄﾞﾄﾞｩﾙﾙ(((卍 ･Θ･)卍ﾄﾞｩﾙﾙﾙ三└(┐卍^o^)卍ﾄﾞｩﾙﾙﾙﾙﾄﾞﾝｯ( •̀ω•́ )/");
+				player.chat("┌(┌ ・ω・)┐ﾀﾞﾝｯ");
+				player.chat("ﾃﾝｯﾃﾝｯﾃﾝｯ!!!!!ﾃﾊﾊﾊｯﾊﾃﾝｯ!!!!!( ﾟдﾟ)ﾊｯ!");
+				player.chat("ﾃﾝｯﾃﾝｯﾃﾝｯ!!!!!ﾃﾊﾊﾊｯﾊﾃﾝｯ!!!!!( ﾟдﾟ)ﾊｯ!");
+				player.chat("ﾃﾝｯﾃﾝｯﾃﾝｯ!!!!!ﾃﾊﾊﾊｯﾊﾃﾝｯ!!!!!( ﾟдﾟ)ﾊｯ!");
+				player.chat("ﾃﾝｯﾃﾝｯﾃﾝｯ!!!!!ﾃﾊﾊﾊｯﾊﾃﾝｯ!!!!!( ﾟдﾟ)ﾊｯ!");
+				player.chat("ﾊｯﾊﾃﾝｯ!!!!!ﾃﾝｯ!!!!!ﾃﾝｯ!!ﾃﾝｯ!!ﾃﾝｯ!!( ﾟдﾟ)ﾊｯ!");
+				player.chat("ﾃﾝｯ!!!!!ﾃﾝｯ!!!!!ﾃﾊﾊﾊｯﾊﾃﾝｯ!!!!!( ﾟдﾟ)ﾊｯ!");
+				player.chat("ﾃﾝｯ!!ﾃﾝｯ!!ﾃﾝｯ!!ﾃﾝｯ!!ﾊｯﾊﾊﾊｯ(ง `▽´)╯ﾊｯﾊｯﾊ!!Oh…(´･∀･｀)");
+				player.chat("SEGAのゲームはゲイゲイゲイ!ゲイゲイゲイ!");
+				player.chat("SEGAのゲームは( ﾟдﾟ)ﾊｯ!( ﾟдﾟ)ﾊｯ!( ﾟдﾟ)ﾊｯ!");
+				player.chat("SEGAのゲームはゲイ!ゲイ!ゲイ!");
+				player.chat("SEGAのゲームは宇宙一ィィィィィィィィィィィィ！！！！！！！ィィィ！！ィィィ！！ィィィ！！ィィィ！！ィィィ！！ィィィ！！ィィィ！！イイイイイイイイイイィィィィィ！！！イイイイイィィ⤵");
+				player.chat("(私は\"" + command + "\"コマンドを使用しました。)");
 				event.setCancelled(true);
 				return;
 			}else if(args[0].equalsIgnoreCase("/ver") || args[0].equalsIgnoreCase("/bukkit:ver") || args[0].equalsIgnoreCase("/version") || args[0].equalsIgnoreCase("/bukkit:version")){
@@ -354,6 +421,7 @@ public class Event_AntiProblemCommand extends MyMaid2Premise implements Listener
 				player.chat("(‘o’) ィ～ニャッハッハッハッハッハハハッハッハハハッハッハッハハハッ(ﾋﾟｩｰﾝ)");
 				player.chat("(‘o’) ィ～ニャッハッハッハッハハハッハッハハハハハハッハッハッ(ﾆｮﾝ)ウォオオオオウ！！！！！！");
 				player.chat("(‘o’) ＜ を");
+				player.chat("(私は\"" + command + "\"コマンドを使用しました。)");
 
 				event.setCancelled(true);
 				return;
@@ -385,6 +453,7 @@ public class Event_AntiProblemCommand extends MyMaid2Premise implements Listener
 
 				player.chat("俺は止まんねぇからよ、お前らが止まんねぇかぎり、その先に俺はいるぞ！");
 				player.chat("だからよ、止まるんじゃねぇぞ・・・。");
+				player.chat("(私は\"" + command + "\"コマンドを使用しました。)");
 				player.setHealth(0.0D);
 				event.setCancelled(true);
 				return;
@@ -399,6 +468,7 @@ public class Event_AntiProblemCommand extends MyMaid2Premise implements Listener
 				player.chat("はい！");
 				player.chat("せーのっ！");
 				player.chat("あぁ～！水素の音ォ〜！！");
+				player.chat("(私は\"" + command + "\"コマンドを使用しました。)");
 				event.setCancelled(true);
 				return;
 			}
