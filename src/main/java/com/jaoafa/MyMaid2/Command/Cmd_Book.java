@@ -209,9 +209,13 @@ public class Cmd_Book extends MyMaid2Premise implements CommandExecutor {
 					}
 					Pjao.use(bookdata.getRequiredjao(), "本「" + bookdata.getTitle() + "」の購入のため");
 					if(bookdata.getAuthor() != null){
-						@SuppressWarnings("deprecation")
-						Pointjao Pjao_wasbought = new Pointjao(bookdata.getAuthor());
-						Pjao_wasbought.add(bookdata.getRequiredjao(), "本「" + bookdata.getTitle() + "」を" + player.getName() + "が購入したため");
+						try{
+							@SuppressWarnings("deprecation")
+							Pointjao Pjao_wasbought = new Pointjao(bookdata.getAuthor());
+							Pjao_wasbought.add(bookdata.getRequiredjao(), "本「" + bookdata.getTitle() + "」を" + player.getName() + "が購入したため");
+						}catch (UnsupportedOperationException e){
+							// jaotanなど指定した場合アカウントがないといわれるので回避
+						}
 					}
 
 					ItemStack is = bookdata.getBook();
