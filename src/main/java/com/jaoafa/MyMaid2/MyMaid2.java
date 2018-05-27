@@ -46,6 +46,7 @@ import com.jaoafa.MyMaid2.Command.Cmd_jao;
 import com.jaoafa.MyMaid2.Event.Event_AFK;
 import com.jaoafa.MyMaid2.Event.Event_AntiProblemCommand;
 import com.jaoafa.MyMaid2.Event.Event_AntiTNTMinecart;
+import com.jaoafa.MyMaid2.Event.Event_AntiWither;
 import com.jaoafa.MyMaid2.Event.Event_Antijaoium;
 import com.jaoafa.MyMaid2.Event.Event_ChatSpamKickDisable;
 import com.jaoafa.MyMaid2.Event.Event_CommandBlockLogger;
@@ -235,6 +236,7 @@ public class MyMaid2 extends JavaPlugin implements Listener {
 		registEvent(new Event_JoinAutoQPPE(this));// 2018/04/07
 		registEvent(new Event_SignClick(this));// 2018/04/09
 		registEvent(new Event_AntiTNTMinecart(this));// 2018/04/22
+		registEvent(new Event_AntiWither(this));// 2018/05/27
 	}
 
 	/**
