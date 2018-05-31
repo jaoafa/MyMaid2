@@ -229,7 +229,7 @@ public class Event_Antijaoium extends MyMaid2Premise implements Listener {
 				continue;
 			}
 			ItemStack hand = is[n];
-			if(hand.getType() == Material.POTION){
+			if(hand.getType() == Material.SPLASH_POTION || hand.getType() == Material.LINGERING_POTION){
 				PotionMeta potion = (PotionMeta) hand.getItemMeta();
 				jaoium = isjaoium(potion.getCustomEffects());
 				if(jaoium){
