@@ -299,7 +299,7 @@ public class Cmd_Ck extends MyMaid2Premise implements CommandExecutor {
 			break;
 		}
 		if(!minecartPlayerFlag){
-			// 消すべきトロッコがない
+			// 消すべきトロッコがない 
 			SendMessage(sender, cmd, "削除できるトロッコはありませんでした。");
 			return;
 		}
@@ -388,8 +388,7 @@ public class Cmd_Ck extends MyMaid2Premise implements CommandExecutor {
 			}
 			if(!minecartPlayerFlag){
 				// 消すべきトロッコがない
-				SendMessage(sender, cmd, "削除できるトロッコはありませんでした。");
-				return;
+				continue;
 			}
 
 			// Mobをキルする必要があるならプレイヤー以外をキルする
