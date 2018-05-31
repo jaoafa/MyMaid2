@@ -59,6 +59,7 @@ import com.jaoafa.MyMaid2.Event.Event_JoinHeaderFooterChange;
 import com.jaoafa.MyMaid2.Event.Event_JoinjaoPoint;
 import com.jaoafa.MyMaid2.Event.Event_LoginLeftPlayerCountNotice;
 import com.jaoafa.MyMaid2.Event.Event_LoginSuccessCheck;
+import com.jaoafa.MyMaid2.Event.Event_LoginVoteCheck;
 import com.jaoafa.MyMaid2.Event.Event_MoveToChunkActionbar;
 import com.jaoafa.MyMaid2.Event.Event_NOConcretePowderToConcrete;
 import com.jaoafa.MyMaid2.Event.Event_PlayerCheckPreLogin;
@@ -237,6 +238,7 @@ public class MyMaid2 extends JavaPlugin implements Listener {
 		registEvent(new Event_SignClick(this));// 2018/04/09
 		registEvent(new Event_AntiTNTMinecart(this));// 2018/04/22
 		registEvent(new Event_AntiWither(this));// 2018/05/27
+		registEvent(new Event_LoginVoteCheck(this));// 2018/05/31
 	}
 
 	/**

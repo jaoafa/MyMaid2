@@ -4,7 +4,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.TimeZone;
 
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
@@ -63,6 +65,69 @@ public class PlayerVoteData {
 		}else{
 			throw new UnsupportedOperationException("Could not get VoteCount.");
 		}
+	}
+
+	/**
+	 * プレイヤーの最終投票日時をunixtimeで取得します。
+	 * @return プレイヤーの最終投票のunixtime
+	 * @throws ClassNotFoundException 内部でClassNotFoundExceptionが発生した場合
+	 * @throws SQLException 内部でSQLExceptionが発生した場合
+	 * @throws UnsupportedOperationException 投票数が取得できなかったとき
+	 * @throws NullPointerException プレイヤーが取得できなかったとき
+	 * @throws NumberFormatException 最終投票日時が正常に取得できなかったとき
+	 */
+	public Long getLastVoteUnixTime() throws ClassNotFoundException, SQLException, UnsupportedOperationException, NullPointerException, NumberFormatException {
+		if(offplayer == null) throw new NullPointerException("We could not get the player.");
+		if(!exists()) return -1L;
+		PreparedStatement statement = MySQL.getNewPreparedStatement("SELECT * FROM vote WHERE id = ?");
+		statement.setInt(1, getID());
+		ResultSet res = statement.executeQuery();
+		if(res.next()){
+			Long unixtime;
+			try{
+				unixtime = Long.parseLong(res.getString("lasttime"));
+			}catch(NumberFormatException e){
+				throw new NumberFormatException("最終投票日時が正常に取得できませんでした。");
+			}
+			return unixtime;
+		}else{
+			throw new UnsupportedOperationException("Could not get Vote LastTime.");
+		}
+	}
+
+	public boolean isVoted() {
+		try{
+			Long lasttime = getLastVoteUnixTime();
+			Calendar cal = Calendar.getInstance();
+			cal.setTimeZone(TimeZone.getTimeZone("Asia/Tokyo"));
+			cal.set(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH), 9, 0, 0);
+			long today9 = cal.getTimeInMillis() / 1000L;
+
+			cal.add(Calendar.DAY_OF_MONTH, -1);
+			long yesterday9 = cal.getTimeInMillis() / 1000L;
+
+			long now = System.currentTimeMillis() / 1000L;
+
+			boolean checktype; // true: 今日の9時 / false: 昨日の9時
+			if(today9 <= now){
+				checktype = true;
+			}else{
+				checktype = false;
+			}
+
+			if(checktype){
+				if(lasttime < today9){
+					return false;
+				}
+			}else{
+				if(lasttime < yesterday9){
+					return false;
+				}
+			}
+		}catch(UnsupportedOperationException | NullPointerException | NumberFormatException | ClassNotFoundException | SQLException e){
+			return false; // エラー発生したら投票してないものとみなす
+		}
+		return true; // どれもひっかからなかったら投票したものとみなす
 	}
 
 	/**
