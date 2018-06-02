@@ -362,6 +362,7 @@ public class Event_Antijaoium extends MyMaid2Premise implements Listener {
 		if(jaoium){
 			inventory.clear();
 		}
+		Boolean ender_jaoium = false;
 		if(enderchestinventory != null) {
 			is = enderchestinventory.getContents();
 			for(int n=0; n < is.length; n++)
@@ -372,17 +373,17 @@ public class Event_Antijaoium extends MyMaid2Premise implements Listener {
 				ItemStack hand = is[n];
 				if(hand.getType() == Material.SPLASH_POTION || hand.getType() == Material.LINGERING_POTION){
 					PotionMeta potion = (PotionMeta) hand.getItemMeta();
-					jaoium = isjaoium(potion.getCustomEffects());
-					if(jaoium){
+					ender_jaoium = isjaoium(potion.getCustomEffects());
+					if(ender_jaoium){
 						enderchestinventory.clear(n);
 					}
 				}
 			}
-			if(jaoium){
+			if(ender_jaoium){
 				enderchestinventory.clear();
 			}
 		}
-		if(jaoium){
+		if(jaoium || ender_jaoium){
 			if(!Achievementjao.getAchievement(player, new AchievementType(13))){
 				player.sendMessage(AchievementAPI.getPrefix() + "実績の解除中に問題が発生しました。もう一度お試しください。");
 				return;

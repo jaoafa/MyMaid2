@@ -40,6 +40,7 @@ import com.jaoafa.MyMaid2.Command.Cmd_Sign;
 import com.jaoafa.MyMaid2.Command.Cmd_Spawn;
 import com.jaoafa.MyMaid2.Command.Cmd_Test;
 import com.jaoafa.MyMaid2.Command.Cmd_Testment;
+import com.jaoafa.MyMaid2.Command.Cmd_Var;
 import com.jaoafa.MyMaid2.Command.Cmd_WT;
 import com.jaoafa.MyMaid2.Command.Cmd_Wtp;
 import com.jaoafa.MyMaid2.Command.Cmd_jao;
@@ -180,6 +181,7 @@ public class MyMaid2 extends JavaPlugin implements Listener {
 		getCommand("book").setExecutor(new Cmd_Book(this)); // 2018/05/12
 		getCommand("report").setExecutor(new Cmd_Report(this)); // 2018/05/19
 		getCommand("wtp").setExecutor(new Cmd_Wtp(this)); // 2018/05/19
+		getCommand("var").setExecutor(new Cmd_Var(this)); // 2018/06/03
 	}
 
 	/**
