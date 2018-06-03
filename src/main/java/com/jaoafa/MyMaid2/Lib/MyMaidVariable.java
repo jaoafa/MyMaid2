@@ -14,15 +14,15 @@ public class MyMaidVariable extends MyMaid2Premise {
 		try {
 			PreparedStatement statement;
 			if(exist){
-				statement = MySQL.getNewPreparedStatement("INSERT INTO variable (var_key, var_value) VALUES (?, ?);");
-				statement.setString(1, key);
-				statement.setString(2, value);
-			}else{
 				statement = MySQL.getNewPreparedStatement("UPDATE variable SET var_value = ? WHERE var_key = ?;");
 				statement.setString(1, value);
 				statement.setString(2, key);
+			}else{
+				statement = MySQL.getNewPreparedStatement("INSERT INTO variable (var_key, var_value) VALUES (?, ?);");
+				statement.setString(1, key);
+				statement.setString(2, value);
 			}
-			if(statement.execute()){
+			if(statement.executeUpdate() != 0){
 				return true;
 			}else{
 				return false;
@@ -39,6 +39,8 @@ public class MyMaidVariable extends MyMaid2Premise {
 			ResultSet res = statement.executeQuery();
 			if(res.next()){
 				return true;
+			}else{
+				return false;
 			}
 		} catch (ClassNotFoundException | SQLException e) {
 			BugReporter(e);
@@ -77,6 +79,23 @@ public class MyMaidVariable extends MyMaid2Premise {
 		}
 		return null;
 	}
+	public static Map<String, String> listALL(){
+		try {
+			PreparedStatement statement = MySQL.getNewPreparedStatement("SELECT * FROM variable");
+			ResultSet res = statement.executeQuery();
+			Map<String, String> map = new HashMap<String, String>();
+			while(res.next()){
+				map.put(
+						res.getString("var_key"),
+						res.getString("var_value")
+						);
+			}
+			return map;
+		} catch (ClassNotFoundException | SQLException e) {
+			BugReporter(e);
+		}
+		return null;
+	}
 	public static void remove(String key){
 		try {
 			PreparedStatement statement = MySQL.getNewPreparedStatement("DELETE FROM variable WHERE var_key = ?;");
@@ -90,8 +109,12 @@ public class MyMaidVariable extends MyMaid2Premise {
 		try {
 			PreparedStatement statement = MySQL.getNewPreparedStatement("SELECT COUNT(*) FROM variable;");
 			ResultSet res = statement.executeQuery();
-			int count = res.getInt("COUNT(*)");
-			return count;
+			if(res.next()){
+				int count = res.getInt("COUNT(*)");
+				return count;
+			}else{
+				return 0;
+			}
 		} catch (ClassNotFoundException | SQLException e) {
 			BugReporter(e);
 		}

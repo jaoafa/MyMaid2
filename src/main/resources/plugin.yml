@@ -251,3 +251,15 @@ commands:
              /wtp <Player> <World> <X> <Y> <Z>: <Player>を<World>の<X> <Y> <Z>座標にテレポートします。
       permission: mymaid.wtp
       permission-message: You do not have permission to perform this command.
+   var:
+      description: 変数に関することを利用できます。
+      usage: |-
+             /var text <Key> <Value>: 変数に代入します。
+             /var plus <Key1> <Key2>: 変数を利用して加算します。
+             /var minus <Key1> <Key2>: 変数を利用して減算します。
+             /var block: 未実装
+             /var equal <Key1> <Key2>: 変数がイコールかどうか調べます。
+             /var list: 変数のリストを表示します。
+             /var clear <Key>: 変数を削除します。
+      permission: mymaid.var
+      permission-message: You do not have permission to perform this command.

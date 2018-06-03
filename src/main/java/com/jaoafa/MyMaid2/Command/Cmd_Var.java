@@ -17,7 +17,10 @@ public class Cmd_Var extends MyMaid2Premise implements CommandExecutor {
 		this.plugin = plugin;
 	}
 	public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args){
-		if(args.length >= 1 && args[0].equalsIgnoreCase("help")){
+		if(args.length == 0){
+			SendUsageMessage(sender, cmd);
+			return true;
+		}else if(args.length >= 1 && args[0].equalsIgnoreCase("help")){
 			SendUsageMessage(sender, cmd);
 			return true;
 		}
@@ -52,72 +55,66 @@ public class Cmd_Var extends MyMaid2Premise implements CommandExecutor {
 			return true;
 		}else if(args[0].equalsIgnoreCase("plus")){
 			//Plus(/var plus var var)
-			/*
 			if(args.length < 3){
 				SendMessage(sender, cmd, "引数が適切ではありません。");
 			}
-			if(!var.containsKey(args[1])){
+			if(!MyMaidVariable.exist(args[1])){
 				SendMessage(sender, cmd, "変数「" + args[1] + "」は定義されていません。");
 				return true;
 			}
-			if(!var.containsKey(args[2])){
+			if(!MyMaidVariable.exist(args[2])){
 				SendMessage(sender, cmd, "変数「" + args[2] + "」は定義されていません。");
 				return true;
 			}
 			int var1;
 			try{
-				var1 = Integer.parseInt(var.get(args[1]));
+				var1 = Integer.parseInt(MyMaidVariable.getString(args[1]));
 			} catch (NumberFormatException nfe) {
 				SendMessage(sender, cmd, "変数「" + args[1] + "」は数字ではないため加算先にできません。");
 				return true;
 			}
 			int var2;
 			try{
-				var2 = Integer.parseInt(var.get(args[2]));
+				var2 = Integer.parseInt(MyMaidVariable.getString(args[2]));
 			} catch (NumberFormatException nfe) {
 				SendMessage(sender, cmd, "変数「" + args[2] + "」は数字ではないため加算元にできません。");
 				return true;
 			}
 			int newvar = var1 + var2;
-			var.put(args[1], newvar+"");
+			MyMaidVariable.set(args[1], String.valueOf(newvar));
 			SendMessage(sender, cmd, "変数「" + args[1] + "」と変数「" + args[2] + "」を加算し、変数「" + args[1] + "」に入力しました。(回答:" + newvar +")");
-			*/
-			SendMessage(sender, cmd, "未実装。後日実装予定");
 			return true;
 		}else if(args[0].equalsIgnoreCase("minus")){
 			//minus(/var minus var var)
-			/*
 			if(args.length < 3){
 				SendMessage(sender, cmd, "引数が適切ではありません。");
 				return true;
 			}
-			if(!var.containsKey(args[1])){
+			if(!MyMaidVariable.exist(args[1])){
 				SendMessage(sender, cmd, "変数「" + args[1] + "」は定義されていません。");
 				return true;
 			}
-			if(!var.containsKey(args[2])){
+			if(!MyMaidVariable.exist(args[2])){
 				SendMessage(sender, cmd, "変数「" + args[2] + "」は定義されていません。");
 				return true;
 			}
 			int var1;
 			try{
-				var1 = Integer.parseInt(var.get(args[1]));
+				var1 = Integer.parseInt(MyMaidVariable.getString(args[1]));
 			} catch (NumberFormatException nfe) {
 				SendMessage(sender, cmd, "変数「" + args[1] + "」は数字ではないため減算元にできません。");
 				return true;
 			}
 			int var2;
 			try{
-				var2 = Integer.parseInt(var.get(args[2]));
+				var2 = Integer.parseInt(MyMaidVariable.getString(args[2]));
 			} catch (NumberFormatException nfe) {
 				SendMessage(sender, cmd, "変数「" + args[2] + "」は数字ではないため減算値にできません。");
 				return true;
 			}
 			int newvar = var1 - var2;
-			var.put(args[1], newvar+"");
+			MyMaidVariable.set(args[1], String.valueOf(newvar));
 			SendMessage(sender, cmd, "変数「" + args[1] + "」から変数「" + args[2] + "」を減算し、変数「" + args[1] + "」に入力しました。(回答:" + newvar +")");
-			*/
-			SendMessage(sender, cmd, "未実装。後日実装予定");
 			return true;
 		}else if(args[0].equalsIgnoreCase("block")){
 			//Block(/var block var x y z)

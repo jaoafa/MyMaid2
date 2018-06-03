@@ -56,9 +56,9 @@ public class Cmd_Player extends MyMaid2Premise implements CommandExecutor {
 				List<String> groups = PermissionsManager.getPermissionGroupList(p);
 				for(String group : groups){
 					if(MainGroup.equalsIgnoreCase(group)){
-						SendMessage(sender, cmd, "You Permission group \"" + group +"\" (Main)");
+						SendMessage(sender, cmd, p + " Permission group \"" + group +"\" (Main)");
 					}else{
-						SendMessage(sender, cmd, "You Permission group \"" + group +"\"");
+						SendMessage(sender, cmd, p + " Permission group \"" + group +"\"");
 					}
 				}
 			}catch(IllegalArgumentException e){
