@@ -123,5 +123,21 @@
 			<artifactId>MinecraftJPVoteMissFiller</artifactId>
 			<version>0.0.1</version>
 		</dependency>
+		<!-- WorldGuard -->
+		<dependency>
+			<groupId>com.sk89q.worldguard</groupId>
+			<artifactId>worldguard</artifactId>
+			<version>6.2.1;84bc322</version>
+			<systemPath>${basedir}/lib/worldguard-6.2.1.jar</systemPath>
+			<scope>system</scope>
+		</dependency>
+		<!-- WorldEdit -->
+		<dependency>
+			<groupId>com.sk89q.worldedit</groupId>
+			<artifactId>worldedit</artifactId>
+			<version>6.1.8-SNAPSHOT;cd4729f</version>
+			<systemPath>${basedir}/lib/worldedit-bukkit-6.1.7.3.jar</systemPath>
+			<scope>system</scope>
+		</dependency>
 	</dependencies>
 </project>

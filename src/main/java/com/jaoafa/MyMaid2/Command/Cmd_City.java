@@ -2,11 +2,13 @@ package com.jaoafa.MyMaid2.Command;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.Map;
 import java.util.Set;
 
@@ -23,7 +25,12 @@ import org.dynmap.markers.AreaMarker;
 import org.dynmap.markers.MarkerAPI;
 import org.dynmap.markers.MarkerSet;
 
+import com.jaoafa.MyMaid2.MyMaid2;
 import com.jaoafa.MyMaid2.MyMaid2Premise;
+import com.sk89q.worldedit.Vector;
+import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
+import com.sk89q.worldguard.protection.managers.RegionManager;
+import com.sk89q.worldguard.protection.regions.ProtectedRegion;
 
 public class Cmd_City extends MyMaid2Premise implements CommandExecutor {
 	JavaPlugin plugin;
@@ -115,6 +122,55 @@ public class Cmd_City extends MyMaid2Premise implements CommandExecutor {
 				}
 			}else if(args[0].equalsIgnoreCase("show")){
 				// /city show [エリア名] - エリアの情報を表示。エリア名を設定しないといまいるところのエリア情報を表示(できるかどうか)
+				WorldGuardPlugin wg = MyMaid2.getWorldGuard();
+				Location loc = player.getLocation();
+				Vector v = new Vector(loc.getX(), loc.getY(), loc.getZ());
+
+				RegionManager rm = wg.getRegionManager(player.getWorld());
+
+				List<String> regionlist = rm.getApplicableRegionsIDs(v);
+
+				if(regionlist.size() == 0){
+					SendMessage(sender, cmd, "この場所は登録されていません。");
+					return true;
+				}
+
+				List<ProtectedRegion> inheritance = new LinkedList<ProtectedRegion>();
+				ProtectedRegion lastregion = null;
+				for(String region : regionlist){
+					ProtectedRegion r = rm.getRegion(region);
+					if(lastregion == null){
+						lastregion = r;
+					}
+					inheritance.add(r);
+				}
+				Collections.reverse(inheritance);
+
+				ListIterator<ProtectedRegion> it = inheritance.listIterator(
+						inheritance.size());
+				int indent = 0;
+				while (it.hasPrevious()) {
+					ProtectedRegion cur = it.previous();
+
+					String msg = "";
+
+					// Put symbol for child
+					if (indent != 0) {
+						for (int i = 0; i < indent; i++) {
+							msg += "  ";
+						}
+						msg += "\u2517";
+					}
+
+					// Put name
+					SendMessage(sender, cmd, msg + cur.getId());
+					indent++;
+				}
+
+				SendMessage(sender, cmd, "Owners: " + String.join(", ", lastregion.getOwners().getPlayers()));
+				SendMessage(sender, cmd, "Members: " + String.join(", ", lastregion.getMembers().getPlayers()));
+				return true;
+				/*
 				long start = System.currentTimeMillis();
 				Location now = player.getLocation();
 				MarkerSet markerset = markerapi.getMarkerSet("towns");
@@ -137,7 +193,7 @@ public class Cmd_City extends MyMaid2Premise implements CommandExecutor {
 					long end = System.currentTimeMillis();
 					System.out.println("処理時間: " + (end - start)  + "ms");
 				}
-
+				 */
 				/*
 				MarkerSet markerset = markerapi.getMarkerSet("towns");
 				for(AreaMarker areamarker : markerset.getAreaMarkers()){
@@ -148,8 +204,7 @@ public class Cmd_City extends MyMaid2Premise implements CommandExecutor {
 					int minX = getMaxOrMin(areamarker, true, false);
 					int minZ = getMaxOrMin(areamarker, false, false);
 					if(DebugMode) System.out.println("最大最小" + maxX + ", " + maxZ + ", " + minX + ", " + minZ);
-
-					Location playerloc = player.getLocation();
+ocation playerloc = player.getLocation();
 					if(playerloc.getX() < minX || playerloc.getZ() > maxX){
 						double x = playerloc.getX();
 						double z = playerloc.getZ();
@@ -270,6 +325,7 @@ public class Cmd_City extends MyMaid2Premise implements CommandExecutor {
 				select.setCornerLocations(ArrXs, ArrZs);
 				SendMessage(sender, cmd, "エリア「" + select.getLabel() + "」に新しいコーナーを追加しました。");
 				SendMessage(sender, cmd, "順番を変更したりする場合は、「/city editcorner <Name>」コマンドをお使いください。");
+				return true;
 			}else if(args[0].equalsIgnoreCase("editcorner")){
 				SendMessage(sender, cmd, "システム障害が多くみられるため、一時的にeditcornerの使用を停止しています。");
 				return true;
@@ -288,7 +344,7 @@ public class Cmd_City extends MyMaid2Premise implements CommandExecutor {
 				}
 				new _OpenGUI(player, select).runTaskLater(plugin, 1);
 				return true;
-				*/
+				 */
 			}
 		}else if(args.length == 3){
 			if(args[0].equalsIgnoreCase("add")){

@@ -3,8 +3,12 @@ package com.jaoafa.MyMaid2;
 import java.sql.Connection;
 import java.sql.SQLException;
 
+import javax.annotation.Nullable;
+
+import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.event.Listener;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import com.jaoafa.MyMaid2.Command.Cmd_AFK;
@@ -80,6 +84,8 @@ import com.jaoafa.MyMaid2.Lib.TPSChecker;
 import com.jaoafa.MyMaid2.Task.AutoMessenger;
 import com.jaoafa.MyMaid2.Task.TPSChange;
 import com.jaoafa.MyMaid2.Task.Task_AFK.AFKChecker;
+import com.sk89q.worldedit.bukkit.WorldEditPlugin;
+import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
 
 public class MyMaid2 extends JavaPlugin implements Listener {
 	public static String discordtoken = null;
@@ -344,5 +350,29 @@ public class MyMaid2 extends JavaPlugin implements Listener {
 	@Override
 	public void onDisable() {
 		SKKColors.Save();
+	}
+
+	@Nullable
+	public static WorldGuardPlugin getWorldGuard() {
+		Plugin plugin = Bukkit.getServer().getPluginManager().getPlugin("WorldGuard");
+
+		// WorldGuard may not be loaded
+		if (plugin == null || !(plugin instanceof WorldGuardPlugin)) {
+			return null; // Maybe you want throw an exception instead
+		}
+
+		return (WorldGuardPlugin) plugin;
+	}
+
+	@Nullable
+	public static WorldEditPlugin getWorldEdit() {
+		Plugin plugin = Bukkit.getServer().getPluginManager().getPlugin("WorldEdit");
+
+		// WorldGuard may not be loaded
+		if (plugin == null || !(plugin instanceof WorldEditPlugin)) {
+			return null; // Maybe you want throw an exception instead
+		}
+
+		return (WorldEditPlugin) plugin;
 	}
 }
