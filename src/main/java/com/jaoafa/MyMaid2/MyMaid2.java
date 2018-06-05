@@ -31,6 +31,8 @@ import com.jaoafa.MyMaid2.Command.Cmd_G;
 import com.jaoafa.MyMaid2.Command.Cmd_Hat;
 import com.jaoafa.MyMaid2.Command.Cmd_Head;
 import com.jaoafa.MyMaid2.Command.Cmd_Home;
+import com.jaoafa.MyMaid2.Command.Cmd_InvLoad;
+import com.jaoafa.MyMaid2.Command.Cmd_InvSave;
 import com.jaoafa.MyMaid2.Command.Cmd_Jail;
 import com.jaoafa.MyMaid2.Command.Cmd_Leg;
 import com.jaoafa.MyMaid2.Command.Cmd_Messenger;
@@ -77,6 +79,7 @@ import com.jaoafa.MyMaid2.Event.Event_SKKColor;
 import com.jaoafa.MyMaid2.Event.Event_SignClick;
 import com.jaoafa.MyMaid2.Event.Event_VoteMissFillerEvent;
 import com.jaoafa.MyMaid2.Event.Event_VoteReceived;
+import com.jaoafa.MyMaid2.Lib.InventoryManager;
 import com.jaoafa.MyMaid2.Lib.MySQL;
 import com.jaoafa.MyMaid2.Lib.PermissionsManager;
 import com.jaoafa.MyMaid2.Lib.SKKColors;
@@ -143,6 +146,7 @@ public class MyMaid2 extends JavaPlugin implements Listener {
 
 		SKKColors.first(this);
 		TPSChecker.OnEnable_TPSSetting();
+		InventoryManager.start(this);
 		getLogger().info("--------------------------------------------------");
 	}
 
@@ -189,6 +193,8 @@ public class MyMaid2 extends JavaPlugin implements Listener {
 		getCommand("report").setExecutor(new Cmd_Report(this)); // 2018/05/19
 		getCommand("wtp").setExecutor(new Cmd_Wtp(this)); // 2018/05/19
 		getCommand("var").setExecutor(new Cmd_Var(this)); // 2018/06/03
+		getCommand("invload").setExecutor(new Cmd_InvLoad(this)); // 2018/06/06
+		getCommand("invsave").setExecutor(new Cmd_InvSave(this)); // 2018/06/06
 	}
 
 	/**

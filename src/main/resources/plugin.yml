@@ -263,3 +263,22 @@ commands:
              /var clear <Key>: 変数を削除します。
       permission: mymaid.var
       permission-message: You do not have permission to perform this command.
+   invsave:
+      description: インベントリを保存します。
+      usage: |-
+             /invsave: 実行者のインベントリを保存します。
+             /invsave <Player>: <Player>のインベントリを保存します。
+             /invsave <Name>: 実行者のインベントリを<Name>という名前で保存します。
+             /invsave <Player> <Name>: <Player>のインベントリを<Name>という名前で保存します。
+      permission: mymaid.invsave
+      permission-message: You do not have permission to perform this command.
+   invload:
+      description: インベントリを復旧します。
+      usage: |-
+             /invload: 実行者のインベントリを復旧します。
+             /invload <Player>: <Player>のインベントリを復旧します。
+             /invload <Name>: 実行者のインベントリを<Name>という名前のインベントリデータから復旧します。
+             /invload <Player> <Name>: <Player>のインベントリを<Name>という名前のインベントリデータから復旧します。
+             /invload <FromPlayer> <ToPlayer> <Name>: <ToPlayer>のインベントリを<FromPlayer>の<Name>という名前のインベントリデータから復旧します。
+      permission: mymaid.invload
+      permission-message: You do not have permission to perform this command.
