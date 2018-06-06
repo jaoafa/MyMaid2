@@ -51,7 +51,11 @@ public class InventoryManager extends MyMaid2Premise {
 	public static boolean loadInventory(Player player, String loadName) {
 		if(dir == null) return false;
 		File f = new File(dir, player.getName() + ".yml");
+		if(!f.exists()) return false;
 		FileConfiguration c = YamlConfiguration.loadConfiguration(f);
+		if(!(c.contains(loadName + ".armor") && c.contains(loadName + ".content"))){
+			return false;
+		}
 		ItemStack[] content = ((List<ItemStack>) c.get(loadName + ".armor")).toArray(new ItemStack[0]);
 		player.getInventory().setArmorContents(content);
 
@@ -65,7 +69,11 @@ public class InventoryManager extends MyMaid2Premise {
 	public static boolean restoreInventory(Player from_player, Player to_player, String loadName) {
 		if(dir == null) return false;
 		File f = new File(dir, from_player.getName() + ".yml");
+		if(!f.exists()) return false;
 		FileConfiguration c = YamlConfiguration.loadConfiguration(f);
+		if(!(c.contains(loadName + ".armor") && c.contains(loadName + ".content"))){
+			return false;
+		}
 		ItemStack[] content = ((List<ItemStack>) c.get(loadName + ".armor")).toArray(new ItemStack[0]);
 		to_player.getInventory().setArmorContents(content);
 

@@ -22,7 +22,7 @@ public class Cmd_InvSave extends MyMaid2Premise implements CommandExecutor {
 			return true;
 		}
 		if(args.length == 0){
-			if(sender instanceof Player){
+			if(!(sender instanceof Player)){
 				SendMessage(sender, cmd, "このコマンドはプレイヤーから実行してください。");
 				return true;
 			}
