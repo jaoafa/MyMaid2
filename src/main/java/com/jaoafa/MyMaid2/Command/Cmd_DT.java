@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import org.bukkit.Bukkit;
@@ -152,6 +153,21 @@ public class Cmd_DT extends MyMaid2Premise implements CommandExecutor, TabComple
 					// 見つからなかった
 					SendMessage(sender, cmd, "指定されたマーカー「" + markerlabel +"」は見つかりませんでした。");
 					SendMessage(sender, cmd, "マーカー名は大文字小文字を区別します。もう一度間違っていないか確認してください。");
+
+					// もしかして
+					List<Marker> perhapsMarkers = new ArrayList<>();
+					for (Entry<String, Marker> Marker : Markers.entrySet()) {
+						if(Marker.getKey().equalsIgnoreCase(markerlabel)){
+							perhapsMarkers.add(Marker.getValue());
+						}else if(Marker.getKey().startsWith(markerlabel)){
+							perhapsMarkers.add(Marker.getValue());
+						}else if(markerlabel.startsWith(Marker.getKey())){
+							perhapsMarkers.add(Marker.getValue());
+						}
+			        }
+					if(!perhapsMarkers.isEmpty()){
+						SendMessage(sender, cmd, "もしかして: " + implode(perhapsMarkers, ", "));
+					}
 					return true;
 				}
 			}
@@ -183,6 +199,21 @@ public class Cmd_DT extends MyMaid2Premise implements CommandExecutor, TabComple
 					// 見つからなかった
 					SendMessage(sender, cmd, "指定されたマーカー「" + markerlabel +"」は見つかりませんでした。");
 					SendMessage(sender, cmd, "マーカー名は大文字小文字を区別します。もう一度間違っていないか確認してください。");
+
+					// もしかして
+					List<Marker> perhapsMarkers = new ArrayList<>();
+					for (Entry<String, Marker> Marker : Markers.entrySet()) {
+						if(Marker.getKey().equalsIgnoreCase(markerlabel)){
+							perhapsMarkers.add(Marker.getValue());
+						}else if(Marker.getKey().startsWith(markerlabel)){
+							perhapsMarkers.add(Marker.getValue());
+						}else if(markerlabel.startsWith(Marker.getKey())){
+							perhapsMarkers.add(Marker.getValue());
+						}
+			        }
+					if(!perhapsMarkers.isEmpty()){
+						SendMessage(sender, cmd, "もしかして: " + implode(perhapsMarkers, ", "));
+					}
 					return true;
 				}
 			}else if(args[0].equalsIgnoreCase("list")){
@@ -272,6 +303,21 @@ public class Cmd_DT extends MyMaid2Premise implements CommandExecutor, TabComple
 					// 見つからなかった
 					SendMessage(sender, cmd, "指定されたマーカー「" + markerlabel +"」は見つかりませんでした。");
 					SendMessage(sender, cmd, "マーカー名は大文字小文字を区別します。もう一度間違っていないか確認してください。");
+
+					// もしかして
+					List<Marker> perhapsMarkers = new ArrayList<>();
+					for (Entry<String, Marker> Marker : Markers.entrySet()) {
+						if(Marker.getKey().equalsIgnoreCase(markerlabel)){
+							perhapsMarkers.add(Marker.getValue());
+						}else if(Marker.getKey().startsWith(markerlabel)){
+							perhapsMarkers.add(Marker.getValue());
+						}else if(markerlabel.startsWith(Marker.getKey())){
+							perhapsMarkers.add(Marker.getValue());
+						}
+			        }
+					if(!perhapsMarkers.isEmpty()){
+						SendMessage(sender, cmd, "もしかして: " + implode(perhapsMarkers, ", "));
+					}
 					return true;
 				}
 			}
@@ -377,6 +423,21 @@ public class Cmd_DT extends MyMaid2Premise implements CommandExecutor, TabComple
 					// 見つからなかった
 					SendMessage(sender, cmd, "指定されたマーカー「" + markerlabel +"」は見つかりませんでした。");
 					SendMessage(sender, cmd, "マーカー名は大文字小文字を区別します。もう一度間違っていないか確認してください。");
+
+					// もしかして
+					List<Marker> perhapsMarkers = new ArrayList<>();
+					for (Entry<String, Marker> Marker : Markers.entrySet()) {
+						if(Marker.getKey().equalsIgnoreCase(markerlabel)){
+							perhapsMarkers.add(Marker.getValue());
+						}else if(Marker.getKey().startsWith(markerlabel)){
+							perhapsMarkers.add(Marker.getValue());
+						}else if(markerlabel.startsWith(Marker.getKey())){
+							perhapsMarkers.add(Marker.getValue());
+						}
+			        }
+					if(!perhapsMarkers.isEmpty()){
+						SendMessage(sender, cmd, "もしかして: " + implode(perhapsMarkers, ", "));
+					}
 					return true;
 				}
 			}
@@ -392,6 +453,13 @@ public class Cmd_DT extends MyMaid2Premise implements CommandExecutor, TabComple
 		} catch (NumberFormatException e) {
 			return false;
 		}
+	}
+	public static <T> String implode(List<T> list, String glue) {
+	    StringBuilder sb = new StringBuilder();
+	    for (T e : list) {
+	        sb.append(glue).append(e);
+	    }
+	    return sb.substring(glue.length());
 	}
 
 	public List<String> onTabComplete(CommandSender sender, Command cmd, String alias, String[] args) {
