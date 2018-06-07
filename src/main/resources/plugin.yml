@@ -282,3 +282,18 @@ commands:
              /invload <FromPlayer> <ToPlayer> <Name>: <ToPlayer>のインベントリを<FromPlayer>の<Name>という名前のインベントリデータから復旧します。
       permission: mymaid.invload
       permission-message: You do not have permission to perform this command.
+   invshow:
+      description: インベントリを閲覧します。(管理部・モデレーター・常連のみ)
+      usage: "/invshow <Player>: プレイヤーのインベントリを閲覧します。"
+      permission: mymaid.invshow
+      permission-message: You do not have permission to perform this command.
+   invedit:
+      description: インベントリを編集します。(管理部・モデレーターのみ)
+      usage: "/invedit <Player>: プレイヤーのインベントリを編集します。"
+      permission: mymaid.invedit
+      permission-message: You do not have permission to perform this command.
+   enderchest:
+      description: エンダーチェストを閲覧・編集します。(管理部・モデレーターのみ)
+      usage: "/enderchest <Player>: プレイヤーのエンダーチェストを閲覧・編集します。"
+      permission: mymaid.invedit
+      permission-message: You do not have permission to perform this command.

@@ -41,7 +41,7 @@ public class Cmd_Messenger extends MyMaid2Premise implements CommandExecutor {
 					Player p = (Player) sender;
 					String group = PermissionsManager.getPermissionMainGroup(p);
 					if(!group.equalsIgnoreCase("Admin") && !group.equalsIgnoreCase("Moderator")){
-						SendMessage(sender, cmd, "このコマンドは管理部のみ使用可能です。");
+						SendMessage(sender, cmd, "このコマンドは管理部・モデレーターのみ使用可能です。");
 						return true;
 					}
 				}else if(!(sender instanceof ConsoleCommandSender)){

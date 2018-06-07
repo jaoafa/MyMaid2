@@ -27,12 +27,15 @@ import com.jaoafa.MyMaid2.Command.Cmd_DelHome;
 import com.jaoafa.MyMaid2.Command.Cmd_DiscordLink;
 import com.jaoafa.MyMaid2.Command.Cmd_EBan;
 import com.jaoafa.MyMaid2.Command.Cmd_Elytra;
+import com.jaoafa.MyMaid2.Command.Cmd_EnderChest;
 import com.jaoafa.MyMaid2.Command.Cmd_G;
 import com.jaoafa.MyMaid2.Command.Cmd_Hat;
 import com.jaoafa.MyMaid2.Command.Cmd_Head;
 import com.jaoafa.MyMaid2.Command.Cmd_Home;
+import com.jaoafa.MyMaid2.Command.Cmd_InvEdit;
 import com.jaoafa.MyMaid2.Command.Cmd_InvLoad;
 import com.jaoafa.MyMaid2.Command.Cmd_InvSave;
+import com.jaoafa.MyMaid2.Command.Cmd_InvShow;
 import com.jaoafa.MyMaid2.Command.Cmd_Jail;
 import com.jaoafa.MyMaid2.Command.Cmd_Leg;
 import com.jaoafa.MyMaid2.Command.Cmd_Messenger;
@@ -195,6 +198,9 @@ public class MyMaid2 extends JavaPlugin implements Listener {
 		getCommand("var").setExecutor(new Cmd_Var(this)); // 2018/06/03
 		getCommand("invload").setExecutor(new Cmd_InvLoad(this)); // 2018/06/06
 		getCommand("invsave").setExecutor(new Cmd_InvSave(this)); // 2018/06/06
+		getCommand("invedit").setExecutor(new Cmd_InvEdit(this)); // 2018/06/08
+		getCommand("invshow").setExecutor(new Cmd_InvShow(this)); // 2018/06/08
+		getCommand("enderchest").setExecutor(new Cmd_EnderChest(this)); // 2018/06/08
 	}
 
 	/**
