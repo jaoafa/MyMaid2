@@ -58,6 +58,7 @@ import com.jaoafa.MyMaid2.Event.Event_AntiProblemCommand;
 import com.jaoafa.MyMaid2.Event.Event_AntiTNTMinecart;
 import com.jaoafa.MyMaid2.Event.Event_AntiWither;
 import com.jaoafa.MyMaid2.Event.Event_Antijaoium;
+import com.jaoafa.MyMaid2.Event.Event_BanLogger;
 import com.jaoafa.MyMaid2.Event.Event_ChatSpamKickDisable;
 import com.jaoafa.MyMaid2.Event.Event_CommandBlockLogger;
 import com.jaoafa.MyMaid2.Event.Event_CommandBlockVariable;
@@ -128,6 +129,7 @@ public class MyMaid2 extends JavaPlugin implements Listener {
 		Load_Plugin("Votifier");
 		Load_Plugin("jaoSuperAchievement");
 		Load_Plugin("MinecraftJPVoteMissFiller");
+		Load_Plugin("MCBans");
 		if(!this.isEnabled()) return;
 
 		// PermissionsManager初期設定
@@ -261,6 +263,7 @@ public class MyMaid2 extends JavaPlugin implements Listener {
 		registEvent(new Event_AntiWither(this));// 2018/05/27
 		registEvent(new Event_LoginVoteCheck(this));// 2018/05/31
 		registEvent(new Event_CommandBlockVariable(this));// 2018/06/03
+		registEvent(new Event_BanLogger(this));// 2018/06/10
 	}
 
 	/**
