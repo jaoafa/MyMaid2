@@ -155,14 +155,14 @@ public class Cmd_DT extends MyMaid2Premise implements CommandExecutor, TabComple
 					SendMessage(sender, cmd, "マーカー名は大文字小文字を区別します。もう一度間違っていないか確認してください。");
 
 					// もしかして
-					List<Marker> perhapsMarkers = new ArrayList<>();
+					List<String> perhapsMarkers = new ArrayList<>();
 					for (Entry<String, Marker> Marker : Markers.entrySet()) {
 						if(Marker.getKey().equalsIgnoreCase(markerlabel)){
-							perhapsMarkers.add(Marker.getValue());
+							perhapsMarkers.add(Marker.getValue().getLabel());
 						}else if(Marker.getKey().startsWith(markerlabel)){
-							perhapsMarkers.add(Marker.getValue());
+							perhapsMarkers.add(Marker.getValue().getLabel());
 						}else if(markerlabel.startsWith(Marker.getKey())){
-							perhapsMarkers.add(Marker.getValue());
+							perhapsMarkers.add(Marker.getValue().getLabel());
 						}
 			        }
 					if(!perhapsMarkers.isEmpty()){
@@ -201,14 +201,14 @@ public class Cmd_DT extends MyMaid2Premise implements CommandExecutor, TabComple
 					SendMessage(sender, cmd, "マーカー名は大文字小文字を区別します。もう一度間違っていないか確認してください。");
 
 					// もしかして
-					List<Marker> perhapsMarkers = new ArrayList<>();
+					List<String> perhapsMarkers = new ArrayList<>();
 					for (Entry<String, Marker> Marker : Markers.entrySet()) {
 						if(Marker.getKey().equalsIgnoreCase(markerlabel)){
-							perhapsMarkers.add(Marker.getValue());
+							perhapsMarkers.add(Marker.getValue().getLabel());
 						}else if(Marker.getKey().startsWith(markerlabel)){
-							perhapsMarkers.add(Marker.getValue());
+							perhapsMarkers.add(Marker.getValue().getLabel());
 						}else if(markerlabel.startsWith(Marker.getKey())){
-							perhapsMarkers.add(Marker.getValue());
+							perhapsMarkers.add(Marker.getValue().getLabel());
 						}
 			        }
 					if(!perhapsMarkers.isEmpty()){
@@ -305,14 +305,14 @@ public class Cmd_DT extends MyMaid2Premise implements CommandExecutor, TabComple
 					SendMessage(sender, cmd, "マーカー名は大文字小文字を区別します。もう一度間違っていないか確認してください。");
 
 					// もしかして
-					List<Marker> perhapsMarkers = new ArrayList<>();
+					List<String> perhapsMarkers = new ArrayList<>();
 					for (Entry<String, Marker> Marker : Markers.entrySet()) {
 						if(Marker.getKey().equalsIgnoreCase(markerlabel)){
-							perhapsMarkers.add(Marker.getValue());
+							perhapsMarkers.add(Marker.getValue().getLabel());
 						}else if(Marker.getKey().startsWith(markerlabel)){
-							perhapsMarkers.add(Marker.getValue());
+							perhapsMarkers.add(Marker.getValue().getLabel());
 						}else if(markerlabel.startsWith(Marker.getKey())){
-							perhapsMarkers.add(Marker.getValue());
+							perhapsMarkers.add(Marker.getValue().getLabel());
 						}
 			        }
 					if(!perhapsMarkers.isEmpty()){
@@ -425,14 +425,14 @@ public class Cmd_DT extends MyMaid2Premise implements CommandExecutor, TabComple
 					SendMessage(sender, cmd, "マーカー名は大文字小文字を区別します。もう一度間違っていないか確認してください。");
 
 					// もしかして
-					List<Marker> perhapsMarkers = new ArrayList<>();
+					List<String> perhapsMarkers = new ArrayList<>();
 					for (Entry<String, Marker> Marker : Markers.entrySet()) {
 						if(Marker.getKey().equalsIgnoreCase(markerlabel)){
-							perhapsMarkers.add(Marker.getValue());
+							perhapsMarkers.add(Marker.getValue().getLabel());
 						}else if(Marker.getKey().startsWith(markerlabel)){
-							perhapsMarkers.add(Marker.getValue());
+							perhapsMarkers.add(Marker.getValue().getLabel());
 						}else if(markerlabel.startsWith(Marker.getKey())){
-							perhapsMarkers.add(Marker.getValue());
+							perhapsMarkers.add(Marker.getValue().getLabel());
 						}
 			        }
 					if(!perhapsMarkers.isEmpty()){
