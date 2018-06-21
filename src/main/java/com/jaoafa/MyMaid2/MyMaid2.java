@@ -84,6 +84,7 @@ import com.jaoafa.MyMaid2.Event.Event_SignClick;
 import com.jaoafa.MyMaid2.Event.Event_VoteMissFillerEvent;
 import com.jaoafa.MyMaid2.Event.Event_VoteReceived;
 import com.jaoafa.MyMaid2.Lib.InventoryManager;
+import com.jaoafa.MyMaid2.Lib.Jail;
 import com.jaoafa.MyMaid2.Lib.MySQL;
 import com.jaoafa.MyMaid2.Lib.PermissionsManager;
 import com.jaoafa.MyMaid2.Lib.SKKColors;
@@ -152,6 +153,11 @@ public class MyMaid2 extends JavaPlugin implements Listener {
 		SKKColors.first(this);
 		TPSChecker.OnEnable_TPSSetting();
 		InventoryManager.start(this);
+		try {
+			Jail.LoadJailData();
+		} catch (Exception e) {
+			MyMaid2Premise.BugReporter(e);
+		}
 		getLogger().info("--------------------------------------------------");
 	}
 
@@ -365,6 +371,11 @@ public class MyMaid2 extends JavaPlugin implements Listener {
 	@Override
 	public void onDisable() {
 		SKKColors.Save();
+		try {
+			Jail.SaveJailData();
+		} catch (Exception e) {
+			MyMaid2Premise.BugReporter(e);
+		}
 	}
 
 	@Nullable
