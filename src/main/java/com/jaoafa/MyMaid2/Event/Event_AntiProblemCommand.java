@@ -1,5 +1,6 @@
 package com.jaoafa.MyMaid2.Event;
 
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -17,6 +18,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import com.jaoafa.MyMaid2.MyMaid2Premise;
 import com.jaoafa.MyMaid2.Lib.ParseSelector;
 import com.jaoafa.MyMaid2.Lib.PermissionsManager;
+import com.jaoafa.MyMaid2.Lib.Pointjao;
 
 public class Event_AntiProblemCommand extends MyMaid2Premise implements Listener {
 	JavaPlugin plugin;
@@ -47,6 +49,17 @@ public class Event_AntiProblemCommand extends MyMaid2Premise implements Listener
 					killflag = true;
 				}
 				if(args[1].equalsIgnoreCase("@e")){
+					try {
+						Pointjao Pjao = new Pointjao(player);
+						if(!Pjao.has(10)){
+							player.chat("ポイントが足りないため、コマンド「" + command + "」を実行できなかったよ！ｗ");
+							event.setCancelled(true);
+							return;
+						}
+						Pjao.use(10, "コマンド「" + command + "」の実行のため");
+					} catch (ClassNotFoundException | NullPointerException | SQLException e) {
+						BugReporter(e);
+					}
 					// Jail.JailAdd(player, Bukkit.getOfflinePlayer("jaotan"), "コマンド「/kill @e」の実行", false);
 					player.chat("キリトかなーやっぱりww");
 					player.chat("自分は思わないんだけど周りにキリトに似てるってよく言われるwww");
@@ -57,6 +70,17 @@ public class Event_AntiProblemCommand extends MyMaid2Premise implements Listener
 					return;
 				}
 				if(args[1].equalsIgnoreCase("@a")){
+					try {
+						Pointjao Pjao = new Pointjao(player);
+						if(!Pjao.has(10)){
+							player.chat("ポイントが足りないため、コマンド「" + command + "」を実行できなかったよ！ｗ");
+							event.setCancelled(true);
+							return;
+						}
+						Pjao.use(10, "コマンド「" + command + "」の実行のため");
+					} catch (ClassNotFoundException | NullPointerException | SQLException e) {
+						BugReporter(e);
+					}
 					player.chat("キリトかなーやっぱw");
 					player.chat("一応オタクだけど彼女いるし、俺って退けない性格だしそこら辺とかめっちゃ似てるって言われる()");
 					player.chat("握力も31キロあってクラスの女子にたかられる←彼女いるからやめろ！笑");
@@ -67,6 +91,17 @@ public class Event_AntiProblemCommand extends MyMaid2Premise implements Listener
 				}
 				if(args[1].startsWith("@e")){
 					if(group.equalsIgnoreCase("QPPE") || group.equalsIgnoreCase("Default")){
+						try {
+							Pointjao Pjao = new Pointjao(player);
+							if(!Pjao.has(10)){
+								player.chat("ポイントが足りないため、コマンド「" + command + "」を実行できなかったよ！ｗ");
+								event.setCancelled(true);
+								return;
+							}
+							Pjao.use(10, "コマンド「" + command + "」の実行のため");
+						} catch (ClassNotFoundException | NullPointerException | SQLException e) {
+							BugReporter(e);
+						}
 						player.chat("最後にキレたのは高2のころかな。オタクだからってウェイ系に絡まれたときw");
 						player.chat("最初は微笑してたんだけど、推しを貶されて気づいたらウェイ系は意識無くなってて、25人くらいに取り押さえられてたw記憶無いけど、ひたすら笑顔で殴ってたらしいw俺ってサイコパスなのかもなww");
 						player.chat("(私は\"" + command + "\"コマンドを使用しました。)");
@@ -155,6 +190,17 @@ public class Event_AntiProblemCommand extends MyMaid2Premise implements Listener
 					killflag = true;
 				}
 				if(args[1].equalsIgnoreCase("@e")){
+					try {
+						Pointjao Pjao = new Pointjao(player);
+						if(!Pjao.has(10)){
+							player.chat("ポイントが足りないため、コマンド「" + command + "」を実行できなかったよ！ｗ");
+							event.setCancelled(true);
+							return;
+						}
+						Pjao.use(10, "コマンド「" + command + "」の実行のため");
+					} catch (ClassNotFoundException | NullPointerException | SQLException e) {
+						BugReporter(e);
+					}
 					// Jail.JailAdd(player, Bukkit.getOfflinePlayer("jaotan"), "コマンド「/kill @e」の実行", false);
 					player.chat("キリトかなーやっぱりww");
 					player.chat("自分は思わないんだけど周りにキリトに似てるってよく言われるwww");
@@ -165,6 +211,17 @@ public class Event_AntiProblemCommand extends MyMaid2Premise implements Listener
 					return;
 				}
 				if(args[1].equalsIgnoreCase("@a")){
+					try {
+						Pointjao Pjao = new Pointjao(player);
+						if(!Pjao.has(10)){
+							player.chat("ポイントが足りないため、コマンド「" + command + "」を実行できなかったよ！ｗ");
+							event.setCancelled(true);
+							return;
+						}
+						Pjao.use(10, "コマンド「" + command + "」の実行のため");
+					} catch (ClassNotFoundException | NullPointerException | SQLException e) {
+						BugReporter(e);
+					}
 					player.chat("キリトかなーやっぱw");
 					player.chat("一応オタクだけど彼女いるし、俺って退けない性格だしそこら辺とかめっちゃ似てるって言われる()");
 					player.chat("握力も31キロあってクラスの女子にたかられる←彼女いるからやめろ！笑");
@@ -175,6 +232,17 @@ public class Event_AntiProblemCommand extends MyMaid2Premise implements Listener
 				}
 				if(args[1].startsWith("@e")){
 					if(group.equalsIgnoreCase("QPPE") || group.equalsIgnoreCase("Default")){
+						try {
+							Pointjao Pjao = new Pointjao(player);
+							if(!Pjao.has(10)){
+								player.chat("ポイントが足りないため、コマンド「" + command + "」を実行できなかったよ！ｗ");
+								event.setCancelled(true);
+								return;
+							}
+							Pjao.use(10, "コマンド「" + command + "」の実行のため");
+						} catch (ClassNotFoundException | NullPointerException | SQLException e) {
+							BugReporter(e);
+						}
 						player.chat("最後にキレたのは高2のころかな。オタクだからってウェイ系に絡まれたときw");
 						player.chat("最初は微笑してたんだけど、推しを貶されて気づいたらウェイ系は意識無くなってて、25人くらいに取り押さえられてたw記憶無いけど、ひたすら笑顔で殴ってたらしいw俺ってサイコパスなのかもなww");
 						player.chat("(私は\"" + command + "\"コマンドを使用しました。)");
@@ -252,6 +320,17 @@ public class Event_AntiProblemCommand extends MyMaid2Premise implements Listener
 			if(args[0].equalsIgnoreCase("/pex")){
 				if(args[1].equalsIgnoreCase("promote")){
 					// /pex promoteコマンド規制
+					try {
+						Pointjao Pjao = new Pointjao(player);
+						if(!Pjao.has(10)){
+							player.chat("ポイントが足りないため、コマンド「" + command + "」を実行できなかったよ！ｗ");
+							event.setCancelled(true);
+							return;
+						}
+						Pjao.use(10, "コマンド「" + command + "」の実行のため");
+					} catch (ClassNotFoundException | NullPointerException | SQLException e) {
+						BugReporter(e);
+					}
 					player.chat("(◞‸◟) ｻﾊﾞｵﾁﾅｲｰﾅ? ﾎﾜｯｳｳﾞｼﾞｸｼﾞｸﾞｨﾝﾉﾝﾞﾝﾞﾝﾞﾝﾞﾍﾟﾗﾚｸﾞｼﾞｭﾁﾞ…ﾇﾇﾉｮｩﾂﾋﾞｮﾝﾇｽﾞｨｺｹｰｯﾝｦｯ…ｶﾅｼﾐ…");
 					player.chat("(私は\"" + command + "\"コマンドを使用しました。)");
 					event.setCancelled(true);
@@ -260,6 +339,17 @@ public class Event_AntiProblemCommand extends MyMaid2Premise implements Listener
 			}
 			if(args[0].equalsIgnoreCase("//calc") || args[0].equalsIgnoreCase("/worldedit:/calc") || args[0].equalsIgnoreCase("//eval") || args[0].equalsIgnoreCase("/worldedit:/eval")){
 				// /calcコマンド規制
+				try {
+					Pointjao Pjao = new Pointjao(player);
+					if(!Pjao.has(10)){
+						player.chat("ポイントが足りないため、コマンド「" + command + "」を実行できなかったよ！ｗ");
+						event.setCancelled(true);
+						return;
+					}
+					Pjao.use(10, "コマンド「" + command + "」の実行のため");
+				} catch (ClassNotFoundException | NullPointerException | SQLException e) {
+					BugReporter(e);
+				}
 				player.chat("オ、オオwwwwwwwwオレアタマ良いwwwwwwww最近めっちょ成績あがってんねんオレwwwwwwwwエゴサとかかけるとめっちょ人気やねんwwwwァァァァァァァwwwクソハゲアタマを見下しながら食べるフライドチキンは一段とウメェなァァァァwwwwwwww");
 				player.chat("(私は\"" + command + "\"コマンドを使用しました。)");
 				event.setCancelled(true);
@@ -269,6 +359,17 @@ public class Event_AntiProblemCommand extends MyMaid2Premise implements Listener
 		if(args.length >= 1){
 			if(args[0].equalsIgnoreCase("/god") || args[0].equalsIgnoreCase("/worldguard:god")){
 				// /godコマンド規制
+				try {
+					Pointjao Pjao = new Pointjao(player);
+					if(!Pjao.has(10)){
+						player.chat("ポイントが足りないため、コマンド「" + command + "」を実行できなかったよ！ｗ");
+						event.setCancelled(true);
+						return;
+					}
+					Pjao.use(10, "コマンド「" + command + "」の実行のため");
+				} catch (ClassNotFoundException | NullPointerException | SQLException e) {
+					BugReporter(e);
+				}
 				player.chat("オ、オオwwwwwwwwオレアルファwwwwwwww最近めっちょふぁぼられてんねんオレwwwwwwwwエゴサとかかけるとめっちょ人気やねんwwwwァァァァァァァwwwクソアルファを見下しながら食べるエビフィレオは一段とウメェなァァァァwwwwwwww");
 				player.chat("(私は\"" + command + "\"コマンドを使用しました。)");
 				event.setCancelled(true);
@@ -279,6 +380,17 @@ public class Event_AntiProblemCommand extends MyMaid2Premise implements Listener
 					return;
 				}
 				// /plコマンド規制
+				try {
+					Pointjao Pjao = new Pointjao(player);
+					if(!Pjao.has(10)){
+						player.chat("ポイントが足りないため、コマンド「" + command + "」を実行できなかったよ！ｗ");
+						event.setCancelled(true);
+						return;
+					}
+					Pjao.use(10, "コマンド「" + command + "」の実行のため");
+				} catch (ClassNotFoundException | NullPointerException | SQLException e) {
+					BugReporter(e);
+				}
 				player.chat("ここに表示されるメッセージを募集中！！！詳しくはDiscord#debeloperまで。");
 				player.chat("(私は\"" + command + "\"コマンドを使用しました。)");
 
@@ -290,6 +402,17 @@ public class Event_AntiProblemCommand extends MyMaid2Premise implements Listener
 					return;
 				}
 				// /plコマンド規制
+				try {
+					Pointjao Pjao = new Pointjao(player);
+					if(!Pjao.has(10)){
+						player.chat("ポイントが足りないため、コマンド「" + command + "」を実行できなかったよ！ｗ");
+						event.setCancelled(true);
+						return;
+					}
+					Pjao.use(10, "コマンド「" + command + "」の実行のため");
+				} catch (ClassNotFoundException | NullPointerException | SQLException e) {
+					BugReporter(e);
+				}
 				player.chat("ここに表示されるメッセージを募集中！！！詳しくはDiscord#debeloperまで。");
 				player.chat("(私は\"" + command + "\"コマンドを使用しました。)");
 
@@ -301,6 +424,17 @@ public class Event_AntiProblemCommand extends MyMaid2Premise implements Listener
 					return;
 				}
 				// /plコマンド規制
+				try {
+					Pointjao Pjao = new Pointjao(player);
+					if(!Pjao.has(10)){
+						player.chat("ポイントが足りないため、コマンド「" + command + "」を実行できなかったよ！ｗ");
+						event.setCancelled(true);
+						return;
+					}
+					Pjao.use(10, "コマンド「" + command + "」の実行のため");
+				} catch (ClassNotFoundException | NullPointerException | SQLException e) {
+					BugReporter(e);
+				}
 				player.chat("†エンゲキ†...");
 				player.chat("私達の世界は…演劇で溢れています…その劇を演じる者…受け入れて消費する者…全ての者がそれに魅了されます…舞台の上に上がり…世界に自分の価値をはからせましょう…その舞台が…現実のものであるかないかにかかわらず…私達は…私達の役を演じるのです…しかし…それらの役割を無くしてしまったら…私達は一体何者なのでしょう…人々が、善と悪を区別しなくなり…目に見える世界が失われ…舞台の幕が降ろされてしまったら…私達は…本当の自分達であること…それが…生きているということなのでしょうか…魂を…持っているということなのでしょうか……＼キイイイイイイイン！！！！！！！！！／");
 				player.chat("(私は\"" + command + "\"コマンドを使用しました。)");
@@ -313,6 +447,18 @@ public class Event_AntiProblemCommand extends MyMaid2Premise implements Listener
 					return;
 				}
 				// /plコマンド規制、オルガ英訳検討
+				try {
+					Pointjao Pjao = new Pointjao(player);
+					if(!Pjao.has(10)){
+						player.chat("ポイントが足りないため、コマンド「" + command + "」を実行できなかったよ！ｗ");
+						event.setCancelled(true);
+						return;
+					}
+					Pjao.use(10, "コマンド「" + command + "」の実行のため");
+				} catch (ClassNotFoundException | NullPointerException | SQLException e) {
+					BugReporter(e);
+				}
+
 				player.chat("Something is quiet. There is no Gallarhorn in the city and it is a different difference from the headquarters.");
 				player.chat("Ah. I wonder if the fighting power of Mars is turned towards the plane.");
 				player.chat("Wait a moment like that, but it does not matter!");
@@ -346,6 +492,17 @@ public class Event_AntiProblemCommand extends MyMaid2Premise implements Listener
 					return;
 				}
 				// helpコマンド規制
+				try {
+					Pointjao Pjao = new Pointjao(player);
+					if(!Pjao.has(10)){
+						player.chat("ポイントが足りないため、コマンド「" + command + "」を実行できなかったよ！ｗ");
+						event.setCancelled(true);
+						return;
+					}
+					Pjao.use(10, "コマンド「" + command + "」の実行のため");
+				} catch (ClassNotFoundException | NullPointerException | SQLException e) {
+					BugReporter(e);
+				}
 				player.chat("ﾀｯﾀｯﾀﾀｯﾀｯwwwﾀｯﾀｯﾀｯwww");
 				player.chat("ﾀｯﾀｯﾀﾀｯﾀｯﾀｯﾀｯﾀｯﾀｯ三└(┐卍^o^)卍ﾄﾞｩﾙﾙﾙﾙﾄﾞﾄﾞ");
 				player.chat("ﾃﾃﾃﾃﾃｰﾃﾃﾃﾃﾃﾃﾃﾃﾃﾃwwwﾃﾃﾃﾃﾃｰﾃﾃﾃﾃﾃﾃｰwwwﾃﾃﾃﾃﾃﾃｰﾃﾃﾃﾃﾃﾃﾃﾃﾃﾃwwwﾃﾃﾃﾃﾃｰﾃﾃ");
@@ -409,6 +566,17 @@ public class Event_AntiProblemCommand extends MyMaid2Premise implements Listener
 				if(group.equalsIgnoreCase("Admin") || group.equalsIgnoreCase("Moderator")) {
 					return;
 				}
+				try {
+					Pointjao Pjao = new Pointjao(player);
+					if(!Pjao.has(10)){
+						player.chat("ポイントが足りないため、コマンド「" + command + "」を実行できなかったよ！ｗ");
+						event.setCancelled(true);
+						return;
+					}
+					Pjao.use(10, "コマンド「" + command + "」の実行のため");
+				} catch (ClassNotFoundException | NullPointerException | SQLException e) {
+					BugReporter(e);
+				}
 				player.chat("(‘o’) ﾍｲ ﾕﾉｫﾝﾜｲ ﾜｨｱｨﾜｨｬ?");
 				player.chat("(‘o’) ｲﾖｯﾊ ｲﾔﾊ ｲﾔﾊ ｲﾔﾊ ｲﾔﾊ ｲﾔﾊ ｲﾔﾊ … ｫﾎﾎｯﾊｰﾎﾎｯﾊｰﾎﾎｯﾊｰﾊﾊﾊﾊﾊﾎﾎ…");
 				player.chat("(‘o’) ィ～ッニャッハッハッハッハッハッハッハッハッハッ");
@@ -430,6 +598,17 @@ public class Event_AntiProblemCommand extends MyMaid2Premise implements Listener
 				String group = PermissionsManager.getPermissionMainGroup(player);
 				if(group.equalsIgnoreCase("Admin") || group.equalsIgnoreCase("Moderator")) {
 					return;
+				}
+				try {
+					Pointjao Pjao = new Pointjao(player);
+					if(!Pjao.has(10)){
+						player.chat("ポイントが足りないため、コマンド「" + command + "」を実行できなかったよ！ｗ");
+						event.setCancelled(true);
+						return;
+					}
+					Pjao.use(10, "コマンド「" + command + "」の実行のため");
+				} catch (ClassNotFoundException | NullPointerException | SQLException e) {
+					BugReporter(e);
 				}
 				player.chat("なんか静かですね。街の中にはギャラルホルンもいないし本部とはえらい違いだ。");
 				player.chat("ああ。火星の戦力は軒並み向こうに回してんのかもな。");
@@ -463,6 +642,17 @@ public class Event_AntiProblemCommand extends MyMaid2Premise implements Listener
 		for(String arg : args){
 			// @eをふくむもの
 			if(arg.equalsIgnoreCase("@e")){
+				try {
+					Pointjao Pjao = new Pointjao(player);
+					if(!Pjao.has(10)){
+						player.chat("ポイントが足りないため、コマンド「" + command + "」を実行できなかったよ！ｗ");
+						event.setCancelled(true);
+						return;
+					}
+					Pjao.use(10, "コマンド「" + command + "」の実行のため");
+				} catch (ClassNotFoundException | NullPointerException | SQLException e) {
+					BugReporter(e);
+				}
 				player.chat("開けてみたいでしょ～？");
 				player.chat("うん、みたーい！");
 				player.chat("行きますよー！");
