@@ -39,7 +39,7 @@ public class Cmd_InvLoad extends MyMaid2Premise implements CommandExecutor {
 			Player player = Bukkit.getPlayerExact(args[0]);
 			if(player == null){
 				// 実行者を名前つけて保存
-				if(sender instanceof Player){
+				if(!(sender instanceof Player)){
 					SendMessage(sender, cmd, "このコマンドはプレイヤーから実行してください。");
 					return true;
 				}
