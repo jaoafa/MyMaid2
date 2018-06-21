@@ -92,6 +92,7 @@ import com.jaoafa.MyMaid2.Lib.TPSChecker;
 import com.jaoafa.MyMaid2.Task.AutoMessenger;
 import com.jaoafa.MyMaid2.Task.TPSChange;
 import com.jaoafa.MyMaid2.Task.Task_AFK.AFKChecker;
+import com.jaoafa.MyMaid2.Task.Team1000Observer;
 import com.sk89q.worldedit.bukkit.WorldEditPlugin;
 import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
 
@@ -231,6 +232,7 @@ public class MyMaid2 extends JavaPlugin implements Listener {
 		new AFKChecker().runTaskTimer(this, 0L, 1200L);
 		new TPSChange().runTaskTimer(this, 0L, 1200L);
 		new AutoMessenger().runTaskTimer(this, 0L, 12000L);
+		new Team1000Observer().runTaskTimer(this, 0L, 1200L);
 	}
 
 	/**
