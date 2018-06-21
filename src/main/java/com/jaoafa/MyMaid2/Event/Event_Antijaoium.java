@@ -35,18 +35,10 @@ import com.jaoafa.jaoSuperAchievement.jaoAchievement.Achievementjao;
 
 public class Event_Antijaoium extends MyMaid2Premise implements Listener {
 	JavaPlugin plugin;
-	public Event_Antijaoium(JavaPlugin plugin) {
-		this.plugin = plugin;
-	}
 	List<Integer> HEAL_jaoium = new ArrayList<Integer>();
 	List<Integer> HEALTH_BOOST_jaoium = new ArrayList<Integer>();
-	/**
-	 * jaoiumと判定されるアイテムかどうか
-	 * @param list PotionEffectのList
-	 * @return jaoiumかどうか
-	 * @author mine_book000
-	 */
-	private boolean isjaoium(List<PotionEffect> list){
+	public Event_Antijaoium(JavaPlugin plugin) {
+		this.plugin = plugin;
 
 		HEAL_jaoium.add(-3);
 		HEAL_jaoium.add(29);
@@ -54,7 +46,14 @@ public class Event_Antijaoium extends MyMaid2Premise implements Listener {
 		HEAL_jaoium.add(253);
 
 		HEALTH_BOOST_jaoium.add(-7);
-
+	}
+	/**
+	 * jaoiumと判定されるアイテムかどうか
+	 * @param list PotionEffectのList
+	 * @return jaoiumかどうか
+	 * @author mine_book000
+	 */
+	private boolean isjaoium(List<PotionEffect> list){
 		Boolean jaoium = false;
 		for (PotionEffect po : list) {
 			if(po.getType().equals(PotionEffectType.HEAL)){
