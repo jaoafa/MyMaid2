@@ -396,7 +396,7 @@ public class EBan extends MyMaid2Premise {
 
 		try{
 			JavaPlugin plugin = JavaPlugin();
-			File file = new File(plugin.getDataFolder() + File.separator + "EBan.json");
+			File file = new File(plugin.getDataFolder(), "EBan.json");
 			FileWriter filewriter = new FileWriter(file);
 
 			filewriter.write(ALLJSON.toJSONString());
@@ -420,7 +420,7 @@ public class EBan extends MyMaid2Premise {
 		String json = "";
 		try{
 			JavaPlugin plugin = JavaPlugin();
-			File file = new File(plugin.getDataFolder() + File.separator + "EBan.json");
+			File file = new File(plugin.getDataFolder(), "EBan.json");
 			BufferedReader br = new BufferedReader(new FileReader(file));
 
 			String separator = System.getProperty("line.separator");

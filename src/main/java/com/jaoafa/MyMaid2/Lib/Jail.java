@@ -841,7 +841,7 @@ public class Jail extends MyMaid2Premise {
 
 		try{
 			JavaPlugin plugin = JavaPlugin();
-	    	File file = new File(plugin.getDataFolder() + File.separator + "jail.json");
+	    	File file = new File(plugin.getDataFolder(), "jail.json");
 	    	FileWriter filewriter = new FileWriter(file);
 
 	    	filewriter.write(ALLJSON.toJSONString());
@@ -866,7 +866,7 @@ public class Jail extends MyMaid2Premise {
 		String json = "";
 		try{
 			JavaPlugin plugin = JavaPlugin();
-	    	File file = new File(plugin.getDataFolder() + File.separator + "jail.json");
+	    	File file = new File(plugin.getDataFolder(), "jail.json");
 			BufferedReader br = new BufferedReader(new FileReader(file));
 
 			String separator = System.getProperty("line.separator");
@@ -931,7 +931,7 @@ public class Jail extends MyMaid2Premise {
 	}
 	public static void JailBackupSaveTxt(String player, JailType type, String by, String reason){
 		try{
-			File file = new File(JavaPlugin().getDataFolder() + File.separator + "jaillog.txt");
+			File file = new File(JavaPlugin().getDataFolder(), "jaillog.txt");
 
 			if(file.exists()){
 				file.createNewFile();
