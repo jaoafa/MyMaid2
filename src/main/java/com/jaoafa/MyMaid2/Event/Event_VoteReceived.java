@@ -6,6 +6,7 @@ import java.util.Date;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -13,6 +14,8 @@ import org.bukkit.plugin.java.JavaPlugin;
 import com.jaoafa.MyMaid2.MyMaid2Premise;
 import com.jaoafa.MyMaid2.Lib.PlayerVoteData;
 import com.jaoafa.MyMaid2.Lib.Pointjao;
+import com.jaoafa.jaoSuperAchievement.jaoAchievement.AchievementType;
+import com.jaoafa.jaoSuperAchievement.jaoAchievement.Achievementjao;
 import com.vexsoftware.votifier.model.Vote;
 import com.vexsoftware.votifier.model.VotifierEvent;
 
@@ -69,6 +72,8 @@ public class Event_VoteReceived extends MyMaid2Premise implements Listener {
 
 		/* ------------- 投票イベント関連終了 ------------- */
 
+		boolean first = PlayerVoteData.TodayFirstVote();
+
 		String i;
 		try{
 			@SuppressWarnings("deprecation")
@@ -115,6 +120,14 @@ public class Event_VoteReceived extends MyMaid2Premise implements Listener {
 				+ "投票後カウント: " + newVote + "\n"
 				+ "投票前jaoポイント: " + oldjao + "\n"
 				+ "投票後jaoポイント: " + newjao);
+
+		if(first){ // 初めての投票だったら、実績獲得 (No.21 / 筆頭株主)
+			@SuppressWarnings("deprecation")
+			OfflinePlayer offplayer = Bukkit.getOfflinePlayer(name);
+			if(offplayer != null){
+				Achievementjao.getAchievement(offplayer, new AchievementType(21));
+			}
+		}
 
 		/*
         	try {

@@ -12,7 +12,9 @@ import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 
-public class PlayerVoteData {
+import com.jaoafa.MyMaid2.MyMaid2Premise;
+
+public class PlayerVoteData extends MyMaid2Premise {
 	OfflinePlayer offplayer;
 	/**
 	 * 指定したプレイヤーの投票データを取得します。
@@ -65,6 +67,52 @@ public class PlayerVoteData {
 		}else{
 			throw new UnsupportedOperationException("Could not get VoteCount.");
 		}
+	}
+
+	/**
+	 * その日のうち(前日or当日AM9:00～今)に誰も投票していないかどうか調べる（その日初めての投票かどうか）
+	 * @return 誰も投票してなければtrue
+	 */
+	public static boolean TodayFirstVote(){
+		try{
+			PreparedStatement statement = MySQL.getNewPreparedStatement("SELECT * FROM vote");
+			ResultSet res = statement.executeQuery();
+			while(res.next()){
+				Long lasttime = Long.parseLong(res.getString("lasttime"));
+				Calendar cal = Calendar.getInstance();
+				cal.setTimeZone(TimeZone.getTimeZone("Asia/Tokyo"));
+				cal.set(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH), 9, 0, 0);
+				long today9 = cal.getTimeInMillis() / 1000L;
+
+				cal.add(Calendar.DAY_OF_MONTH, -1);
+				long yesterday9 = cal.getTimeInMillis() / 1000L;
+
+				long now = System.currentTimeMillis() / 1000L;
+
+				boolean checktype; // true: 今日の9時 / false: 昨日の9時
+				if(today9 <= now){
+					checktype = true;
+				}else{
+					checktype = false;
+				}
+
+				if(checktype){
+					if(lasttime > today9){
+						// 投票済み？
+						return false;
+					}
+				}else{
+					if(lasttime > yesterday9){
+						// 投票済み？
+						return false;
+					}
+				}
+			}
+		}catch(UnsupportedOperationException | NullPointerException | NumberFormatException | ClassNotFoundException | SQLException e){
+			BugReporter(e);
+			return false; // エラー発生したらその日の初めての投票ではないとみなす。ただしエラー通知はする
+		}
+		return true; // だれも投票してなかったら、trueを返す
 	}
 
 	/**
