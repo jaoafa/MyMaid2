@@ -94,7 +94,7 @@ public class EBan extends MyMaid2Premise {
 			BugReporter(e);
 		}
 
-		Bukkit.broadcastMessage("[EBan] " + ChatColor.RED + "プレイヤー:「" + player.getName() + "」を「" + reason + "」という理由でEBanされました。。");
+		Bukkit.broadcastMessage("[EBan] " + ChatColor.RED + "プレイヤー:「" + player.getName() + "」を「" + reason + "」という理由でEBanされました。");
 		DiscordSend("223582668132974594", "__**EBan[追加]**__: プレイヤー「" + player.getName() +"」が「" + banned_by.getName() +"」によって「" + reason + "」という理由でEBanされました。");
 		return true;
 	}
