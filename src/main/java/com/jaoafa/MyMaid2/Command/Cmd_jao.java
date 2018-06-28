@@ -19,6 +19,9 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import com.jaoafa.MyMaid2.MyMaid2Premise;
 import com.jaoafa.MyMaid2.Lib.Pointjao;
+import com.jaoafa.jaoSuperAchievement.AchievementAPI.AchievementAPI;
+import com.jaoafa.jaoSuperAchievement.jaoAchievement.AchievementType;
+import com.jaoafa.jaoSuperAchievement.jaoAchievement.Achievementjao;
 
 public class Cmd_jao extends MyMaid2Premise implements CommandExecutor {
 	JavaPlugin plugin;
@@ -250,6 +253,10 @@ public class Cmd_jao extends MyMaid2Premise implements CommandExecutor {
 						boolean add_bool = offplayerPjao.add(point, use_reason);
 						if(add_bool){
 							SendMessage(sender, cmd, "プレイヤー「" +  offplayer.getName() + "」に" + point + "ポイントを支払いました。");
+
+							if(!Achievementjao.getAchievement(player, new AchievementType(23))){
+								player.sendMessage(AchievementAPI.getPrefix() + "実績の解除中に問題が発生しました。もう一度お試しください。");
+							}
 						}else{
 							SendMessage(sender, cmd, "プレイヤー「" +  offplayer.getName() + "」に" + point + "ポイントを支払えませんでした。");
 							playerPjao.add(point, "『" + add_reason + "』の失敗による返却");
