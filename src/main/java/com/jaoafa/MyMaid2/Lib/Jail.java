@@ -34,6 +34,9 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import com.jaoafa.MyMaid2.MyMaid2Premise;
+import com.jaoafa.jaoSuperAchievement.AchievementAPI.AchievementAPI;
+import com.jaoafa.jaoSuperAchievement.jaoAchievement.AchievementType;
+import com.jaoafa.jaoSuperAchievement.jaoAchievement.Achievementjao;
 
 public class Jail extends MyMaid2Premise {
 	// 2017/10/30 Update: UUID管理に変更
@@ -122,6 +125,7 @@ public class Jail extends MyMaid2Premise {
 	 * @throws NullPointerException
 	 * @throws ClassNotFoundException
 	*/
+	@Deprecated
 	public static boolean JailAdd(OfflinePlayer player, CommandSender banned_by) throws ClassNotFoundException, NullPointerException, SQLException{
 		if(player == null){
 			banned_by.sendMessage("[JAIL] " + ChatColor.GREEN + "指定されたプレイヤーは見つかりません。");
@@ -254,6 +258,11 @@ public class Jail extends MyMaid2Premise {
 		Bukkit.broadcastMessage("[JAIL] " + ChatColor.GREEN + "プレイヤー:「" + player.getName() + "」を「" + reason + "」という理由で牢獄リストに追加しました。");
 		DiscordSend("223582668132974594", "***Jail[追加]***: プレイヤー「" + player.getName() +"」が「" + banned_by.getName() +"」によって「" + reason + "」という理由でJailリストに追加されました。");
 		JailBackupSaveTxt(player.getName(), JailType.ADD, banned_by.getName(), reason);
+
+		if(!Achievementjao.getAchievement(player, new AchievementType(20))){
+			player.sendMessage(AchievementAPI.getPrefix() + "実績の解除中に問題が発生しました。");
+		}
+
 		if(banned_by instanceof Player){
 			Player banned_by_player = (Player) banned_by;
 			Pointjao pointjao = new Pointjao(banned_by_player);
@@ -437,6 +446,11 @@ public class Jail extends MyMaid2Premise {
 		Bukkit.broadcastMessage("[JAIL] " + ChatColor.GREEN + "プレイヤー:「" + player.getName() + "」を「" + reason + "」という理由で牢獄リストに追加しました。");
 		DiscordSend("223582668132974594", "***Jail[追加]***: プレイヤー「" + player.getName() +"」が「" + banned_by.getName() +"」によって「" + reason + "」という理由でJailリストに追加されました。");
 		JailBackupSaveTxt(player.getName(), JailType.ADD, banned_by.getName(), reason);
+
+		if(!Achievementjao.getAchievement(player, new AchievementType(20))){
+			player.sendMessage(AchievementAPI.getPrefix() + "実績の解除中に問題が発生しました。");
+		}
+
 		if(banned_by instanceof Player){
 			Player banned_by_player = (Player) banned_by;
 			Pointjao pointjao = new Pointjao(banned_by_player);
