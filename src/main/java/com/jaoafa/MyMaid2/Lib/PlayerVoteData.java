@@ -195,9 +195,10 @@ public class PlayerVoteData extends MyMaid2Premise {
 		statement.setInt(3, 1);
 
 		SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-		String date = format.format(new Date());
+		Date Date = new Date();
+		String date = format.format(Date);
 		statement.setString(4, date);
-		statement.setString(5, date);
+		statement.setInt(5, (int) (System.currentTimeMillis() / 1000L));
 		statement.setString(6, date);
 		int count = statement.executeUpdate();
 		if(count != 0){
