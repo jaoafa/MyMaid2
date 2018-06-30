@@ -297,3 +297,13 @@ commands:
       usage: "/enderchest <Player>: プレイヤーのエンダーチェストを閲覧・編集します。"
       permission: mymaid.invedit
       permission-message: You do not have permission to perform this command.
+   protector:
+      description: このプラグインに関する設定や情報が確認できます。
+      usage: /<command>
+      permission: mymaid.protector
+      permission-message: You do not have permission to perform this command.
+   chuocity:
+      description: 中央市に関する作業が行えます。
+      usage: /<command>
+      permission: mymaid.chuocity
+      permission-message: You do not have permission to perform this command.
