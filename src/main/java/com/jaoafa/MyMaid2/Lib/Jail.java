@@ -257,7 +257,6 @@ public class Jail extends MyMaid2Premise {
 
 		Bukkit.broadcastMessage("[JAIL] " + ChatColor.GREEN + "プレイヤー:「" + player.getName() + "」を「" + reason + "」という理由で牢獄リストに追加しました。");
 		DiscordSend("223582668132974594", "***Jail[追加]***: プレイヤー「" + player.getName() +"」が「" + banned_by.getName() +"」によって「" + reason + "」という理由でJailリストに追加されました。");
-		JailBackupSaveTxt(player.getName(), JailType.ADD, banned_by.getName(), reason);
 
 		if(!Achievementjao.getAchievement(player, new AchievementType(20))){
 			player.sendMessage(AchievementAPI.getPrefix() + "実績の解除中に問題が発生しました。");
@@ -268,6 +267,7 @@ public class Jail extends MyMaid2Premise {
 			Pointjao pointjao = new Pointjao(banned_by_player);
 			pointjao.use(REQUIRED_jao, player.getName() + "をJailに追加したため。(理由: " + reason + ")");
 		}
+		JailBackupSaveTxt(player.getName(), JailType.ADD, banned_by.getName(), reason);
 		return true;
 	}
 
@@ -341,12 +341,12 @@ public class Jail extends MyMaid2Premise {
 
 		Bukkit.broadcastMessage("[JAIL] " + ChatColor.GREEN + "プレイヤー:「" + player.getName() + "」を「" + reason + "」という理由で牢獄リストに追加しました。");
 		DiscordSend("223582668132974594", "***Jail[追加]***: プレイヤー「" + player.getName() +"」が「" + banned_by.getName() +"」によって「" + reason + "」という理由でJailリストに追加されました。");
-		JailBackupSaveTxt(player.getName(), JailType.ADD, banned_by.getName(), reason);
 		if(banned_by instanceof Player){
 			Player banned_by_player = (Player) banned_by;
 			Pointjao pointjao = new Pointjao(banned_by_player);
 			pointjao.use(REQUIRED_jao, player.getName() + "をJailに追加したため。(理由: " + reason + ")");
 		}
+		JailBackupSaveTxt(player.getName(), JailType.ADD, banned_by.getName(), reason);
 		return true;
 	}
 
@@ -445,7 +445,6 @@ public class Jail extends MyMaid2Premise {
 
 		Bukkit.broadcastMessage("[JAIL] " + ChatColor.GREEN + "プレイヤー:「" + player.getName() + "」を「" + reason + "」という理由で牢獄リストに追加しました。");
 		DiscordSend("223582668132974594", "***Jail[追加]***: プレイヤー「" + player.getName() +"」が「" + banned_by.getName() +"」によって「" + reason + "」という理由でJailリストに追加されました。");
-		JailBackupSaveTxt(player.getName(), JailType.ADD, banned_by.getName(), reason);
 
 		if(!Achievementjao.getAchievement(player, new AchievementType(20))){
 			player.sendMessage(AchievementAPI.getPrefix() + "実績の解除中に問題が発生しました。");
@@ -456,6 +455,7 @@ public class Jail extends MyMaid2Premise {
 			Pointjao pointjao = new Pointjao(banned_by_player);
 			pointjao.use(REQUIRED_jao, player.getName() + "をJailに追加したため。(理由: " + reason + ")");
 		}
+		JailBackupSaveTxt(player.getName(), JailType.ADD, banned_by.getName(), reason);
 		return true;
 	}
 

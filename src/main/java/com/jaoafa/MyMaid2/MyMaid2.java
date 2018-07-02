@@ -235,7 +235,7 @@ public class MyMaid2 extends JavaPlugin implements Listener {
 	private void Import_Task(){
 		new AFKChecker().runTaskTimer(this, 0L, 1200L);
 		new TPSChange().runTaskTimer(this, 0L, 1200L);
-		new AutoMessenger().runTaskTimer(this, 0L, 12000L);
+		new AutoMessenger().runTaskTimerAsynchronously(this, 0L, 12000L);
 		new Team1000Observer().runTaskTimer(this, 0L, 1200L);
 	}
 

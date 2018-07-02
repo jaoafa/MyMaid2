@@ -46,6 +46,10 @@ public class Event_CommandBlockLogger extends MyMaid2Premise implements Listener
 			return;
 		}
 
+		if(cmdb.getWorld().getName().equalsIgnoreCase("Jao_Afa_Old")){
+			return;
+		}
+
 		Player nearestPlayer = getNearestPlayer(cmdb.getLocation());
 		String name, uuid;
 		if(nearestPlayer == null){

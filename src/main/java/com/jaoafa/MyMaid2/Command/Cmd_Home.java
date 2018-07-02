@@ -55,6 +55,7 @@ public class Cmd_Home extends MyMaid2Premise implements CommandExecutor, TabComp
 					return true;
 				}else{
 					SendMessage(sender, cmd, "ホーム「default」は見つかりませんでした。");
+					SendMessage(sender, cmd, "/sethome <Name>で作ることができます。");
 					return true;
 				}
 
@@ -118,6 +119,7 @@ public class Cmd_Home extends MyMaid2Premise implements CommandExecutor, TabComp
 					return true;
 				}else{
 					SendMessage(sender, cmd, "ホーム「" + name + "」は見つかりませんでした。");
+					SendMessage(sender, cmd, "/sethome <Name>で作ることができます。");
 					return true;
 				}
 

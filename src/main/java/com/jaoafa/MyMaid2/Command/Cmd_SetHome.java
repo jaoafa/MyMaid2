@@ -40,7 +40,7 @@ public class Cmd_SetHome extends MyMaid2Premise implements CommandExecutor {
 
 				ResultSet res = statement.executeQuery();
 				if(res.next()){
-					SendMessage(sender, cmd, "「default」というホームは存在しています。「/home remove default」と打つことでホームを削除できます。");
+					SendMessage(sender, cmd, "「default」というホームは存在しています。「/delhome default」と打つことでホームを削除できます。");
 					return true;
 				}
 				PreparedStatement statement2 = MySQL.getNewPreparedStatement("INSERT INTO home (player, uuid, name, world, x, y, z, yaw, pitch) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);");
@@ -74,7 +74,7 @@ public class Cmd_SetHome extends MyMaid2Premise implements CommandExecutor {
 
 				ResultSet res = statement.executeQuery();
 				if(res.next()){
-					SendMessage(sender, cmd, "「" + name + "」というホームは存在しています。「/home remove " + name + "」と打つことでホームを削除できます。");
+					SendMessage(sender, cmd, "「" + name + "」というホームは存在しています。「/delhome " + name + "」と打つことでホームを削除できます。");
 					return true;
 				}
 				PreparedStatement statement2 = MySQL.getNewPreparedStatement("INSERT INTO home (player, uuid, name, world, x, y, z, yaw, pitch) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);");

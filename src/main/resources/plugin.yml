@@ -298,7 +298,7 @@ commands:
       permission: mymaid.invedit
       permission-message: You do not have permission to perform this command.
    protector:
-      description: このプラグインに関する設定や情報が確認できます。
+      description: WorldGuardの範囲をWorldEditに指定します。
       usage: /<command>
       permission: mymaid.protector
       permission-message: You do not have permission to perform this command.
