@@ -147,5 +147,11 @@
 			<systemPath>${basedir}/lib/MCBans.jar</systemPath>
 			<scope>system</scope>
 		</dependency>
+		<!-- jaoReputation -->
+		<dependency>
+			<groupId>com.jaoafa</groupId>
+			<artifactId>JaoReputation</artifactId>
+			<version>0.0.1</version>
+		</dependency>
 	</dependencies>
 </project>

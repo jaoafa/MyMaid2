@@ -19,6 +19,7 @@ import com.jaoafa.MyMaid2.MyMaid2Premise;
 import com.jaoafa.MyMaid2.Lib.ParseSelector;
 import com.jaoafa.MyMaid2.Lib.PermissionsManager;
 import com.jaoafa.MyMaid2.Lib.Pointjao;
+import com.jaoafa.jaoReputation.Lib.ReputationManager;
 
 public class Event_AntiProblemCommand extends MyMaid2Premise implements Listener {
 	JavaPlugin plugin;
@@ -66,6 +67,8 @@ public class Event_AntiProblemCommand extends MyMaid2Premise implements Listener
 					player.chat("こないだDQNに絡まれた時も気が付いたら意識無くて周りに人が血だらけで倒れてたしなwww");
 					player.chat("ちなみに彼女もアスナに似てる(聞いてないw)");
 					player.chat("(私は\"" + command + "\"コマンドを使用しました。)");
+					ReputationManager rm = new ReputationManager(player);
+					rm.Bad("jaotan", "null", 5, "コマンド「" + command + "」の実行のため");
 					event.setCancelled(true);
 					return;
 				}
@@ -86,6 +89,8 @@ public class Event_AntiProblemCommand extends MyMaid2Premise implements Listener
 					player.chat("握力も31キロあってクラスの女子にたかられる←彼女いるからやめろ！笑");
 					player.chat("俺、これでも中1ですよ？");
 					player.chat("(私は\"" + command + "\"コマンドを使用しました。)");
+					ReputationManager rm = new ReputationManager(player);
+					rm.Bad("jaotan", "null", 5, "コマンド「" + command + "」の実行のため");
 					event.setCancelled(true);
 					return;
 				}
@@ -105,6 +110,8 @@ public class Event_AntiProblemCommand extends MyMaid2Premise implements Listener
 						player.chat("最後にキレたのは高2のころかな。オタクだからってウェイ系に絡まれたときw");
 						player.chat("最初は微笑してたんだけど、推しを貶されて気づいたらウェイ系は意識無くなってて、25人くらいに取り押さえられてたw記憶無いけど、ひたすら笑顔で殴ってたらしいw俺ってサイコパスなのかもなww");
 						player.chat("(私は\"" + command + "\"コマンドを使用しました。)");
+						ReputationManager rm = new ReputationManager(player);
+						rm.Bad("jaotan", "null", 5, "コマンド「" + command + "」の実行のため");
 						event.setCancelled(true);
 						return;
 					}
@@ -114,6 +121,8 @@ public class Event_AntiProblemCommand extends MyMaid2Premise implements Listener
 					Bukkit.broadcastMessage(ChatColor.GRAY + "["+ timeFormat.format(new Date()) + "]" + ChatColor.GOLD + "■" + ChatColor.WHITE + "jaotan: " + player.getName() + "さんが" + args[1] + "を殺すとか調子に乗ってると思うので" + player.getName() + "さんを殺しておきますね^^");
 					DiscordSend("**jaotan**: " + player.getName() + "さんが" + args[1] + "を殺すとか調子に乗ってると思うので" + player.getName() + "さんを殺しておきますね^^");
 					player.setHealth(0);
+					ReputationManager rm = new ReputationManager(player);
+					rm.Bad("jaotan", "null", 5, "コマンド「" + command + "」の実行のため");
 					event.setCancelled(true);
 					return;
 				}
@@ -207,6 +216,8 @@ public class Event_AntiProblemCommand extends MyMaid2Premise implements Listener
 					player.chat("こないだDQNに絡まれた時も気が付いたら意識無くて周りに人が血だらけで倒れてたしなwww");
 					player.chat("ちなみに彼女もアスナに似てる(聞いてないw)");
 					player.chat("(私は\"" + command + "\"コマンドを使用しました。)");
+					ReputationManager rm = new ReputationManager(player);
+					rm.Bad("jaotan", "null", 5, "コマンド「" + command + "」の実行のため");
 					event.setCancelled(true);
 					return;
 				}
@@ -227,6 +238,8 @@ public class Event_AntiProblemCommand extends MyMaid2Premise implements Listener
 					player.chat("握力も31キロあってクラスの女子にたかられる←彼女いるからやめろ！笑");
 					player.chat("俺、これでも中1ですよ？");
 					player.chat("(私は\"" + command + "\"コマンドを使用しました。)");
+					ReputationManager rm = new ReputationManager(player);
+					rm.Bad("jaotan", "null", 5, "コマンド「" + command + "」の実行のため");
 					event.setCancelled(true);
 					return;
 				}
@@ -246,6 +259,8 @@ public class Event_AntiProblemCommand extends MyMaid2Premise implements Listener
 						player.chat("最後にキレたのは高2のころかな。オタクだからってウェイ系に絡まれたときw");
 						player.chat("最初は微笑してたんだけど、推しを貶されて気づいたらウェイ系は意識無くなってて、25人くらいに取り押さえられてたw記憶無いけど、ひたすら笑顔で殴ってたらしいw俺ってサイコパスなのかもなww");
 						player.chat("(私は\"" + command + "\"コマンドを使用しました。)");
+						ReputationManager rm = new ReputationManager(player);
+						rm.Bad("jaotan", "null", 5, "コマンド「" + command + "」の実行のため");
 						event.setCancelled(true);
 						return;
 					}
@@ -255,6 +270,8 @@ public class Event_AntiProblemCommand extends MyMaid2Premise implements Listener
 					Bukkit.broadcastMessage(ChatColor.GRAY + "["+ timeFormat.format(new Date()) + "]" + ChatColor.GOLD + "■" + ChatColor.WHITE + "jaotan: " + player.getName() + "ごときが" + args[1] + "を殺そうだなんて図が高いわ！ " + player.getName() + "が死ね！");
 					DiscordSend("**jaotan**: " + player.getName() + "ごときが" + args[1] + "を殺そうだなんて図が高いわ！ " + player.getName() + "が死ね！");
 					player.setHealth(0);
+					ReputationManager rm = new ReputationManager(player);
+					rm.Bad("jaotan", "null", 5, "コマンド「" + command + "」の実行のため");
 					event.setCancelled(true);
 					return;
 				}
@@ -333,6 +350,8 @@ public class Event_AntiProblemCommand extends MyMaid2Premise implements Listener
 					}
 					player.chat("(◞‸◟) ｻﾊﾞｵﾁﾅｲｰﾅ? ﾎﾜｯｳｳﾞｼﾞｸｼﾞｸﾞｨﾝﾉﾝﾞﾝﾞﾝﾞﾝﾞﾍﾟﾗﾚｸﾞｼﾞｭﾁﾞ…ﾇﾇﾉｮｩﾂﾋﾞｮﾝﾇｽﾞｨｺｹｰｯﾝｦｯ…ｶﾅｼﾐ…");
 					player.chat("(私は\"" + command + "\"コマンドを使用しました。)");
+					ReputationManager rm = new ReputationManager(player);
+					rm.Bad("jaotan", "null", 5, "コマンド「" + command + "」の実行のため");
 					event.setCancelled(true);
 					return;
 				}
@@ -352,6 +371,8 @@ public class Event_AntiProblemCommand extends MyMaid2Premise implements Listener
 				}
 				player.chat("オ、オオwwwwwwwwオレアタマ良いwwwwwwww最近めっちょ成績あがってんねんオレwwwwwwwwエゴサとかかけるとめっちょ人気やねんwwwwァァァァァァァwwwクソハゲアタマを見下しながら食べるフライドチキンは一段とウメェなァァァァwwwwwwww");
 				player.chat("(私は\"" + command + "\"コマンドを使用しました。)");
+				ReputationManager rm = new ReputationManager(player);
+				rm.Bad("jaotan", "null", 5, "コマンド「" + command + "」の実行のため");
 				event.setCancelled(true);
 				return;
 			}
@@ -372,6 +393,8 @@ public class Event_AntiProblemCommand extends MyMaid2Premise implements Listener
 				}
 				player.chat("オ、オオwwwwwwwwオレアルファwwwwwwww最近めっちょふぁぼられてんねんオレwwwwwwwwエゴサとかかけるとめっちょ人気やねんwwwwァァァァァァァwwwクソアルファを見下しながら食べるエビフィレオは一段とウメェなァァァァwwwwwwww");
 				player.chat("(私は\"" + command + "\"コマンドを使用しました。)");
+				ReputationManager rm = new ReputationManager(player);
+				rm.Bad("jaotan", "null", 5, "コマンド「" + command + "」の実行のため");
 				event.setCancelled(true);
 				return;
 			}else if(args[0].equalsIgnoreCase("/pl") || args[0].equalsIgnoreCase("/bukkit:pl") || args[0].equalsIgnoreCase("/plugins") || args[0].equalsIgnoreCase("/bukkit:plugins")){
@@ -393,6 +416,8 @@ public class Event_AntiProblemCommand extends MyMaid2Premise implements Listener
 				}
 				player.chat("ここに表示されるメッセージを募集中！！！詳しくはDiscord#debeloperまで。");
 				player.chat("(私は\"" + command + "\"コマンドを使用しました。)");
+				ReputationManager rm = new ReputationManager(player);
+				rm.Bad("jaotan", "null", 5, "コマンド「" + command + "」の実行のため");
 
 				event.setCancelled(true);
 				return;
@@ -415,6 +440,8 @@ public class Event_AntiProblemCommand extends MyMaid2Premise implements Listener
 				}
 				player.chat("ここに表示されるメッセージを募集中！！！詳しくはDiscord#debeloperまで。");
 				player.chat("(私は\"" + command + "\"コマンドを使用しました。)");
+				ReputationManager rm = new ReputationManager(player);
+				rm.Bad("jaotan", "null", 5, "コマンド「" + command + "」の実行のため");
 
 				event.setCancelled(true);
 				return;
@@ -438,6 +465,8 @@ public class Event_AntiProblemCommand extends MyMaid2Premise implements Listener
 				player.chat("†エンゲキ†...");
 				player.chat("私達の世界は…演劇で溢れています…その劇を演じる者…受け入れて消費する者…全ての者がそれに魅了されます…舞台の上に上がり…世界に自分の価値をはからせましょう…その舞台が…現実のものであるかないかにかかわらず…私達は…私達の役を演じるのです…しかし…それらの役割を無くしてしまったら…私達は一体何者なのでしょう…人々が、善と悪を区別しなくなり…目に見える世界が失われ…舞台の幕が降ろされてしまったら…私達は…本当の自分達であること…それが…生きているということなのでしょうか…魂を…持っているということなのでしょうか……＼キイイイイイイイン！！！！！！！！！／");
 				player.chat("(私は\"" + command + "\"コマンドを使用しました。)");
+				ReputationManager rm = new ReputationManager(player);
+				rm.Bad("jaotan", "null", 5, "コマンド「" + command + "」の実行のため");
 
 				event.setCancelled(true);
 				return;
@@ -484,6 +513,8 @@ public class Event_AntiProblemCommand extends MyMaid2Premise implements Listener
 				player.chat("That's why, Don't you ever stop!");
 				player.chat("(私は\"" + command + "\"コマンドを使用しました。)");
 				player.setHealth(0.0D);
+				ReputationManager rm = new ReputationManager(player);
+				rm.Bad("jaotan", "null", 5, "コマンド「" + command + "」の実行のため");
 				event.setCancelled(true);
 				return;
 			}else if(args[0].equalsIgnoreCase("/minecraft:?") || args[0].equalsIgnoreCase("/?") || args[0].equalsIgnoreCase("/bukkit:?") || args[0].equalsIgnoreCase("/minecraft:help") ||  args[0].equalsIgnoreCase("/help") || args[0].equalsIgnoreCase("/bukkit:help")){
@@ -559,6 +590,8 @@ public class Event_AntiProblemCommand extends MyMaid2Premise implements Listener
 				player.chat("SEGAのゲームはゲイ!ゲイ!ゲイ!");
 				player.chat("SEGAのゲームは宇宙一ィィィィィィィィィィィィ！！！！！！！ィィィ！！ィィィ！！ィィィ！！ィィィ！！ィィィ！！ィィィ！！ィィィ！！イイイイイイイイイイィィィィィ！！！イイイイイィィ⤵");
 				player.chat("(私は\"" + command + "\"コマンドを使用しました。)");
+				ReputationManager rm = new ReputationManager(player);
+				rm.Bad("jaotan", "null", 5, "コマンド「" + command + "」の実行のため");
 				event.setCancelled(true);
 				return;
 			}else if(args[0].equalsIgnoreCase("/ver") || args[0].equalsIgnoreCase("/bukkit:ver") || args[0].equalsIgnoreCase("/version") || args[0].equalsIgnoreCase("/bukkit:version")){
@@ -591,6 +624,8 @@ public class Event_AntiProblemCommand extends MyMaid2Premise implements Listener
 				player.chat("(‘o’) ィ～ニャッハッハッハッハハハッハッハハハハハハッハッハッ(ﾆｮﾝ)ウォオオオオウ！！！！！！");
 				player.chat("(‘o’) ＜ を");
 				player.chat("(私は\"" + command + "\"コマンドを使用しました。)");
+				ReputationManager rm = new ReputationManager(player);
+				rm.Bad("jaotan", "null", 5, "コマンド「" + command + "」の実行のため");
 
 				event.setCancelled(true);
 				return;
@@ -635,6 +670,8 @@ public class Event_AntiProblemCommand extends MyMaid2Premise implements Listener
 				player.chat("だからよ、止まるんじゃねぇぞ・・・。");
 				player.chat("(私は\"" + command + "\"コマンドを使用しました。)");
 				player.setHealth(0.0D);
+				ReputationManager rm = new ReputationManager(player);
+				rm.Bad("jaotan", "null", 5, "コマンド「" + command + "」の実行のため");
 				event.setCancelled(true);
 				return;
 			}
@@ -660,6 +697,8 @@ public class Event_AntiProblemCommand extends MyMaid2Premise implements Listener
 				player.chat("せーのっ！");
 				player.chat("あぁ～！水素の音ォ〜！！");
 				player.chat("(私は\"" + command + "\"コマンドを使用しました。)");
+				ReputationManager rm = new ReputationManager(player);
+				rm.Bad("jaotan", "null", 5, "コマンド「" + command + "」の実行のため");
 				event.setCancelled(true);
 				return;
 			}

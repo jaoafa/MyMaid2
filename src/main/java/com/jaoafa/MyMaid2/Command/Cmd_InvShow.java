@@ -5,7 +5,6 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
@@ -48,21 +47,15 @@ public class Cmd_InvShow extends MyMaid2Premise implements CommandExecutor {
 				return true;
 			}
 			PlayerInventory inv = player_show.getInventory();
-			Inventory inventory = Bukkit.getServer().createInventory(null, InventoryType.PLAYER, player_show.getName() + "のインベントリ");
-			inventory.setItem(27, inv.getItem(0));
-			inventory.setItem(28, inv.getItem(1));
-			inventory.setItem(29, inv.getItem(2));
-			inventory.setItem(30, inv.getItem(3));
-			inventory.setItem(31, inv.getItem(4));
-			inventory.setItem(32, inv.getItem(5));
-			inventory.setItem(33, inv.getItem(6));
-			inventory.setItem(34, inv.getItem(7));
-			inventory.setItem(35, inv.getItem(8));
+			Inventory inventory = Bukkit.getServer().createInventory(player, 5 * 9, player_show.getName() + "のインベントリ");
+			ItemStack[] armordata = inv.getArmorContents();
+			for(int n=0; n != armordata.length; n++){
+				inventory.setItem(n, armordata[n]);
+			}
+
 			ItemStack[] invdata = inv.getContents();
-			for(int n=0; n != invdata.length; n++)
-			{
-				if(n <= 8) continue;
-				inventory.setItem(n-9, inv.getItem(n));
+			for(int n=0; n != invdata.length; n++){
+				inventory.setItem(n + 9, invdata[n]);
 			}
 			player.openInventory(inventory);
 			return true;
