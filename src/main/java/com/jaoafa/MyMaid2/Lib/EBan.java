@@ -285,6 +285,35 @@ public class EBan extends MyMaid2Premise {
 		if(ebancount != 0) sender.sendMessage("[EBan] " + ChatColor.RED + implode(EBanList(), ", "));
 	}
 
+	/**
+	 * プレイヤーのEBanステータスを表示
+	 * @param player プレイヤー
+	 * @param sender コマンド実行者
+	 * @author mine_book000
+	 */
+	public static void Status(Player player, CommandSender sender){
+		if(isEBan(player)){
+			sender.sendMessage("[EBan] " + ChatColor.RED + "プレイヤー「" + player.getName() + "」は現在EBanされています。");
+			try {
+				PreparedStatement statement = MySQL.getNewPreparedStatement("SELECT * FROM eban WHERE uuid = ? ORDER BY id DESC");
+				statement.setString(1, player.getUniqueId().toString());
+				ResultSet res = statement.executeQuery();
+				if(res.next()){
+					sender.sendMessage("[EBan] " + ChatColor.RED + "Banned_By: " + res.getString("banned_by"));
+					sender.sendMessage("[EBan] " + ChatColor.RED + "Reason: " + res.getString("reason"));
+					sender.sendMessage("[EBan] " + ChatColor.RED + "Date: " + res.getString("date"));
+				}else{
+					sender.sendMessage("[EBan] " + ChatColor.RED + "データの取得に失敗しました。");
+				}
+			} catch (SQLException | ClassNotFoundException e) {
+				BugReporter(e);
+			}
+
+		}else{
+			sender.sendMessage("[EBan] " + ChatColor.RED + "プレイヤー「" + player.getName() + "」は現在EBanされていません。");
+		}
+	}
+
 	public static int Count(){
 		try {
 			PreparedStatement statement = MySQL.getNewPreparedStatement("SELECT * FROM eban WHERE status = ?");
@@ -317,32 +346,20 @@ public class EBan extends MyMaid2Premise {
 		}
 	}
 
-	/**
-	 * プレイヤーのEBanステータスを表示
-	 * @param player プレイヤー
-	 * @param sender コマンド実行者
-	 * @author mine_book000
-	 */
-	public static void Status(Player player, CommandSender sender){
-		if(isEBan(player)){
-			sender.sendMessage("[EBan] " + ChatColor.RED + "プレイヤー「" + player.getName() + "」は現在EBanされています。");
-			try {
-				PreparedStatement statement = MySQL.getNewPreparedStatement("SELECT * FROM eban WHERE uuid = ? ORDER BY id DESC");
-				statement.setString(1, player.getUniqueId().toString());
-				ResultSet res = statement.executeQuery();
-				if(res.next()){
-					sender.sendMessage("[EBan] " + ChatColor.RED + "Banned_By: " + res.getString("banned_by"));
-					sender.sendMessage("[EBan] " + ChatColor.RED + "Reason: " + res.getString("reason"));
-					sender.sendMessage("[EBan] " + ChatColor.RED + "Date: " + res.getString("date"));
-				}else{
-					sender.sendMessage("[EBan] " + ChatColor.RED + "データの取得に失敗しました。");
-				}
-			} catch (SQLException | ClassNotFoundException e) {
-				BugReporter(e);
+	public static String getLastEBanReason(Player player){
+		if(!isEBan(player)) return null;
+		try {
+			PreparedStatement statement = MySQL.getNewPreparedStatement("SELECT * FROM eban WHERE uuid = ? ORDER BY id DESC LIMIT 1");
+			statement.setString(1, player.getUniqueId().toString());
+			ResultSet res = statement.executeQuery();
+			if(res.next()){
+				return res.getString("reason");
+			}else{
+				return null;
 			}
-
-		}else{
-			sender.sendMessage("[EBan] " + ChatColor.RED + "プレイヤー「" + player.getName() + "」は現在EBanされていません。");
+		} catch (SQLException | ClassNotFoundException e) {
+			BugReporter(e);
+			return null;
 		}
 	}
 

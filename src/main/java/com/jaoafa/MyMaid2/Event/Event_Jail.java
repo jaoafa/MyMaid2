@@ -7,6 +7,7 @@ import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockIgniteEvent;
@@ -16,6 +17,7 @@ import org.bukkit.event.entity.PotionSplashEvent;
 import org.bukkit.event.entity.ProjectileLaunchEvent;
 import org.bukkit.event.player.PlayerBucketEmptyEvent;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -26,6 +28,25 @@ public class Event_Jail implements Listener {
 	JavaPlugin plugin;
 	public Event_Jail(JavaPlugin plugin) {
 		this.plugin = plugin;
+	}
+	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
+	public void OnEvent_LoginJailCheck(PlayerJoinEvent event){
+		Player player = event.getPlayer();
+		if(!Jail.isJail(player)){
+			return;
+		}
+		String reason = Jail.getLastJailReason(player);
+		if(reason == null){
+			return;
+		}
+		for(Player p : Bukkit.getOnlinePlayers()){
+			String group = PermissionsManager.getPermissionMainGroup(p);
+			if(!group.equalsIgnoreCase("Admin") && !group.equalsIgnoreCase("Moderator") && !group.equalsIgnoreCase("Regular")){
+				continue;
+			}
+			p.sendMessage("[Jail] " + ChatColor.DARK_PURPLE + "プレイヤー「" + player.getName() + "」は、「" + reason + "」という理由でJailされています。");
+			p.sendMessage("[Jail] " + ChatColor.DARK_PURPLE + "詳しい情報は https://jaoafa.com/user/" + player.getUniqueId().toString() + " でご確認ください。");
+		}
 	}
 	@EventHandler
 	public void onPlayerMoveEvent(PlayerMoveEvent event){ // 南の楽園外に出られるかどうか

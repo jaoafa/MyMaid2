@@ -6,6 +6,7 @@ import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockIgniteEvent;
@@ -15,16 +16,38 @@ import org.bukkit.event.entity.PotionSplashEvent;
 import org.bukkit.event.entity.ProjectileLaunchEvent;
 import org.bukkit.event.player.PlayerBucketEmptyEvent;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import com.jaoafa.MyMaid2.Lib.EBan;
+import com.jaoafa.MyMaid2.Lib.PermissionsManager;
 
 public class Event_EBan implements Listener {
 	JavaPlugin plugin;
 	public Event_EBan(JavaPlugin plugin) {
 		this.plugin = plugin;
 	}
+	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
+	public void OnEvent_LoginEBanCheck(PlayerJoinEvent event){
+		Player player = event.getPlayer();
+		if(!EBan.isEBan(player)){
+			return;
+		}
+		String reason = EBan.getLastEBanReason(player);
+		if(reason == null){
+			return;
+		}
+		for(Player p : Bukkit.getOnlinePlayers()){
+			String group = PermissionsManager.getPermissionMainGroup(p);
+			if(!group.equalsIgnoreCase("Admin") && !group.equalsIgnoreCase("Moderator") && !group.equalsIgnoreCase("Regular")){
+				continue;
+			}
+			p.sendMessage("[EBan] " + ChatColor.DARK_PURPLE + "プレイヤー「" + player.getName() + "」は、「" + reason + "」という理由でEBanされています。");
+			p.sendMessage("[EBan] " + ChatColor.DARK_PURPLE + "詳しい情報は /eban status " + player.getName() + " でご確認ください。");
+		}
+	}
+
 	@EventHandler
 	public void onPlayerMoveEvent(PlayerMoveEvent event){ // 南の楽園外に出られるかどうか
 		Location to = event.getTo();

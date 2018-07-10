@@ -555,6 +555,23 @@ public class Jail extends MyMaid2Premise {
 		return true;
 	}
 
+	public static String getLastJailReason(Player player){
+		if(!isJail(player)) return null;
+		try {
+			PreparedStatement statement = MySQL.getNewPreparedStatement("SELECT * FROM jail WHERE uuid = ? ORDER BY id DESC LIMIT 1");
+			statement.setString(1, player.getUniqueId().toString());
+			ResultSet res = statement.executeQuery();
+			if(res.next()){
+				return res.getString("reason");
+			}else{
+				return null;
+			}
+		} catch (SQLException | ClassNotFoundException e) {
+			BugReporter(e);
+			return null;
+		}
+	}
+
 	/**
 	 * 範囲外に移動できるかどうかを設定する
 	 * @param cmd コマンド情報
