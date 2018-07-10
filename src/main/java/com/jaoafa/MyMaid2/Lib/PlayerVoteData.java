@@ -24,6 +24,8 @@ public class PlayerVoteData extends MyMaid2Premise {
 	public PlayerVoteData(Player player) {
 		if(player == null) throw new NullPointerException("We could not get the player.");
 		this.offplayer = player;
+
+		changePlayerName();
 	}
 	/**
 	 * 指定したオフラインプレイヤーの投票データを取得します。
@@ -33,6 +35,8 @@ public class PlayerVoteData extends MyMaid2Premise {
 	public PlayerVoteData(OfflinePlayer offplayer) {
 		if(offplayer == null) throw new NullPointerException("We could not get the player.");
 		this.offplayer = offplayer;
+
+		changePlayerName();
 	}
 	/**
 	 * 指定したプレイヤーネームの投票データを取得します。
@@ -46,6 +50,8 @@ public class PlayerVoteData extends MyMaid2Premise {
 		OfflinePlayer offplayer = Bukkit.getOfflinePlayer(name);
 		if(offplayer == null) throw new NullPointerException("We could not get the player.");
 		this.offplayer = offplayer;
+
+		changePlayerName();
 	}
 
 	/**
@@ -274,6 +280,25 @@ public class PlayerVoteData extends MyMaid2Premise {
 			return res.getInt("id");
 		}else{
 			throw new UnsupportedOperationException("Could not get ID.");
+		}
+	}
+
+	/**
+	 * プレイヤー名を更新します。
+	 * @throws SQLException 内部でSQLExceptionが発生した場合
+	 * @author mine_book000
+	 */
+	public void changePlayerName(){
+		if(offplayer == null) throw new NullPointerException("We could not get the player.");
+		try {
+			if(!exists()) return;
+
+			PreparedStatement statement = MySQL.getNewPreparedStatement("UPDATE vote SET player = ? WHERE uuid = ?");
+			statement.setString(1, offplayer.getName());
+			statement.setString(2, offplayer.getUniqueId().toString());// uuid
+			statement.executeUpdate();
+		} catch (SQLException | ClassNotFoundException e) {
+			BugReporter(e);
 		}
 	}
 }
