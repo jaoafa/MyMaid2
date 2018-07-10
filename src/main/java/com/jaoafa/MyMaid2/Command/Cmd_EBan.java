@@ -42,16 +42,22 @@ public class Cmd_EBan extends MyMaid2Premise implements CommandExecutor {
 				EBan.Status(sender);
 				return true;
 			}else if(args.length == 2 && args[0].equalsIgnoreCase("status")){ // statusだけ見られる
-				Player player = Bukkit.getPlayer(args[1]);
+				String playername = args[1];
+				Player player = Bukkit.getPlayerExact(playername);
 				if(player != null){
 					// プレイヤーがオンライン
 					EBan.Status(player, sender);
 					return true;
 				}else{
 					// プレイヤーがオフライン
-					OfflinePlayer offplayer = Bukkit.getOfflinePlayer(args[1]);
+					OfflinePlayer offplayer = Bukkit.getOfflinePlayer(playername);
 					if(offplayer == null){
-						sender.sendMessage("[EBan] " + ChatColor.RED + "指定されたプレイヤーが見つかりませんでした。");
+						SendMessage(sender, cmd, ChatColor.RED + "指定されたプレイヤー「" + playername + "」は見つかりませんでした。");
+
+						Player any_chance_player = Bukkit.getPlayer(playername);
+						if(any_chance_player != null){
+							SendMessage(sender, cmd, ChatColor.RED + "もしかして: " + any_chance_player.getName());
+						}
 						return true;
 					}
 					EBan.Status(offplayer, sender);
@@ -63,25 +69,31 @@ public class Cmd_EBan extends MyMaid2Premise implements CommandExecutor {
 				// Moderator, Admin
 				if(args.length == 2 && args[0].equalsIgnoreCase("remove")){
 					// /eban remove mine_book000
-					Player player = Bukkit.getPlayer(args[1]);
+					String playername = args[1];
+					Player player = Bukkit.getPlayerExact(playername);
 					if(player != null){
 						// プレイヤーがオンライン
 						if(EBan.Remove(player, sender)){
-							sender.sendMessage("[EBan] " + ChatColor.RED + "実行に成功しました。");
+							SendMessage(sender, cmd, ChatColor.RED + "実行に成功しました。");
 						}else{
-							sender.sendMessage("[EBan] " + ChatColor.RED + "実行に失敗しました。");
+							SendMessage(sender, cmd, ChatColor.RED + "実行に失敗しました。");
 						}
 					}else{
 						// プレイヤーがオフライン
-						OfflinePlayer offplayer = Bukkit.getOfflinePlayer(args[1]);
+						OfflinePlayer offplayer = Bukkit.getOfflinePlayer(playername);
 						if(offplayer == null){
-							sender.sendMessage("[EBan] " + ChatColor.RED + "指定されたプレイヤーが見つかりませんでした。");
+							SendMessage(sender, cmd, ChatColor.RED + "指定されたプレイヤー「" + playername + "」は見つかりませんでした。");
+
+							Player any_chance_player = Bukkit.getPlayer(playername);
+							if(any_chance_player != null){
+								SendMessage(sender, cmd, ChatColor.RED + "もしかして: " + any_chance_player.getName());
+							}
 							return true;
 						}
 						if(EBan.Remove(offplayer, sender)){
-							sender.sendMessage("[EBan] " + ChatColor.RED + "実行に成功しました。");
+							SendMessage(sender, cmd, ChatColor.RED + "実行に成功しました。");
 						}else{
-							sender.sendMessage("[EBan] " + ChatColor.RED + "実行に失敗しました。");
+							SendMessage(sender, cmd, ChatColor.RED + "実行に失敗しました。");
 						}
 					}
 					return true;
@@ -96,31 +108,37 @@ public class Cmd_EBan extends MyMaid2Premise implements CommandExecutor {
 						}
 						c++;
 					}
-					Player player = Bukkit.getPlayer(args[1]);
+					String playername = args[1];
+					Player player = Bukkit.getPlayerExact(playername);
 					if(player != null){
 						// プレイヤーがオンライン
 						if(EBan.Add(player, sender, reason)){
-							sender.sendMessage("[EBan] " + ChatColor.RED + "実行に成功しました。");
+							SendMessage(sender, cmd, ChatColor.RED + "実行に成功しました。");
 						}else{
-							sender.sendMessage("[EBan] " + ChatColor.RED + "実行に失敗しました。");
+							SendMessage(sender, cmd, ChatColor.RED + "実行に失敗しました。");
 						}
 					}else{
 						// プレイヤーがオフライン
-						OfflinePlayer offplayer = Bukkit.getOfflinePlayer(args[1]);
+						OfflinePlayer offplayer = Bukkit.getOfflinePlayer(playername);
 						if(offplayer == null){
-							sender.sendMessage("[EBan] " + ChatColor.RED + "指定されたプレイヤーが見つかりませんでした。");
+							SendMessage(sender, cmd, ChatColor.RED + "指定されたプレイヤー「" + playername + "」は見つかりませんでした。");
+
+							Player any_chance_player = Bukkit.getPlayer(playername);
+							if(any_chance_player != null){
+								SendMessage(sender, cmd, ChatColor.RED + "もしかして: " + any_chance_player.getName());
+							}
 							return true;
 						}
 						if(EBan.Add(offplayer, sender, reason)){
-							sender.sendMessage("[EBan] " + ChatColor.RED + "実行に成功しました。");
+							SendMessage(sender, cmd, ChatColor.RED + "実行に成功しました。");
 						}else{
-							sender.sendMessage("[EBan] " + ChatColor.RED + "実行に失敗しました。");
+							SendMessage(sender, cmd, ChatColor.RED + "実行に失敗しました。");
 						}
 					}
 					return true;
 				}
 			}else{
-				sender.sendMessage("[EBan] " + ChatColor.RED + "このコマンドは、あなたの権限では使用できません。");
+				SendMessage(sender, cmd, ChatColor.RED + "このコマンドは、あなたの権限では使用できません。");
 				return true;
 			}
 		}else if(sender instanceof ConsoleCommandSender){
@@ -129,16 +147,22 @@ public class Cmd_EBan extends MyMaid2Premise implements CommandExecutor {
 				EBan.Status(sender);
 				return true;
 			}else if(args.length == 2 && args[0].equalsIgnoreCase("status")){ // statusだけ見られる
-				Player player = Bukkit.getPlayer(args[1]);
+				String playername = args[1];
+				Player player = Bukkit.getPlayerExact(playername);
 				if(player != null){
 					// プレイヤーがオンライン
 					EBan.Status(player, sender);
 					return true;
 				}else{
 					// プレイヤーがオフライン
-					OfflinePlayer offplayer = Bukkit.getOfflinePlayer(args[1]);
+					OfflinePlayer offplayer = Bukkit.getOfflinePlayer(playername);
 					if(offplayer == null){
-						sender.sendMessage("[EBan] " + ChatColor.RED + "指定されたプレイヤーが見つかりませんでした。");
+						SendMessage(sender, cmd, ChatColor.RED + "指定されたプレイヤー「" + playername + "」は見つかりませんでした。");
+
+						Player any_chance_player = Bukkit.getPlayer(playername);
+						if(any_chance_player != null){
+							SendMessage(sender, cmd, ChatColor.RED + "もしかして: " + any_chance_player.getName());
+						}
 						return true;
 					}
 					EBan.Status(offplayer, sender);
@@ -146,25 +170,31 @@ public class Cmd_EBan extends MyMaid2Premise implements CommandExecutor {
 				return true;
 			}else if(args.length == 2 && args[0].equalsIgnoreCase("remove")){
 				// /eban remove mine_book000
-				Player player = Bukkit.getPlayer(args[1]);
+				String playername = args[1];
+				Player player = Bukkit.getPlayerExact(playername);
 				if(player != null){
 					// プレイヤーがオンライン
 					if(EBan.Remove(player, sender)){
-						sender.sendMessage("[EBan] " + ChatColor.RED + "実行に成功しました。");
+						SendMessage(sender, cmd, ChatColor.RED + "実行に成功しました。");
 					}else{
-						sender.sendMessage("[EBan] " + ChatColor.RED + "実行に失敗しました。");
+						SendMessage(sender, cmd, ChatColor.RED + "実行に失敗しました。");
 					}
 				}else{
 					// プレイヤーがオフライン
-					OfflinePlayer offplayer = Bukkit.getOfflinePlayer(args[1]);
+					OfflinePlayer offplayer = Bukkit.getOfflinePlayer(playername);
 					if(offplayer == null){
-						sender.sendMessage("[EBan] " + ChatColor.RED + "指定されたプレイヤーが見つかりませんでした。");
+						SendMessage(sender, cmd, ChatColor.RED + "指定されたプレイヤー「" + playername + "」は見つかりませんでした。");
+
+						Player any_chance_player = Bukkit.getPlayer(playername);
+						if(any_chance_player != null){
+							SendMessage(sender, cmd, ChatColor.RED + "もしかして: " + any_chance_player.getName());
+						}
 						return true;
 					}
 					if(EBan.Remove(offplayer, sender)){
-						sender.sendMessage("[EBan] " + ChatColor.RED + "実行に成功しました。");
+						SendMessage(sender, cmd, ChatColor.RED + "実行に成功しました。");
 					}else{
-						sender.sendMessage("[EBan] " + ChatColor.RED + "実行に失敗しました。");
+						SendMessage(sender, cmd, ChatColor.RED + "実行に失敗しました。");
 					}
 				}
 				return true;
@@ -179,25 +209,31 @@ public class Cmd_EBan extends MyMaid2Premise implements CommandExecutor {
 					}
 					c++;
 				}
-				Player player = Bukkit.getPlayer(args[1]);
+				String playername = args[1];
+				Player player = Bukkit.getPlayerExact(playername);
 				if(player != null){
 					// プレイヤーがオンライン
 					if(EBan.Add(player, sender, reason)){
-						sender.sendMessage("[EBan] " + ChatColor.RED + "実行に成功しました。");
+						SendMessage(sender, cmd, ChatColor.RED + "実行に成功しました。");
 					}else{
-						sender.sendMessage("[EBan] " + ChatColor.RED + "実行に失敗しました。");
+						SendMessage(sender, cmd, ChatColor.RED + "実行に失敗しました。");
 					}
 				}else{
 					// プレイヤーがオフライン
-					OfflinePlayer offplayer = Bukkit.getOfflinePlayer(args[1]);
+					OfflinePlayer offplayer = Bukkit.getOfflinePlayer(playername);
 					if(offplayer == null){
-						sender.sendMessage("[EBan] " + ChatColor.RED + "指定されたプレイヤーが見つかりませんでした。");
+						SendMessage(sender, cmd, ChatColor.RED + "指定されたプレイヤー「" + playername + "」は見つかりませんでした。");
+
+						Player any_chance_player = Bukkit.getPlayer(playername);
+						if(any_chance_player != null){
+							SendMessage(sender, cmd, ChatColor.RED + "もしかして: " + any_chance_player.getName());
+						}
 						return true;
 					}
 					if(EBan.Add(offplayer, sender, reason)){
-						sender.sendMessage("[EBan] " + ChatColor.RED + "実行に成功しました。");
+						SendMessage(sender, cmd, ChatColor.RED + "実行に成功しました。");
 					}else{
-						sender.sendMessage("[EBan] " + ChatColor.RED + "実行に失敗しました。");
+						SendMessage(sender, cmd, ChatColor.RED + "実行に失敗しました。");
 					}
 				}
 				return true;

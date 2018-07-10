@@ -31,11 +31,17 @@ public class Cmd_Jail extends MyMaid2Premise implements CommandExecutor, TabComp
 
 		if(args.length == 2){
 			if(args[0].equalsIgnoreCase("remove")){
-				Player player = Bukkit.getPlayer(args[1]);
+				String playername = args[1];
+				Player player = Bukkit.getPlayerExact(playername);
 				if(player == null){
-					OfflinePlayer offplayer = Bukkit.getOfflinePlayer(args[1]);
+					OfflinePlayer offplayer = Bukkit.getOfflinePlayer(playername);
 					if(offplayer == null){
-						SendMessage(sender, cmd, "プレイヤー情報を読み込めません。");
+						SendMessage(sender, cmd, "指定されたプレイヤー「" + playername + "」は見つかりませんでした。");
+
+						Player any_chance_player = Bukkit.getPlayer(playername);
+						if(any_chance_player != null){
+							SendMessage(sender, cmd, "もしかして: " + any_chance_player.getName());
+						}
 						return true;
 					}
 					Jail.JailRemove(cmd, offplayer, sender);
@@ -46,25 +52,38 @@ public class Cmd_Jail extends MyMaid2Premise implements CommandExecutor, TabComp
 			}
 		}else if(args.length >= 3){
 			if(args[0].equalsIgnoreCase("area")){
-				Player player = Bukkit.getPlayer(args[1]);
+				String playername = args[1];
+				Player player = Bukkit.getPlayerExact(playername);
 				if(player == null){
-					SendMessage(sender, cmd, "プレイヤー情報を読み込めません。");
+					SendMessage(sender, cmd, "指定されたプレイヤー「" + playername + "」は見つかりませんでした。");
+
+					Player any_chance_player = Bukkit.getPlayer(playername);
+					if(any_chance_player != null){
+						SendMessage(sender, cmd, "もしかして: " + any_chance_player.getName());
+					}
 					return true;
 				}
 				boolean after = Boolean.valueOf(args[2]);
 				Jail.JailArea(cmd, player, sender, after);
 				return true;
 			}else if(args[0].equalsIgnoreCase("block")){
-				Player player = Bukkit.getPlayer(args[1]);
+				String playername = args[1];
+				Player player = Bukkit.getPlayerExact(playername);
 				if(player == null){
-					SendMessage(sender, cmd, "プレイヤー情報を読み込めません。");
+					SendMessage(sender, cmd, "指定されたプレイヤー「" + playername + "」は見つかりませんでした。");
+
+					Player any_chance_player = Bukkit.getPlayer(playername);
+					if(any_chance_player != null){
+						SendMessage(sender, cmd, "もしかして: " + any_chance_player.getName());
+					}
 					return true;
 				}
 				boolean after = Boolean.valueOf(args[2]);
 				Jail.JailBlock(cmd, player, sender, after);
 				return true;
 			}else if(args[0].equalsIgnoreCase("add")){
-				Player player = Bukkit.getPlayer(args[1]);
+				String playername = args[1];
+				Player player = Bukkit.getPlayerExact(playername);
 				String text = "";
 				int c = 2;
 				while(args.length > c){
@@ -75,9 +94,14 @@ public class Cmd_Jail extends MyMaid2Premise implements CommandExecutor, TabComp
 					c++;
 				}
 				if(player == null){
-					OfflinePlayer offplayer = Bukkit.getOfflinePlayer(args[1]);
+					OfflinePlayer offplayer = Bukkit.getOfflinePlayer(playername);
 					if(offplayer == null){
-						SendMessage(sender, cmd, "プレイヤー情報を読み込めません。");
+						SendMessage(sender, cmd, "指定されたプレイヤー「" + playername + "」は見つかりませんでした。");
+
+						Player any_chance_player = Bukkit.getPlayer(playername);
+						if(any_chance_player != null){
+							SendMessage(sender, cmd, "もしかして: " + any_chance_player.getName());
+						}
 						return true;
 					}
 					try {
