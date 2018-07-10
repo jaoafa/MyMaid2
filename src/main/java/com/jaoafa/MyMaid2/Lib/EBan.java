@@ -1,11 +1,5 @@
 package com.jaoafa.MyMaid2.Lib;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -22,11 +16,6 @@ import org.bukkit.OfflinePlayer;
 import org.bukkit.World;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.plugin.java.JavaPlugin;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 
 import com.jaoafa.MyMaid2.MyMaid2Premise;
 
@@ -35,7 +24,7 @@ public class EBan extends MyMaid2Premise {
 	 * punishing: 処罰続行中
 	 * end: 処罰終了(解放済み)
 	 */
-	private static Set<String> EBan = new HashSet<String>();
+	//private static Set<String> EBan = new HashSet<String>();
 	/**
 	 * プレイヤーを理由つきでEBanする
 	 * @param cmd コマンド情報
@@ -56,12 +45,12 @@ public class EBan extends MyMaid2Premise {
 			return false;
 		}
 
-		if(EBan.contains(player.getUniqueId().toString())){
+		if(isEBan(player)){
 			// 既に牢獄にいるので無理
 			banned_by.sendMessage("[EBan] " + ChatColor.RED + "指定されたプレイヤーはすでにEBanされているため実行できません。");
 			return false;
 		}
-		EBan.add(player.getUniqueId().toString());
+		//EBan.add(player.getUniqueId().toString());
 
 		if(player.getGameMode() == GameMode.SPECTATOR) player.setGameMode(GameMode.CREATIVE);
 
@@ -119,12 +108,12 @@ public class EBan extends MyMaid2Premise {
 			return false;
 		}
 
-		if(EBan.contains(player.getUniqueId().toString())){
+		if(isEBan(player)){
 			// 既に牢獄にいるので無理
 			banned_by.sendMessage("[EBan] " + ChatColor.RED + "指定されたプレイヤーはすでにEBanされているため実行できません。");
 			return false;
 		}
-		EBan.add(player.getUniqueId().toString());
+		//EBan.add(player.getUniqueId().toString());
 
 		SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		String date = format.format(new Date());
@@ -173,12 +162,12 @@ public class EBan extends MyMaid2Premise {
 			}
 			return false;
 		}
-		if(!EBan.contains(player.getUniqueId().toString())){
+		if(!isEBan(player)){
 			// 既に牢獄にいないので無理
 			banned_by.sendMessage("[EBan] " + ChatColor.RED + "指定されたプレイヤーはすでにEBanされていないため実行できません。");
 			return false;
 		}
-		EBan.remove(player.getUniqueId().toString());
+		//EBan.remove(player.getUniqueId().toString());
 
 		try {
 			PreparedStatement statement = MySQL.getNewPreparedStatement("SELECT * FROM eban WHERE uuid = ? ORDER BY id DESC");
@@ -216,12 +205,12 @@ public class EBan extends MyMaid2Premise {
 			}
 			return false;
 		}
-		if(!EBan.contains(player.getUniqueId().toString())){
+		if(!isEBan(player)){
 			// 既に牢獄にいないので無理
 			banned_by.sendMessage("[EBan] " + ChatColor.RED + "指定されたプレイヤーはすでにEBanされていないため実行できません。");
 			return false;
 		}
-		EBan.remove(player.getUniqueId().toString());
+		//EBan.remove(player.getUniqueId().toString());
 
 		try {
 			PreparedStatement statement = MySQL.getNewPreparedStatement("SELECT * FROM eban WHERE uuid = ? ORDER BY id DESC");
@@ -258,11 +247,11 @@ public class EBan extends MyMaid2Premise {
 			}
 			return false;
 		}
-		if(!EBan.contains(player.getUniqueId().toString())){
+		if(!isEBan(player)){
 			// 既に牢獄にいないので無理
 			return false;
 		}
-		EBan.remove(player.getUniqueId().toString());
+		//EBan.remove(player.getUniqueId().toString());
 
 		try {
 			PreparedStatement statement = MySQL.getNewPreparedStatement("SELECT * FROM eban WHERE uuid = ? ORDER BY id DESC");
@@ -290,9 +279,42 @@ public class EBan extends MyMaid2Premise {
 	 */
 	public static void Status(CommandSender sender){
 		sender.sendMessage("[EBan] " + ChatColor.RED + "----- EBan Status -----");
-		int ebancount = EBan.size();
+		//int ebancount = EBan.size();
+		int ebancount = Count();
 		sender.sendMessage("[EBan] " + ChatColor.RED + "現在、" + ebancount + "人のプレイヤーがEBanされています。");
-		if(ebancount != 0) sender.sendMessage("[EBan] " + ChatColor.RED + implode(EBan, ", "));
+		if(ebancount != 0) sender.sendMessage("[EBan] " + ChatColor.RED + implode(EBanList(), ", "));
+	}
+
+	public static int Count(){
+		try {
+			PreparedStatement statement = MySQL.getNewPreparedStatement("SELECT * FROM eban WHERE status = ?");
+			statement.setString(1, "punishing");
+			ResultSet res = statement.executeQuery();
+			if(res.next()){
+				return res.getInt(1);
+			}else{
+				return 0;
+			}
+		} catch (SQLException | ClassNotFoundException e) {
+			BugReporter(e);
+			return 0;
+		}
+	}
+
+	public static Set<String> EBanList(){
+		Set<String> EBanList = new HashSet<String>();
+		try {
+			PreparedStatement statement = MySQL.getNewPreparedStatement("SELECT * FROM eban WHERE status = ?");
+			statement.setString(1, "punishing");
+			ResultSet res = statement.executeQuery();
+			while(res.next()){
+				EBanList.add(res.getString("player"));
+			}
+			return EBanList;
+		} catch (SQLException | ClassNotFoundException e) {
+			BugReporter(e);
+			return EBanList;
+		}
 	}
 
 	/**
@@ -302,7 +324,7 @@ public class EBan extends MyMaid2Premise {
 	 * @author mine_book000
 	 */
 	public static void Status(Player player, CommandSender sender){
-		if(EBan.contains(player.getUniqueId().toString())){
+		if(isEBan(player)){
 			sender.sendMessage("[EBan] " + ChatColor.RED + "プレイヤー「" + player.getName() + "」は現在EBanされています。");
 			try {
 				PreparedStatement statement = MySQL.getNewPreparedStatement("SELECT * FROM eban WHERE uuid = ? ORDER BY id DESC");
@@ -330,7 +352,24 @@ public class EBan extends MyMaid2Premise {
 	 * @return EBanされていればtrue, されていなければfalse
 	 */
 	public static boolean isEBan(Player player){
-		return EBan.contains(player.getUniqueId().toString());
+		try {
+			PreparedStatement statement = MySQL.getNewPreparedStatement("SELECT * FROM eban WHERE uuid = ? ORDER BY id DESC LIMIT 1");
+			statement.setString(1, player.getUniqueId().toString());
+			ResultSet res = statement.executeQuery();
+			if(res.next()){
+				if(res.getString("status").equalsIgnoreCase("punishing")){
+					return true;
+				}else{
+					return false;
+				}
+			}else{
+				return false;
+			}
+		} catch (SQLException | ClassNotFoundException e) {
+			BugReporter(e);
+			return false;
+		}
+		//return EBan.contains(player.getUniqueId().toString());
 	}
 
 	/**
@@ -339,7 +378,23 @@ public class EBan extends MyMaid2Premise {
 	 * @return EBanされていればtrue, されていなければfalse
 	 */
 	public static boolean isEBan(OfflinePlayer player){
-		return EBan.contains(player.getUniqueId().toString());
+		try {
+			PreparedStatement statement = MySQL.getNewPreparedStatement("SELECT * FROM eban WHERE uuid = ? ORDER BY id DESC LIMIT 1");
+			statement.setString(1, player.getUniqueId().toString());
+			ResultSet res = statement.executeQuery();
+			if(res.next()){
+				if(res.getString("status").equalsIgnoreCase("punishing")){
+					return true;
+				}else{
+					return false;
+				}
+			}else{
+				return false;
+			}
+		} catch (SQLException | ClassNotFoundException e) {
+			BugReporter(e);
+			return false;
+		}
 	}
 
 	/**
@@ -349,7 +404,7 @@ public class EBan extends MyMaid2Premise {
 	 * @author mine_book000
 	 */
 	public static void Status(OfflinePlayer player, CommandSender sender){
-		if(EBan.contains(player.getUniqueId().toString())){
+		if(isEBan(player)){
 			sender.sendMessage("[EBan] " + ChatColor.RED + "プレイヤー「" + player.getName() + "」は現在EBanされています。");
 			try {
 				PreparedStatement statement = MySQL.getNewPreparedStatement("SELECT * FROM eban WHERE uuid = ? ORDER BY id DESC");
@@ -377,80 +432,5 @@ public class EBan extends MyMaid2Premise {
 			sb.append(glue).append(e);
 		}
 		return sb.substring(glue.length());
-	}
-
-	/**
-	 * EBan情報をセーブする。
-	 * @return 実行できたかどうか
-	 * @author mine_book000
-	 * @throws Exception IOExceptionの発生時に発生
-	 */
-	@SuppressWarnings("unchecked")
-	public static boolean SaveEBanData() throws Exception{
-		JSONArray EBanJSON = new JSONArray();
-		for(String player : EBan){
-			EBanJSON.add(player);
-		}
-		JSONObject ALLJSON = new JSONObject();
-		ALLJSON.put("EBan", EBanJSON);
-
-		try{
-			JavaPlugin plugin = JavaPlugin();
-			File file = new File(plugin.getDataFolder(), "EBan.json");
-			FileWriter filewriter = new FileWriter(file);
-
-			filewriter.write(ALLJSON.toJSONString());
-
-			filewriter.close();
-		}catch(IOException e){
-			BugReporter(e);
-			throw new Exception("IOException");
-		}
-		return true;
-	}
-
-	/**
-	 * EBan情報をロードする。
-	 * @return 実行できたかどうか
-	 * @author mine_book000
-	 * @throws Exception 何かしらのExceptionが発生したときに発生(FileNotFoundException, IOException)
-	 */
-	public static boolean LoadEBanData() throws Exception{
-		JSONParser parser = new JSONParser();
-		String json = "";
-		try{
-			JavaPlugin plugin = JavaPlugin();
-			File file = new File(plugin.getDataFolder(), "EBan.json");
-			BufferedReader br = new BufferedReader(new FileReader(file));
-
-			String separator = System.getProperty("line.separator");
-
-			String str;
-			while((str = br.readLine()) != null){
-				json += str + separator;
-			}
-			br.close();
-		}catch(FileNotFoundException e1){
-			BugReporter(e1);
-			throw new FileNotFoundException(e1.getMessage());
-		}catch(IOException e1){
-			BugReporter(e1);
-			throw new IOException(e1.getMessage());
-		}
-		JSONObject obj;
-		try {
-			obj = (JSONObject) parser.parse(json);
-		} catch (ParseException e1) {
-			obj = new JSONObject();
-		}
-		JSONArray EBanJSON;
-		if(obj.containsKey("EBan")){
-			EBanJSON = (JSONArray) obj.get("EBan");
-			for (int i = 0; i < EBanJSON.size(); i++){
-				String player = (String) EBanJSON.get(i);
-				EBan.add(player);
-			}
-		}
-		return true;
 	}
 }
