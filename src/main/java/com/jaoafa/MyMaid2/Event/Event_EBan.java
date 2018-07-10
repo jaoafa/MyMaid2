@@ -43,8 +43,8 @@ public class Event_EBan implements Listener {
 			if(!group.equalsIgnoreCase("Admin") && !group.equalsIgnoreCase("Moderator") && !group.equalsIgnoreCase("Regular")){
 				continue;
 			}
-			p.sendMessage("[EBan] " + ChatColor.DARK_PURPLE + "プレイヤー「" + player.getName() + "」は、「" + reason + "」という理由でEBanされています。");
-			p.sendMessage("[EBan] " + ChatColor.DARK_PURPLE + "詳しい情報は /eban status " + player.getName() + " でご確認ください。");
+			p.sendMessage("[EBan] " + ChatColor.RED + "プレイヤー「" + player.getName() + "」は、「" + reason + "」という理由でEBanされています。");
+			p.sendMessage("[EBan] " + ChatColor.RED + "詳しい情報は /eban status " + player.getName() + " でご確認ください。");
 		}
 	}
 

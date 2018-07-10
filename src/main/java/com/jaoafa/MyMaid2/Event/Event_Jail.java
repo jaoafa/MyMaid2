@@ -44,8 +44,8 @@ public class Event_Jail implements Listener {
 			if(!group.equalsIgnoreCase("Admin") && !group.equalsIgnoreCase("Moderator") && !group.equalsIgnoreCase("Regular")){
 				continue;
 			}
-			p.sendMessage("[Jail] " + ChatColor.DARK_PURPLE + "プレイヤー「" + player.getName() + "」は、「" + reason + "」という理由でJailされています。");
-			p.sendMessage("[Jail] " + ChatColor.DARK_PURPLE + "詳しい情報は https://jaoafa.com/user/" + player.getUniqueId().toString() + " でご確認ください。");
+			p.sendMessage("[Jail] " + ChatColor.LIGHT_PURPLE + "プレイヤー「" + player.getName() + "」は、「" + reason + "」という理由でJailされています。");
+			p.sendMessage("[Jail] " + ChatColor.LIGHT_PURPLE + "詳しい情報は https://jaoafa.com/user/" + player.getUniqueId().toString() + " でご確認ください。");
 		}
 	}
 	@EventHandler
