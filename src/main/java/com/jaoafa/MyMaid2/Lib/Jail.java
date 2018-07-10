@@ -104,13 +104,13 @@ public class Jail extends MyMaid2Premise {
 		// データベース登録なし
 
 		Bukkit.broadcastMessage("[JAIL] " + ChatColor.GREEN + "プレイヤー:「" + player.getName() + "」を牢獄リストに追加しました。");
-		JailBackupSaveTxt(player.getName(), JailType.ADD, banned_by.getName(), "");
 		DiscordSend("223582668132974594", "***Jail[追加]***: プレイヤー「" + player.getName() +"」が「" + banned_by.getName() +"」によってJailリストに追加されました。");
 		if(banned_by instanceof Player){
 			Player banned_by_player = (Player) banned_by;
 			Pointjao pointjao = new Pointjao(banned_by_player);
 			pointjao.use(REQUIRED_jao, player.getName() + "をJailに追加したため。");
 		}
+		JailBackupSaveTxt(player.getName(), JailType.ADD, banned_by.getName(), "");
 		return true;
 	}
 
@@ -158,13 +158,13 @@ public class Jail extends MyMaid2Premise {
 		// データベース登録なし
 
 		Bukkit.broadcastMessage("[JAIL] " + ChatColor.GREEN + "プレイヤー:「" + player.getName() + "」を牢獄リストに追加しました。");
-		JailBackupSaveTxt(player.getName(), JailType.ADD, banned_by.getName(), "");
 		DiscordSend("223582668132974594", "***Jail[追加]***: プレイヤー「" + player.getName() +"」が「" + banned_by.getName() +"」によってJailリストに追加されました。");
 		if(banned_by instanceof Player){
 			Player banned_by_player = (Player) banned_by;
 			Pointjao pointjao = new Pointjao(banned_by_player);
 			pointjao.use(REQUIRED_jao, player.getName() + "をJailに追加したため。");
 		}
+		JailBackupSaveTxt(player.getName(), JailType.ADD, banned_by.getName(), "");
 		return true;
 	}
 
@@ -673,8 +673,8 @@ public class Jail extends MyMaid2Premise {
 		SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
 		player.sendMessage(ChatColor.GRAY + "["+ sdf.format(new Date()) + "]" + ChatColor.GOLD + "■jaotan" + ChatColor.WHITE +  ": " + "じゃあな…！");
 		Bukkit.broadcastMessage("[JAIL] " + ChatColor.GREEN + "プレイヤー:「" + player.getName() + "」を牢獄リストから削除しました。");
-		JailBackupSaveTxt(player.getName(), JailType.REMOVE, banned_by.getName(), "");
 		DiscordSend("223582668132974594", "***Jail[削除]***: プレイヤー「" + player.getName() +"」が「" + banned_by.getName() + "」によってJailリストから削除されました");
+		JailBackupSaveTxt(player.getName(), JailType.REMOVE, banned_by.getName(), "");
 		return true;
 	}
 
@@ -705,8 +705,8 @@ public class Jail extends MyMaid2Premise {
 		area.remove(offplayer.getUniqueId().toString());
 
 		Bukkit.broadcastMessage("[JAIL] " + ChatColor.GREEN + "プレイヤー:「" + offplayer.getName() + "」を牢獄リストから削除しました。");
-		JailBackupSaveTxt(offplayer.getName(), JailType.REMOVE, banned_by.getName(), "");
 		DiscordSend("223582668132974594", "***Jail[削除]***: プレイヤー「" + offplayer.getName() +"」が「" + banned_by.getName() + "」によってJailリストから削除されました");
+		JailBackupSaveTxt(offplayer.getName(), JailType.REMOVE, banned_by.getName(), "");
 		return true;
 	}
 
@@ -744,8 +744,8 @@ public class Jail extends MyMaid2Premise {
 		area.remove(offplayer.getUniqueId().toString());
 
 		Bukkit.broadcastMessage("[JAIL] " + ChatColor.GREEN + "プレイヤー:「" + offplayer.getName() + "」を牢獄リストから削除しました。");
-		JailBackupSaveTxt(offplayer.getName(), JailType.REMOVE, banned_by.getName(), "");
 		DiscordSend("223582668132974594", "***Jail[削除]***: プレイヤー「" + offplayer.getName() +"」が「" + banned_by.getName() + "」によってJailリストから削除されました");
+		JailBackupSaveTxt(offplayer.getName(), JailType.REMOVE, banned_by.getName(), "");
 		return true;
 	}
 
