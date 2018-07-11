@@ -1,6 +1,6 @@
-name: MyMaid2
+name: ${project.artifactId}
 main: com.jaoafa.MyMaid2.MyMaid2
-version: 0.0.1
+version: ${project.version}
 description: General Plugin Version 2
 database: true
 author: mine_book000
