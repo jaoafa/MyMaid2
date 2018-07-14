@@ -18,6 +18,7 @@ import org.bukkit.event.player.PlayerBucketEmptyEvent;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import com.jaoafa.MyMaid2.Lib.EBan;
@@ -174,6 +175,16 @@ public class Event_EBan implements Listener {
 			return;
 		}
 		event.setCancelled(true);
+	}
+	@EventHandler
+    public void onJoinClearCache(PlayerJoinEvent event){
+		Player player = event.getPlayer();
+		EBan.ClearCache(player);
+	}
+	@EventHandler
+    public void onQuitClearCache(PlayerQuitEvent event){
+		Player player = event.getPlayer();
+		EBan.ClearCache(player);
 	}
 }
 

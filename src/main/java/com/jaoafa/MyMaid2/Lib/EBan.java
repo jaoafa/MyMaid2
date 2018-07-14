@@ -5,8 +5,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
+import java.util.UUID;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -85,6 +88,7 @@ public class EBan extends MyMaid2Premise {
 
 		Bukkit.broadcastMessage("[EBan] " + ChatColor.RED + "プレイヤー:「" + player.getName() + "」を「" + reason + "」という理由でEBanされました。");
 		DiscordSend("223582668132974594", "__**EBan[追加]**__: プレイヤー「" + player.getName() +"」が「" + banned_by.getName() +"」によって「" + reason + "」という理由でEBanされました。");
+		EBanCache.put(player.getUniqueId(), true);
 		return true;
 	}
 
@@ -142,6 +146,7 @@ public class EBan extends MyMaid2Premise {
 
 		Bukkit.broadcastMessage("[EBan] " + ChatColor.RED + "プレイヤー:「" + player.getName() + "」を「" + reason + "」という理由でEBanしました。");
 		DiscordSend("223582668132974594", "__**EBan[追加]**__: プレイヤー「" + player.getName() +"」が「" + banned_by.getName() +"」によって「" + reason + "」という理由でEBanしました。");
+		EBanCache.put(player.getUniqueId(), true);
 		return true;
 	}
 
@@ -228,6 +233,7 @@ public class EBan extends MyMaid2Premise {
 
 		Bukkit.broadcastMessage("[EBan] " + ChatColor.RED + "プレイヤー:「" + player.getName() + "」のEBanを解除しました。");
 		DiscordSend("223582668132974594", "__**EBan[解除]**__: プレイヤー「" + player.getName() +"」のEBanを「" + banned_by.getName() +"」によって解除されました。");
+		EBanCache.put(player.getUniqueId(), false);
 		return true;
 	}
 
@@ -269,6 +275,7 @@ public class EBan extends MyMaid2Premise {
 
 		Bukkit.broadcastMessage("[EBan] " + ChatColor.RED + "プレイヤー:「" + player.getName() + "」のEBanを解除しました。");
 		DiscordSend("223582668132974594", "__**EBan[解除]**__: プレイヤー「" + player.getName() +"」のEBanを「jaotan」によって解除されました。");
+		EBanCache.put(player.getUniqueId(), false);
 		return true;
 	}
 
@@ -363,20 +370,26 @@ public class EBan extends MyMaid2Premise {
 		}
 	}
 
+	static Map<UUID, Boolean> EBanCache = new HashMap<>();
 	/**
 	 * プレイヤーがEBanされているかどうか調べる
 	 * @param player 調べるプレイヤー
 	 * @return EBanされていればtrue, されていなければfalse
 	 */
 	public static boolean isEBan(Player player){
+		if(EBanCache.containsKey(player.getUniqueId()) && EBanCache.get(player.getUniqueId()) != null){
+			return EBanCache.get(player.getUniqueId());
+		}
 		try {
 			PreparedStatement statement = MySQL.getNewPreparedStatement("SELECT * FROM eban WHERE uuid = ? ORDER BY id DESC LIMIT 1");
 			statement.setString(1, player.getUniqueId().toString());
 			ResultSet res = statement.executeQuery();
 			if(res.next()){
 				if(res.getString("status").equalsIgnoreCase("punishing")){
+					EBanCache.put(player.getUniqueId(), true);
 					return true;
 				}else{
+					EBanCache.put(player.getUniqueId(), false);
 					return false;
 				}
 			}else{
@@ -441,6 +454,9 @@ public class EBan extends MyMaid2Premise {
 		}else{
 			sender.sendMessage("[EBan] " + ChatColor.RED + "プレイヤー「" + player.getName() + "」は現在EBanされていません。");
 		}
+	}
+	public static void ClearCache(Player player){
+		EBanCache.put(player.getUniqueId(), null);
 	}
 
 	public static <T> String implode(Set<T> list, String glue) {
