@@ -19,10 +19,12 @@ public class Event_AntiNetherPortal extends MyMaid2Premise implements Listener {
 	}
 	@EventHandler
 	public void onEntityCreatePortalEvent(EntityCreatePortalEvent event){
+		event.setCancelled(true);
 		if(event.getEntityType() != EntityType.PLAYER){
 			return;
 		}
 		Player player = (Player) event.getEntity();
+		event.setCancelled(true);
 		player.sendMessage("[AntiNetherPortal] " + ChatColor.GREEN + "負荷対策および不必要な破壊を抑制するため、ネザーポータルの生成を禁止しています。ご協力をお願いします。");
 		for(Player p: Bukkit.getServer().getOnlinePlayers()) {
 			String group = PermissionsManager.getPermissionMainGroup(p);
