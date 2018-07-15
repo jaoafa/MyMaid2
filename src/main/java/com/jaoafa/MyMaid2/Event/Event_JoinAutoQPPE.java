@@ -79,6 +79,28 @@ public class Event_JoinAutoQPPE extends MyMaid2Premise implements Listener {
 		embed.addFields("プレイヤー", "`" + implode(Bukkit.getServer().getOnlinePlayers(), ", ") + "`", false);
 
 		DiscordSend("223582668132974594", "", embed);
+
+		if(!reputation.equalsIgnoreCase("10")){
+			sendMCBansData(url, player.getName(), player.getUniqueId());
+		}
+	}
+
+	private static void sendMCBansData(String url, String player, UUID uuid){
+		JSONObject json = getHttpJson(url + "?u=" + uuid.toString());
+		if(!json.containsKey("status")){
+			return;
+		}
+
+		Boolean status = (Boolean) json.get("status");
+		if(!status){
+			return;
+		}
+		String count = (String) json.get("datacount");
+		String data = (String) json.get("data");
+
+		DiscordSend("223582668132974594", "-----: MCBans Ban DATA / " + player + " :-----\n"
+				+ "Ban: " + count + "\n"
+				+ data);
 	}
 
 	private static JSONObject getHttpJson(String address){
