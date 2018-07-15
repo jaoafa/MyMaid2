@@ -104,8 +104,8 @@ public class Event_PlayerCheckPreLogin extends MyMaid2Premise implements Listene
 		event.disallow(Result.KICK_FULL,
 				ChatColor.RED + "[Login Denied! - Reason: " + reason + "]\n"
 						+ ChatColor.RESET + message + "\n"
-						+ ChatColor.RESET + ChatColor.WHITE + "もしこの判定が誤判定と思われる場合は、サイト内お問い合わせからお問い合わせを行ってください。\n"
-						+ "公式Discordでお問い合わせをして頂いても構いません。");
+						+ ChatColor.RESET + ChatColor.WHITE + "もしこの判定が誤判定と思われる場合は、公式Discordからお問い合わせを行ってください。\n"
+						+ "サイト内お問い合わせでお問い合わせをして頂いても構いません。");
 		for(Player p: Bukkit.getServer().getOnlinePlayers()) {
 			String group = PermissionsManager.getPermissionMainGroup(p);
 			if(group.equalsIgnoreCase("Admin") || group.equalsIgnoreCase("Moderator") || group.equalsIgnoreCase("Regular")) {

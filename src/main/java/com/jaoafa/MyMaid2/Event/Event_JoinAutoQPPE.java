@@ -52,7 +52,7 @@ public class Event_JoinAutoQPPE extends MyMaid2Premise implements Listener {
 		String reputation = "取得失敗";
 		if(!status){
 			plugin.getLogger().warning("Reputationチェックが正常に完了しませんでした。");
-			return;
+			// return;
 		}else{
 			reputation = (String) json.get("reputation");
 		}

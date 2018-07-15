@@ -61,6 +61,7 @@ import com.jaoafa.MyMaid2.Event.Event_AntiProblemCommand;
 import com.jaoafa.MyMaid2.Event.Event_AntiTNTMinecart;
 import com.jaoafa.MyMaid2.Event.Event_AntiWither;
 import com.jaoafa.MyMaid2.Event.Event_Antijaoium;
+import com.jaoafa.MyMaid2.Event.Event_BanChecker;
 import com.jaoafa.MyMaid2.Event.Event_BanLogger;
 import com.jaoafa.MyMaid2.Event.Event_ChatSpamKickDisable;
 import com.jaoafa.MyMaid2.Event.Event_CommandBlockLogger;
@@ -235,10 +236,10 @@ public class MyMaid2 extends JavaPlugin implements Listener {
 	 * @author mine_book000
 	 */
 	private void Import_Task(){
-		new AFKChecker().runTaskTimer(this, 0L, 1200L);
-		new TPSChange().runTaskTimer(this, 0L, 1200L);
+		new AFKChecker().runTaskTimerAsynchronously(this, 0L, 1200L);
+		new TPSChange().runTaskTimerAsynchronously(this, 0L, 1200L);
 		new AutoMessenger().runTaskTimerAsynchronously(this, 0L, 12000L);
-		new Team1000Observer().runTaskTimer(this, 0L, 1200L);
+		new Team1000Observer().runTaskTimerAsynchronously(this, 0L, 1200L);
 	}
 
 	/**
@@ -280,6 +281,7 @@ public class MyMaid2 extends JavaPlugin implements Listener {
 		registEvent(new Event_BanLogger(this));// 2018/06/10
 		registEvent(new Event_OnlineTime(this));// 2018/07/12
 		registEvent(new Event_AntiNetherPortal(this)); // 2018/07/14
+		registEvent(new Event_BanChecker(this)); // 2018/07/15
 	}
 
 	/**

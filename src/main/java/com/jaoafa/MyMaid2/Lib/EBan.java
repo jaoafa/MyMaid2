@@ -414,8 +414,10 @@ public class EBan extends MyMaid2Premise {
 			ResultSet res = statement.executeQuery();
 			if(res.next()){
 				if(res.getString("status").equalsIgnoreCase("punishing")){
+					EBanCache.put(player.getUniqueId(), true);
 					return true;
 				}else{
+					EBanCache.put(player.getUniqueId(), false);
 					return false;
 				}
 			}else{

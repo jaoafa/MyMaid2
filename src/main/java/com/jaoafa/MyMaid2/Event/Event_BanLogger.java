@@ -48,6 +48,7 @@ public class Event_BanLogger extends MyMaid2Premise implements Listener {
 				statement.setString(3, "gban");
 				statement.setString(4, sender);
 				statement.setString(5, reason);
+				statement.executeUpdate();
 			}catch(SQLException | ClassNotFoundException e){
 				BugReporter(e);
 			}
@@ -66,6 +67,8 @@ public class Event_BanLogger extends MyMaid2Premise implements Listener {
 			if(EBan.isEBan(offplayer)){
 				EBan.Remove(offplayer);
 			}
+
+
 		}else if(event.isLocalBan()){
 			Bukkit.broadcastMessage("[BANDATA] " + ChatColor.GREEN + "プレイヤー「" + playername + "」がプレイヤー「" + sender +"」によってLBanされました。");
 			Bukkit.broadcastMessage("[BANDATA] " + ChatColor.GREEN + "理由「" + reason + "」");
@@ -79,6 +82,7 @@ public class Event_BanLogger extends MyMaid2Premise implements Listener {
 				statement.setString(3, "lban");
 				statement.setString(4, sender);
 				statement.setString(5, reason);
+				statement.executeUpdate();
 			}catch(SQLException | ClassNotFoundException e){
 				BugReporter(e);
 			}
@@ -103,6 +107,7 @@ public class Event_BanLogger extends MyMaid2Premise implements Listener {
 				statement.setString(3, "tban");
 				statement.setString(4, sender);
 				statement.setString(5, reason);
+				statement.executeUpdate();
 			}catch(SQLException | ClassNotFoundException e){
 				BugReporter(e);
 			}
