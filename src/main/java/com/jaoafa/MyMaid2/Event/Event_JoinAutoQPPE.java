@@ -86,7 +86,7 @@ public class Event_JoinAutoQPPE extends MyMaid2Premise implements Listener {
 	}
 
 	private static void sendMCBansData(String url, String player, UUID uuid){
-		JSONObject json = getHttpJson(url + "?u=" + uuid.toString());
+		JSONObject json = getHttpJson(url + "?u=" + uuid.toString() + "&data");
 		if(!json.containsKey("status")){
 			return;
 		}
