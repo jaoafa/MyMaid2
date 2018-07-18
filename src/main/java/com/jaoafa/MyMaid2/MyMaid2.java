@@ -58,6 +58,7 @@ import com.jaoafa.MyMaid2.Command.Cmd_jao;
 import com.jaoafa.MyMaid2.Event.Event_AFK;
 import com.jaoafa.MyMaid2.Event.Event_AntiNetherPortal;
 import com.jaoafa.MyMaid2.Event.Event_AntiProblemCommand;
+import com.jaoafa.MyMaid2.Event.Event_AntiQDTeleport;
 import com.jaoafa.MyMaid2.Event.Event_AntiTNTMinecart;
 import com.jaoafa.MyMaid2.Event.Event_AntiWither;
 import com.jaoafa.MyMaid2.Event.Event_Antijaoium;
@@ -282,6 +283,7 @@ public class MyMaid2 extends JavaPlugin implements Listener {
 		registEvent(new Event_OnlineTime(this));// 2018/07/12
 		registEvent(new Event_AntiNetherPortal(this)); // 2018/07/14
 		registEvent(new Event_BanChecker(this)); // 2018/07/15
+		registEvent(new Event_AntiQDTeleport(this)); // 2018/07/18
 	}
 
 	/**
