@@ -122,10 +122,9 @@ public class Event_AntiQDTeleport extends MyMaid2Premise implements Listener {
 	}
 	boolean TeleportFlag(Player player){
 		String group = PermissionsManager.getPermissionMainGroup(player);
-		if(!group.equalsIgnoreCase("Limited") || !group.equalsIgnoreCase("QPPE") || !group.equalsIgnoreCase("Default")){
-			return false;
-		}
-		return true;
+		return group.equalsIgnoreCase("Limited") ||
+				group.equalsIgnoreCase("QPPE") ||
+				group.equalsIgnoreCase("Default");
 	}
 	String toString(Location loc){
 		return loc.getBlockX() + " " + loc.getBlockY() + " " + loc.getBlockZ();
