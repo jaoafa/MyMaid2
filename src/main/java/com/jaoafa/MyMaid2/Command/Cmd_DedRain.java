@@ -41,6 +41,11 @@ public class Cmd_DedRain extends MyMaid2Premise implements CommandExecutor {
 				if(Bukkit.getOfflinePlayers().length != 1){
 					if(sender instanceof Player){
 						Player player = (Player) sender;
+						try{
+							task = new Task_DedRain_Stop(plugin, player).runTaskLater(plugin, 12000L);
+						}catch(NoClassDefFoundError e){
+							SendMessage(sender, cmd, "不具合により降水禁止設定をオフにすることができませんでした。サーバの再起動が必要です。");
+						}
 						try {
 							Pointjao jaoP = new Pointjao(player);
 							if(!jaoP.has(10)){
@@ -52,7 +57,6 @@ public class Cmd_DedRain extends MyMaid2Premise implements CommandExecutor {
 						} catch (ClassNotFoundException | NullPointerException | SQLException e) {
 							BugReporter(e);
 						}
-						task = new Task_DedRain_Stop(plugin, player).runTaskLater(plugin, 12000L);
 						SendMessage(sender, cmd, "10分後に降水禁止設定が戻されます。");
 					}
 				}

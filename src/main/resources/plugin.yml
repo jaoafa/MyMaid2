@@ -307,3 +307,13 @@ commands:
       usage: /<command>
       permission: mymaid.chuocity
       permission-message: You do not have permission to perform this command.
+   show:
+      description: 姿が見えるようにします。
+      usage: /<command>
+      permission: mymaid.show
+      permission-message: You do not have permission to perform this command.
+   hide:
+      description: 姿を隠します。
+      usage: /<command>
+      permission: mymaid.hide
+      permission-message: You do not have permission to perform this command.
