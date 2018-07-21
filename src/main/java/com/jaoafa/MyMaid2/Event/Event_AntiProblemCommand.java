@@ -399,7 +399,7 @@ public class Event_AntiProblemCommand extends MyMaid2Premise implements Listener
 				return;
 			}else if(args[0].equalsIgnoreCase("/pl") || args[0].equalsIgnoreCase("/bukkit:pl") || args[0].equalsIgnoreCase("/plugins") || args[0].equalsIgnoreCase("/bukkit:plugins")){
 				String group = PermissionsManager.getPermissionMainGroup(player);
-				if(group.equalsIgnoreCase("Admin") || group.equalsIgnoreCase("Moderator")) {
+				if(group.equalsIgnoreCase("Admin") || group.equalsIgnoreCase("Moderator") || group.equalsIgnoreCase("Regular")) {
 					return;
 				}
 				// /plコマンド規制
@@ -519,7 +519,7 @@ public class Event_AntiProblemCommand extends MyMaid2Premise implements Listener
 				return;
 			}else if(args[0].equalsIgnoreCase("/minecraft:?") || args[0].equalsIgnoreCase("/?") || args[0].equalsIgnoreCase("/bukkit:?") || args[0].equalsIgnoreCase("/minecraft:help") ||  args[0].equalsIgnoreCase("/help") || args[0].equalsIgnoreCase("/bukkit:help")){
 				String group = PermissionsManager.getPermissionMainGroup(player);
-				if(group.equalsIgnoreCase("Admin") || group.equalsIgnoreCase("Moderator")) {
+				if(group.equalsIgnoreCase("Admin") || group.equalsIgnoreCase("Moderator") || group.equalsIgnoreCase("Regular")) {
 					return;
 				}
 				// helpコマンド規制
@@ -596,7 +596,7 @@ public class Event_AntiProblemCommand extends MyMaid2Premise implements Listener
 				return;
 			}else if(args[0].equalsIgnoreCase("/ver") || args[0].equalsIgnoreCase("/bukkit:ver") || args[0].equalsIgnoreCase("/version") || args[0].equalsIgnoreCase("/bukkit:version")){
 				String group = PermissionsManager.getPermissionMainGroup(player);
-				if(group.equalsIgnoreCase("Admin") || group.equalsIgnoreCase("Moderator")) {
+				if(group.equalsIgnoreCase("Admin") || group.equalsIgnoreCase("Moderator") || group.equalsIgnoreCase("Regular")) {
 					return;
 				}
 				try {
