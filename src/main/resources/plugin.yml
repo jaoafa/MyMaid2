@@ -317,3 +317,13 @@ commands:
       usage: /<command>
       permission: mymaid.hide
       permission-message: You do not have permission to perform this command.
+   ded:
+      description: 死亡地点にテレポートします。
+      usage: /<command>
+      permission: mymaid.ded
+      permission-message: You do not have permission to perform this command.
+   restarttitle:
+      description: Discordで実行される/restartのタイトル表示用のコマンドです。プレイヤー・コマンドブロックからは使用できません。
+      usage: /<command>
+      permission: mymaid.restarttitle
+      permission-message: You do not have permission to perform this command.

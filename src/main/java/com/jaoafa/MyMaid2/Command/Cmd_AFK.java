@@ -79,10 +79,10 @@ public class Cmd_AFK extends MyMaid2Premise implements CommandExecutor {
 
 		try{
 			BukkitTask task = new Task_AFKING(JavaPlugin(), player).runTaskTimer(JavaPlugin(), 0L, 5L);
-			Cmd_AFK.afking.put(player.getName(), task);
+			afking.put(player.getName(), task);
 		}catch(java.lang.NoClassDefFoundError e){
 			BugReporter(e);
-			Cmd_AFK.afking.put(player.getName(), null);
+			afking.remove(player.getName());
 		}
 	}
 

@@ -23,6 +23,7 @@ import com.jaoafa.MyMaid2.Command.Cmd_Ck;
 import com.jaoafa.MyMaid2.Command.Cmd_Cmdb;
 import com.jaoafa.MyMaid2.Command.Cmd_Color;
 import com.jaoafa.MyMaid2.Command.Cmd_DT;
+import com.jaoafa.MyMaid2.Command.Cmd_Ded;
 import com.jaoafa.MyMaid2.Command.Cmd_DedRain;
 import com.jaoafa.MyMaid2.Command.Cmd_DelHome;
 import com.jaoafa.MyMaid2.Command.Cmd_DiscordLink;
@@ -46,6 +47,7 @@ import com.jaoafa.MyMaid2.Command.Cmd_Player;
 import com.jaoafa.MyMaid2.Command.Cmd_Protector;
 import com.jaoafa.MyMaid2.Command.Cmd_Report;
 import com.jaoafa.MyMaid2.Command.Cmd_Respawn;
+import com.jaoafa.MyMaid2.Command.Cmd_RestartTitle;
 import com.jaoafa.MyMaid2.Command.Cmd_Selector;
 import com.jaoafa.MyMaid2.Command.Cmd_SetHome;
 import com.jaoafa.MyMaid2.Command.Cmd_Show;
@@ -70,6 +72,7 @@ import com.jaoafa.MyMaid2.Event.Event_BanLogger;
 import com.jaoafa.MyMaid2.Event.Event_ChatSpamKickDisable;
 import com.jaoafa.MyMaid2.Event.Event_CommandBlockLogger;
 import com.jaoafa.MyMaid2.Event.Event_CommandBlockVariable;
+import com.jaoafa.MyMaid2.Event.Event_Ded;
 import com.jaoafa.MyMaid2.Event.Event_DedRain;
 import com.jaoafa.MyMaid2.Event.Event_EBan;
 import com.jaoafa.MyMaid2.Event.Event_FarmNOBreak;
@@ -221,8 +224,10 @@ public class MyMaid2 extends JavaPlugin implements Listener {
 		getCommand("enderchest").setExecutor(new Cmd_EnderChest(this)); // 2018/06/08
 		getCommand("protector").setExecutor(new Cmd_Protector(this)); // 2018/06/30
 		getCommand("chuocity").setExecutor(new Cmd_ChuoCity(this)); // 2018/06/30
-		getCommand("show").setExecutor(new Cmd_Show(this));
-		getCommand("hide").setExecutor(new Cmd_Hide(this));
+		getCommand("show").setExecutor(new Cmd_Show(this)); // 2018/07/19
+		getCommand("hide").setExecutor(new Cmd_Hide(this)); // 2018/07/19
+		getCommand("ded").setExecutor(new Cmd_Ded(this)); // 2018/07/22
+		getCommand("restarttitle").setExecutor(new Cmd_RestartTitle(this)); // 2018/07/25
 	}
 
 	/**
@@ -290,6 +295,7 @@ public class MyMaid2 extends JavaPlugin implements Listener {
 		registEvent(new Event_BanChecker(this)); // 2018/07/15
 		registEvent(new Event_AntiQDTeleport(this)); // 2018/07/18
 		registEvent(new Event_AntiPotion(this)); // 2018/07/19
+		registEvent(new Event_Ded(this)); // 2018/07/22
 	}
 
 	/**
