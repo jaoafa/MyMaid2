@@ -23,6 +23,9 @@ public class Event_FarmNOBreak extends MyMaid2Premise implements Listener {
 	}
 	@EventHandler
 	public void onFrom(EntityChangeBlockEvent event){
+		if(event.getBlock().getWorld().getName().equalsIgnoreCase("Summer2018")){
+			return;
+		}
 		if(event.getBlock().getType() == Material.SOIL){
 			event.setCancelled(true);
 		}

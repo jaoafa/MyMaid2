@@ -327,3 +327,11 @@ commands:
       usage: /<command>
       permission: mymaid.restarttitle
       permission-message: You do not have permission to perform this command.
+   summer:
+      description: Summer2018ワールドに関連した作業が行えます。
+      usage: |-
+             /summer exchange <jP|jSP> <ExchangePoint>: jaoPointとjaoSurvivalPoint(/money)の交換をします。
+             jP: jaoSurvivalPointからjaoPointに交換します。
+             jSP: jaoPointからjaoSurvivalPointに交換します。
+      permission: mymaid.summer
+      permission-message: You do not have permission to perform this command.

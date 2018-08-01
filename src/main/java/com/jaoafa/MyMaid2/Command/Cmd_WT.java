@@ -44,9 +44,9 @@ public class Cmd_WT extends MyMaid2Premise implements CommandExecutor {
 				return true;
 			}else if(args[0].equalsIgnoreCase("2")){
 				// Jao_Afa_Old
-				World world = Bukkit.getServer().getWorld("Jao_Afa_Old");
+				World world = Bukkit.getServer().getWorld("Summer2018");
 				if(world == null){
-					SendMessage(sender, cmd, "「Jao_Afa_Old」ワールドの取得に失敗しました。");
+					SendMessage(sender, cmd, "「Summer2018」ワールドの取得に失敗しました。");
 					return true;
 				}
 				Location loc = new Location(world, 0, 0, 0, 0, 0);
@@ -54,7 +54,7 @@ public class Cmd_WT extends MyMaid2Premise implements CommandExecutor {
 				loc = new Location(world, 0, y, 0, 0, 0);
 				loc.add(0.5f,0f,0.5f);
 				player.teleport(loc);
-				SendMessage(sender, cmd, "「Jao_Afa_Old」ワールドにテレポートしました。");
+				SendMessage(sender, cmd, "「Summer2018」ワールドにテレポートしました。");
 				return true;
 			}else if(args[0].equalsIgnoreCase("3")){
 				// ReJao_Afa

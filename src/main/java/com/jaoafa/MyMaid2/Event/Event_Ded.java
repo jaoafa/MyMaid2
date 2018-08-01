@@ -22,6 +22,10 @@ public class Event_Ded extends MyMaid2Premise implements Listener {
 		Player player = event.getEntity();
 		Location loc = player.getLocation();
 
+		if(loc.getWorld().getName().equalsIgnoreCase("Summer2018")){
+			return;
+		}
+
 		Cmd_Ded.ded.put(player.getName(), loc);
 		player.sendMessage("[DED] " + ChatColor.GREEN + "死亡した場所に戻るには「/ded」コマンドが使用できます。");
 	}

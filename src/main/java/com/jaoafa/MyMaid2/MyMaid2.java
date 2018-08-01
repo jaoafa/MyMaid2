@@ -9,6 +9,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.Plugin;
+import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import com.jaoafa.MyMaid2.Command.Cmd_AFK;
@@ -53,6 +54,7 @@ import com.jaoafa.MyMaid2.Command.Cmd_SetHome;
 import com.jaoafa.MyMaid2.Command.Cmd_Show;
 import com.jaoafa.MyMaid2.Command.Cmd_Sign;
 import com.jaoafa.MyMaid2.Command.Cmd_Spawn;
+import com.jaoafa.MyMaid2.Command.Cmd_Summer;
 import com.jaoafa.MyMaid2.Command.Cmd_Test;
 import com.jaoafa.MyMaid2.Command.Cmd_Testment;
 import com.jaoafa.MyMaid2.Command.Cmd_Var;
@@ -93,6 +95,7 @@ import com.jaoafa.MyMaid2.Event.Event_QD_NOTSpectator;
 import com.jaoafa.MyMaid2.Event.Event_QuitHeaderFooterChange;
 import com.jaoafa.MyMaid2.Event.Event_SKKColor;
 import com.jaoafa.MyMaid2.Event.Event_SignClick;
+import com.jaoafa.MyMaid2.Event.Event_Summer2018;
 import com.jaoafa.MyMaid2.Event.Event_VoteMissFillerEvent;
 import com.jaoafa.MyMaid2.Event.Event_VoteReceived;
 import com.jaoafa.MyMaid2.Lib.InventoryManager;
@@ -108,6 +111,8 @@ import com.jaoafa.MyMaid2.Task.Team1000Observer;
 import com.sk89q.worldedit.bukkit.WorldEditPlugin;
 import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
 
+import net.milkbowl.vault.economy.Economy;
+
 public class MyMaid2 extends JavaPlugin implements Listener {
 	public static String discordtoken = null;
 	public static String serverchat_id = null;
@@ -118,6 +123,8 @@ public class MyMaid2 extends JavaPlugin implements Listener {
 	public static Connection c = null;
 	public static long ConnectionCreate = 0;
 	public static String MCBansRepAPI = null;
+
+	public static Economy econ = null;
 
 	public static JavaPlugin javaplugin = null;
 	public static MyMaid2 mymaid2 = null;
@@ -144,6 +151,7 @@ public class MyMaid2 extends JavaPlugin implements Listener {
 		Load_Plugin("jaoSuperAchievement");
 		Load_Plugin("MinecraftJPVoteMissFiller");
 		Load_Plugin("MCBans");
+		Load_Plugin("Vault");
 		if(!this.isEnabled()) return;
 
 		// PermissionsManager初期設定
@@ -171,6 +179,20 @@ public class MyMaid2 extends JavaPlugin implements Listener {
 		} catch (Exception e) {
 			MyMaid2Premise.BugReporter(e);
 		}
+		RegisteredServiceProvider<Economy> rsp = getServer().getServicesManager().getRegistration(Economy.class);
+        if (rsp == null) {
+        	getLogger().info("RegisteredServiceProvider<Economy> is null.");
+        	getLogger().info("Disable MyMaid...");
+			getServer().getPluginManager().disablePlugin(this);
+			return;
+        }
+        econ = rsp.getProvider();
+        if (econ == null) {
+        	getLogger().info("rsp.getProvider() is null.");
+        	getLogger().info("Disable MyMaid...");
+			getServer().getPluginManager().disablePlugin(this);
+			return;
+        }
 		getLogger().info("--------------------------------------------------");
 	}
 
@@ -228,6 +250,7 @@ public class MyMaid2 extends JavaPlugin implements Listener {
 		getCommand("hide").setExecutor(new Cmd_Hide(this)); // 2018/07/19
 		getCommand("ded").setExecutor(new Cmd_Ded(this)); // 2018/07/22
 		getCommand("restarttitle").setExecutor(new Cmd_RestartTitle(this)); // 2018/07/25
+		getCommand("summer").setExecutor(new Cmd_Summer(this)); // 2018/08/01
 	}
 
 	/**
@@ -296,6 +319,7 @@ public class MyMaid2 extends JavaPlugin implements Listener {
 		registEvent(new Event_AntiQDTeleport(this)); // 2018/07/18
 		registEvent(new Event_AntiPotion(this)); // 2018/07/19
 		registEvent(new Event_Ded(this)); // 2018/07/22
+		registEvent(new Event_Summer2018(this)); // 2018/07/30
 	}
 
 	/**
@@ -370,8 +394,6 @@ public class MyMaid2 extends JavaPlugin implements Listener {
 			Cmd_Account.jaoAccountAPI = (String) conf.get("jaoAccountAPI");
 		}
 	}
-
-
 
 	/**
 	 * 連携プラグイン確認

@@ -3,6 +3,7 @@ package com.jaoafa.MyMaid2.Event;
 import java.util.logging.Logger;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
@@ -67,6 +68,12 @@ public class Event_AntiQDTeleport extends MyMaid2Premise implements Listener {
 					if(TeleportFlag(player)){ // 実行者LQD
 						if(DEBUG) LOGGER.info("スペクテイタープレイヤーにテレポートしようとしたため規制しました。");
 						event.setCancelled(true);
+					}else{
+						if(from_player.getGameMode() != GameMode.SPECTATOR){
+							if(DEBUG) LOGGER.info("スペクテイタープレイヤーにテレポートしようとしたため規制しました。");
+							player.sendMessage("[GAMEMODE] " + ChatColor.GREEN + "プレイヤー「" + to_player.getName() + "」はスペクテイターモードのためテレポートできません。");
+							event.setCancelled(true);
+						}
 					}
 				}
 			}else if(args.length == 4){ // /tp ~ ~ ~

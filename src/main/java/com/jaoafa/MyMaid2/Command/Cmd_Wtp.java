@@ -38,6 +38,11 @@ public class Cmd_Wtp extends MyMaid2Premise implements CommandExecutor {
 				return true;
 			}
 
+			if(world.getName().equalsIgnoreCase("Summer2018")){
+				SendMessage(sender, cmd, "ワールド「Summer2018」へはテレポートできません。");
+				return true;
+			}
+
 			int x;
 			try{
 				x = Integer.parseInt(args[1]);
@@ -79,6 +84,11 @@ public class Cmd_Wtp extends MyMaid2Premise implements CommandExecutor {
 			World world = plugin.getServer().getWorld(worldname);
 			if(world == null){
 				SendMessage(sender, cmd, "指定されたワールドは見つかりません。");
+				return true;
+			}
+
+			if(world.getName().equalsIgnoreCase("Summer2018")){
+				SendMessage(sender, cmd, "ワールド「Summer2018」へはテレポートできません。");
 				return true;
 			}
 

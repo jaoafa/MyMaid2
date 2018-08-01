@@ -46,6 +46,11 @@
 			<id>mikeprimm-repo</id>
 			<url>http://repo.mikeprimm.com/</url>
 		</repository>
+		<!-- Vault API -->
+		<repository>
+			<id>vault-repo</id>
+			<url>http://nexus.hc.to/content/repositories/pub_releases</url>
+		</repository>
 	</repositories>
 
 	<dependencies>
@@ -159,6 +164,12 @@
 			<groupId>com.jaoafa</groupId>
 			<artifactId>JaoReputation</artifactId>
 			<version>0.0.1</version>
+		</dependency>
+		<!-- Vault API -->
+		<dependency>
+			<groupId>net.milkbowl.vault</groupId>
+			<artifactId>VaultAPI</artifactId>
+			<version>1.6</version>
 		</dependency>
 	</dependencies>
 </project>
