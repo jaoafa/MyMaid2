@@ -1,5 +1,8 @@
 package com.jaoafa.MyMaid2.Event;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
@@ -141,6 +144,24 @@ public class Event_Summer2018 extends MyMaid2Premise implements Listener {
 		if(NowNeed == 0){
 			SendSummer2018(ChatColor.GOLD + "[Summer2018]" + " " + ChatColor.RESET + "まもなく朝がやってきます…！");
 			Bukkit.getWorld("Summer2018").setTime(0L);
+		}else{
+			Set<String> notsleeping = new HashSet<>();
+			for(Player p : Bukkit.getOnlinePlayers()){
+				if(!p.getWorld().getName().equalsIgnoreCase("Summer2018")){
+					continue;
+				}
+				if(p.isSleeping()){
+					continue;
+				}
+				if(Cmd_AFK.getAFKing(p)){
+					continue;
+				}
+				if(p.getGameMode() == GameMode.CREATIVE || p.getGameMode() == GameMode.SPECTATOR){
+					continue;
+				}
+				notsleeping.add(player.getName());
+			}
+			SendSummer2018(ChatColor.GOLD + "[Summer2018]" + " " + ChatColor.RESET + "寝ていないプレイヤー: " + implode(notsleeping, ", "));
 		}
 	}
 

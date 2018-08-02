@@ -32,6 +32,7 @@ import com.jaoafa.MyMaid2.Command.Cmd_EBan;
 import com.jaoafa.MyMaid2.Command.Cmd_Elytra;
 import com.jaoafa.MyMaid2.Command.Cmd_EnderChest;
 import com.jaoafa.MyMaid2.Command.Cmd_G;
+import com.jaoafa.MyMaid2.Command.Cmd_GLookup;
 import com.jaoafa.MyMaid2.Command.Cmd_Hat;
 import com.jaoafa.MyMaid2.Command.Cmd_Head;
 import com.jaoafa.MyMaid2.Command.Cmd_Hide;
@@ -251,6 +252,7 @@ public class MyMaid2 extends JavaPlugin implements Listener {
 		getCommand("ded").setExecutor(new Cmd_Ded(this)); // 2018/07/22
 		getCommand("restarttitle").setExecutor(new Cmd_RestartTitle(this)); // 2018/07/25
 		getCommand("summer").setExecutor(new Cmd_Summer(this)); // 2018/08/01
+		getCommand("glookup").setExecutor(new Cmd_GLookup(this)); // 2018/08/02
 	}
 
 	/**

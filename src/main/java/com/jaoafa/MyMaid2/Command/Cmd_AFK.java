@@ -82,7 +82,7 @@ public class Cmd_AFK extends MyMaid2Premise implements CommandExecutor {
 			afking.put(player.getName(), task);
 		}catch(java.lang.NoClassDefFoundError e){
 			BugReporter(e);
-			afking.remove(player.getName());
+			afking.put(player.getName(), null);
 		}
 	}
 

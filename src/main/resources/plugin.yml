@@ -335,3 +335,8 @@ commands:
              jSP: jaoPointからjaoSurvivalPointに交換します。
       permission: mymaid.summer
       permission-message: You do not have permission to perform this command.
+   glookup:
+      description: プレイヤーのゲームモードを調べます。
+      usage: /<command>
+      permission: mymaid.glookup
+      permission-message: You do not have permission to perform this command.
