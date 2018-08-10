@@ -78,6 +78,10 @@ public class Event_JoinAutoQPPE extends MyMaid2Premise implements Listener {
 		embed.addFields("プレイヤー数", Bukkit.getServer().getOnlinePlayers().size() + "人", false);
 		embed.addFields("プレイヤー", "`" + implode(Bukkit.getServer().getOnlinePlayers(), ", ") + "`", false);
 
+		if(jaotanAutoUp){
+			embed.addFields("ブロック編集等のデータ", "https://jaoafa.com/tomachi/co.php?player=" + player.getName(), false);
+		}
+
 		DiscordSend("223582668132974594", "", embed);
 
 		if(!reputation.equalsIgnoreCase("10")){
@@ -98,9 +102,9 @@ public class Event_JoinAutoQPPE extends MyMaid2Premise implements Listener {
 		String count = (String) json.get("datacount");
 		String data = (String) json.get("data");
 
-		DiscordSend("223582668132974594", "-----: MCBans Ban DATA / " + player + " :-----\n"
+		DiscordSend("223582668132974594", "**-----: MCBans Ban DATA / `" + player + "` :-----**\n"
 				+ "Ban: " + count + "\n"
-				+ data);
+				+ "```" + data + "```");
 	}
 
 	private static JSONObject getHttpJson(String address){

@@ -159,7 +159,10 @@ public class Event_Summer2018 extends MyMaid2Premise implements Listener {
 				if(p.getGameMode() == GameMode.CREATIVE || p.getGameMode() == GameMode.SPECTATOR){
 					continue;
 				}
-				notsleeping.add(player.getName());
+				if(player.getName().equalsIgnoreCase(p.getName())){
+					continue;
+				}
+				notsleeping.add(p.getName());
 			}
 			SendSummer2018(ChatColor.GOLD + "[Summer2018]" + " " + ChatColor.RESET + "寝ていないプレイヤー: " + implode(notsleeping, ", "));
 		}

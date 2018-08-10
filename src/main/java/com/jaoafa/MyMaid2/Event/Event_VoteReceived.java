@@ -1,8 +1,10 @@
 package com.jaoafa.MyMaid2.Event;
 
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Random;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -100,6 +102,24 @@ public class Event_VoteReceived extends MyMaid2Premise implements Listener {
 			oldjao = "" + pointjao.get();
 			pointjao.add(VOTEPOINT, sdf.format(new Date()) + "の投票ボーナス");
 			newjao = "" + pointjao.get();
+
+
+			try {
+				SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+				Date start = format.parse("2018/08/12 00:00:00");
+				Date end = format.parse("2017/08/31 23:59:59");
+				if(isPeriod(start, end)){
+					Random rnd = new Random();
+	    			int random = rnd.nextInt(40)+11;
+					pointjao.add(random, sdf.format(new Date()) + "の投票ボーナス (サバイバルイベント分)");
+
+					Bukkit.broadcastMessage("[jaoPoint] " + ChatColor.GREEN + name + "さんがサバイバルイベント投票ボーナスによってjaoポイントを追加で" + random + "ポイント追加しました。");
+	    			DiscordSend(name + "さんがサバイバルイベント投票ボーナスによってjaoポイントを追加で" + random + "ポイント追加しました。");
+				}
+			} catch (ParseException e) {
+				BugReporter(e);
+			}
+
 		}catch(NullPointerException e){
 			DiscordSend("254166905852657675", ":outbox_tray:**投票受信エラー**: " + name + "のプレイヤーデータが取得できなかったため、投票処理(ポイント追加)が正常に行われませんでした。");
 			return;

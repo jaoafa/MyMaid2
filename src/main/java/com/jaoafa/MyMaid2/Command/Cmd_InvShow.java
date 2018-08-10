@@ -48,14 +48,17 @@ public class Cmd_InvShow extends MyMaid2Premise implements CommandExecutor {
 			}
 			PlayerInventory inv = player_show.getInventory();
 			Inventory inventory = Bukkit.getServer().createInventory(player, 5 * 9, player_show.getName() + "のインベントリ");
+			/*
 			ItemStack[] armordata = inv.getArmorContents();
 			for(int n=0; n != armordata.length; n++){
 				inventory.setItem(n, armordata[n]);
 			}
 
+			inventory.setItem(8, inv.getItemInOffHand());*/
+
 			ItemStack[] invdata = inv.getContents();
 			for(int n=0; n != invdata.length; n++){
-				inventory.setItem(n + 9, invdata[n]);
+				inventory.setItem(n, invdata[n]);
 			}
 			player.openInventory(inventory);
 			return true;
