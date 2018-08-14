@@ -212,8 +212,8 @@ public class SKKColors extends MyMaid2Premise {
 			PlayerVoteData pvd = new PlayerVoteData(player);
 			if(group.equalsIgnoreCase("Limited")){
 				return ChatColor.BLACK;
-				/*}else if(EBan.isEBan(player)){
-			return ChatColor.DARK_GRAY;*/
+			}else if(EBan.isEBan(player)){
+				return ChatColor.DARK_GRAY;
 			}else if(Cmd_Color.color.containsKey(player.getUniqueId().toString())){
 				return Cmd_Color.color.get(player.getUniqueId().toString());
 			}else if(pvd.exists()){

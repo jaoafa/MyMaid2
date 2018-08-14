@@ -107,7 +107,7 @@ public class Event_VoteReceived extends MyMaid2Premise implements Listener {
 			try {
 				SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 				Date start = format.parse("2018/08/12 00:00:00");
-				Date end = format.parse("2017/08/31 23:59:59");
+				Date end = format.parse("2018/08/31 23:59:59");
 				if(isPeriod(start, end)){
 					Random rnd = new Random();
 	    			int random = rnd.nextInt(40)+11;

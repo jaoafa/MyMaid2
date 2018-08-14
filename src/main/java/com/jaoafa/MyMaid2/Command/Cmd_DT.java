@@ -1,6 +1,7 @@
 package com.jaoafa.MyMaid2.Command;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -119,6 +120,31 @@ public class Cmd_DT extends MyMaid2Premise implements CommandExecutor, TabComple
 				}
 				SendMessage(sender, cmd, "あなたから一番近い場所にあるマーカーは「" + SelectMarker.getLabel() + "」というマーカーです。");
 				SendMessage(sender, cmd, "約" + (int) distance + "ブロック程度のところにあり、「/dt " + SelectMarker.getLabel() + "」というコマンドでテレポートできます！");
+				return true;
+			}else if(args[0].equalsIgnoreCase("random")){
+				if(!(sender instanceof Player)){
+					SendMessage(sender, cmd, "このコマンドはサーバ内から実行可能です。");
+					return true;
+				}
+				Player player = (Player) sender;
+				List<Marker> markers = new ArrayList<>();
+				for(MarkerSet markerset : markerapi.getMarkerSets()){
+					for(Marker marker : markerset.getMarkers()){
+						if(!marker.getWorld().equalsIgnoreCase(player.getWorld().getName())){
+							continue;
+						}
+						markers.add(marker);
+					}
+				}
+				Collections.shuffle(markers);
+				Marker SelectMarker = markers.get(0);
+				Location loc = new Location(player.getWorld(), SelectMarker.getX(), SelectMarker.getY(), SelectMarker.getZ());
+				loc.add(0.5f, 0f, 0.5f);
+				player.teleport(loc);
+				SendMessage(sender, cmd, "あなたはランダムで選ばれた「" + SelectMarker.getLabel() + "」というマーカーにテレポートしました。");
+				TitleAPI.sendTitle(player, 2, 5, 2, "", ChatColor.AQUA +  "You have been teleported to " + SelectMarker.getLabel() + "!");
+				DiscordSend("*[" + player.getName() + ": " + player.getName() + " to " + SelectMarker.getLabel() + "]*");
+				Bukkit.broadcastMessage(ChatColor.GRAY + "[" + ChatColor.ITALIC + player.getName() + ChatColor.GRAY + ": " + ChatColor.ITALIC + player.getName() + ChatColor.GRAY + " は " + ChatColor.ITALIC + SelectMarker.getLabel() + ChatColor.GRAY + " にワープしました]");
 				return true;
 			}else{
 				// addとかdelとか以外 => マーカー名？
