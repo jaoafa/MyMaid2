@@ -160,6 +160,9 @@ public class Event_Antijaoium extends MyMaid2Premise implements Listener {
 		Inventory inventory = player.getInventory();
 		Inventory enderchestinventory = player.getEnderChest();
 		ItemStack[] is = inventory.getContents();
+		if(Jail.isJail(player)){
+			return;
+		}
 		Boolean jaoium = false;
 		for(int n=0; n < is.length; n++)
 		{
@@ -221,6 +224,9 @@ public class Event_Antijaoium extends MyMaid2Premise implements Listener {
 		Inventory inventory = player.getInventory();
 		Inventory enderchestinventory = player.getEnderChest();
 		ItemStack[] is = inventory.getContents();
+		if(Jail.isJail(player)){
+			return;
+		}
 		Boolean jaoium = false;
 		for(int n=0; n < is.length; n++)
 		{
@@ -280,6 +286,9 @@ public class Event_Antijaoium extends MyMaid2Premise implements Listener {
 		Inventory inventory = player.getInventory();
 		Inventory enderchestinventory = player.getEnderChest();
 		ItemStack[] is = inventory.getContents();
+		if(Jail.isJail(player)){
+			return;
+		}
 		Boolean jaoium = false;
 		for(int n=0; n < is.length; n++)
 		{
@@ -343,6 +352,9 @@ public class Event_Antijaoium extends MyMaid2Premise implements Listener {
 		Inventory inventory = player.getInventory();
 		Inventory enderchestinventory = player.getEnderChest();
 		ItemStack[] is = inventory.getContents();
+		if(Jail.isJail(player)){
+			return;
+		}
 		Boolean jaoium = false;
 		for(int n=0; n < is.length; n++)
 		{
