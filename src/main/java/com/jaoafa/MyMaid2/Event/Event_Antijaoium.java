@@ -2,12 +2,16 @@ package com.jaoafa.MyMaid2.Event;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.block.CommandBlock;
+import org.bukkit.command.BlockCommandSender;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -18,8 +22,10 @@ import org.bukkit.event.entity.EntityPickupItemEvent;
 import org.bukkit.event.entity.PotionSplashEvent;
 import org.bukkit.event.entity.ProjectileLaunchEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerItemHeldEvent;
+import org.bukkit.event.server.ServerCommandEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.PotionMeta;
@@ -71,6 +77,171 @@ public class Event_Antijaoium extends MyMaid2Premise implements Listener {
 		}
 		return jaoium;
 	}
+
+	// -------------- ↓jaoium取得方法判定↓ -------------- //
+	Map<String, String> Reason = new HashMap<>(); // プレイヤー : 理由
+
+	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
+	public void ByPlayerCommand(PlayerCommandPreprocessEvent event) {
+		Player player = event.getPlayer();
+		String command = event.getMessage();
+
+		if(!command.startsWith("/give")){
+			return;
+		}
+		if(!command.equalsIgnoreCase("/give")){
+			return;
+		}
+		String[] commands = command.split(" ", 0);
+		if(commands.length < 3){
+			return;
+		}
+
+		String item = commands[2];
+		if(!item.equalsIgnoreCase("splash_potion") && !item.equalsIgnoreCase("minecraft:splash_potion")){
+			return;
+		}
+
+		String selector = commands[1];
+		boolean SelectorToMe = false;
+		boolean ALLPlayer = false;
+		String ToPlayer = "";
+		if(selector.equalsIgnoreCase("@p")){
+			// 自分
+			SelectorToMe = true;
+		}else if(selector.equalsIgnoreCase(player.getName())){
+			// 自分
+			SelectorToMe = true;
+		}else if(selector.equalsIgnoreCase("@a")){
+			// 自分(プレイヤーすべて)
+			SelectorToMe = true;
+			ALLPlayer = true;
+		}else if(selector.equalsIgnoreCase("@e")){
+			// 自分(エンティティすべて)
+			SelectorToMe = true;
+			ALLPlayer = true;
+		}else if(selector.equalsIgnoreCase("@s")){
+			// 自分(実行者)
+			SelectorToMe = true;
+		}else{
+			Player p = Bukkit.getPlayer(selector);
+			if(p != null){
+				ToPlayer = selector;
+			}
+		}
+		if(SelectorToMe){
+			Reason.put(player.getName(), player.getName() + "の実行したコマンド : " + command);
+		}
+		for(Player p : Bukkit.getOnlinePlayers()){
+			if(ToPlayer.equalsIgnoreCase(p.getName())){
+				Reason.put(p.getName(), player.getName() + "の実行したコマンド : " + command);
+				continue;
+			}
+			if(ALLPlayer){
+				Reason.put(p.getName(), player.getName() + "の実行したコマンド : " + command);
+				continue;
+			}
+		}
+	}
+	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
+	public void ByCommandBlock(ServerCommandEvent event) {
+		if (!(event.getSender() instanceof BlockCommandSender)) return;
+		BlockCommandSender sender = (BlockCommandSender) event.getSender();
+
+		if (sender.getBlock() == null || !(sender.getBlock().getState() instanceof CommandBlock)) return;
+		CommandBlock cmdb = (CommandBlock) sender.getBlock().getState();
+
+		String command = cmdb.getCommand();
+		if(!command.startsWith("/give") && !command.startsWith("give")){
+			return;
+		}
+		if(!command.equalsIgnoreCase("/give") && !command.equalsIgnoreCase("give")){
+			return;
+		}
+		String[] commands = command.split(" ", 0);
+		if(commands.length < 3){
+			return;
+		}
+
+		String item = commands[2];
+		if(!item.equalsIgnoreCase("splash_potion") && !item.equalsIgnoreCase("minecraft:splash_potion")){
+			return;
+		}
+
+		String selector = commands[1];
+		boolean ALLPlayer = false;
+		String ToPlayer = null;
+		if(selector.equalsIgnoreCase("@p")){
+			// 一番近い
+			Player p = getNearestPlayer(cmdb.getLocation());
+			if(p == null){
+				return;
+			}
+			ToPlayer = p.getName();
+		}else if(selector.equalsIgnoreCase("@a")){
+			// プレイヤーすべて
+			ALLPlayer = true;
+		}else if(selector.equalsIgnoreCase("@e")){
+			// エンティティすべて
+			ALLPlayer = true;
+		}else{
+			Player p = Bukkit.getPlayer(selector);
+			if(p != null){
+				ToPlayer = selector;
+			}
+		}
+		for(Player p : Bukkit.getOnlinePlayers()){
+			if(ToPlayer.equalsIgnoreCase(p.getName())){
+				Reason.put(p.getName(), "コマンドブロック(" + cmdb.getLocation().getWorld().getName() + " " + cmdb.getLocation().getBlockX() + " " + cmdb.getLocation().getBlockY() + " " + cmdb.getLocation().getBlockZ() + ")の実行したコマンド : " + command);
+				continue;
+			}
+			if(ALLPlayer){
+				Reason.put(p.getName(), "コマンドブロック(" + cmdb.getLocation().getWorld().getName() + " " + cmdb.getLocation().getBlockX() + " " + cmdb.getLocation().getBlockY() + " " + cmdb.getLocation().getBlockZ() + ")の実行したコマンド : " + command);
+				continue;
+			}
+		}
+	}
+
+	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
+	public void ByItemPickup(EntityPickupItemEvent event) {
+		if(!(event.getEntity() instanceof Player)){
+			return;
+		}
+		Player player = (Player) event.getEntity();
+		Item item = event.getItem();
+		ItemStack hand = item.getItemStack();
+		if(hand.getType() == Material.SPLASH_POTION || hand.getType() == Material.LINGERING_POTION){
+			PotionMeta potion = (PotionMeta) hand.getItemMeta();
+			if(isjaoium(potion.getCustomEffects())){
+				Reason.put(player.getName(), player.getLocation().getWorld().getName() + " " + player.getLocation().getBlockX() + " " + player.getLocation().getBlockY() + " " + player.getLocation().getBlockZ() + "拾ったアイテム");
+			}
+		}
+	}
+
+
+	/**
+	 * 指定されたLocationに一番近いプレイヤーを取得します。
+	 * @param loc Location
+	 * @return 一番近いプレイヤー
+	 */
+	public Player getNearestPlayer(Location loc){
+		double closest = Double.MAX_VALUE;
+		Player closestp = null;
+		for(Player i : loc.getWorld().getPlayers()){
+			double dist = i.getLocation().distance(loc);
+			if (closest == Double.MAX_VALUE || dist < closest){
+				closest = dist;
+				closestp = i;
+			}
+		}
+		if (closestp == null){
+			return null;
+		}
+		return closestp;
+	}
+
+	// -------------- ↑jaoium取得方法判定↑ -------------- //
+
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void ItemPickup(EntityPickupItemEvent event) {
 		if(!(event.getEntity() instanceof Player)){
@@ -423,8 +594,14 @@ public class Event_Antijaoium extends MyMaid2Premise implements Listener {
 	}
 	private void checkjaoiumLocation(Player player){
 		Location loc = player.getLocation();
-		DiscordSend("223582668132974594", "**jaoium Location Notice**\n"
+		String reason = "null";
+		if(!Reason.containsKey(player.getName())){
+			reason = Reason.get(player.getName());
+			Reason.remove(player.getName());
+		}
+		DiscordSend("223582668132974594", "**jaoium Location & Reason Notice**\n"
 				+ "Player: " + player.getName() + "\n"
-				+ "Location: " + loc.getWorld().getName() + " " + loc.getBlockX() + " " + loc.getBlockY() + " " + loc.getBlockZ());
+				+ "Location: " + loc.getWorld().getName() + " " + loc.getBlockX() + " " + loc.getBlockY() + " " + loc.getBlockZ() + "\n"
+				+ "Reason: ``" + reason + "``");
 	}
 }
