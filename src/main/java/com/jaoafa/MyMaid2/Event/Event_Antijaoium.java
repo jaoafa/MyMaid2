@@ -12,6 +12,8 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.CommandBlock;
 import org.bukkit.command.BlockCommandSender;
+import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.craftbukkit.v1_12_R1.inventory.CraftItemStack;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -35,9 +37,12 @@ import org.bukkit.potion.PotionEffectType;
 
 import com.jaoafa.MyMaid2.MyMaid2Premise;
 import com.jaoafa.MyMaid2.Lib.Jail;
+import com.jaoafa.MyMaid2.Lib.Pastebin;
 import com.jaoafa.jaoSuperAchievement.AchievementAPI.AchievementAPI;
 import com.jaoafa.jaoSuperAchievement.jaoAchievement.AchievementType;
 import com.jaoafa.jaoSuperAchievement.jaoAchievement.Achievementjao;
+
+import net.minecraft.server.v1_12_R1.NBTTagCompound;
 
 public class Event_Antijaoium extends MyMaid2Premise implements Listener {
 	JavaPlugin plugin;
@@ -282,6 +287,7 @@ public class Event_Antijaoium extends MyMaid2Premise implements Listener {
 				PotionMeta potion = (PotionMeta) hand.getItemMeta();
 				jaoium = isjaoium(potion.getCustomEffects());
 				if(jaoium){
+					setjaoiumItemData(player, hand);
 					if(inventory.getItem(n) != null) inventory.clear(n);
 				}
 			}
@@ -301,6 +307,7 @@ public class Event_Antijaoium extends MyMaid2Premise implements Listener {
 					PotionMeta potion = (PotionMeta) hand.getItemMeta();
 					jaoium = isjaoium(potion.getCustomEffects());
 					if(jaoium){
+						setjaoiumItemData(player, hand);
 						clickedinventory.clear(n);
 					}
 				}
@@ -345,6 +352,7 @@ public class Event_Antijaoium extends MyMaid2Premise implements Listener {
 				PotionMeta potion = (PotionMeta) hand.getItemMeta();
 				jaoium = isjaoium(potion.getCustomEffects());
 				if(jaoium){
+					setjaoiumItemData(player, hand);
 					inventory.clear(n);
 				}
 			}
@@ -364,6 +372,7 @@ public class Event_Antijaoium extends MyMaid2Premise implements Listener {
 					PotionMeta potion = (PotionMeta) hand.getItemMeta();
 					jaoium = isjaoium(potion.getCustomEffects());
 					if(jaoium){
+						setjaoiumItemData(player, hand);
 						enderchestinventory.clear(n);
 					}
 				}
@@ -409,6 +418,7 @@ public class Event_Antijaoium extends MyMaid2Premise implements Listener {
 				PotionMeta potion = (PotionMeta) hand.getItemMeta();
 				jaoium = isjaoium(potion.getCustomEffects());
 				if(jaoium){
+					setjaoiumItemData(player, hand);
 					inventory.clear(n);
 				}
 			}
@@ -428,6 +438,7 @@ public class Event_Antijaoium extends MyMaid2Premise implements Listener {
 					PotionMeta potion = (PotionMeta) hand.getItemMeta();
 					jaoium = isjaoium(potion.getCustomEffects());
 					if(jaoium){
+						setjaoiumItemData(player, hand);
 						enderchestinventory.clear(n);
 					}
 				}
@@ -471,6 +482,7 @@ public class Event_Antijaoium extends MyMaid2Premise implements Listener {
 				PotionMeta potion = (PotionMeta) hand.getItemMeta();
 				jaoium = isjaoium(potion.getCustomEffects());
 				if(jaoium){
+					setjaoiumItemData(player, hand);
 					inventory.clear(n);
 				}
 			}
@@ -490,6 +502,7 @@ public class Event_Antijaoium extends MyMaid2Premise implements Listener {
 					PotionMeta potion = (PotionMeta) hand.getItemMeta();
 					jaoium = isjaoium(potion.getCustomEffects());
 					if(jaoium){
+						setjaoiumItemData(player, hand);
 						enderchestinventory.clear(n);
 					}
 				}
@@ -537,6 +550,7 @@ public class Event_Antijaoium extends MyMaid2Premise implements Listener {
 				PotionMeta potion = (PotionMeta) hand.getItemMeta();
 				jaoium = isjaoium(potion.getCustomEffects());
 				if(jaoium){
+					setjaoiumItemData(player, hand);
 					inventory.clear(n);
 				}
 			}
@@ -557,6 +571,7 @@ public class Event_Antijaoium extends MyMaid2Premise implements Listener {
 					PotionMeta potion = (PotionMeta) hand.getItemMeta();
 					ender_jaoium = isjaoium(potion.getCustomEffects());
 					if(ender_jaoium){
+						setjaoiumItemData(player, hand);
 						enderchestinventory.clear(n);
 					}
 				}
@@ -599,9 +614,56 @@ public class Event_Antijaoium extends MyMaid2Premise implements Listener {
 			reason = Reason.get(player.getName());
 			Reason.remove(player.getName());
 		}
+		String ItemDataUrl = "null";
+		if(ItemData.containsKey(player.getName())){
+			ItemDataUrl = ItemData.get(player.getName());
+			ItemData.remove(player.getName());
+		}
 		DiscordSend("223582668132974594", "**jaoium Location & Reason Notice**\n"
 				+ "Player: " + player.getName() + "\n"
 				+ "Location: " + loc.getWorld().getName() + " " + loc.getBlockX() + " " + loc.getBlockY() + " " + loc.getBlockZ() + "\n"
-				+ "Reason: ``" + reason + "``");
+				+ "Reason: ``" + reason + "``\n"
+				+ "ItemData: " + ItemDataUrl);
+	}
+	Map<String, String> ItemData = new HashMap<>();
+	private void setjaoiumItemData(Player player, ItemStack is){
+		if(ItemData.containsKey(player.getName())) return;
+		YamlConfiguration yaml = new YamlConfiguration();
+
+		yaml.set("data", is);
+
+		StringBuilder builder = new StringBuilder();
+		builder.append("/give @p splash_potion "); // "/give @p <アイテム> "
+		builder.append(is.getAmount()); // "/give @p <アイテム> [個数]"
+		builder.append(" "); // "/give @p <アイテム> [個数] "
+		builder.append(is.getDurability()); // "/give @p <アイテム> [個数] [データ]"
+		net.minecraft.server.v1_12_R1.ItemStack nmsItem = CraftItemStack.asNMSCopy(is);
+		NBTTagCompound nbttag = nmsItem.getTag();
+		if(nbttag != null){
+			builder.append(" "); // "/give @p <アイテム> [個数] [データ] "
+			builder.append(nbttag.toString()); // "/give @p <アイテム> [個数] [データ] [データタグ]"
+		}
+
+		String command = builder.toString();
+		yaml.set("command", command);
+
+		String code = yaml.saveToString();
+		String name = "MyMaid2 Antijaoium jaoium ItemData & Command";
+		String type = "1"; // Unlisted
+		String expire = "1W"; // 1週間
+		String format = "yaml"; // Yaml
+		try{
+			Pastebin pastebin = new Pastebin(code, name, type, expire, format);
+			String url = pastebin.Send();
+
+			ItemData.put(player.getName(), url);
+			return;
+		}catch(Pastebin.BadRequestException e){
+			ItemData.put(player.getName(), "``Error: " + e.getMessage() + "``");
+			return;
+		}catch(NullPointerException e){
+			ItemData.put(player.getName(), "``Error: NullPointerException``");
+			return;
+		}
 	}
 }

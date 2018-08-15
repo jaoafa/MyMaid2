@@ -125,6 +125,7 @@ public class MyMaid2 extends JavaPlugin implements Listener {
 	public static Connection c = null;
 	public static long ConnectionCreate = 0;
 	public static String MCBansRepAPI = null;
+	public static String pastebin_devkey = null;
 
 	public static Economy econ = null;
 
@@ -396,6 +397,14 @@ public class MyMaid2 extends JavaPlugin implements Listener {
 
 		if(conf.contains("jaoAccountAPI")){
 			Cmd_Account.jaoAccountAPI = (String) conf.get("jaoAccountAPI");
+		}
+
+		if(conf.contains("pastebin_devkey")){
+			pastebin_devkey = conf.getString("pastebin_devkey");
+		}else{
+			getLogger().info("pastebinのdevKeyが取得できません。");
+			getLogger().info("Disable MyMaid2...");
+			getServer().getPluginManager().disablePlugin(this);
 		}
 	}
 
