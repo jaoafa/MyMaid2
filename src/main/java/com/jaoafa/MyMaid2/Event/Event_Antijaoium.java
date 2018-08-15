@@ -81,7 +81,7 @@ public class Event_Antijaoium extends MyMaid2Premise implements Listener {
 	// -------------- ↓jaoium取得方法判定↓ -------------- //
 	Map<String, String> Reason = new HashMap<>(); // プレイヤー : 理由
 
-	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
+	@EventHandler(priority = EventPriority.MONITOR)
 	public void ByPlayerCommand(PlayerCommandPreprocessEvent event) {
 		Player player = event.getPlayer();
 		String command = event.getMessage();
@@ -143,7 +143,7 @@ public class Event_Antijaoium extends MyMaid2Premise implements Listener {
 			}
 		}
 	}
-	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
+	@EventHandler(priority = EventPriority.MONITOR)
 	public void ByCommandBlock(ServerCommandEvent event) {
 		if (!(event.getSender() instanceof BlockCommandSender)) return;
 		BlockCommandSender sender = (BlockCommandSender) event.getSender();
@@ -202,7 +202,7 @@ public class Event_Antijaoium extends MyMaid2Premise implements Listener {
 		}
 	}
 
-	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
+	@EventHandler(priority = EventPriority.MONITOR)
 	public void ByItemPickup(EntityPickupItemEvent event) {
 		if(!(event.getEntity() instanceof Player)){
 			return;
@@ -595,7 +595,7 @@ public class Event_Antijaoium extends MyMaid2Premise implements Listener {
 	private void checkjaoiumLocation(Player player){
 		Location loc = player.getLocation();
 		String reason = "null";
-		if(!Reason.containsKey(player.getName())){
+		if(Reason.containsKey(player.getName())){
 			reason = Reason.get(player.getName());
 			Reason.remove(player.getName());
 		}
