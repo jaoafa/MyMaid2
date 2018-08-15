@@ -133,9 +133,7 @@ public class Cmd_AFK extends MyMaid2Premise implements CommandExecutor {
 	 */
 	public static boolean getAFKing(Player player){
 		if(afking.containsKey(player.getName())){
-			if(afking.get(player.getName()) != null){
-				return true;
-			}
+			return true;
 		}
 		return false;
 	}
