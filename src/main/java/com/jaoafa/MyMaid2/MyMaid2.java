@@ -2,6 +2,7 @@ package com.jaoafa.MyMaid2;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.annotation.Nullable;
 
@@ -126,6 +127,7 @@ public class MyMaid2 extends JavaPlugin implements Listener {
 	public static long ConnectionCreate = 0;
 	public static String MCBansRepAPI = null;
 	public static String pastebin_devkey = null;
+	public static List<String> pastebin_devkeyList = null;
 
 	public static Economy econ = null;
 
@@ -400,7 +402,12 @@ public class MyMaid2 extends JavaPlugin implements Listener {
 		}
 
 		if(conf.contains("pastebin_devkey")){
-			pastebin_devkey = conf.getString("pastebin_devkey");
+			if(conf.isList("pastebin_devkey")){
+				pastebin_devkeyList = conf.getStringList("pastebin_devkey");
+				pastebin_devkey = pastebin_devkeyList.get(0);
+			}else{
+				pastebin_devkey = conf.getString("pastebin_devkey");
+			}
 		}else{
 			getLogger().info("pastebinのdevKeyが取得できません。");
 			getLogger().info("Disable MyMaid2...");

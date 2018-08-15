@@ -49,8 +49,41 @@ public class Pastebin {
 		String res = postHttpJson(address, null, contents);
 		if(res == null){
 			throw new NullPointerException("Null Error");
-		}if(res.contains("Bad API request")){
+		}else if(res.contains("Bad API request")){
 			throw new BadRequestException(res);
+		}else if(res.equalsIgnoreCase("Post limit, maximum pastes per 24h reached")){
+			MyMaid2.pastebin_devkeyList.remove(0);
+			MyMaid2.pastebin_devkeyList.add(MyMaid2.pastebin_devkey);
+			MyMaid2.pastebin_devkey = MyMaid2.pastebin_devkeyList.get(0);
+			return ReSend();
+		}
+		return res;
+	}
+	public String ReSend() throws BadRequestException{
+		String address = "https://pastebin.com/api/api_post.php";
+
+		String devKey = MyMaid2.pastebin_devkey;
+		if(devKey == null){
+			throw new IllegalStateException("devKey Error");
+		}
+
+		Map<String, String> contents = new HashMap<>();
+		contents.put("api_option", "paste");
+		contents.put("api_user_key", "");
+		contents.put("api_paste_private", type);
+		contents.put("api_paste_name", name);
+		contents.put("api_paste_expire_date", expire);
+		contents.put("api_paste_format", format);
+		contents.put("api_dev_key", devKey);
+		contents.put("api_paste_code", code);
+		String res = postHttpJson(address, null, contents);
+		if(res == null){
+			throw new NullPointerException("Null Error");
+		}else if(res.contains("Bad API request")){
+			throw new BadRequestException(res);
+		}else if(res.equalsIgnoreCase("Post limit, maximum pastes per 24h reached")){
+			throw new BadRequestException(res);
+
 		}
 		return res;
 	}

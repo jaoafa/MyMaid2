@@ -94,7 +94,7 @@ public class Event_Antijaoium extends MyMaid2Premise implements Listener {
 		if(!command.startsWith("/give")){
 			return;
 		}
-		if(!command.equalsIgnoreCase("/give")){
+		if(command.equalsIgnoreCase("/give")){
 			return;
 		}
 		String[] commands = command.split(" ", 0);
@@ -160,7 +160,7 @@ public class Event_Antijaoium extends MyMaid2Premise implements Listener {
 		if(!command.startsWith("/give") && !command.startsWith("give")){
 			return;
 		}
-		if(!command.equalsIgnoreCase("/give") && !command.equalsIgnoreCase("give")){
+		if(command.equalsIgnoreCase("/give") || command.equalsIgnoreCase("give")){
 			return;
 		}
 		String[] commands = command.split(" ", 0);
@@ -218,7 +218,7 @@ public class Event_Antijaoium extends MyMaid2Premise implements Listener {
 		if(hand.getType() == Material.SPLASH_POTION || hand.getType() == Material.LINGERING_POTION){
 			PotionMeta potion = (PotionMeta) hand.getItemMeta();
 			if(isjaoium(potion.getCustomEffects())){
-				Reason.put(player.getName(), player.getLocation().getWorld().getName() + " " + player.getLocation().getBlockX() + " " + player.getLocation().getBlockY() + " " + player.getLocation().getBlockZ() + "拾ったアイテム");
+				Reason.put(player.getName(), player.getLocation().getWorld().getName() + " " + player.getLocation().getBlockX() + " " + player.getLocation().getBlockY() + " " + player.getLocation().getBlockZ() + "にて拾ったアイテム");
 			}
 		}
 	}
@@ -360,6 +360,8 @@ public class Event_Antijaoium extends MyMaid2Premise implements Listener {
 		if(jaoium){
 			inventory.clear();
 		}
+
+		Boolean enderjaoium = false;
 		if(enderchestinventory != null) {
 			is = enderchestinventory.getContents();
 			for(int n=0; n < is.length; n++)
@@ -370,18 +372,18 @@ public class Event_Antijaoium extends MyMaid2Premise implements Listener {
 				ItemStack hand = is[n];
 				if(hand.getType() == Material.SPLASH_POTION || hand.getType() == Material.LINGERING_POTION){
 					PotionMeta potion = (PotionMeta) hand.getItemMeta();
-					jaoium = isjaoium(potion.getCustomEffects());
-					if(jaoium){
+					enderjaoium = isjaoium(potion.getCustomEffects());
+					if(enderjaoium){
 						setjaoiumItemData(player, hand);
 						enderchestinventory.clear(n);
 					}
 				}
 			}
-			if(jaoium){
+			if(enderjaoium){
 				enderchestinventory.clear();
 			}
 		}
-		if(jaoium){
+		if(jaoium || enderjaoium){
 			Bukkit.broadcastMessage("[jaoium_Checker] " + ChatColor.GREEN + "プレイヤー「" + player.getName() + "」からjaoiumと同等の性能を持つアイテムが検出されました。");
 			if(!Achievementjao.getAchievement(player, new AchievementType(13))){
 				player.sendMessage(AchievementAPI.getPrefix()
@@ -426,6 +428,7 @@ public class Event_Antijaoium extends MyMaid2Premise implements Listener {
 		if(jaoium){
 			inventory.clear();
 		}
+		Boolean enderjaoium = false;
 		if(enderchestinventory != null) {
 			is = enderchestinventory.getContents();
 			for(int n=0; n < is.length; n++)
@@ -436,14 +439,14 @@ public class Event_Antijaoium extends MyMaid2Premise implements Listener {
 				ItemStack hand = is[n];
 				if(hand.getType() == Material.SPLASH_POTION || hand.getType() == Material.LINGERING_POTION){
 					PotionMeta potion = (PotionMeta) hand.getItemMeta();
-					jaoium = isjaoium(potion.getCustomEffects());
-					if(jaoium){
+					enderjaoium = isjaoium(potion.getCustomEffects());
+					if(enderjaoium){
 						setjaoiumItemData(player, hand);
 						enderchestinventory.clear(n);
 					}
 				}
 			}
-			if(jaoium){
+			if(jaoium || enderjaoium){
 				enderchestinventory.clear();
 			}
 		}
@@ -490,6 +493,7 @@ public class Event_Antijaoium extends MyMaid2Premise implements Listener {
 		if(jaoium){
 			inventory.clear();
 		}
+		Boolean enderjaoium = false;
 		if(enderchestinventory != null) {
 			is = enderchestinventory.getContents();
 			for(int n=0; n < is.length; n++)
@@ -500,18 +504,18 @@ public class Event_Antijaoium extends MyMaid2Premise implements Listener {
 				ItemStack hand = is[n];
 				if(hand.getType() == Material.SPLASH_POTION || hand.getType() == Material.LINGERING_POTION){
 					PotionMeta potion = (PotionMeta) hand.getItemMeta();
-					jaoium = isjaoium(potion.getCustomEffects());
-					if(jaoium){
+					enderjaoium = isjaoium(potion.getCustomEffects());
+					if(enderjaoium){
 						setjaoiumItemData(player, hand);
 						enderchestinventory.clear(n);
 					}
 				}
 			}
-			if(jaoium){
+			if(enderjaoium){
 				enderchestinventory.clear();
 			}
 		}
-		if(jaoium){
+		if(jaoium || enderjaoium){
 			Bukkit.broadcastMessage("[jaoium_Checker] " + ChatColor.GREEN + "プレイヤー「" + player.getName() + "」からjaoiumと同等の性能を持つアイテムが検出されました。");
 			if(!Achievementjao.getAchievement(player, new AchievementType(13))){
 				player.sendMessage(AchievementAPI.getPrefix() + "実績の解除中に問題が発生しました。もう一度お試しください。");
