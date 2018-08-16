@@ -1,6 +1,9 @@
 package com.jaoafa.MyMaid2.Event;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -37,7 +40,7 @@ import org.bukkit.potion.PotionEffectType;
 
 import com.jaoafa.MyMaid2.MyMaid2Premise;
 import com.jaoafa.MyMaid2.Lib.Jail;
-import com.jaoafa.MyMaid2.Lib.Pastebin;
+import com.jaoafa.MyMaid2.Lib.MySQL;
 import com.jaoafa.jaoSuperAchievement.AchievementAPI.AchievementAPI;
 import com.jaoafa.jaoSuperAchievement.jaoAchievement.AchievementType;
 import com.jaoafa.jaoSuperAchievement.jaoAchievement.Achievementjao;
@@ -333,7 +336,7 @@ public class Event_Antijaoium extends MyMaid2Premise implements Listener {
 	}
 	@SuppressWarnings("deprecation")
 	@EventHandler(ignoreCancelled = true)
-    public void onPlayerItemHeldEvent(PlayerItemHeldEvent event){
+	public void onPlayerItemHeldEvent(PlayerItemHeldEvent event){
 		Player player = event.getPlayer();
 		Inventory inventory = player.getInventory();
 		Inventory enderchestinventory = player.getEnderChest();
@@ -399,7 +402,7 @@ public class Event_Antijaoium extends MyMaid2Premise implements Listener {
 		}
 	}
 
-    @SuppressWarnings("deprecation")
+	@SuppressWarnings("deprecation")
 	@EventHandler(ignoreCancelled = true)
 	public void onPlayerInteractEvent(PlayerInteractEvent event){
 		Player player = event.getPlayer();
@@ -463,7 +466,7 @@ public class Event_Antijaoium extends MyMaid2Premise implements Listener {
 	}
 	@SuppressWarnings("deprecation")
 	@EventHandler
-    public void onProjectileLaunchEvent(ProjectileLaunchEvent event){
+	public void onProjectileLaunchEvent(ProjectileLaunchEvent event){
 		if (!(event.getEntity().getShooter() instanceof Player)) {
 			return;
 		}
@@ -532,7 +535,7 @@ public class Event_Antijaoium extends MyMaid2Premise implements Listener {
 	}
 	@SuppressWarnings("deprecation")
 	@EventHandler
-    public void onPotionSplashEvent(PotionSplashEvent event){
+	public void onPotionSplashEvent(PotionSplashEvent event){
 		if (!(event.getEntity().getShooter() instanceof Player)) {
 			return;
 		}
@@ -631,6 +634,7 @@ public class Event_Antijaoium extends MyMaid2Premise implements Listener {
 	}
 	Map<String, String> ItemData = new HashMap<>();
 	private void setjaoiumItemData(Player player, ItemStack is){
+
 		if(ItemData.containsKey(player.getName())) return;
 		YamlConfiguration yaml = new YamlConfiguration();
 
@@ -653,21 +657,21 @@ public class Event_Antijaoium extends MyMaid2Premise implements Listener {
 
 		String code = yaml.saveToString();
 		String name = "MyMaid2 Antijaoium jaoium ItemData & Command";
-		String type = "1"; // Unlisted
-		String expire = "1W"; // 1週間
-		String format = "yaml"; // Yaml
-		try{
-			Pastebin pastebin = new Pastebin(code, name, type, expire, format);
-			String url = pastebin.Send();
-
-			ItemData.put(player.getName(), url);
-			return;
-		}catch(Pastebin.BadRequestException e){
-			ItemData.put(player.getName(), "``Error: " + e.getMessage() + "``");
-			return;
-		}catch(NullPointerException e){
-			ItemData.put(player.getName(), "``Error: NullPointerException``");
-			return;
+		try {
+			PreparedStatement statement = MySQL.getNewPreparedStatement("INSERT INTO cmd (player, uuid, title, command) VALUES (?, ?, ?, ?);", Statement.RETURN_GENERATED_KEYS);
+			statement.setString(1, player.getName());
+			statement.setString(2, player.getUniqueId().toString());
+			statement.setString(3, name);
+			statement.setString(4, code);
+			statement.executeUpdate();
+			ResultSet res = statement.getGeneratedKeys();
+			if(res == null || !res.next()){
+				throw new IllegalStateException();
+			}
+			int id = res.getInt(1);
+			ItemData.put(player.getName(), "https://jaoafa.com/cmd/" + id);
+		}catch(SQLException | ClassNotFoundException e){
+			ItemData.put(player.getName(), "null");
 		}
 	}
 }
