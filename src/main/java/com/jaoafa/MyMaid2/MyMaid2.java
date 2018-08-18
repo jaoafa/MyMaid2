@@ -87,6 +87,7 @@ import com.jaoafa.MyMaid2.Event.Event_JoinjaoPoint;
 import com.jaoafa.MyMaid2.Event.Event_LoginLeftPlayerCountNotice;
 import com.jaoafa.MyMaid2.Event.Event_LoginSuccessCheck;
 import com.jaoafa.MyMaid2.Event.Event_LoginVoteCheck;
+import com.jaoafa.MyMaid2.Event.Event_LongTimeNoSee;
 import com.jaoafa.MyMaid2.Event.Event_MoveToChunkActionbar;
 import com.jaoafa.MyMaid2.Event.Event_NOConcretePowderToConcrete;
 import com.jaoafa.MyMaid2.Event.Event_OnlineTime;
@@ -326,7 +327,8 @@ public class MyMaid2 extends JavaPlugin implements Listener {
 		registEvent(new Event_AntiPotion(this)); // 2018/07/19
 		registEvent(new Event_Ded(this)); // 2018/07/22
 		registEvent(new Event_Summer2018(this)); // 2018/07/30
-		registEvent(new Event_PlayerCommandSendRegular(this));// 2018/08/07
+		registEvent(new Event_PlayerCommandSendRegular(this)); // 2018/08/07
+		registEvent(new Event_LongTimeNoSee(this)); // 2018/08/18
 	}
 
 	/**

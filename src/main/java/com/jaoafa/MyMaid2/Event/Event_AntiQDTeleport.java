@@ -65,6 +65,7 @@ public class Event_AntiQDTeleport extends MyMaid2Premise implements Listener {
 				}
 				if(to_player.getGameMode() == GameMode.SPECTATOR){
 					if(DEBUG) LOGGER.info("NG スペクテイタープレイヤー");
+					if(DEBUG) LOGGER.info(from_player.getGameMode().name() + " => " + to_player.getGameMode().name());
 					if(TeleportFlag(player)){ // 実行者LQD
 						if(DEBUG) LOGGER.info("スペクテイタープレイヤーにテレポートしようとしたため規制しました。");
 						event.setCancelled(true);
