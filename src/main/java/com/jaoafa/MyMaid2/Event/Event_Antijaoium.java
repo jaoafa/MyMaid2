@@ -658,7 +658,7 @@ public class Event_Antijaoium extends MyMaid2Premise implements Listener {
 		String code = yaml.saveToString();
 		String name = "MyMaid2 Antijaoium jaoium ItemData & Command";
 		try {
-			PreparedStatement statement = MySQL.getNewPreparedStatement("INSERT INTO cmd (player, uuid, title, command) VALUES (?, ?, ?, ?);", Statement.RETURN_GENERATED_KEYS);
+			PreparedStatement statement = MySQL.getNewPreparedStatement("INSERT INTO cmd (player, uuid, title, command) VALUES (?, ?, ?, ?);", Statement.RETURN_GENERATED_KEYS);
 			statement.setString(1, player.getName());
 			statement.setString(2, player.getUniqueId().toString());
 			statement.setString(3, name);

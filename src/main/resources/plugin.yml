@@ -95,6 +95,7 @@ commands:
       usage: |-
              /spawn: ワールドの初期スポーン地点にテレポートします。
              /spawn true: プレイヤーのスポーン地点にテレポートします。
+      aliases: [hub, lobby, warp]
       permission: mymaid.spawn
       permission-message: You do not have permission to perform this command.
    jao:
