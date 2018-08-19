@@ -40,9 +40,16 @@ public class Event_AntiQDTeleport extends MyMaid2Premise implements Listener {
 				if(DEBUG) LOGGER.info("<" + player.getName() + "> " + player.getName() + " ==> " + to_player.getName());
 				if(to_player.getGameMode() == GameMode.SPECTATOR){ // テレポート先がスペクテイター
 					if(DEBUG) LOGGER.info("NG スペクテイタープレイヤー");
+					if(DEBUG) LOGGER.info(player.getGameMode().name() + " => " + to_player.getGameMode().name());
 					if(TeleportFlag(player)){ // 実行者LQD
 						if(DEBUG) LOGGER.info("スペクテイタープレイヤーにテレポートしようとしたため規制しました。");
 						event.setCancelled(true);
+					}else{
+						if(player.getGameMode() != GameMode.SPECTATOR){
+							if(DEBUG) LOGGER.info("スペクテイタープレイヤーにテレポートしようとしたため規制しました。");
+							player.sendMessage("[GAMEMODE] " + ChatColor.GREEN + "プレイヤー「" + to_player.getName() + "」はスペクテイターモードのためテレポートできません。");
+							event.setCancelled(true);
+						}
 					}
 				}
 			}else if(args.length == 3){ // /tp <Player> <Player>
