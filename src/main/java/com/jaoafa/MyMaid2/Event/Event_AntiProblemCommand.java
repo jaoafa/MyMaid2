@@ -4,8 +4,10 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.UUID;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -26,6 +28,7 @@ public class Event_AntiProblemCommand extends MyMaid2Premise implements Listener
 	public Event_AntiProblemCommand(JavaPlugin plugin) {
 		this.plugin = plugin;
 	}
+	Set<UUID> AlreadyHelp = new HashSet<>();
 	@EventHandler
 	public void onEvent_AntiProblemCommand(PlayerCommandPreprocessEvent event){
 		String command = event.getMessage();
@@ -523,6 +526,13 @@ public class Event_AntiProblemCommand extends MyMaid2Premise implements Listener
 					return;
 				}
 				// helpコマンド規制
+				if(!AlreadyHelp.contains(player.getUniqueId())){
+					// はじめて
+					player.sendMessage("[HELP] " + ChatColor.GREEN + "当サーバではこのコマンドは運営上の理由により使用できなくなっています。それでも実行しますか？");
+					AlreadyHelp.add(player.getUniqueId());
+					return;
+				}
+
 				try {
 					Pointjao Pjao = new Pointjao(player);
 					if(!Pjao.has(10)){
