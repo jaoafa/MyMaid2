@@ -417,7 +417,24 @@ public class Event_AntiProblemCommand extends MyMaid2Premise implements Listener
 				} catch (ClassNotFoundException | NullPointerException | SQLException e) {
 					BugReporter(e);
 				}
-				player.chat("ここに表示されるメッセージを募集中！！！詳しくはDiscord#debeloperまで。");
+				player.chat("聞いてよアカネチャン！ ん？");
+				player.chat("良いこと思いつきました なんや？");
+				player.chat("私 有名実況者になります！");
+				player.chat("せやな");
+				player.chat("せーやっ　せーやっ　せーやっ　せーやっ　せーやっ　せーやっな。");
+				player.chat("今話題のゲームがあるんですよ　うん");
+				player.chat("面白そうなので私もやってみようと思うんです　うん");
+				player.chat("まあゆかりさんは天才ですから？　うん？");
+				player.chat("敵を華麗にバッタバッタやっつけるわけです　うん");
+				player.chat("それを生放送したりですね！　うん");
+				player.chat("動画アップしてですね！　うん");
+				player.chat("その結果ランキングに載るわけです！　うん");
+				player.chat("そしてみんなにチヤホヤされてですね！　うん");
+				player.chat("ゆかりちゃんカワイイ～！　カッコイイ～！って！！　うん");
+				player.chat("言われちゃうんです！！！！　うん");
+				player.chat("いや～困っちゃいますね～　うん");
+				player.chat("ね！いい考えでしょ！アカネチャン！");
+				player.chat("続きは http://www.nicovideo.jp/watch/sm32492001 で！ｗ");
 				player.chat("(私は\"" + command + "\"コマンドを使用しました。)");
 				ReputationManager rm = new ReputationManager(player);
 				rm.Bad("jaotan", "null", 5, "コマンド「" + command + "」の実行のため");
@@ -530,6 +547,7 @@ public class Event_AntiProblemCommand extends MyMaid2Premise implements Listener
 					// はじめて
 					player.sendMessage("[HELP] " + ChatColor.GREEN + "当サーバではこのコマンドは運営上の理由により使用できなくなっています。それでも実行しますか？");
 					AlreadyHelp.add(player.getUniqueId());
+					event.setCancelled(true);
 					return;
 				}
 
