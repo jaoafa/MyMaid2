@@ -3,7 +3,6 @@ package com.jaoafa.MyMaid2.Event;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -29,14 +28,15 @@ public class Event_LongTimeNoSee extends MyMaid2Premise implements Listener {
 		Player player = event.getPlayer();
 		String uuid = player.getUniqueId().toString();
 		try {
-			PreparedStatement statement = MySQL.getNewPreparedStatement("SELECT * FROM login WHERE uuid = ? ORDER BY id DESC");
+			PreparedStatement statement = MySQL.getNewPreparedStatement("SELECT unix_timestamp(date) as ts FROM login WHERE uuid = ? ORDER BY id DESC");
 			statement.setString(1, uuid);
 			ResultSet res = statement.executeQuery();
 			if(res.next()){
-				Timestamp ts = res.getTimestamp("date");
-				long last = ts.getTime() / 1000L;
+				String last_str = res.getString("ts");
+				long last = new Long(last_str);
 				long now = System.currentTimeMillis() / 1000L;
 				long sa = now - last;
+				Bukkit.getLogger().info("[LongTimeNoSee] " + player.getName() + ": " + sa + "s (LAST: " + last + " / NOW: " + now + ")");
 				if(sa >= 2592000L){
 					StringBuilder builder = new StringBuilder();
 

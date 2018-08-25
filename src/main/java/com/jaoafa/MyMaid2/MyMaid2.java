@@ -108,7 +108,6 @@ import com.jaoafa.MyMaid2.Lib.MySQL;
 import com.jaoafa.MyMaid2.Lib.PermissionsManager;
 import com.jaoafa.MyMaid2.Lib.SKKColors;
 import com.jaoafa.MyMaid2.Lib.TPSChecker;
-import com.jaoafa.MyMaid2.Task.AutoMessenger;
 import com.jaoafa.MyMaid2.Task.TPSChange;
 import com.jaoafa.MyMaid2.Task.Task_AFK.AFKChecker;
 import com.jaoafa.MyMaid2.Task.Team1000Observer;
@@ -279,7 +278,7 @@ public class MyMaid2 extends JavaPlugin implements Listener {
 	private void Import_Task(){
 		new AFKChecker().runTaskTimerAsynchronously(this, 0L, 1200L);
 		new TPSChange().runTaskTimerAsynchronously(this, 0L, 1200L);
-		new AutoMessenger().runTaskTimerAsynchronously(this, 0L, 12000L);
+		//new AutoMessenger().runTaskTimerAsynchronously(this, 0L, 12000L);
 		new Team1000Observer().runTaskTimerAsynchronously(this, 0L, 1200L);
 	}
 
