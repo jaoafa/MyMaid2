@@ -1,5 +1,8 @@
 package com.jaoafa.MyMaid2.Event;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -31,6 +34,16 @@ public class Event_Summer2018 extends MyMaid2Premise implements Listener {
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onPlayerGameModeChangeEvent(PlayerGameModeChangeEvent event) {
 		Player player = event.getPlayer();
+		try {
+			SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+			Date start = format.parse("2018/08/01 00:00:00");
+			Date end = format.parse("2018/08/31 23:59:59");
+			if(!isPeriod(start, end)){
+				return;
+			}
+		} catch (ParseException e) {
+			BugReporter(e);
+		}
 		if(!player.getWorld().getName().startsWith("Summer2018")){
 			return;
 		}
@@ -47,6 +60,16 @@ public class Event_Summer2018 extends MyMaid2Premise implements Listener {
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void OnPlayerTeleportEvent(PlayerTeleportEvent event) {
 		Player player = event.getPlayer();
+		try {
+			SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+			Date start = format.parse("2018/08/01 00:00:00");
+			Date end = format.parse("2018/08/31 23:59:59");
+			if(!isPeriod(start, end)){
+				return;
+			}
+		} catch (ParseException e) {
+			BugReporter(e);
+		}
 		if(event.getCause() == TeleportCause.COMMAND){
 			Location To = event.getTo();
 			if(!To.getWorld().getName().startsWith("Summer2018")){
@@ -75,6 +98,16 @@ public class Event_Summer2018 extends MyMaid2Premise implements Listener {
 	public void OnPlayerChangedWorldEvent(PlayerChangedWorldEvent event){
 		Player player = event.getPlayer();
 		String world = player.getWorld().getName();
+		try {
+			SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+			Date start = format.parse("2018/08/01 00:00:00");
+			Date end = format.parse("2018/08/31 23:59:59");
+			if(!isPeriod(start, end)){
+				return;
+			}
+		} catch (ParseException e) {
+			BugReporter(e);
+		}
 		if(!world.startsWith("Summer2018")){
 			if(event.getFrom().getName().startsWith("Summer2018")){
 				player.setGameMode(GameMode.CREATIVE);
@@ -88,6 +121,16 @@ public class Event_Summer2018 extends MyMaid2Premise implements Listener {
 		Player player = event.getPlayer();
 		Block block = event.getBed();
 		Location loc = block.getLocation();
+		try {
+			SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+			Date start = format.parse("2018/08/01 00:00:00");
+			Date end = format.parse("2018/08/31 23:59:59");
+			if(!isPeriod(start, end)){
+				return;
+			}
+		} catch (ParseException e) {
+			BugReporter(e);
+		}
 
 		if(!loc.getWorld().getName().startsWith("Summer2018")){
 			return;

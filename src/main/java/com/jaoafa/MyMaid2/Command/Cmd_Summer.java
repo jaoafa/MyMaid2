@@ -1,6 +1,9 @@
 package com.jaoafa.MyMaid2.Command;
 
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -21,6 +24,21 @@ public class Cmd_Summer extends MyMaid2Premise implements CommandExecutor {
 		if(args.length >= 1 && args[0].equalsIgnoreCase("help")){
 			SendUsageMessage(sender, cmd);
 			return true;
+		}
+		if(MyMaid2.econ == null){
+			SendMessage(sender, cmd, "このコマンドは現在使用できません。");
+			return true;
+		}
+		try {
+			SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+			Date start = format.parse("2018/08/01 00:00:00");
+			Date end = format.parse("2018/08/31 23:59:59");
+			if(!isPeriod(start, end)){
+				SendMessage(sender, cmd, "イベントが終了したため、コマンドは使用できません。");
+				return true;
+			}
+		} catch (ParseException e) {
+			BugReporter(e);
 		}
 		if(args.length == 3){
 			// /summer exchange [jP/jSP] jao

@@ -1,5 +1,9 @@
 package com.jaoafa.MyMaid2.Command;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -87,10 +91,20 @@ public class Cmd_Wtp extends MyMaid2Premise implements CommandExecutor {
 				return true;
 			}
 
-			if(world.getName().equalsIgnoreCase("Summer2018")){
-				SendMessage(sender, cmd, "ワールド「Summer2018」へはテレポートできません。");
-				return true;
+			try {
+				SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+				Date start = format.parse("2018/08/01 00:00:00");
+				Date end = format.parse("2018/08/31 23:59:59");
+				if(isPeriod(start, end)){
+					if(world.getName().equalsIgnoreCase("Summer2018")){
+						SendMessage(sender, cmd, "ワールド「Summer2018」へはテレポートできません。");
+						return true;
+					}
+				}
+			} catch (ParseException e) {
+				BugReporter(e);
 			}
+
 
 			int x;
 			try{

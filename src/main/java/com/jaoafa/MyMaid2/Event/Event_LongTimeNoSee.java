@@ -37,6 +37,7 @@ public class Event_LongTimeNoSee extends MyMaid2Premise implements Listener {
 				long now = System.currentTimeMillis() / 1000L;
 				long sa = now - last;
 				Bukkit.getLogger().info("[LongTimeNoSee] " + player.getName() + ": " + sa + "s (LAST: " + last + " / NOW: " + now + ")");
+				Bukkit.getLogger().info("[LongTimeNoSee] " + player.getName() + ": last_str: " + last_str);
 				if(sa >= 2592000L){
 					StringBuilder builder = new StringBuilder();
 
