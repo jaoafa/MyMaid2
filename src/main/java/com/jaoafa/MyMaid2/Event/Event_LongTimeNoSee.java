@@ -31,6 +31,7 @@ public class Event_LongTimeNoSee extends MyMaid2Premise implements Listener {
 			PreparedStatement statement = MySQL.getNewPreparedStatement("SELECT unix_timestamp(date) as ts FROM login WHERE uuid = ? ORDER BY id DESC");
 			statement.setString(1, uuid);
 			ResultSet res = statement.executeQuery();
+			res.next();
 			if(res.next()){
 				String last_str = res.getString("ts");
 				long last = new Long(last_str);
@@ -71,8 +72,8 @@ public class Event_LongTimeNoSee extends MyMaid2Premise implements Listener {
 					}
 
 					SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
-					Bukkit.broadcastMessage(ChatColor.GRAY + "["+ sdf.format(new Date()) + "]" + ChatColor.GOLD + "■" + ChatColor.WHITE + "jaotan" +  ": " + player + "さん、お久しぶりです！" + builder.toString() + "ぶりですね！");
-					DiscordSend("**jaotan**: " + player + "さん、お久しぶりです！" + builder.toString() + "ぶりですね！");
+					Bukkit.broadcastMessage(ChatColor.GRAY + "["+ sdf.format(new Date()) + "]" + ChatColor.GOLD + "■" + ChatColor.WHITE + "jaotan" +  ": " + player.getName() + "さん、お久しぶりです！" + builder.toString() + "ぶりですね！");
+					DiscordSend("**jaotan**: " + player.getName() + "さん、お久しぶりです！" + builder.toString() + "ぶりですね！");
 				}
 			}
 		} catch (SQLException | ClassNotFoundException e) {
