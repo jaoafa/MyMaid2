@@ -120,6 +120,10 @@ public class Event_AntiProblemCommand extends MyMaid2Premise implements Listener
 					}
 				}
 				if(killflag){
+					if(player.getName().equalsIgnoreCase(args[1])){
+						event.setCancelled(true);
+						return;
+					}
 					SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
 					Bukkit.broadcastMessage(ChatColor.GRAY + "["+ timeFormat.format(new Date()) + "]" + ChatColor.GOLD + "■" + ChatColor.WHITE + "jaotan: " + player.getName() + "さんが" + args[1] + "を殺すとか調子に乗ってると思うので" + player.getName() + "さんを殺しておきますね^^");
 					DiscordSend("**jaotan**: " + player.getName() + "さんが" + args[1] + "を殺すとか調子に乗ってると思うので" + player.getName() + "さんを殺しておきますね^^");

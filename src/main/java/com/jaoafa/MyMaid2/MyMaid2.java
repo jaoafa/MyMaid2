@@ -10,7 +10,6 @@ import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.Plugin;
-import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import com.jaoafa.MyMaid2.Command.Cmd_AFK;
@@ -76,6 +75,7 @@ import com.jaoafa.MyMaid2.Event.Event_BanLogger;
 import com.jaoafa.MyMaid2.Event.Event_ChatSpamKickDisable;
 import com.jaoafa.MyMaid2.Event.Event_CommandBlockLogger;
 import com.jaoafa.MyMaid2.Event.Event_CommandBlockVariable;
+import com.jaoafa.MyMaid2.Event.Event_DeathToDeath;
 import com.jaoafa.MyMaid2.Event.Event_Ded;
 import com.jaoafa.MyMaid2.Event.Event_DedRain;
 import com.jaoafa.MyMaid2.Event.Event_EBan;
@@ -157,7 +157,6 @@ public class MyMaid2 extends JavaPlugin implements Listener {
 		Load_Plugin("jaoSuperAchievement");
 		Load_Plugin("MinecraftJPVoteMissFiller");
 		Load_Plugin("MCBans");
-		Load_Plugin("Vault");
 		if(!this.isEnabled()) return;
 
 		// PermissionsManager初期設定
@@ -185,7 +184,7 @@ public class MyMaid2 extends JavaPlugin implements Listener {
 		} catch (Exception e) {
 			MyMaid2Premise.BugReporter(e);
 		}
-		RegisteredServiceProvider<Economy> rsp = getServer().getServicesManager().getRegistration(Economy.class);
+		/*RegisteredServiceProvider<Economy> rsp = getServer().getServicesManager().getRegistration(Economy.class);
         if (rsp == null) {
         	getLogger().info("RegisteredServiceProvider<Economy> is null.");
         	getLogger().info("関連機能は使用できません。");
@@ -197,7 +196,7 @@ public class MyMaid2 extends JavaPlugin implements Listener {
         	getLogger().info("rsp.getProvider() is null.");
         	getLogger().info("関連機能は使用できません。");
 			return;
-        }
+        }*/
 		getLogger().info("--------------------------------------------------");
 	}
 
@@ -327,6 +326,7 @@ public class MyMaid2 extends JavaPlugin implements Listener {
 		registEvent(new Event_Ded(this)); // 2018/07/22
 		registEvent(new Event_Summer2018(this)); // 2018/07/30
 		registEvent(new Event_PlayerCommandSendRegular(this)); // 2018/08/07
+		registEvent(new Event_DeathToDeath(this)); // 2018/08/07
 		registEvent(new Event_LongTimeNoSee(this)); // 2018/08/18
 	}
 
