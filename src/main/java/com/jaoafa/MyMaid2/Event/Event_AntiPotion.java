@@ -11,6 +11,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityPickupItemEvent;
 import org.bukkit.event.entity.PotionSplashEvent;
+import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerItemConsumeEvent;
 import org.bukkit.inventory.ItemStack;
@@ -66,14 +67,18 @@ public class Event_AntiPotion implements Listener {
 		if(group.equalsIgnoreCase("QPPE")){
 			// Limited同様、所持を含む全部の動作を禁止。付与も禁止
 			ItemStack item = event.getItem();
-			if(item.getType() != Material.POTION){
+			if(item.getType() != Material.POTION &&
+				item.getType() != Material.SPLASH_POTION &&
+				item.getType() != Material.LINGERING_POTION){
 				return;
 			}
 			event.setCancelled(true);
 		}else if(group.equalsIgnoreCase("Default")){
 			// 所持、飲むことのみ許可、ただし透明化・スピードなどサーバに負荷がかかったり、他のプレイヤーに迷惑がかかる可能性のあるポーションは禁止
 			ItemStack item = event.getItem();
-			if(item.getType() != Material.POTION){
+			if(item.getType() != Material.POTION &&
+					item.getType() != Material.SPLASH_POTION &&
+					item.getType() != Material.LINGERING_POTION){
 				return;
 			}
 			PotionMeta meta = (PotionMeta) item.getItemMeta();
@@ -100,14 +105,18 @@ public class Event_AntiPotion implements Listener {
 		if(group.equalsIgnoreCase("QPPE")){
 			// Limited同様、所持を含む全部の動作を禁止。付与も禁止
 			ItemStack item = event.getPotion().getItem();
-			if(item.getType() != Material.POTION){
+			if(item.getType() != Material.POTION &&
+					item.getType() != Material.SPLASH_POTION &&
+					item.getType() != Material.LINGERING_POTION){
 				return;
 			}
 			event.setCancelled(true);
 		}else if(group.equalsIgnoreCase("Default")){
 			// 所持、飲むことのみ許可、ただし透明化・スピードなどサーバに負荷がかかったり、他のプレイヤーに迷惑がかかる可能性のあるポーションは禁止
 			ItemStack item = event.getPotion().getItem();
-			if(item.getType() != Material.POTION){
+			if(item.getType() != Material.POTION &&
+					item.getType() != Material.SPLASH_POTION &&
+					item.getType() != Material.LINGERING_POTION){
 				return;
 			}
 			event.setCancelled(true);
@@ -119,7 +128,34 @@ public class Event_AntiPotion implements Listener {
 		Player player = event.getPlayer();
 	    ItemStack item = event.getItem();
 	    if(item == null) return;
-		if(item.getType() != Material.POTION){
+	    if(item.getType() != Material.POTION &&
+				item.getType() != Material.SPLASH_POTION &&
+				item.getType() != Material.LINGERING_POTION){
+			return;
+		}
+		String group = PermissionsManager.getPermissionMainGroup(player);
+	    if(group.equalsIgnoreCase("Limited")){
+			// 所持を含む全部の動作を禁止
+			event.setCancelled(true);
+			return;
+		}
+		if(group.equalsIgnoreCase("QPPE")){
+			// Limited同様、所持を含む全部の動作を禁止。付与も禁止
+			event.setCancelled(true);
+		}else if(group.equalsIgnoreCase("Default")){
+			// 所持、飲むことのみ許可、ただし透明化・スピードなどサーバに負荷がかかったり、他のプレイヤーに迷惑がかかる可能性のあるポーションは禁止
+			event.setCancelled(true);
+		}
+	}
+
+	@EventHandler
+    public void PlayerClickInv(InventoryClickEvent event){
+		Player player = (Player) event.getWhoClicked();
+		ItemStack item = event.getCurrentItem();
+	    if(item == null) return;
+	    if(item.getType() != Material.POTION &&
+				item.getType() != Material.SPLASH_POTION &&
+				item.getType() != Material.LINGERING_POTION){
 			return;
 		}
 		String group = PermissionsManager.getPermissionMainGroup(player);
@@ -156,13 +192,17 @@ public class Event_AntiPotion implements Listener {
 		}
 		if(group.equalsIgnoreCase("QPPE")){
 			// Limited同様、所持を含む全部の動作を禁止。付与も禁止
-		    if(item.getType() != Material.POTION){
+			if(item.getType() != Material.POTION &&
+					item.getType() != Material.SPLASH_POTION &&
+					item.getType() != Material.LINGERING_POTION){
 				return;
 			}
 			event.setCancelled(true);
 		}else if(group.equalsIgnoreCase("Default")){
 			// 所持、飲むことのみ許可、ただし透明化・スピードなどサーバに負荷がかかったり、他のプレイヤーに迷惑がかかる可能性のあるポーションは禁止
-		    if(item.getType() != Material.POTION){
+			if(item.getType() != Material.POTION &&
+					item.getType() != Material.SPLASH_POTION &&
+					item.getType() != Material.LINGERING_POTION){
 				return;
 			}
 			event.setCancelled(true);

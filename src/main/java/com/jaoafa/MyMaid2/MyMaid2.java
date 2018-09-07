@@ -101,6 +101,7 @@ import com.jaoafa.MyMaid2.Event.Event_QuitHeaderFooterChange;
 import com.jaoafa.MyMaid2.Event.Event_SKKColor;
 import com.jaoafa.MyMaid2.Event.Event_SignClick;
 import com.jaoafa.MyMaid2.Event.Event_Summer2018;
+import com.jaoafa.MyMaid2.Event.Event_VeryVeryStrongAntiLQD;
 import com.jaoafa.MyMaid2.Event.Event_VoteMissFillerEvent;
 import com.jaoafa.MyMaid2.Event.Event_VoteReceived;
 import com.jaoafa.MyMaid2.Lib.InventoryManager;
@@ -330,6 +331,7 @@ public class MyMaid2 extends JavaPlugin implements Listener {
 		registEvent(new Event_DeathToDeath(this)); // 2018/08/07
 		registEvent(new Event_LongTimeNoSee(this)); // 2018/08/18
 		registEvent(new Event_CheckChatOPME(this)); // 2018/09/02
+		registEvent(new Event_VeryVeryStrongAntiLQD(this)); // 2018/09/08
 	}
 
 	/**

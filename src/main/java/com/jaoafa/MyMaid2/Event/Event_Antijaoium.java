@@ -27,6 +27,7 @@ import org.bukkit.event.entity.EntityPickupItemEvent;
 import org.bukkit.event.entity.PotionSplashEvent;
 import org.bukkit.event.entity.ProjectileLaunchEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.inventory.InventoryCreativeEvent;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerItemHeldEvent;
@@ -222,6 +223,18 @@ public class Event_Antijaoium extends MyMaid2Premise implements Listener {
 			PotionMeta potion = (PotionMeta) hand.getItemMeta();
 			if(isjaoium(potion.getCustomEffects())){
 				Reason.put(player.getName(), player.getLocation().getWorld().getName() + " " + player.getLocation().getBlockX() + " " + player.getLocation().getBlockY() + " " + player.getLocation().getBlockZ() + "にて拾ったアイテム");
+			}
+		}
+	}
+
+	@EventHandler
+    public void PlayerCreativeInv(InventoryCreativeEvent event){
+		Player player = (Player) event.getWhoClicked();
+		ItemStack hand = event.getCurrentItem();
+		if(hand.getType() == Material.SPLASH_POTION || hand.getType() == Material.LINGERING_POTION){
+			PotionMeta potion = (PotionMeta) hand.getItemMeta();
+			if(isjaoium(potion.getCustomEffects())){
+				Reason.put(player.getName(), "クリエイティブインベントリから取得したアイテム(保存したツールバーからの可能性あり)　DebugDATA: " + event.getAction().name() + " / " + event.getClick().name() + " / " + event.getHotbarButton());
 			}
 		}
 	}
