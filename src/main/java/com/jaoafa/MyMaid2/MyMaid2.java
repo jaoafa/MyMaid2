@@ -73,6 +73,7 @@ import com.jaoafa.MyMaid2.Event.Event_Antijaoium;
 import com.jaoafa.MyMaid2.Event.Event_BanChecker;
 import com.jaoafa.MyMaid2.Event.Event_BanLogger;
 import com.jaoafa.MyMaid2.Event.Event_ChatSpamKickDisable;
+import com.jaoafa.MyMaid2.Event.Event_CheckChatOPME;
 import com.jaoafa.MyMaid2.Event.Event_CommandBlockLogger;
 import com.jaoafa.MyMaid2.Event.Event_CommandBlockVariable;
 import com.jaoafa.MyMaid2.Event.Event_DeathToDeath;
@@ -328,6 +329,7 @@ public class MyMaid2 extends JavaPlugin implements Listener {
 		registEvent(new Event_PlayerCommandSendRegular(this)); // 2018/08/07
 		registEvent(new Event_DeathToDeath(this)); // 2018/08/07
 		registEvent(new Event_LongTimeNoSee(this)); // 2018/08/18
+		registEvent(new Event_CheckChatOPME(this)); // 2018/09/02
 	}
 
 	/**
