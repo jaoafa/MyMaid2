@@ -29,20 +29,23 @@ public class Event_VeryVeryStrongAntiLQD extends MyMaid2Premise implements Liste
 		}
 		ItemStack item = event.getItem();
 
-		for(Entry<Enchantment, Integer> e : item.getEnchantments().entrySet()){
-			Enchantment encha = e.getKey();
-			int level = e.getValue();
-			int maxlevel = encha.getMaxLevel();
+		if(item != null && item.getEnchantments() != null){
+			for(Entry<Enchantment, Integer> e : item.getEnchantments().entrySet()){
+				Enchantment encha = e.getKey();
+				int level = e.getValue();
+				int maxlevel = encha.getMaxLevel();
 
-			if(level <= maxlevel){
-				continue;
+				if(level <= maxlevel){
+					continue;
+				}
+				// 本来の最大値より超えている場合
+				DiscordSend("293856671799967744", "__**[VeryVeryStrongAntiLQD]**__ 本来の最大値を超えたアイテムが" + player.getName() + "から見つかりました。\n"
+						+ "アイテム情報: " + item.getItemMeta().getDisplayName() + " (" + item.getType().name() + ")\n"
+						+ "エンチャント/レベル/最大レベル: " + encha.getName() + " - " + level + " / " + maxlevel + "\n"
+						+ "イベント: PlayerInteractEvent");
+				item.removeEnchantment(encha);
+				player.updateInventory();
 			}
-			// 本来の最大値より超えている場合
-			DiscordSend("293856671799967744", "__**[VeryVeryStrongAntiLQD]**__ 本来の最大値を超えたアイテムが" + player.getName() + "から見つかりました。\n"
-					+ "アイテム情報: " + item.getItemMeta().getDisplayName() + " (" + item.getType().name() + ")\n"
-					+ "レベル/最大レベル: " + level + " / " + maxlevel + "\n"
-					+ "イベント: PlayerInteractEvent");
-			item.removeEnchantment(encha);
 		}
 	}
 	@EventHandler(ignoreCancelled = true)
@@ -60,111 +63,127 @@ public class Event_VeryVeryStrongAntiLQD extends MyMaid2Premise implements Liste
 		}
 		ItemStack item = player.getInventory().getItemInMainHand();
 
-		for(Entry<Enchantment, Integer> e : item.getEnchantments().entrySet()){
-			Enchantment encha = e.getKey();
-			int level = e.getValue();
-			int maxlevel = encha.getMaxLevel();
+		if(item != null && item.getEnchantments() != null){
+			for(Entry<Enchantment, Integer> e : item.getEnchantments().entrySet()){
+				Enchantment encha = e.getKey();
+				int level = e.getValue();
+				int maxlevel = encha.getMaxLevel();
 
-			if(level <= maxlevel){
-				continue;
+				if(level <= maxlevel){
+					continue;
+				}
+				// 本来の最大値より超えている場合
+				DiscordSend("293856671799967744", "__**[VeryVeryStrongAntiLQD]**__ 本来の最大値を超えたアイテムが" + player.getName() + "から見つかりました。\n"
+						+ "アイテム情報: " + item.getItemMeta().getDisplayName() + " (" + item.getType().name() + ")\n"
+						+ "エンチャント/レベル/最大レベル: " + encha.getName() + " - " + level + " / " + maxlevel + "\n"
+						+ "イベント: PlayerMoveEvent (ItemInMainHand)");
+				item.removeEnchantment(encha);
+				player.updateInventory();
 			}
-			// 本来の最大値より超えている場合
-			DiscordSend("293856671799967744", "__**[VeryVeryStrongAntiLQD]**__ 本来の最大値を超えたアイテムが" + player.getName() + "から見つかりました。\n"
-					+ "アイテム情報: " + item.getItemMeta().getDisplayName() + " (" + item.getType().name() + ")\n"
-					+ "レベル/最大レベル: " + level + " / " + maxlevel + "\n"
-					+ "イベント: PlayerMoveEvent (ItemInMainHand)");
-			item.removeEnchantment(encha);
 		}
 
 		item = player.getInventory().getItemInOffHand();
 
-		for(Entry<Enchantment, Integer> e : item.getEnchantments().entrySet()){
-			Enchantment encha = e.getKey();
-			int level = e.getValue();
-			int maxlevel = encha.getMaxLevel();
+		if(item != null && item.getEnchantments() != null){
+			for(Entry<Enchantment, Integer> e : item.getEnchantments().entrySet()){
+				Enchantment encha = e.getKey();
+				int level = e.getValue();
+				int maxlevel = encha.getMaxLevel();
 
-			if(level <= maxlevel){
-				continue;
+				if(level <= maxlevel){
+					continue;
+				}
+				// 本来の最大値より超えている場合
+				DiscordSend("293856671799967744", "__**[VeryVeryStrongAntiLQD]**__ 本来の最大値を超えたアイテムが" + player.getName() + "から見つかりました。\n"
+						+ "アイテム情報: " + item.getItemMeta().getDisplayName() + " (" + item.getType().name() + ")\n"
+						+ "エンチャント/レベル/最大レベル: " + encha.getName() + " - " + level + " / " + maxlevel + "\n"
+						+ "イベント: PlayerMoveEvent (ItemInOffHand)");
+				item.removeEnchantment(encha);
+				player.updateInventory();
 			}
-			// 本来の最大値より超えている場合
-			DiscordSend("293856671799967744", "__**[VeryVeryStrongAntiLQD]**__ 本来の最大値を超えたアイテムが" + player.getName() + "から見つかりました。\n"
-					+ "アイテム情報: " + item.getItemMeta().getDisplayName() + " (" + item.getType().name() + ")\n"
-					+ "レベル/最大レベル: " + level + " / " + maxlevel + "\n"
-					+ "イベント: PlayerMoveEvent (ItemInMainHand)");
-			item.removeEnchantment(encha);
 		}
 
 		item = player.getInventory().getHelmet();
+		if(item != null && item.getEnchantments() != null){
+			for(Entry<Enchantment, Integer> e : item.getEnchantments().entrySet()){
+				Enchantment encha = e.getKey();
+				int level = e.getValue();
+				int maxlevel = encha.getMaxLevel();
 
-		for(Entry<Enchantment, Integer> e : item.getEnchantments().entrySet()){
-			Enchantment encha = e.getKey();
-			int level = e.getValue();
-			int maxlevel = encha.getMaxLevel();
-
-			if(level <= maxlevel){
-				continue;
+				if(level <= maxlevel){
+					continue;
+				}
+				// 本来の最大値より超えている場合
+				DiscordSend("293856671799967744", "__**[VeryVeryStrongAntiLQD]**__ 本来の最大値を超えたアイテムが" + player.getName() + "から見つかりました。\n"
+						+ "アイテム情報: " + item.getItemMeta().getDisplayName() + " (" + item.getType().name() + ")\n"
+						+ "エンチャント/レベル/最大レベル: " + encha.getName() + " - " + level + " / " + maxlevel + "\n"
+						+ "イベント: PlayerMoveEvent (Helmet)");
+				item.removeEnchantment(encha);
+				player.updateInventory();
 			}
-			// 本来の最大値より超えている場合
-			DiscordSend("293856671799967744", "__**[VeryVeryStrongAntiLQD]**__ 本来の最大値を超えたアイテムが" + player.getName() + "から見つかりました。\n"
-					+ "アイテム情報: " + item.getItemMeta().getDisplayName() + " (" + item.getType().name() + ")\n"
-					+ "レベル/最大レベル: " + level + " / " + maxlevel + "\n"
-					+ "イベント: PlayerMoveEvent (ItemInMainHand)");
-			item.removeEnchantment(encha);
 		}
 
 		item = player.getInventory().getChestplate();
 
-		for(Entry<Enchantment, Integer> e : item.getEnchantments().entrySet()){
-			Enchantment encha = e.getKey();
-			int level = e.getValue();
-			int maxlevel = encha.getMaxLevel();
+		if(item != null && item.getEnchantments() != null){
+			for(Entry<Enchantment, Integer> e : item.getEnchantments().entrySet()){
+				Enchantment encha = e.getKey();
+				int level = e.getValue();
+				int maxlevel = encha.getMaxLevel();
 
-			if(level <= maxlevel){
-				continue;
+				if(level <= maxlevel){
+					continue;
+				}
+				// 本来の最大値より超えている場合
+				DiscordSend("293856671799967744", "__**[VeryVeryStrongAntiLQD]**__ 本来の最大値を超えたアイテムが" + player.getName() + "から見つかりました。\n"
+						+ "アイテム情報: " + item.getItemMeta().getDisplayName() + " (" + item.getType().name() + ")\n"
+						+ "エンチャント/レベル/最大レベル: " + encha.getName() + " - " + level + " / " + maxlevel + "\n"
+						+ "イベント: PlayerMoveEvent (Chestplate)");
+				item.removeEnchantment(encha);
+				player.updateInventory();
 			}
-			// 本来の最大値より超えている場合
-			DiscordSend("293856671799967744", "__**[VeryVeryStrongAntiLQD]**__ 本来の最大値を超えたアイテムが" + player.getName() + "から見つかりました。\n"
-					+ "アイテム情報: " + item.getItemMeta().getDisplayName() + " (" + item.getType().name() + ")\n"
-					+ "レベル/最大レベル: " + level + " / " + maxlevel + "\n"
-					+ "イベント: PlayerMoveEvent (ItemInMainHand)");
-			item.removeEnchantment(encha);
 		}
 
 		item = player.getInventory().getLeggings();
 
-		for(Entry<Enchantment, Integer> e : item.getEnchantments().entrySet()){
-			Enchantment encha = e.getKey();
-			int level = e.getValue();
-			int maxlevel = encha.getMaxLevel();
+		if(item != null && item.getEnchantments() != null){
+			for(Entry<Enchantment, Integer> e : item.getEnchantments().entrySet()){
+				Enchantment encha = e.getKey();
+				int level = e.getValue();
+				int maxlevel = encha.getMaxLevel();
 
-			if(level <= maxlevel){
-				continue;
+				if(level <= maxlevel){
+					continue;
+				}
+				// 本来の最大値より超えている場合
+				DiscordSend("293856671799967744", "__**[VeryVeryStrongAntiLQD]**__ 本来の最大値を超えたアイテムが" + player.getName() + "から見つかりました。\n"
+						+ "アイテム情報: " + item.getItemMeta().getDisplayName() + " (" + item.getType().name() + ")\n"
+						+ "エンチャント/レベル/最大レベル: " + encha.getName() + " - " + level + " / " + maxlevel + "\n"
+						+ "イベント: PlayerMoveEvent (Leggings)");
+				item.removeEnchantment(encha);
+				player.updateInventory();
 			}
-			// 本来の最大値より超えている場合
-			DiscordSend("293856671799967744", "__**[VeryVeryStrongAntiLQD]**__ 本来の最大値を超えたアイテムが" + player.getName() + "から見つかりました。\n"
-					+ "アイテム情報: " + item.getItemMeta().getDisplayName() + " (" + item.getType().name() + ")\n"
-					+ "レベル/最大レベル: " + level + " / " + maxlevel + "\n"
-					+ "イベント: PlayerMoveEvent (ItemInMainHand)");
-			item.removeEnchantment(encha);
 		}
 
 		item = player.getInventory().getBoots();
 
-		for(Entry<Enchantment, Integer> e : item.getEnchantments().entrySet()){
-			Enchantment encha = e.getKey();
-			int level = e.getValue();
-			int maxlevel = encha.getMaxLevel();
+		if(item != null && item.getEnchantments() != null){
+			for(Entry<Enchantment, Integer> e : item.getEnchantments().entrySet()){
+				Enchantment encha = e.getKey();
+				int level = e.getValue();
+				int maxlevel = encha.getMaxLevel();
 
-			if(level <= maxlevel){
-				continue;
+				if(level <= maxlevel){
+					continue;
+				}
+				// 本来の最大値より超えている場合
+				DiscordSend("293856671799967744", "__**[VeryVeryStrongAntiLQD]**__ 本来の最大値を超えたアイテムが" + player.getName() + "から見つかりました。\n"
+						+ "アイテム情報: " + item.getItemMeta().getDisplayName() + " (" + item.getType().name() + ")\n"
+						+ "エンチャント/レベル/最大レベル: " + encha.getName() + " - " + level + " / " + maxlevel + "\n"
+						+ "イベント: PlayerMoveEvent (Boots)");
+				item.removeEnchantment(encha);
+				player.updateInventory();
 			}
-			// 本来の最大値より超えている場合
-			DiscordSend("293856671799967744", "__**[VeryVeryStrongAntiLQD]**__ 本来の最大値を超えたアイテムが" + player.getName() + "から見つかりました。\n"
-					+ "アイテム情報: " + item.getItemMeta().getDisplayName() + " (" + item.getType().name() + ")\n"
-					+ "レベル/最大レベル: " + level + " / " + maxlevel + "\n"
-					+ "イベント: PlayerMoveEvent (ItemInMainHand)");
-			item.removeEnchantment(encha);
 		}
-
 	}
 }

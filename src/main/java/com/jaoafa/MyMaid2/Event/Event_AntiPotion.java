@@ -61,6 +61,9 @@ public class Event_AntiPotion implements Listener {
 	    String group = PermissionsManager.getPermissionMainGroup(player);
 		if(group.equalsIgnoreCase("Limited")){
 			// 所持を含む全部の動作を禁止
+			ItemStack item = event.getItem();
+			player.getInventory().remove(item);
+			player.updateInventory();
 			event.setCancelled(true);
 			return;
 		}
@@ -72,6 +75,8 @@ public class Event_AntiPotion implements Listener {
 				item.getType() != Material.LINGERING_POTION){
 				return;
 			}
+			player.getInventory().remove(item);
+			player.updateInventory();
 			event.setCancelled(true);
 		}else if(group.equalsIgnoreCase("Default")){
 			// 所持、飲むことのみ許可、ただし透明化・スピードなどサーバに負荷がかかったり、他のプレイヤーに迷惑がかかる可能性のあるポーションは禁止
@@ -84,6 +89,8 @@ public class Event_AntiPotion implements Listener {
 			PotionMeta meta = (PotionMeta) item.getItemMeta();
 			List<PotionEffect> effects = meta.getCustomEffects();
 			if(!ApplyCustomEffects(effects)){
+				player.getInventory().remove(item);
+				player.updateInventory();
 				event.setCancelled(true);
 				return;
 			}
@@ -99,6 +106,9 @@ public class Event_AntiPotion implements Listener {
 		String group = PermissionsManager.getPermissionMainGroup(player);
 		if(group.equalsIgnoreCase("Limited")){
 			// 所持を含む全部の動作を禁止
+			ItemStack item = event.getPotion().getItem();
+			player.getInventory().remove(item);
+			player.updateInventory();
 			event.setCancelled(true);
 			return;
 		}
@@ -110,6 +120,8 @@ public class Event_AntiPotion implements Listener {
 					item.getType() != Material.LINGERING_POTION){
 				return;
 			}
+			player.getInventory().remove(item);
+			player.updateInventory();
 			event.setCancelled(true);
 		}else if(group.equalsIgnoreCase("Default")){
 			// 所持、飲むことのみ許可、ただし透明化・スピードなどサーバに負荷がかかったり、他のプレイヤーに迷惑がかかる可能性のあるポーションは禁止
@@ -119,6 +131,8 @@ public class Event_AntiPotion implements Listener {
 					item.getType() != Material.LINGERING_POTION){
 				return;
 			}
+			player.getInventory().remove(item);
+			player.updateInventory();
 			event.setCancelled(true);
 		}
 	}
@@ -136,15 +150,26 @@ public class Event_AntiPotion implements Listener {
 		String group = PermissionsManager.getPermissionMainGroup(player);
 	    if(group.equalsIgnoreCase("Limited")){
 			// 所持を含む全部の動作を禁止
+			player.getInventory().remove(item);
+			player.updateInventory();
 			event.setCancelled(true);
 			return;
 		}
 		if(group.equalsIgnoreCase("QPPE")){
 			// Limited同様、所持を含む全部の動作を禁止。付与も禁止
+			player.getInventory().remove(item);
+			player.updateInventory();
 			event.setCancelled(true);
 		}else if(group.equalsIgnoreCase("Default")){
 			// 所持、飲むことのみ許可、ただし透明化・スピードなどサーバに負荷がかかったり、他のプレイヤーに迷惑がかかる可能性のあるポーションは禁止
-			event.setCancelled(true);
+			PotionMeta meta = (PotionMeta) item.getItemMeta();
+			List<PotionEffect> effects = meta.getCustomEffects();
+			if(!ApplyCustomEffects(effects)){
+				player.getInventory().remove(item);
+				player.updateInventory();
+				event.setCancelled(true);
+				return;
+			}
 		}
 	}
 
@@ -161,15 +186,26 @@ public class Event_AntiPotion implements Listener {
 		String group = PermissionsManager.getPermissionMainGroup(player);
 	    if(group.equalsIgnoreCase("Limited")){
 			// 所持を含む全部の動作を禁止
+			player.getInventory().remove(item);
+			player.updateInventory();
 			event.setCancelled(true);
 			return;
 		}
 		if(group.equalsIgnoreCase("QPPE")){
 			// Limited同様、所持を含む全部の動作を禁止。付与も禁止
+			player.getInventory().remove(item);
+			player.updateInventory();
 			event.setCancelled(true);
 		}else if(group.equalsIgnoreCase("Default")){
 			// 所持、飲むことのみ許可、ただし透明化・スピードなどサーバに負荷がかかったり、他のプレイヤーに迷惑がかかる可能性のあるポーションは禁止
-			event.setCancelled(true);
+			PotionMeta meta = (PotionMeta) item.getItemMeta();
+			List<PotionEffect> effects = meta.getCustomEffects();
+			if(!ApplyCustomEffects(effects)){
+				player.getInventory().remove(item);
+				player.updateInventory();
+				event.setCancelled(true);
+				return;
+			}
 		}
 	}
 
@@ -184,9 +220,13 @@ public class Event_AntiPotion implements Listener {
 	    String group = PermissionsManager.getPermissionMainGroup(player);
 		if(group.equalsIgnoreCase("Limited")){
 			// 所持を含む全部の動作を禁止
-			if(item.getType() != Material.POTION){
+			if(item.getType() != Material.POTION &&
+					item.getType() != Material.SPLASH_POTION &&
+					item.getType() != Material.LINGERING_POTION){
 				return;
 			}
+			player.getInventory().remove(item);
+			player.updateInventory();
 			event.setCancelled(true);
 			return;
 		}
@@ -197,6 +237,8 @@ public class Event_AntiPotion implements Listener {
 					item.getType() != Material.LINGERING_POTION){
 				return;
 			}
+			player.getInventory().remove(item);
+			player.updateInventory();
 			event.setCancelled(true);
 		}else if(group.equalsIgnoreCase("Default")){
 			// 所持、飲むことのみ許可、ただし透明化・スピードなどサーバに負荷がかかったり、他のプレイヤーに迷惑がかかる可能性のあるポーションは禁止
@@ -205,7 +247,14 @@ public class Event_AntiPotion implements Listener {
 					item.getType() != Material.LINGERING_POTION){
 				return;
 			}
-			event.setCancelled(true);
+			PotionMeta meta = (PotionMeta) item.getItemMeta();
+			List<PotionEffect> effects = meta.getCustomEffects();
+			if(!ApplyCustomEffects(effects)){
+				player.getInventory().remove(item);
+				player.updateInventory();
+				event.setCancelled(true);
+				return;
+			}
 		}
 	}
 }
