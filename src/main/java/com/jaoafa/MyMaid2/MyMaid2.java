@@ -18,6 +18,7 @@ import com.jaoafa.MyMaid2.Command.Cmd_Body;
 import com.jaoafa.MyMaid2.Command.Cmd_Book;
 import com.jaoafa.MyMaid2.Command.Cmd_Boots;
 import com.jaoafa.MyMaid2.Command.Cmd_Chat;
+import com.jaoafa.MyMaid2.Command.Cmd_ChatJail;
 import com.jaoafa.MyMaid2.Command.Cmd_ChuoCity;
 import com.jaoafa.MyMaid2.Command.Cmd_City;
 import com.jaoafa.MyMaid2.Command.Cmd_Ck;
@@ -72,6 +73,7 @@ import com.jaoafa.MyMaid2.Event.Event_AntiWither;
 import com.jaoafa.MyMaid2.Event.Event_Antijaoium;
 import com.jaoafa.MyMaid2.Event.Event_BanChecker;
 import com.jaoafa.MyMaid2.Event.Event_BanLogger;
+import com.jaoafa.MyMaid2.Event.Event_ChatJail;
 import com.jaoafa.MyMaid2.Event.Event_ChatSpamKickDisable;
 import com.jaoafa.MyMaid2.Event.Event_CheckChatOPME;
 import com.jaoafa.MyMaid2.Event.Event_CommandBlockLogger;
@@ -258,6 +260,7 @@ public class MyMaid2 extends JavaPlugin implements Listener {
 		getCommand("restarttitle").setExecutor(new Cmd_RestartTitle(this)); // 2018/07/25
 		getCommand("summer").setExecutor(new Cmd_Summer(this)); // 2018/08/01
 		getCommand("glookup").setExecutor(new Cmd_GLookup(this)); // 2018/08/02
+		getCommand("chatjail").setExecutor(new Cmd_ChatJail(this)); // 2018/09/09
 	}
 
 	/**
@@ -270,6 +273,7 @@ public class MyMaid2 extends JavaPlugin implements Listener {
 		getCommand("home").setTabCompleter(new Cmd_Home(this)); // 2018/03/21
 		getCommand("delhome").setTabCompleter(new Cmd_DelHome(this)); // 2018/03/21
 		getCommand("jail").setTabCompleter(new Cmd_Jail(this)); // 2018/04/01
+		getCommand("chatjail").setTabCompleter(new Cmd_ChatJail(this)); // 2018/09/09
 	}
 
 	/**
@@ -332,6 +336,7 @@ public class MyMaid2 extends JavaPlugin implements Listener {
 		registEvent(new Event_LongTimeNoSee(this)); // 2018/08/18
 		registEvent(new Event_CheckChatOPME(this)); // 2018/09/02
 		registEvent(new Event_VeryVeryStrongAntiLQD(this)); // 2018/09/08
+		registEvent(new Event_ChatJail(this)); // 2018/09/09
 	}
 
 	/**

@@ -342,3 +342,9 @@ commands:
       usage: /<command>
       permission: mymaid.glookup
       permission-message: You do not have permission to perform this command.
+   chatjail:
+      description: プレイヤーをチャットできないようにします。
+      usage: |-
+             /chatjail add <Player> [Reason]: プレイヤーをチャット規制リストに追加し、一切のチャットができないようにします。
+             /chatjail remove <Player>: プレイヤーをチャット規制リストから削除します。
+             /chatjail list: チャット規制リストを表示します。

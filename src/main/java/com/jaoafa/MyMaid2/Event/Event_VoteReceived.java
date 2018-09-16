@@ -1,10 +1,13 @@
 package com.jaoafa.MyMaid2.Event;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Random;
+import java.util.UUID;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -14,6 +17,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import com.jaoafa.MyMaid2.MyMaid2Premise;
+import com.jaoafa.MyMaid2.Lib.MySQL;
 import com.jaoafa.MyMaid2.Lib.PlayerVoteData;
 import com.jaoafa.MyMaid2.Lib.Pointjao;
 import com.jaoafa.jaoSuperAchievement.jaoAchievement.AchievementType;
@@ -74,12 +78,42 @@ public class Event_VoteReceived extends MyMaid2Premise implements Listener {
 
 		/* ------------- 投票イベント関連終了 ------------- */
 
+		UUID uuid = null;
+		try {
+			PreparedStatement statement = MySQL.getNewPreparedStatement("SELECT * FROM login WHERE player = ? ORDER BY id DESC");
+			statement.setString(1, name);
+
+			ResultSet res = statement.executeQuery();
+			if(res.next()){
+				uuid = UUID.fromString(res.getString("uuid"));
+			}
+		} catch (SQLException | ClassNotFoundException e) {
+			// TODO 自動生成された catch ブロック
+			DiscordSend("254166905852657675", ":outbox_tray:**投票受信エラー**: " + name + "のプレイヤーデータをデータベースから取得している最中にClassNotFoundExceptionもしくはSQLExceptionが発生したため、投票処理が正常に行われませんでした。");
+			BugReporter(e);
+			return;
+		}
+
+		if(uuid == null){
+			DiscordSend("254166905852657675", ":outbox_tray:**投票受信エラー**: " + name + "のプレイヤーデータがデータベースから取得できなかったため、投票処理が正常に行われませんでした。");
+			return;
+		}
+
+		OfflinePlayer offplayer = Bukkit.getOfflinePlayer(uuid);
+
+		if(offplayer == null){
+			DiscordSend("254166905852657675", ":outbox_tray:**投票受信エラー**: " + name + "のOfflinePlayerを取得できなかったため、投票処理が正常に行われませんでした。");
+		}
+
+		if(!offplayer.getName().equals(name)){
+			name += "(" + offplayer.getName() + ")";
+		}
+
 		boolean first = PlayerVoteData.TodayFirstVote();
 
 		String i;
 		try{
-			@SuppressWarnings("deprecation")
-			PlayerVoteData pvd = new PlayerVoteData(name);
+			PlayerVoteData pvd = new PlayerVoteData(offplayer);
 			oldVote = String.valueOf(pvd.get());
 
 			pvd.add();
@@ -96,8 +130,7 @@ public class Event_VoteReceived extends MyMaid2Premise implements Listener {
 		}
 
 		try{
-			@SuppressWarnings("deprecation")
-			Pointjao pointjao = new Pointjao(name);
+			Pointjao pointjao = new Pointjao(offplayer);
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
 			oldjao = "" + pointjao.get();
 			pointjao.add(VOTEPOINT, sdf.format(new Date()) + "の投票ボーナス");
@@ -142,8 +175,6 @@ public class Event_VoteReceived extends MyMaid2Premise implements Listener {
 				+ "投票後jaoポイント: " + newjao);
 
 		if(first){ // 初めての投票だったら、実績獲得 (No.21 / 筆頭株主)
-			@SuppressWarnings("deprecation")
-			OfflinePlayer offplayer = Bukkit.getOfflinePlayer(name);
 			if(offplayer != null){
 				Achievementjao.getAchievement(offplayer, new AchievementType(21));
 			}

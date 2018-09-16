@@ -35,13 +35,11 @@ public class Pointjao extends MyMaid2Premise {
 	/**
 	 * 指定したオフラインプレイヤーからjaoポイントデータを取得します。
 	 * @param offplayer オフラインプレイヤー
-	 * @deprecated プレイヤー名で検索するため、思い通りのプレイヤーを取得できない場合があります。
 	 * @throws SQLException 内部でSQLExceptionが発生した場合
 	 * @throws ClassNotFoundException 内部でClassNotFoundExceptionが発生した場合
 	 * @throws NullPointerException 内部でNullPointerExceptionが発生した場合
 	 * @author mine_book000
 	 */
-	@Deprecated
 	public Pointjao(OfflinePlayer offplayer) throws ClassNotFoundException, NullPointerException, SQLException {
 		if(offplayer == null) throw new NullPointerException("We could not get the player.");
 		this.offplayer = offplayer;
