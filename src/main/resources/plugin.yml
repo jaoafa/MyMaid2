@@ -355,3 +355,4 @@ commands:
              /rider <EntityName>: 1辺30ブロックの立方体内にある指定された名前のエンティティに乗ります
              /rider <Rider Player/EntityName> <Riding Player/EntityName>: プレイヤーもしくはエンティティ(Rider)をプレイヤーもしくはエンティティ(Riding)に乗せます
              /rider leave: 乗っているプレイヤー・エンティティを下ろします
+             /rider leave <Player/EntityName>: プレイヤーもしくはエンティティから乗っているプレイヤー・エンティティを下ろします

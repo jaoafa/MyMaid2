@@ -8,7 +8,6 @@ import java.util.regex.Pattern;
 
 import org.apache.commons.lang3.StringUtils;
 import org.bukkit.Bukkit;
-import org.bukkit.Location;
 import org.bukkit.block.CommandBlock;
 import org.bukkit.command.BlockCommandSender;
 import org.bukkit.entity.Entity;
@@ -25,6 +24,7 @@ import org.bukkit.scoreboard.ScoreboardManager;
 
 import com.jaoafa.MyMaid2.MyMaid2Premise;
 import com.jaoafa.MyMaid2.Lib.MyMaidVariable;
+import com.jaoafa.MyMaid2.Lib.NearestPlayer;
 
 public class Event_CommandBlockVariable extends MyMaid2Premise implements Listener {
 	JavaPlugin plugin;
@@ -119,40 +119,5 @@ public class Event_CommandBlockVariable extends MyMaid2Premise implements Listen
 		}
 
 		Bukkit.dispatchCommand(sender, command);
-	}
-}
-class NearestPlayer {
-	Boolean status;
-	Player player = null;
-	double closest = -1;
-	public NearestPlayer(Location loc){
-		double closest = Double.MAX_VALUE;
-		Player closestp = null;
-		for(Player p : Bukkit.getOnlinePlayers()){
-			if(!p.getWorld().equals(loc.getWorld())){
-				continue;
-			}
-			double dist = p.getLocation().distance(loc);
-			if(closest == Double.MAX_VALUE || dist < closest){
-				closest = dist;
-				closestp = p;
-			}
-		}
-		if(closestp == null){
-			this.status = false;
-		}else{
-			this.status = true;
-			this.player = closestp;
-			this.closest = closest;
-		}
-	}
-	public Boolean getStatus(){
-		return status;
-	}
-	public Player getPlayer(){
-		return player;
-	}
-	public Double getClosest(){
-		return closest;
 	}
 }

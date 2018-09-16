@@ -219,6 +219,9 @@ public class Event_Antijaoium extends MyMaid2Premise implements Listener {
 		Player player = (Player) event.getEntity();
 		Item item = event.getItem();
 		ItemStack hand = item.getItemStack();
+		if(hand == null){
+			return;
+		}
 		if(hand.getType() == Material.SPLASH_POTION || hand.getType() == Material.LINGERING_POTION){
 			PotionMeta potion = (PotionMeta) hand.getItemMeta();
 			if(isjaoium(potion.getCustomEffects())){
@@ -231,6 +234,9 @@ public class Event_Antijaoium extends MyMaid2Premise implements Listener {
     public void PlayerCreativeInv(InventoryCreativeEvent event){
 		Player player = (Player) event.getWhoClicked();
 		ItemStack hand = event.getCurrentItem();
+		if(hand == null){
+			return;
+		}
 		if(hand.getType() == Material.SPLASH_POTION || hand.getType() == Material.LINGERING_POTION){
 			PotionMeta potion = (PotionMeta) hand.getItemMeta();
 			if(isjaoium(potion.getCustomEffects())){
@@ -271,6 +277,9 @@ public class Event_Antijaoium extends MyMaid2Premise implements Listener {
 		Player player = (Player) event.getEntity();
 		Item item = event.getItem();
 		ItemStack hand = item.getItemStack();
+		if(hand == null){
+			return;
+		}
 		if(hand.getType() == Material.SPLASH_POTION || hand.getType() == Material.LINGERING_POTION){
 			PotionMeta potion = (PotionMeta) hand.getItemMeta();
 			if(isjaoium(potion.getCustomEffects())){

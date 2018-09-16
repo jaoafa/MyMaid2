@@ -90,6 +90,67 @@ public class Cmd_Rider extends MyMaid2Premise implements CommandExecutor {
 			}
 			return true;
 		}else if(args.length == 2){
+			if(args[0].equalsIgnoreCase("leave")){
+				Entity rider = null;
+				if (sender instanceof Player) {
+					Player player = (Player) sender;
+					List<Entity> WorldEntitys = player.getWorld().getEntities();
+					double d = Double.MAX_VALUE;
+					for(Entity e : WorldEntitys){
+						if(!e.getName().equalsIgnoreCase(args[1])){
+							continue;
+						}
+						double distance = e.getLocation().distance(player.getLocation());
+						if(d > distance){
+							rider = e;
+							d = distance;
+						}
+					}
+					if(rider == null){
+						SendMessage(sender, cmd, "指定されたプレイヤー・エンティティが見つかりませんでした。");
+						return true;
+					}
+				}else if (sender instanceof BlockCommandSender) {
+					BlockCommandSender cmdb = (BlockCommandSender) sender;
+					List<Entity> WorldEntitys = cmdb.getBlock().getWorld().getEntities();
+					double d = Double.MAX_VALUE;
+					for(Entity e : WorldEntitys){
+						if(!e.getName().equalsIgnoreCase(args[1])){
+							continue;
+						}
+						double distance = e.getLocation().distance(cmdb.getBlock().getLocation());
+						if(d > distance){
+							rider = e;
+							d = distance;
+						}
+					}
+					if(rider == null){
+						SendMessage(sender, cmd, "指定されたプレイヤー・エンティティが見つかりませんでした。");
+						return true;
+					}
+				}else{
+					SendMessage(sender, cmd, "このコマンドはゲーム内から実行してください。");
+					return true;
+				}
+				if(rider.getPassengers().size() == 0){
+					SendMessage(sender, cmd, "指定されたプレイヤー・エンティティ「" + rider.getName() + "」には誰も乗っていません。");
+					return true;
+				}
+				//String rider = implodeEntityName(player.getPassengers(), ",");
+
+				for(Entity entity : rider.getPassengers()){
+					if(rider.removePassenger(entity)){
+						SendMessage(sender, cmd, "指定されたプレイヤー・エンティティ「" + rider.getName() + "」からプレイヤー・エンティティ「" + entity.getName() + "」を下ろしました。");
+					}else{
+						if(entity.getVehicle().eject()){
+							SendMessage(sender, cmd, "指定されたプレイヤー・エンティティ「" + rider.getName() + "」からプレイヤー・エンティティ「" + entity.getName() + "」を下ろしました。");
+						}else{
+							SendMessage(sender, cmd, "指定されたプレイヤー・エンティティ「" + rider.getName() + "」からプレイヤー・エンティティ「" + entity.getName() + "」を下ろせませんでした。");
+						}
+					}
+				}
+				return true;
+			}
 			// 乗せる
 			Entity rider = null;
 			Entity riding = null;
