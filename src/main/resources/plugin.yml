@@ -348,3 +348,10 @@ commands:
              /chatjail add <Player> [Reason]: プレイヤーをチャット規制リストに追加し、一切のチャットができないようにします。
              /chatjail remove <Player>: プレイヤーをチャット規制リストから削除します。
              /chatjail list: チャット規制リストを表示します。
+   rider:
+      description: プレイヤーやエンティティに乗ったり下ろしたりします。
+      usage: |-
+             /rider <Player>: プレイヤーに乗ります
+             /rider <EntityName>: 1辺30ブロックの立方体内にある指定された名前のエンティティに乗ります
+             /rider <Rider Player/EntityName> <Riding Player/EntityName>: プレイヤーもしくはエンティティ(Rider)をプレイヤーもしくはエンティティ(Riding)に乗せます
+             /rider leave: 乗っているプレイヤー・エンティティを下ろします

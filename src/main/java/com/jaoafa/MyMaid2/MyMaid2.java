@@ -51,6 +51,7 @@ import com.jaoafa.MyMaid2.Command.Cmd_Protector;
 import com.jaoafa.MyMaid2.Command.Cmd_Report;
 import com.jaoafa.MyMaid2.Command.Cmd_Respawn;
 import com.jaoafa.MyMaid2.Command.Cmd_RestartTitle;
+import com.jaoafa.MyMaid2.Command.Cmd_Rider;
 import com.jaoafa.MyMaid2.Command.Cmd_Selector;
 import com.jaoafa.MyMaid2.Command.Cmd_SetHome;
 import com.jaoafa.MyMaid2.Command.Cmd_Show;
@@ -261,6 +262,7 @@ public class MyMaid2 extends JavaPlugin implements Listener {
 		getCommand("summer").setExecutor(new Cmd_Summer(this)); // 2018/08/01
 		getCommand("glookup").setExecutor(new Cmd_GLookup(this)); // 2018/08/02
 		getCommand("chatjail").setExecutor(new Cmd_ChatJail(this)); // 2018/09/09
+		getCommand("rider").setExecutor(new Cmd_Rider(this)); // 2018/09/16
 	}
 
 	/**
