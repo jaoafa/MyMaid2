@@ -191,6 +191,19 @@ public class Cmd_Var extends MyMaid2Premise implements CommandExecutor {
 		}else if(args[0].equalsIgnoreCase("list")){
 			int count = MyMaidVariable.getCount();
 			int page = 1;
+			if(args.length == 1){
+				int i = 0;
+				try {
+					i = Integer.parseInt(args[1]);
+				}catch(NumberFormatException e){
+					SendMessage(sender, cmd, "ページ名には数字を指定してください。");
+					return true;
+				}
+				if(i <= 0){
+					SendMessage(sender, cmd, "0以下のページ名を指定することはできません。");
+					return true;
+				}
+			}
 			int maxpage = count / 10;
 			SendMessage(sender, cmd, "Variable List: " + page + "page / " + maxpage + "page");
 			SendMessage(sender, cmd, "-------------------------");
@@ -199,8 +212,8 @@ public class Cmd_Var extends MyMaid2Premise implements CommandExecutor {
 				SendMessage(sender, cmd, "$" + e.getKey() + "$ => " + e.getValue());
 			}
 			SendMessage(sender, cmd, "-------------------------");
-			if(1 != maxpage){
-				SendMessage(sender, cmd, "次のページを見るには「/ver list " + (page + 1) + "」を実行します。");
+			if(page != maxpage){
+				SendMessage(sender, cmd, "次のページを見るには「/var list " + (page + 1) + "」を実行します。");
 			}
 			return true;
 		}else if(args[0].equalsIgnoreCase("clear")){
