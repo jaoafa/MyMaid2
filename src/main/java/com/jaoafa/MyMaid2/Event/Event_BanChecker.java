@@ -27,9 +27,10 @@ public class Event_BanChecker extends MyMaid2Premise implements Listener {
     public void onLogin(AsyncPlayerPreLoginEvent event){
 		try{
 			UUID uuid = event.getUniqueId();
-			PreparedStatement statement = MySQL.getNewPreparedStatement("SELECT * FROM banlist WHERE uuid = ? AND type = ?");
+			PreparedStatement statement = MySQL.getNewPreparedStatement("SELECT * FROM banlist WHERE uuid = ? AND type = ? AND disabled = ?");
 			statement.setString(1, uuid.toString());
 			statement.setString(2, "gban");
+			statement.setBoolean(3, false);
 			ResultSet res = statement.executeQuery();
 			if(res.next()){
 				String reason = res.getString("reason");
