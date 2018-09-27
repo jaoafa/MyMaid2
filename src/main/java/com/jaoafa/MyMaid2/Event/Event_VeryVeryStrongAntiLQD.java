@@ -39,7 +39,7 @@ public class Event_VeryVeryStrongAntiLQD extends MyMaid2Premise implements Liste
 					continue;
 				}
 				// 本来の最大値より超えている場合
-				DiscordSend("293856671799967744", "__**[VeryVeryStrongAntiLQD]**__ 本来の最大値を超えたアイテムが" + player.getName() + "から見つかりました。\n"
+				DiscordSend("223582668132974594", "__**[VeryVeryStrongAntiLQD]**__ 本来の最大値を超えたアイテムが" + player.getName() + "から見つかりました。\n"
 						+ "アイテム情報: " + item.getItemMeta().getDisplayName() + " (" + item.getType().name() + ")\n"
 						+ "エンチャント/レベル/最大レベル: " + encha.getName() + " - " + level + " / " + maxlevel + "\n"
 						+ "イベント: PlayerInteractEvent");
@@ -73,7 +73,7 @@ public class Event_VeryVeryStrongAntiLQD extends MyMaid2Premise implements Liste
 					continue;
 				}
 				// 本来の最大値より超えている場合
-				DiscordSend("293856671799967744", "__**[VeryVeryStrongAntiLQD]**__ 本来の最大値を超えたアイテムが" + player.getName() + "から見つかりました。\n"
+				DiscordSend("223582668132974594", "__**[VeryVeryStrongAntiLQD]**__ 本来の最大値を超えたアイテムが" + player.getName() + "から見つかりました。\n"
 						+ "アイテム情報: " + item.getItemMeta().getDisplayName() + " (" + item.getType().name() + ")\n"
 						+ "エンチャント/レベル/最大レベル: " + encha.getName() + " - " + level + " / " + maxlevel + "\n"
 						+ "イベント: PlayerMoveEvent (ItemInMainHand)");
@@ -94,7 +94,7 @@ public class Event_VeryVeryStrongAntiLQD extends MyMaid2Premise implements Liste
 					continue;
 				}
 				// 本来の最大値より超えている場合
-				DiscordSend("293856671799967744", "__**[VeryVeryStrongAntiLQD]**__ 本来の最大値を超えたアイテムが" + player.getName() + "から見つかりました。\n"
+				DiscordSend("223582668132974594", "__**[VeryVeryStrongAntiLQD]**__ 本来の最大値を超えたアイテムが" + player.getName() + "から見つかりました。\n"
 						+ "アイテム情報: " + item.getItemMeta().getDisplayName() + " (" + item.getType().name() + ")\n"
 						+ "エンチャント/レベル/最大レベル: " + encha.getName() + " - " + level + " / " + maxlevel + "\n"
 						+ "イベント: PlayerMoveEvent (ItemInOffHand)");
@@ -114,7 +114,7 @@ public class Event_VeryVeryStrongAntiLQD extends MyMaid2Premise implements Liste
 					continue;
 				}
 				// 本来の最大値より超えている場合
-				DiscordSend("293856671799967744", "__**[VeryVeryStrongAntiLQD]**__ 本来の最大値を超えたアイテムが" + player.getName() + "から見つかりました。\n"
+				DiscordSend("223582668132974594", "__**[VeryVeryStrongAntiLQD]**__ 本来の最大値を超えたアイテムが" + player.getName() + "から見つかりました。\n"
 						+ "アイテム情報: " + item.getItemMeta().getDisplayName() + " (" + item.getType().name() + ")\n"
 						+ "エンチャント/レベル/最大レベル: " + encha.getName() + " - " + level + " / " + maxlevel + "\n"
 						+ "イベント: PlayerMoveEvent (Helmet)");
@@ -135,7 +135,7 @@ public class Event_VeryVeryStrongAntiLQD extends MyMaid2Premise implements Liste
 					continue;
 				}
 				// 本来の最大値より超えている場合
-				DiscordSend("293856671799967744", "__**[VeryVeryStrongAntiLQD]**__ 本来の最大値を超えたアイテムが" + player.getName() + "から見つかりました。\n"
+				DiscordSend("223582668132974594", "__**[VeryVeryStrongAntiLQD]**__ 本来の最大値を超えたアイテムが" + player.getName() + "から見つかりました。\n"
 						+ "アイテム情報: " + item.getItemMeta().getDisplayName() + " (" + item.getType().name() + ")\n"
 						+ "エンチャント/レベル/最大レベル: " + encha.getName() + " - " + level + " / " + maxlevel + "\n"
 						+ "イベント: PlayerMoveEvent (Chestplate)");
@@ -156,7 +156,7 @@ public class Event_VeryVeryStrongAntiLQD extends MyMaid2Premise implements Liste
 					continue;
 				}
 				// 本来の最大値より超えている場合
-				DiscordSend("293856671799967744", "__**[VeryVeryStrongAntiLQD]**__ 本来の最大値を超えたアイテムが" + player.getName() + "から見つかりました。\n"
+				DiscordSend("223582668132974594", "__**[VeryVeryStrongAntiLQD]**__ 本来の最大値を超えたアイテムが" + player.getName() + "から見つかりました。\n"
 						+ "アイテム情報: " + item.getItemMeta().getDisplayName() + " (" + item.getType().name() + ")\n"
 						+ "エンチャント/レベル/最大レベル: " + encha.getName() + " - " + level + " / " + maxlevel + "\n"
 						+ "イベント: PlayerMoveEvent (Leggings)");
@@ -177,7 +177,7 @@ public class Event_VeryVeryStrongAntiLQD extends MyMaid2Premise implements Liste
 					continue;
 				}
 				// 本来の最大値より超えている場合
-				DiscordSend("293856671799967744", "__**[VeryVeryStrongAntiLQD]**__ 本来の最大値を超えたアイテムが" + player.getName() + "から見つかりました。\n"
+				DiscordSend("223582668132974594", "__**[VeryVeryStrongAntiLQD]**__ 本来の最大値を超えたアイテムが" + player.getName() + "から見つかりました。\n"
 						+ "アイテム情報: " + item.getItemMeta().getDisplayName() + " (" + item.getType().name() + ")\n"
 						+ "エンチャント/レベル/最大レベル: " + encha.getName() + " - " + level + " / " + maxlevel + "\n"
 						+ "イベント: PlayerMoveEvent (Boots)");
