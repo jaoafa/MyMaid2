@@ -356,3 +356,8 @@ commands:
              /rider <Rider Player/EntityName> <Riding Player/EntityName>: プレイヤーもしくはエンティティ(Rider)をプレイヤーもしくはエンティティ(Riding)に乗せます
              /rider leave: 乗っているプレイヤー・エンティティを下ろします
              /rider leave <Player/EntityName>: プレイヤーもしくはエンティティから乗っているプレイヤー・エンティティを下ろします
+   itemedit:
+      description: 手に持っているアイテムの名前などを変更します。
+      usage: |-
+             /itemedit name <Name...>: 持っているアイテムのNameを変更します。
+             /itemedit lore <Lore...>: 持っているアイテムのLoreを変更します。
