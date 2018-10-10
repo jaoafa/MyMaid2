@@ -88,6 +88,8 @@ public class EBan extends MyMaid2Premise {
 
 		Bukkit.broadcastMessage("[EBan] " + ChatColor.RED + "プレイヤー:「" + player.getName() + "」を「" + reason + "」という理由でEBanされました。");
 		DiscordSend("223582668132974594", "__**EBan[追加]**__: プレイヤー「" + player.getName() +"」が「" + banned_by.getName() +"」によって「" + reason + "」という理由でEBanされました。");
+		player.sendMessage("[EBan] " + ChatColor.RED + "解除申請の方法や、Banの方針などは以下ページをご覧ください。");
+		player.sendMessage("[EBan] " + ChatColor.RED + "https://jaoafa.com/rule/management/ban");
 		EBanCache.put(player.getUniqueId(), true);
 		return true;
 	}
@@ -146,6 +148,11 @@ public class EBan extends MyMaid2Premise {
 
 		Bukkit.broadcastMessage("[EBan] " + ChatColor.RED + "プレイヤー:「" + player.getName() + "」を「" + reason + "」という理由でEBanしました。");
 		DiscordSend("223582668132974594", "__**EBan[追加]**__: プレイヤー「" + player.getName() +"」が「" + banned_by.getName() +"」によって「" + reason + "」という理由でEBanしました。");
+		if(player.isOnline()){
+			((Player) player).sendMessage("[EBan] " + ChatColor.RED + "解除申請の方法や、Banの方針などは以下ページをご覧ください。");
+			((Player) player).sendMessage("[EBan] " + ChatColor.RED + "https://jaoafa.com/rule/management/ban");
+		}
+
 		EBanCache.put(player.getUniqueId(), true);
 		return true;
 	}

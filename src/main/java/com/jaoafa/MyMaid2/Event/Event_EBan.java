@@ -47,6 +47,9 @@ public class Event_EBan implements Listener {
 			p.sendMessage("[EBan] " + ChatColor.RED + "プレイヤー「" + player.getName() + "」は、「" + reason + "」という理由でEBanされています。");
 			p.sendMessage("[EBan] " + ChatColor.RED + "詳しい情報は /eban status " + player.getName() + " でご確認ください。");
 		}
+		player.sendMessage("[EBan] " + ChatColor.RED + "あなたは、「" + reason + "」という理由でEBanされています。");
+		player.sendMessage("[EBan] " + ChatColor.RED + "解除申請の方法や、Banの方針などは以下ページをご覧ください。");
+		player.sendMessage("[EBan] " + ChatColor.RED + "https://jaoafa.com/rule/management/ban");
 	}
 
 	@EventHandler
