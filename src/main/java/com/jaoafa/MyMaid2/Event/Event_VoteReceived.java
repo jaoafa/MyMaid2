@@ -89,20 +89,20 @@ public class Event_VoteReceived extends MyMaid2Premise implements Listener {
 			}
 		} catch (SQLException | ClassNotFoundException e) {
 			// TODO 自動生成された catch ブロック
-			DiscordSend("254166905852657675", ":outbox_tray:**投票受信エラー**: " + name + "のプレイヤーデータをデータベースから取得している最中にClassNotFoundExceptionもしくはSQLExceptionが発生したため、投票処理が正常に行われませんでした。");
+			DiscordSend("499922840871632896", ":outbox_tray:**投票受信エラー**: " + name + "のプレイヤーデータをデータベースから取得している最中にClassNotFoundExceptionもしくはSQLExceptionが発生したため、投票処理が正常に行われませんでした。");
 			BugReporter(e);
 			return;
 		}
 
 		if(uuid == null){
-			DiscordSend("254166905852657675", ":outbox_tray:**投票受信エラー**: " + name + "のプレイヤーデータがデータベースから取得できなかったため、投票処理が正常に行われませんでした。");
+			DiscordSend("499922840871632896", ":outbox_tray:**投票受信エラー**: " + name + "のプレイヤーデータがデータベースから取得できなかったため、投票処理が正常に行われませんでした。");
 			return;
 		}
 
 		OfflinePlayer offplayer = Bukkit.getOfflinePlayer(uuid);
 
 		if(offplayer == null){
-			DiscordSend("254166905852657675", ":outbox_tray:**投票受信エラー**: " + name + "のOfflinePlayerを取得できなかったため、投票処理が正常に行われませんでした。");
+			DiscordSend("499922840871632896", ":outbox_tray:**投票受信エラー**: " + name + "のOfflinePlayerを取得できなかったため、投票処理が正常に行われませんでした。");
 		}
 
 		if(!offplayer.getName().equals(name)){
@@ -121,11 +121,11 @@ public class Event_VoteReceived extends MyMaid2Premise implements Listener {
 			newVote = String.valueOf(pvd.get());
 			i = String.valueOf(pvd.get());
 		}catch(ClassNotFoundException | SQLException e){
-			DiscordSend("254166905852657675", ":outbox_tray:**投票受信エラー**: " + name + "の投票処理時にClassNotFoundExceptionもしくはSQLExceptionが発生したため、投票処理(投票数追加)が正常に行われませんでした。");
+			DiscordSend("499922840871632896", ":outbox_tray:**投票受信エラー**: " + name + "の投票処理時にClassNotFoundExceptionもしくはSQLExceptionが発生したため、投票処理(投票数追加)が正常に行われませんでした。");
 			BugReporter(e);
 			return;
 		}catch(NullPointerException e){
-			DiscordSend("254166905852657675", ":outbox_tray:**投票受信エラー**: " + name + "のプレイヤー投票データが取得できなかったため、投票処理(投票数追加)が正常に行われませんでした。");
+			DiscordSend("499922840871632896", ":outbox_tray:**投票受信エラー**: " + name + "のプレイヤー投票データが取得できなかったため、投票処理(投票数追加)が正常に行われませんでした。");
 			return;
 		}
 
@@ -154,10 +154,10 @@ public class Event_VoteReceived extends MyMaid2Premise implements Listener {
 			}
 
 		}catch(NullPointerException e){
-			DiscordSend("254166905852657675", ":outbox_tray:**投票受信エラー**: " + name + "のプレイヤーデータが取得できなかったため、投票処理(ポイント追加)が正常に行われませんでした。");
+			DiscordSend("499922840871632896", ":outbox_tray:**投票受信エラー**: " + name + "のプレイヤーデータが取得できなかったため、投票処理(ポイント追加)が正常に行われませんでした。");
 			return;
 		}catch(ClassNotFoundException | SQLException e){
-			DiscordSend("254166905852657675", ":outbox_tray:**投票受信エラー**: " + name + "の投票処理時にClassNotFoundExceptionもしくはSQLExceptionが発生したため、投票処理(投票数追加)が正常に行われませんでした。");
+			DiscordSend("499922840871632896", ":outbox_tray:**投票受信エラー**: " + name + "の投票処理時にClassNotFoundExceptionもしくはSQLExceptionが発生したため、投票処理(投票数追加)が正常に行われませんでした。");
 			BugReporter(e);
 			return;
 		}
@@ -167,7 +167,7 @@ public class Event_VoteReceived extends MyMaid2Premise implements Listener {
 		Bukkit.broadcastMessage("[MyMaid] " + ChatColor.GREEN + "投票をよろしくお願いします！ https://jaoafa.com/vote");
 		DiscordSend("プレイヤー「" + name + "」が投票をしました！(現在の投票数:" + i + "回)");
 		DiscordSend("投票をよろしくお願いします！ https://jaoafa.com/vote");
-		DiscordSend("254166905852657675", ":inbox_tray:**投票を受信しました。(" + format.format(new Date()) + ")**\n"
+		DiscordSend("499922840871632896", ":inbox_tray:**投票を受信しました。(" + format.format(new Date()) + ")**\n"
 				+ "プレイヤー: `"  + name + "`\n"
 				+ "投票前カウント: " + oldVote + "\n"
 				+ "投票後カウント: " + newVote + "\n"

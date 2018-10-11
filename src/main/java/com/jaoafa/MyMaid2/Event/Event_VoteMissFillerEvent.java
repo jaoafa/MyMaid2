@@ -15,7 +15,7 @@ public class Event_VoteMissFillerEvent extends MyMaid2Premise implements Listene
 	@EventHandler
 	public void onVoteMissFillerEvent(VoteMissFillerEvent event){
 		String player = event.getStringPlayer();
-		DiscordSend("254166905852657675", ":mailbox_with_mail: **投票自動補填通知**: " + player + "の投票が受信されていなかったため、自動補填を行います。");
+		DiscordSend("499922840871632896", ":mailbox_with_mail: **投票自動補填通知**: " + player + "の投票が受信されていなかったため、自動補填を行います。");
 		Event_VoteReceived.VoteReceive(player);
 	}
 }
