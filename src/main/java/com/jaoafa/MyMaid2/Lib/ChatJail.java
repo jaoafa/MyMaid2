@@ -36,6 +36,7 @@ public class ChatJail extends MyMaid2Premise {
 	 * @throws NullPointerException
 	 * @throws ClassNotFoundException
 	*/
+	/*
 	public static boolean Add(Player player, CommandSender banned_by, String reason) throws ClassNotFoundException, NullPointerException, SQLException{
 		if(player == null){
 			banned_by.sendMessage("[JAIL] " + ChatColor.GREEN + "指定されたプレイヤーは見つかりません。");
@@ -87,7 +88,7 @@ public class ChatJail extends MyMaid2Premise {
 
 
 		Bukkit.broadcastMessage("[CHATJAIL] " + ChatColor.GREEN + "プレイヤー:「" + player.getName() + "」を「" + reason + "」という理由でチャット規制リストに追加しました。");
-		DiscordSend("223582668132974594", "***Jail[追加]***: プレイヤー「" + player.getName() +"」が「" + banned_by.getName() +"」によって「" + reason + "」という理由でチャット規制リストに追加されました。");
+		DiscordSend("223582668132974594", "***ChatJail[追加]***: プレイヤー「" + player.getName() +"」が「" + banned_by.getName() +"」によって「" + reason + "」という理由でチャット規制リストに追加されました。");
 
 		if(banned_by instanceof Player){
 			Player banned_by_player = (Player) banned_by;
@@ -96,6 +97,7 @@ public class ChatJail extends MyMaid2Premise {
 		}
 		return true;
 	}
+	*/
 
 	/**
 	 * Jailに理由つきでプレイヤーを追加
@@ -109,12 +111,11 @@ public class ChatJail extends MyMaid2Premise {
 	 * @throws NullPointerException
 	 * @throws ClassNotFoundException
 	*/
-	/*
 	public static boolean Add(OfflinePlayer player, CommandSender banned_by, String reason) throws ClassNotFoundException, NullPointerException, SQLException{
 		if(player == null){
-			banned_by.sendMessage("[CHATJAIL] " + ChatColor.GREEN + "指定されたプレイヤーは見つかりません。");
+			banned_by.sendMessage("[JAIL] " + ChatColor.GREEN + "指定されたプレイヤーは見つかりません。");
 			try{
-				throw new java.lang.NullPointerException("ChatJail.Add OfflinePlayer is null...!");
+				throw new java.lang.NullPointerException("ChatJail.Add Player is null...!");
 			}catch(java.lang.NullPointerException e){
 				BugReporter(e);
 			}
@@ -125,55 +126,51 @@ public class ChatJail extends MyMaid2Premise {
 			Pointjao pointjao = new Pointjao(banned_by_player);
 			if(!pointjao.has(REQUIRED_jao)){
 				// 所持していない
-				banned_by.sendMessage("[CHATJAIL] " + ChatColor.GREEN + "あなたはChatJailするためのjaoポイントが足りません。");
+				banned_by.sendMessage("[JAIL] " + ChatColor.GREEN + "あなたはChatJailするためのjaoポイントが足りません。");
 				return true;
 			}
 		}
-		if(ChatJail.contains(player.getUniqueId().toString())){
+		if(isChatJail(player)){
 			// 既に牢獄にいるので無理
-			banned_by.sendMessage("[CHATJAIL] " + ChatColor.GREEN + "指定されたプレイヤーはすでにChatJailをされているため追加できません。");
+			banned_by.sendMessage("[JAIL] " + ChatColor.GREEN + "指定されたプレイヤーはすでにChatJailをされているため追加できません。");
 			return false;
 		}
-		ChatJail.add(player.getUniqueId().toString());
 
 		SimpleDateFormat allsdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 
 		try {
-			PreparedStatement statement = MySQL.getNewPreparedStatement("INSERT INTO chatjail (player, uuid, banned_by, reason, date) VALUES (?, ?, ?, ?, ?)");
+			PreparedStatement statement = MySQL.getNewPreparedStatement("INSERT INTO chatjail (player, uuid, banned_by, reason, status, date) VALUES (?, ?, ?, ?, ?, ?);");
 			statement.setString(1, player.getName());
 			statement.setString(2, player.getUniqueId().toString());
 			statement.setString(3, banned_by.getName());
 			statement.setString(4, reason);
-			statement.setString(5, allsdf.format(new Date()));
-			statement.executeUpdate();
-		} catch (SQLException | ClassNotFoundException e) {
-			BugReporter(e);
-		}
-
-		try {
-			PreparedStatement statement = MySQL.getNewPreparedStatement("INSERT INTO banlist (player, uuid, type, bannedby, reason, time) VALUES (?, ?, ?, ?, ?, ?)");
-			statement.setString(1, player.getName());
-			statement.setString(2, player.getUniqueId().toString());
-			statement.setString(3, "chatjail");
-			statement.setString(4, banned_by.getName());
-			statement.setString(5, reason);
+			statement.setString(5, "punishing");
 			statement.setString(6, allsdf.format(new Date()));
 			statement.executeUpdate();
+
+			PreparedStatement statement2 = MySQL.getNewPreparedStatement("INSERT INTO banlist (player, uuid, type, bannedby, reason, time) VALUES (?, ?, ?, ?, ?, ?);");
+			statement2.setString(1, player.getName());
+			statement2.setString(2, player.getUniqueId().toString());
+			statement2.setString(3, "chatjail");
+			statement2.setString(4, banned_by.getName());
+			statement2.setString(5, reason);
+			statement2.setString(6, allsdf.format(new Date()));
+			statement2.executeUpdate();
 		} catch (SQLException | ClassNotFoundException e) {
 			BugReporter(e);
 		}
 
-		Bukkit.broadcastMessage("[JAIL] " + ChatColor.GREEN + "プレイヤー:「" + player.getName() + "」を「" + reason + "」という理由で牢獄リストに追加しました。");
-		DiscordSend("223582668132974594", "***Jail[追加]***: プレイヤー「" + player.getName() +"」が「" + banned_by.getName() +"」によって「" + reason + "」という理由でチャット規制リストに追加されました。");
+
+		Bukkit.broadcastMessage("[CHATJAIL] " + ChatColor.GREEN + "プレイヤー:「" + player.getName() + "」を「" + reason + "」という理由でチャット規制リストに追加しました。");
+		DiscordSend("223582668132974594", "***ChatJail[追加]***: プレイヤー「" + player.getName() +"」が「" + banned_by.getName() +"」によって「" + reason + "」という理由でチャット規制リストに追加されました。");
+
 		if(banned_by instanceof Player){
 			Player banned_by_player = (Player) banned_by;
 			Pointjao pointjao = new Pointjao(banned_by_player);
-			pointjao.use(REQUIRED_jao, player.getName() + "をJailに追加したため。(理由: " + reason + ")");
+			pointjao.use(REQUIRED_jao, player.getName() + "をChatJailに追加したため。(理由: " + reason + ")");
 		}
-		JailBackupSaveTxt(player.getName(), JailType.ADD, banned_by.getName(), reason);
 		return true;
 	}
-	*/
 
 	/**
 	 * Jailにいるプレイヤーリストを送信
@@ -337,13 +334,18 @@ public class ChatJail extends MyMaid2Premise {
 		return true;
 	}
 
+	static Map<UUID, String> ReasonCache = new HashMap<>();
 	public static String getLastReason(Player player){
 		if(!isChatJail(player)) return null;
+		if(ReasonCache.containsKey(player.getUniqueId()) && ReasonCache.get(player.getUniqueId()) != null){
+			return ReasonCache.get(player.getUniqueId());
+		}
 		try {
 			PreparedStatement statement = MySQL.getNewPreparedStatement("SELECT * FROM chatjail WHERE uuid = ? ORDER BY id DESC LIMIT 1");
 			statement.setString(1, player.getUniqueId().toString());
 			ResultSet res = statement.executeQuery();
 			if(res.next()){
+				ReasonCache.put(player.getUniqueId(), res.getString("reason"));
 				return res.getString("reason");
 			}else{
 				return null;
@@ -378,9 +380,11 @@ public class ChatJail extends MyMaid2Premise {
 			if(res.next()){
 				if(res.getString("status").equalsIgnoreCase("punishing")){
 					ChatJailCache.put(player.getUniqueId(), true);
+					ReasonCache.put(player.getUniqueId(), res.getString("reason"));
 					return true;
 				}else{
 					ChatJailCache.put(player.getUniqueId(), false);
+					ReasonCache.put(player.getUniqueId(), null);
 					return false;
 				}
 			}else{
@@ -414,9 +418,11 @@ public class ChatJail extends MyMaid2Premise {
 			if(res.next()){
 				if(res.getString("status").equalsIgnoreCase("punishing")){
 					ChatJailCache.put(offplayer.getUniqueId(), true);
+					ReasonCache.put(offplayer.getUniqueId(), res.getString("reason"));
 					return true;
 				}else{
 					ChatJailCache.put(offplayer.getUniqueId(), false);
+					ReasonCache.put(offplayer.getUniqueId(), null);
 					return false;
 				}
 			}else{
@@ -429,8 +435,10 @@ public class ChatJail extends MyMaid2Premise {
 	}
 
 
+
 	public static void ClearCache(Player player){
 		ChatJailCache.put(player.getUniqueId(), null);
+		ReasonCache.put(player.getUniqueId(), null);
 	}
 
 	public static void ChatJailDBMessageAdd(Player player, String message){

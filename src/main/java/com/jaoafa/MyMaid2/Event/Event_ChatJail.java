@@ -45,8 +45,14 @@ public class Event_ChatJail implements Listener {
 		if(!ChatJail.isChatJail(player)){
 			return;
 		}
+		String reason = ChatJail.getLastReason(player);
+		if(reason == null){
+			reason = "不明";
+		}
 		String message = event.getMessage();
-		player.sendMessage("[ChatJail] " + ChatColor.GREEN + "あなたはチャット規制をされています。解除するにはDiscord#supportなどで解除申請をしてください。");
+		player.sendMessage("[EBan] " + ChatColor.RED + "あなたは、「" + reason + "」という理由でチャット規制をされています。");
+		player.sendMessage("[EBan] " + ChatColor.RED + "解除申請の方法や、Banの方針などは以下ページをご覧ください。");
+		player.sendMessage("[EBan] " + ChatColor.RED + "https://jaoafa.com/rule/management/ban");
 		ChatJail.ChatJailDBMessageAdd(player, message);
 		event.setCancelled(true);
 	}

@@ -215,6 +215,12 @@ public class Pointjao extends MyMaid2Premise {
 	 */
 	public boolean add(int add, String reason) throws ClassNotFoundException, SQLException, NullPointerException {
 		if(offplayer == null) throw new NullPointerException("We could not get the player.");
+		if(EBan.isEBan(offplayer)){
+			if(offplayer.isOnline()){
+				((Player) offplayer).sendMessage("[jaoPoint] " + ChatColor.RED + "あなたはEBanされているため、jaoポイントアカウントが凍結されています。");
+			}
+			return false;
+		}
 		int now = get();
 		int newjao = now + add;
 		int id;
@@ -246,6 +252,12 @@ public class Pointjao extends MyMaid2Premise {
 	 */
 	public boolean use(int use, String reason) throws ClassNotFoundException, SQLException, NullPointerException {
 		if(offplayer == null) throw new NullPointerException("We could not get the player.");
+		if(EBan.isEBan(offplayer)){
+			if(offplayer.isOnline()){
+				((Player) offplayer).sendMessage("[jaoPoint] " + ChatColor.RED + "あなたはEBanされているため、jaoポイントアカウントが凍結されています。");
+			}
+			return false;
+		}
 		int now = get();
 		if(!has(use)){
 			return false;

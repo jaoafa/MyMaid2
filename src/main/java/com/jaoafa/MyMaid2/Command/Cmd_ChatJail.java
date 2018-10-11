@@ -4,12 +4,14 @@ import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.UUID;
 
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -51,6 +53,43 @@ public class Cmd_ChatJail extends MyMaid2Premise implements CommandExecutor, Tab
 				return true;
 			}
 		}else if(args.length >= 3){
+			if(sender instanceof ConsoleCommandSender){
+				if(args[0].equalsIgnoreCase("add")){
+					String playername = args[1];
+					OfflinePlayer offplayer = null;
+					try{
+						UUID offUUID = UUID.fromString(playername);
+						offplayer = Bukkit.getOfflinePlayer(offUUID);
+						if(offplayer != null) SendMessage(sender, cmd, "UUIDからプレイヤー「" + offplayer.getName() + "」を選択しました。");
+					}catch(IllegalArgumentException e){
+						offplayer = Bukkit.getOfflinePlayer(playername);
+					}
+					String text = "";
+					int c = 2;
+					while(args.length > c){
+						text += args[c];
+						if(args.length != (c+1)){
+							text += " ";
+						}
+						c++;
+					}
+					if(offplayer == null){
+						SendMessage(sender, cmd, "指定されたプレイヤー「" + playername + "」は見つかりませんでした。");
+						return true;
+					}
+
+					try {
+						ChatJail.Add(offplayer, sender, text);
+					} catch (ClassNotFoundException | NullPointerException | SQLException e) {
+						BugReporter(e);
+						SendMessage(sender, cmd, "操作に失敗しました。");
+						SendMessage(sender, cmd, "詳しくはサーバコンソールをご確認ください");
+						SendMessage(sender, cmd, "再度実行しなおすと動作するかもしれません。");
+						return true;
+					}
+					return true;
+				}
+			}
 			if(args[0].equalsIgnoreCase("add")){
 				String playername = args[1];
 				Player player = Bukkit.getPlayerExact(playername);

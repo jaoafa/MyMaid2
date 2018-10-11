@@ -197,6 +197,7 @@ public class EBan extends MyMaid2Premise {
 
 		Bukkit.broadcastMessage("[EBan] " + ChatColor.RED + "プレイヤー:「" + player.getName() + "」のEBanを解除しました。");
 		DiscordSend("223582668132974594", "__**EBan[解除]**__: プレイヤー「" + player.getName() +"」のEBanを「" + banned_by.getName() +"」によって解除されました。");
+		EBanCache.put(player.getUniqueId(), false);
 		return true;
 	}
 
