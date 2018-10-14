@@ -36,7 +36,7 @@ public class Cmd_Var extends MyMaid2Premise implements CommandExecutor {
 	        	SendMessage(sender, cmd, "変数は英数字記号のみ許可しています。");
 	        	return true;
 	        }
-	        String value = "";
+	        	String value = "";
 			int c = 2;
 			while(args.length > c){
 				value += args[c];
