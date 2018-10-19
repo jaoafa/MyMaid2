@@ -39,7 +39,7 @@ public class ChatJail extends MyMaid2Premise {
 	/*
 	public static boolean Add(Player player, CommandSender banned_by, String reason) throws ClassNotFoundException, NullPointerException, SQLException{
 		if(player == null){
-			banned_by.sendMessage("[JAIL] " + ChatColor.GREEN + "指定されたプレイヤーは見つかりません。");
+			banned_by.sendMessage("[CHATJAIL] " + ChatColor.GREEN + "指定されたプレイヤーは見つかりません。");
 			try{
 				throw new java.lang.NullPointerException("ChatJail.Add Player is null...!");
 			}catch(java.lang.NullPointerException e){
@@ -52,13 +52,13 @@ public class ChatJail extends MyMaid2Premise {
 			Pointjao pointjao = new Pointjao(banned_by_player);
 			if(!pointjao.has(REQUIRED_jao)){
 				// 所持していない
-				banned_by.sendMessage("[JAIL] " + ChatColor.GREEN + "あなたはChatJailするためのjaoポイントが足りません。");
+				banned_by.sendMessage("[CHATJAIL] " + ChatColor.GREEN + "あなたはChatJailするためのjaoポイントが足りません。");
 				return true;
 			}
 		}
 		if(isChatJail(player)){
 			// 既に牢獄にいるので無理
-			banned_by.sendMessage("[JAIL] " + ChatColor.GREEN + "指定されたプレイヤーはすでにChatJailをされているため追加できません。");
+			banned_by.sendMessage("[CHATJAIL] " + ChatColor.GREEN + "指定されたプレイヤーはすでにChatJailをされているため追加できません。");
 			return false;
 		}
 
@@ -113,7 +113,7 @@ public class ChatJail extends MyMaid2Premise {
 	*/
 	public static boolean Add(OfflinePlayer player, CommandSender banned_by, String reason) throws ClassNotFoundException, NullPointerException, SQLException{
 		if(player == null){
-			banned_by.sendMessage("[JAIL] " + ChatColor.GREEN + "指定されたプレイヤーは見つかりません。");
+			banned_by.sendMessage("[CHATJAIL] " + ChatColor.GREEN + "指定されたプレイヤーは見つかりません。");
 			try{
 				throw new java.lang.NullPointerException("ChatJail.Add Player is null...!");
 			}catch(java.lang.NullPointerException e){
@@ -126,13 +126,13 @@ public class ChatJail extends MyMaid2Premise {
 			Pointjao pointjao = new Pointjao(banned_by_player);
 			if(!pointjao.has(REQUIRED_jao)){
 				// 所持していない
-				banned_by.sendMessage("[JAIL] " + ChatColor.GREEN + "あなたはChatJailするためのjaoポイントが足りません。");
+				banned_by.sendMessage("[CHATJAIL] " + ChatColor.GREEN + "あなたはChatJailするためのjaoポイントが足りません。");
 				return true;
 			}
 		}
 		if(isChatJail(player)){
 			// 既に牢獄にいるので無理
-			banned_by.sendMessage("[JAIL] " + ChatColor.GREEN + "指定されたプレイヤーはすでにChatJailをされているため追加できません。");
+			banned_by.sendMessage("[CHATJAIL] " + ChatColor.GREEN + "指定されたプレイヤーはすでにChatJailをされているため追加できません。");
 			return false;
 		}
 
@@ -329,7 +329,7 @@ public class ChatJail extends MyMaid2Premise {
 			BugReporter(e);
 		}
 
-		Bukkit.broadcastMessage("[JAIL] " + ChatColor.GREEN + "プレイヤー:「" + offplayer.getName() + "」をチャット規制リストから削除しました。");
+		Bukkit.broadcastMessage("[CHATJAIL] " + ChatColor.GREEN + "プレイヤー:「" + offplayer.getName() + "」をチャット規制リストから削除しました。");
 		DiscordSend("223582668132974594", "***ChatJail[削除]***: プレイヤー「" + offplayer.getName() +"」が「" + banned_by.getName() + "」によってチャット規制リストから削除されました");
 		return true;
 	}

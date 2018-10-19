@@ -34,8 +34,8 @@ public class Event_ChatJail implements Listener {
 			if(!group.equalsIgnoreCase("Admin") && !group.equalsIgnoreCase("Moderator") && !group.equalsIgnoreCase("Regular")){
 				continue;
 			}
-			p.sendMessage("[EBan] " + ChatColor.RED + "プレイヤー「" + player.getName() + "」は、「" + reason + "」という理由でChatJailされています。");
-			p.sendMessage("[EBan] " + ChatColor.RED + "詳しい情報はユーザーページよりご確認ください。");
+			p.sendMessage("[ChatJail] " + ChatColor.RED + "プレイヤー「" + player.getName() + "」は、「" + reason + "」という理由でChatJailされています。");
+			p.sendMessage("[ChatJail] " + ChatColor.RED + "詳しい情報はユーザーページよりご確認ください。");
 		}
 	}
 
@@ -50,9 +50,9 @@ public class Event_ChatJail implements Listener {
 			reason = "不明";
 		}
 		String message = event.getMessage();
-		player.sendMessage("[EBan] " + ChatColor.RED + "あなたは、「" + reason + "」という理由でチャット規制をされています。");
-		player.sendMessage("[EBan] " + ChatColor.RED + "解除申請の方法や、Banの方針などは以下ページをご覧ください。");
-		player.sendMessage("[EBan] " + ChatColor.RED + "https://jaoafa.com/rule/management/ban");
+		player.sendMessage("[ChatJail] " + ChatColor.RED + "あなたは、「" + reason + "」という理由でチャット規制をされています。");
+		player.sendMessage("[ChatJail] " + ChatColor.RED + "解除申請の方法や、Banの方針などは以下ページをご覧ください。");
+		player.sendMessage("[ChatJail] " + ChatColor.RED + "https://jaoafa.com/rule/management/ban");
 		ChatJail.ChatJailDBMessageAdd(player, message);
 		event.setCancelled(true);
 	}

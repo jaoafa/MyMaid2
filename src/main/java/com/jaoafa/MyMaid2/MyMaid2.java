@@ -103,6 +103,7 @@ import com.jaoafa.MyMaid2.Event.Event_PlayerQuit;
 import com.jaoafa.MyMaid2.Event.Event_QD_NOTSpectator;
 import com.jaoafa.MyMaid2.Event.Event_QuitHeaderFooterChange;
 import com.jaoafa.MyMaid2.Event.Event_SKKColor;
+import com.jaoafa.MyMaid2.Event.Event_SandBoxBuildProtectionNotice;
 import com.jaoafa.MyMaid2.Event.Event_SandBoxRoad;
 import com.jaoafa.MyMaid2.Event.Event_SignClick;
 import com.jaoafa.MyMaid2.Event.Event_Summer2018;
@@ -343,6 +344,7 @@ public class MyMaid2 extends JavaPlugin implements Listener {
 		registEvent(new Event_VeryVeryStrongAntiLQD(this)); // 2018/09/08
 		registEvent(new Event_ChatJail(this)); // 2018/09/09
 		registEvent(new Event_SandBoxRoad(this)); // 2018/10/08
+		registEvent(new Event_SandBoxBuildProtectionNotice(this)); // 2018/10/19
 	}
 
 	/**
