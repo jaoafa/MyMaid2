@@ -44,6 +44,7 @@ import com.jaoafa.MyMaid2.Command.Cmd_InvSave;
 import com.jaoafa.MyMaid2.Command.Cmd_InvShow;
 import com.jaoafa.MyMaid2.Command.Cmd_ItemEdit;
 import com.jaoafa.MyMaid2.Command.Cmd_Jail;
+import com.jaoafa.MyMaid2.Command.Cmd_Lead;
 import com.jaoafa.MyMaid2.Command.Cmd_Leg;
 import com.jaoafa.MyMaid2.Command.Cmd_Messenger;
 import com.jaoafa.MyMaid2.Command.Cmd_Pin;
@@ -267,6 +268,7 @@ public class MyMaid2 extends JavaPlugin implements Listener {
 		getCommand("chatjail").setExecutor(new Cmd_ChatJail(this)); // 2018/09/09
 		getCommand("rider").setExecutor(new Cmd_Rider(this)); // 2018/09/16
 		getCommand("itemedit").setExecutor(new Cmd_ItemEdit(this)); // 2018/10/06
+		getCommand("lead").setExecutor(new Cmd_Lead(this)); // 2018/10/06
 	}
 
 	/**

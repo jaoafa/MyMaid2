@@ -361,3 +361,11 @@ commands:
       usage: |-
              /itemedit name <Name...>: 持っているアイテムのNameを変更します。
              /itemedit lore <Lore...>: 持っているアイテムのLoreを変更します。
+   lead:
+      description: プレイヤーやエンティティをリードで繋いだりします。
+      usage: |-
+             /lead <Player>: プレイヤーにリードをつけます。
+             /lead <EntityName>: 1辺30ブロックの立方体内にある指定された名前のエンティティにリードをつけます。
+             /lead <Rider Player/EntityName> <Riding Player/EntityName>: プレイヤーもしくはエンティティ(Rider)からプレイヤーもしくはエンティティ(Riding)にリードをつけます。
+             /lead leave: 乗っているプレイヤー・エンティティのリードを外します
+             /lead leave <Player/EntityName>: プレイヤーもしくはエンティティから乗っているプレイヤー・エンティティのリードを外します
