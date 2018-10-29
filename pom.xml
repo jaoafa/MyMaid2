@@ -119,6 +119,8 @@
 			<groupId>com.jaoafa</groupId>
 			<artifactId>jaoSuperAchievement</artifactId>
 			<version>0.0.1</version>
+			<systemPath>${basedir}/lib/jaoSuperAchievement.jar</systemPath>
+			<scope>system</scope>
 		</dependency>
 		<!-- TitleAPI -->
 		<dependency>
@@ -134,6 +136,8 @@
 			<groupId>com.jaoafa</groupId>
 			<artifactId>MinecraftJPVoteMissFiller</artifactId>
 			<version>0.0.1</version>
+			<systemPath>${basedir}/lib/MinecraftJPVoteMissFiller.jar</systemPath>
+			<scope>system</scope>
 		</dependency>
 		<!-- WorldGuard -->
 		<dependency>
@@ -164,6 +168,8 @@
 			<groupId>com.jaoafa</groupId>
 			<artifactId>JaoReputation</artifactId>
 			<version>0.0.1</version>
+			<systemPath>${basedir}/lib/jaoReputation.jar</systemPath>
+			<scope>system</scope>
 		</dependency>
 		<!-- Vault API -->
 		<dependency>
