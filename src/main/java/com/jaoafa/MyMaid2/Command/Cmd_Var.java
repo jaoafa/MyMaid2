@@ -31,12 +31,12 @@ public class Cmd_Var extends MyMaid2Premise implements CommandExecutor {
 				return true;
 			}
 			Pattern p = Pattern.compile("^[a-zA-Z0-9_]+$");
-	        Matcher m = p.matcher(args[1]);
-	        if(!m.find()){
-	        	SendMessage(sender, cmd, "変数は英数字記号のみ許可しています。");
-	        	return true;
-	        }
-	        String value = "";
+			Matcher m = p.matcher(args[1]);
+			if(!m.find()){
+				SendMessage(sender, cmd, "変数は英数字記号のみ許可しています。");
+				return true;
+			}
+			String value = "";
 			int c = 2;
 			while(args.length > c){
 				value += args[c];
@@ -119,7 +119,7 @@ public class Cmd_Var extends MyMaid2Premise implements CommandExecutor {
 		}else if(args[0].equalsIgnoreCase("block")){
 			//Block(/var block var x y z)
 			SendMessage(sender, cmd, "未実装");
-/*
+			/*
 			if(args.length != 5){
 				SendMessage(sender, cmd, "引数が適切ではありません。");
 			}
@@ -165,7 +165,7 @@ public class Cmd_Var extends MyMaid2Premise implements CommandExecutor {
 			// Todo コマンドブロックの実行結果取得方法
 			List<MetadataValue> meta = cmdb.getMetadata("LastOutput");
 			SendMessage(sender, cmd, ""+meta);
-*/
+			 */
 		}else if(args[0].equalsIgnoreCase("equal")){
 			//Equal(/var equal var var)
 			if(args.length < 3){
