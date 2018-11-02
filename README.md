@@ -1,5 +1,6 @@
 # MyMaid2
 [![Build Status](https://travis-ci.org/jaoafa/MyMaid2.svg?branch=master)](https://travis-ci.org/jaoafa/MyMaid2)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/5f31616d139d47ad8e68bc9b29e02ca7)](https://www.codacy.com/app/book000/MyMaid2?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=jaoafa/MyMaid2&amp;utm_campaign=Badge_Grade)
 [![Support jdk](https://img.shields.io/badge/Support%20jdk-oraclejdk8-red.svg)](https://img.shields.io)
 [![Author](https://img.shields.io/badge/Author%20MinecraftID-mine__book000-orange.svg)](https://img.shields.io)
 [![License](https://img.shields.io/badge/license-None-yellow.svg)](https://img.shields.io)
