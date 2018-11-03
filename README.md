@@ -3,7 +3,8 @@
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/5f31616d139d47ad8e68bc9b29e02ca7)](https://www.codacy.com/app/book000/MyMaid2?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=jaoafa/MyMaid2&amp;utm_campaign=Badge_Grade)
 [![Support jdk](https://img.shields.io/badge/Support%20jdk-oraclejdk8-red.svg)](https://img.shields.io)
 [![Author](https://img.shields.io/badge/Author%20MinecraftID-mine__book000-orange.svg)](https://img.shields.io)
-[![License](https://img.shields.io/badge/license-None-yellow.svg)](https://img.shields.io)
+[![License](https://img.shields.io/badge/license-None-yellow.svg)](https://img.shields.io)  
+[![jao Minecraft Server](https://raw.githubusercontent.com/jaoafa/jao-Minecraft-Server/master/logo/new_logo-421x97.png)](https://jaoafa.com)
 
 このプロジェクトは、今まで[book000/MyMaid](https://github.com/book000/MyMaid)で開発されてきた「MyMaid」の後継にあたる「MyMaid2プラグイン」のソースコード公開場所です。  
 [jao Minecraft Server](https://jaoafa.com/)に関係するサーバのみで使用され、それ以外でのサーバでの使用は原則禁止しています。  
@@ -29,10 +30,10 @@
 
 ```markdown
 ## Issue Type (Issueの種別)
-- [ ] バグ報告
-- [ ] 新機能提案
-- [ ] 既存機能の強化
-- [ ] 疑問
+  - [ ] バグ報告
+  - [ ] 新機能提案
+  - [ ] 既存機能の強化
+  - [ ] 疑問
 
 ## Description (概要)
 
@@ -47,21 +48,21 @@
 ```
 
 上記のテンプレートを、以下の要項に従って埋めてください。
-- 「Issue Type (Issueの種別)」では、そのIssueの種別を指定してください。``[x]``とすることでチェックボックスにチェックを入れることができます。
-- 「Description (概要)」では、内容の簡単な概要を記載してください。「～コマンドを実行したら、○○というエラーが発生した。」・「○○という機能に○○をつけてみたらどうだろうか」などで構いません。
-- 「Source code etc (ソースコードなど)」では、新機能や既存機能の強化時、バグ報告時に、新機能を実装するうえでの細かな内部動作のソースコード(Javaでなくても構いません)、既存機能の強化を行う際の改善されたソースコード(Javaでなくても構いません)の提示、どの部分のプログラムが問題を起こしているか、などがプログラムソースコードやコマンドとして記載されていると、より細かく利用者の思い通りに実装ができるようになります。
-- 「Steps to Reproduce (再現の手順)」では、主にバグを再現するための手順を細かく指定してください。実行したコマンド、実行した場所等が細かく記載されているとより再現ができる場合があります。
-- 「ScreenShot etc (スクリーンショットなど)」では、バグ発生時のスクリーンショット等を表記してください。
-- 「Related files (関連するファイル」では、それらのバグなどが発生した箇所や、機能強化時にどのファイルを変更したらいいか、分かる場合のみ記載してください。参考にいたします。
+  - 「Issue Type (Issueの種別)」では、そのIssueの種別を指定してください。``[x]``とすることでチェックボックスにチェックを入れることができます。
+  - 「Description (概要)」では、内容の簡単な概要を記載してください。「～コマンドを実行したら、○○というエラーが発生した。」・「○○という機能に○○をつけてみたらどうだろうか」などで構いません。
+  - 「Source code etc (ソースコードなど)」では、新機能や既存機能の強化時、バグ報告時に、新機能を実装するうえでの細かな内部動作のソースコード(Javaでなくても構いません)、既存機能の強化を行う際の改善されたソースコード(Javaでなくても構いません)の提示、どの部分のプログラムが問題を起こしているか、などがプログラムソースコードやコマンドとして記載されていると、より細かく利用者の思い通りに実装ができるようになります。
+  - 「Steps to Reproduce (再現の手順)」では、主にバグを再現するための手順を細かく指定してください。実行したコマンド、実行した場所等が細かく記載されているとより再現ができる場合があります。
+  - 「ScreenShot etc (スクリーンショットなど)」では、バグ発生時のスクリーンショット等を表記してください。
+  - 「Related files (関連するファイル」では、それらのバグなどが発生した箇所や、機能強化時にどのファイルを変更したらいいか、分かる場合のみ記載してください。参考にいたします。
 
 例として、「ピリオド連続投稿対決」の新機能提案をする際のIssueを以下に記載します。
 
 ```markdown
 ## Issue Type (Issueの種別)
-- [ ] バグ報告
-- [x] 新機能提案
-- [ ] 既存機能の強化
-- [ ] 疑問
+  - [ ] バグ報告
+  - [x] 新機能提案
+  - [ ] 既存機能の強化
+  - [ ] 疑問
 
 ## Description (概要)
 「ピリオド連続投稿対決」という、一定時間内にどれだけのピリオド(.)を入力できたかを競う機能が欲しいです。
