@@ -52,7 +52,9 @@ public class Event_AntiProblemCommand extends MyMaid2Premise implements Listener
 				}else if(group.equalsIgnoreCase("Default")){
 					killflag = true;
 				}
-				if(args[1].equalsIgnoreCase("@e")){
+				if(args[1].equalsIgnoreCase("@p") || args[1].equalsIgnoreCase(player.getName())){
+					return;
+				}if(args[1].equalsIgnoreCase("@e")){
 					try {
 						Pointjao Pjao = new Pointjao(player);
 						if(!Pjao.has(10)){
@@ -147,7 +149,7 @@ public class Event_AntiProblemCommand extends MyMaid2Premise implements Listener
 							Boolean exist = false;
 							for(String one : LeastOne){
 								if(parser.getArgs().containsKey(one)){
-									Bukkit.broadcastMessage(one + ": true");
+									//Bukkit.broadcastMessage(one + ": true");
 									exist = true;
 								}
 							}
@@ -294,7 +296,7 @@ public class Event_AntiProblemCommand extends MyMaid2Premise implements Listener
 							Boolean exist = false;
 							for(String one : LeastOne){
 								if(parser.getArgs().containsKey(one)){
-									Bukkit.broadcastMessage(one + ": true");
+									//Bukkit.broadcastMessage(one + ": true");
 									exist = true;
 								}
 							}
