@@ -109,6 +109,7 @@ import com.jaoafa.MyMaid2.Event.Event_SandBoxBuildProtectionNotice;
 import com.jaoafa.MyMaid2.Event.Event_SandBoxRoad;
 import com.jaoafa.MyMaid2.Event.Event_SignClick;
 import com.jaoafa.MyMaid2.Event.Event_Summer2018;
+import com.jaoafa.MyMaid2.Event.Event_Tips;
 import com.jaoafa.MyMaid2.Event.Event_VeryVeryStrongAntiLQD;
 import com.jaoafa.MyMaid2.Event.Event_VoteMissFillerEvent;
 import com.jaoafa.MyMaid2.Event.Event_VoteReceived;
@@ -349,6 +350,7 @@ public class MyMaid2 extends JavaPlugin implements Listener {
 		registEvent(new Event_SandBoxRoad(this)); // 2018/10/08
 		registEvent(new Event_SandBoxBuildProtectionNotice(this)); // 2018/10/19
 		registEvent(new Event_LoginTutorialSpawn(this)); // 2018/10/29
+		registEvent(new Event_Tips(this)); // 2018/11/13
 	}
 
 	/**
