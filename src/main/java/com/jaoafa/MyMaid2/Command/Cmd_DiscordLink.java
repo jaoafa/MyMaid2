@@ -160,7 +160,7 @@ public class Cmd_DiscordLink extends MyMaid2Premise implements CommandExecutor {
 		}
 
 		SendMessage(sender, cmd, "アカウントのリンクが完了しました。");
-		DiscordSend("189377932429492224", ":loudspeaker:<@" + disid + ">さんのMinecraftアカウント連携を完了しました！ MinecraftID: " + player.getName());
+		DiscordSend("512242412635029514", ":loudspeaker:<@" + disid + ">さんのMinecraftアカウント連携を完了しました！ MinecraftID: " + player.getName());
 		return true;
 	}
 }
