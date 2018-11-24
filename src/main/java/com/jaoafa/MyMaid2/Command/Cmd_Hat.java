@@ -7,15 +7,10 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
-import org.bukkit.plugin.java.JavaPlugin;
 
 import com.jaoafa.MyMaid2.MyMaid2Premise;
 
 public class Cmd_Hat extends MyMaid2Premise implements CommandExecutor {
-	JavaPlugin plugin;
-	public Cmd_Hat(JavaPlugin plugin) {
-		this.plugin = plugin;
-	}
 	public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args){
 		if(args.length >= 1 && args[0].equalsIgnoreCase("help")){
 			SendUsageMessage(sender, cmd);

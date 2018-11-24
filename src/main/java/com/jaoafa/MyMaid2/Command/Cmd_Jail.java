@@ -18,7 +18,7 @@ import com.jaoafa.MyMaid2.MyMaid2Premise;
 import com.jaoafa.MyMaid2.Lib.Jail;
 
 public class Cmd_Jail extends MyMaid2Premise implements CommandExecutor, TabCompleter {
-	JavaPlugin plugin;
+	private JavaPlugin plugin;
 	public Cmd_Jail(JavaPlugin plugin) {
 		this.plugin = plugin;
 	}

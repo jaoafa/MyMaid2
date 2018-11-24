@@ -17,7 +17,7 @@ import com.jaoafa.MyMaid2.MyMaid2Premise;
 import com.jaoafa.MyMaid2.Lib.MySQL;
 
 public class Cmd_DelHome extends MyMaid2Premise implements CommandExecutor, TabCompleter {
-	JavaPlugin plugin;
+	private JavaPlugin plugin;
 	public Cmd_DelHome(JavaPlugin plugin) {
 		this.plugin = plugin;
 	}

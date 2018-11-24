@@ -17,16 +17,10 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Minecart;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.minecart.RideableMinecart;
-import org.bukkit.plugin.java.JavaPlugin;
 
 import com.jaoafa.MyMaid2.MyMaid2Premise;
 
 public class Cmd_Ck extends MyMaid2Premise implements CommandExecutor {
-	JavaPlugin plugin;
-	public Cmd_Ck(JavaPlugin plugin) {
-		this.plugin = plugin;
-	}
-
 	public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args){
 		// 処理方法等判定
 
@@ -299,7 +293,7 @@ public class Cmd_Ck extends MyMaid2Premise implements CommandExecutor {
 			break;
 		}
 		if(!minecartPlayerFlag){
-			// 消すべきトロッコがない 
+			// 消すべきトロッコがない
 			SendMessage(sender, cmd, "削除できるトロッコはありませんでした。");
 			return;
 		}
@@ -314,7 +308,6 @@ public class Cmd_Ck extends MyMaid2Premise implements CommandExecutor {
 
 		minecart.remove();
 		SendMessage(sender, cmd, "トロッコ「" + minecart.getName() + "(UUID:" + minecart.getUniqueId() +")」を削除しました。(DEBUG: 2)");
-		return;
 	}
 	/**
 	 * 近く(※1)のトロッコ全てに対し、そのトロッコに一番近いプレイヤーが乗っているかを判定して乗っていなければ削除。

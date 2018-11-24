@@ -14,7 +14,6 @@ import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.plugin.java.JavaPlugin;
 
 import com.jaoafa.MyMaid2.MyMaid2Premise;
 import com.jaoafa.MyMaid2.Lib.MySQL;
@@ -26,10 +25,6 @@ import com.vexsoftware.votifier.model.Vote;
 import com.vexsoftware.votifier.model.VotifierEvent;
 
 public class Event_VoteReceived extends MyMaid2Premise implements Listener {
-	JavaPlugin plugin;
-	public Event_VoteReceived(JavaPlugin plugin) {
-		this.plugin = plugin;
-	}
 	@EventHandler
 	public void onVotifierEvent(VotifierEvent event) {
 		Vote vote = event.getVote();
@@ -103,6 +98,7 @@ public class Event_VoteReceived extends MyMaid2Premise implements Listener {
 
 		if(offplayer == null){
 			DiscordSend("499922840871632896", ":outbox_tray:**投票受信エラー**: " + name + "のOfflinePlayerを取得できなかったため、投票処理が正常に行われませんでした。");
+			return;
 		}
 
 		if(!offplayer.getName().equals(name)){

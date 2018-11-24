@@ -16,7 +16,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.server.ServerCommandEvent;
-import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.Score;
 import org.bukkit.scoreboard.Scoreboard;
@@ -27,10 +26,6 @@ import com.jaoafa.MyMaid2.Lib.MyMaidVariable;
 import com.jaoafa.MyMaid2.Lib.NearestPlayer;
 
 public class Event_CommandBlockVariable extends MyMaid2Premise implements Listener {
-	JavaPlugin plugin;
-	public Event_CommandBlockVariable(JavaPlugin plugin) {
-		this.plugin = plugin;
-	}
 	@EventHandler
 	public void onCommandBlockCall(ServerCommandEvent event) {
 		if (!(event.getSender() instanceof BlockCommandSender)) return;

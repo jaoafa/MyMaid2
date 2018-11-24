@@ -5,16 +5,11 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.plugin.java.JavaPlugin;
 
 import com.jaoafa.MyMaid2.MyMaid2Premise;
 import com.jaoafa.MyMaid2.Lib.Discord.DiscordEmbed;
 
 public class Cmd_Test extends MyMaid2Premise implements CommandExecutor {
-	JavaPlugin plugin;
-	public Cmd_Test(JavaPlugin plugin) {
-		this.plugin = plugin;
-	}
 	public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args){
 		if (!(sender instanceof Player)) {
 			return true;

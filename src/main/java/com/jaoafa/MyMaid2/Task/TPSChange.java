@@ -16,7 +16,7 @@ import com.jaoafa.MyMaid2.Lib.PlayerVoteData;
 import com.jaoafa.MyMaid2.Lib.TPSChecker;
 
 public class TPSChange extends BukkitRunnable {
-	double OldTps1mColor = 20;
+	private double OldTps1mColor = 20;
 	@Override
 	public void run() {
 		String tps1m = TPSChecker.getTPS1m();

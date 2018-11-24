@@ -22,16 +22,11 @@ import org.bukkit.event.block.SignChangeEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.plugin.java.JavaPlugin;
 
 import com.jaoafa.MyMaid2.MyMaid2Premise;
 import com.jaoafa.MyMaid2.Lib.Pointjao;
 
 public class Event_Shop extends MyMaid2Premise implements Listener {
-	JavaPlugin plugin;
-	public Event_Shop(JavaPlugin plugin) {
-		this.plugin = plugin;
-	}
 	// 1: [jaoShop] <- プレイヤー入力必要
 	// 2: PLAYERNAME
 	// 3: 売 10 : 5 買  <- プレイヤー入力必要。(販売者から見て売り買いポイント)
@@ -147,7 +142,6 @@ public class Event_Shop extends MyMaid2Premise implements Listener {
 			player.sendMessage(ChatColor.GOLD + "[jaoShop] " + ChatColor.RESET + "売り(利用者は買う): 無効");
 		}
 		player.sendMessage(ChatColor.GOLD + "[jaoShop] " + ChatColor.RESET + "商品表示名: " + Name);
-		return;
 	}
 	// 左クリック: 売る(取引運営者が買っているものを売る・左側数値)
 	// 右クリック: 買う(取引運営者が売っているものを買う・右側数値)

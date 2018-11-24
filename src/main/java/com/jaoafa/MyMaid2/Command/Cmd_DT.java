@@ -30,7 +30,7 @@ import com.connorlinfoot.titleapi.TitleAPI;
 import com.jaoafa.MyMaid2.MyMaid2Premise;
 
 public class Cmd_DT extends MyMaid2Premise implements CommandExecutor, TabCompleter {
-	JavaPlugin plugin;
+	private JavaPlugin plugin;
 	public Cmd_DT(JavaPlugin plugin) {
 		this.plugin = plugin;
 	}

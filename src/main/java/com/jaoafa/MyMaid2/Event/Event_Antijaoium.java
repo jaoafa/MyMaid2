@@ -35,7 +35,6 @@ import org.bukkit.event.server.ServerCommandEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.PotionMeta;
-import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
@@ -49,12 +48,9 @@ import com.jaoafa.jaoSuperAchievement.jaoAchievement.Achievementjao;
 import net.minecraft.server.v1_12_R1.NBTTagCompound;
 
 public class Event_Antijaoium extends MyMaid2Premise implements Listener {
-	JavaPlugin plugin;
 	List<Integer> HEAL_jaoium = new ArrayList<Integer>();
 	List<Integer> HEALTH_BOOST_jaoium = new ArrayList<Integer>();
-	public Event_Antijaoium(JavaPlugin plugin) {
-		this.plugin = plugin;
-
+	public Event_Antijaoium() {
 		HEAL_jaoium.add(-3);
 		HEAL_jaoium.add(29);
 		HEAL_jaoium.add(125);

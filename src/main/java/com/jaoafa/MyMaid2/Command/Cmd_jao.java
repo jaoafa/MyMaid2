@@ -15,7 +15,6 @@ import org.bukkit.command.ProxiedCommandSender;
 import org.bukkit.command.RemoteConsoleCommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.minecart.CommandMinecart;
-import org.bukkit.plugin.java.JavaPlugin;
 
 import com.jaoafa.MyMaid2.MyMaid2Premise;
 import com.jaoafa.MyMaid2.Lib.Pointjao;
@@ -24,10 +23,6 @@ import com.jaoafa.jaoSuperAchievement.jaoAchievement.AchievementType;
 import com.jaoafa.jaoSuperAchievement.jaoAchievement.Achievementjao;
 
 public class Cmd_jao extends MyMaid2Premise implements CommandExecutor {
-	JavaPlugin plugin;
-	public Cmd_jao(JavaPlugin plugin) {
-		this.plugin = plugin;
-	}
 	@SuppressWarnings("deprecation")
 	public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args){
 		if(args.length >= 1 && args[0].equalsIgnoreCase("help")){

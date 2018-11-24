@@ -23,8 +23,6 @@ import com.jaoafa.jaoSuperAchievement.jaoAchievement.AchievementType;
 import com.jaoafa.jaoSuperAchievement.jaoAchievement.Achievementjao;
 
 public class Cmd_AFK extends MyMaid2Premise implements CommandExecutor {
-	public Cmd_AFK() {}
-
 	private static Map<String, BukkitTask> afking = new HashMap<>();
 	private static Map<String, ItemStack> head = new HashMap<>();
 	private static Map<String, Location> loc = new HashMap<>();
@@ -78,7 +76,7 @@ public class Cmd_AFK extends MyMaid2Premise implements CommandExecutor {
 		TitleAPI.sendTitle(player, 0, 99999999, 0, ChatColor.RED + "AFK NOW!", ChatColor.BLUE + "" + ChatColor.BOLD + "When you are back, please enter the command '/afk' or Move.");
 
 		try{
-			BukkitTask task = new Task_AFKING(JavaPlugin(), player).runTaskTimer(JavaPlugin(), 0L, 5L);
+			BukkitTask task = new Task_AFKING(player).runTaskTimer(JavaPlugin(), 0L, 5L);
 			afking.put(player.getName(), task);
 		}catch(java.lang.NoClassDefFoundError e){
 			BugReporter(e);
@@ -145,7 +143,7 @@ public class Cmd_AFK extends MyMaid2Premise implements CommandExecutor {
 	 * @return かぶせてよいか
 	 * @author mine_book000
 	 */
-	static boolean getHeadICE(Player player){
+	private static boolean getHeadICE(Player player){
 		return true;
 	}
 }

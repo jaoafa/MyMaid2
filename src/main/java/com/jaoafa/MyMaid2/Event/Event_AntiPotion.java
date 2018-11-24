@@ -16,7 +16,6 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerItemConsumeEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.PotionMeta;
-import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
@@ -30,10 +29,6 @@ import com.jaoafa.MyMaid2.Lib.PermissionsManager;
  * Regular以降: 全許可
  */
 public class Event_AntiPotion implements Listener {
-	JavaPlugin plugin;
-	public Event_AntiPotion(JavaPlugin plugin) {
-		this.plugin = plugin;
-	}
 	/**
 	 * 指定されたポーションエフェクトが使用できるものかどうか調べます。
 	 * @param effects ポーションエフェクトのリスト

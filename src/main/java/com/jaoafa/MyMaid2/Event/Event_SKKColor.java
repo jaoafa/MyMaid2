@@ -14,11 +14,10 @@ import com.jaoafa.MyMaid2.Lib.SKKColors;
 import com.jaoafa.MyMaid2.Task.TabListSKKReloader;
 
 public class Event_SKKColor extends MyMaid2Premise implements Listener {
-	JavaPlugin plugin;
+	private JavaPlugin plugin;
 	public Event_SKKColor(JavaPlugin plugin) {
 		this.plugin = plugin;
 	}
-
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onEvent_ChatSKK(AsyncPlayerChatEvent event){
 		event.setFormat(
@@ -38,7 +37,7 @@ public class Event_SKKColor extends MyMaid2Premise implements Listener {
 		}
 
 		for(Player p: Bukkit.getServer().getOnlinePlayers()) {
-			new TabListSKKReloader(plugin, p).runTaskLater(plugin, 20L);
+			new TabListSKKReloader(p).runTaskLater(plugin, 20L);
 		}
 	}
 }

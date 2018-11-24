@@ -6,18 +6,14 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.craftbukkit.v1_12_R1.entity.CraftPlayer;
 import org.bukkit.entity.Player;
-import org.bukkit.plugin.java.JavaPlugin;
 
+import com.jaoafa.MyMaid2.MyMaid2;
 import com.jaoafa.MyMaid2.MyMaid2Premise;
 
 import net.minecraft.server.v1_12_R1.PacketPlayInClientCommand;
 import net.minecraft.server.v1_12_R1.PacketPlayInClientCommand.EnumClientCommand;
 
 public class Cmd_Respawn extends MyMaid2Premise implements CommandExecutor {
-	JavaPlugin plugin;
-	public Cmd_Respawn(JavaPlugin plugin) {
-		this.plugin = plugin;
-	}
 	public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args){
 		if(args.length >= 1 && args[0].equalsIgnoreCase("help")){
 			SendUsageMessage(sender, cmd);
@@ -42,7 +38,7 @@ public class Cmd_Respawn extends MyMaid2Premise implements CommandExecutor {
 		return true;
 	}
 	public void Respawn(final Player player, int Time){
-		Bukkit.getScheduler().runTaskLater(this.plugin, new Runnable() {
+		Bukkit.getScheduler().runTaskLater(MyMaid2.javaplugin, new Runnable() {
 
 			@Override
 			public void run() {

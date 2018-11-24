@@ -12,15 +12,10 @@ import org.bukkit.event.block.BlockPistonExtendEvent;
 import org.bukkit.event.block.BlockPistonRetractEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.plugin.java.JavaPlugin;
 
 import com.jaoafa.MyMaid2.Lib.PermissionsManager;
 
 public class Event_SandBoxRoad implements Listener {
-	JavaPlugin plugin;
-	public Event_SandBoxRoad(JavaPlugin plugin) {
-		this.plugin = plugin;
-	}
 	@EventHandler
 	public void onBlockPlaceEvent(BlockPlaceEvent event){
 		Player player = event.getPlayer();

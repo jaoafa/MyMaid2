@@ -22,11 +22,7 @@ public class MyMaidVariable extends MyMaid2Premise {
 				statement.setString(1, key);
 				statement.setString(2, value);
 			}
-			if(statement.executeUpdate() != 0){
-				return true;
-			}else{
-				return false;
-			}
+			return statement.executeUpdate() != 0;
 		} catch (ClassNotFoundException | SQLException e) {
 			BugReporter(e);
 		}
@@ -60,8 +56,8 @@ public class MyMaidVariable extends MyMaid2Premise {
 		}
 		return null;
 	}
-	public static Map<String, String> list(int page){
-		page = page - 1;
+	public static Map<String, String> list(final int _page){
+		int page = _page - 1;
 		try {
 			PreparedStatement statement = MySQL.getNewPreparedStatement("SELECT * FROM variable LIMIT ?, 10");
 			statement.setInt(1, page * 10);

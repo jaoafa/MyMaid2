@@ -10,16 +10,11 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
-import org.bukkit.plugin.java.JavaPlugin;
 
 import com.jaoafa.MyMaid2.MyMaid2Premise;
 import com.jaoafa.MyMaid2.Lib.PermissionsManager;
 
 public class Event_AntiQDTeleport extends MyMaid2Premise implements Listener {
-	JavaPlugin plugin;
-	public Event_AntiQDTeleport(JavaPlugin plugin) {
-		this.plugin = plugin;
-	}
 	Boolean DEBUG = true;
 	@EventHandler
 	public void onPlayerTeleportEvent(PlayerCommandPreprocessEvent event){

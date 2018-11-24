@@ -10,16 +10,11 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.plugin.java.JavaPlugin;
 
 import com.jaoafa.MyMaid2.MyMaid2Premise;
 import com.jaoafa.MyMaid2.Lib.PermissionsManager;
 
 public class Event_VeryVeryStrongAntiLQD extends MyMaid2Premise implements Listener {
-	JavaPlugin plugin;
-	public Event_VeryVeryStrongAntiLQD(JavaPlugin plugin) {
-		this.plugin = plugin;
-	}
 	@EventHandler(ignoreCancelled = true)
 	public void ItemInteract(PlayerInteractEvent event){ // クリックするときとか
 		Player player = event.getPlayer();

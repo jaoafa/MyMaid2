@@ -121,7 +121,7 @@ import com.jaoafa.MyMaid2.Lib.SKKColors;
 import com.jaoafa.MyMaid2.Lib.TPSChecker;
 import com.jaoafa.MyMaid2.Task.AutoMessenger;
 import com.jaoafa.MyMaid2.Task.TPSChange;
-import com.jaoafa.MyMaid2.Task.Task_AFK.AFKChecker;
+import com.jaoafa.MyMaid2.Task.Task_AFK;
 import com.jaoafa.MyMaid2.Task.Task_WorldSave;
 import com.jaoafa.MyMaid2.Task.Team1000Observer;
 import com.sk89q.worldedit.bukkit.WorldEditPlugin;
@@ -223,55 +223,55 @@ public class MyMaid2 extends JavaPlugin implements Listener {
 		getCommand("city").setExecutor(new Cmd_City(this)); // 2018/03/20
 		getCommand("cmdb").setExecutor(new Cmd_Cmdb()); // 2018/03/21
 		getCommand("home").setExecutor(new Cmd_Home(this)); // 2018/03/21
-		getCommand("sethome").setExecutor(new Cmd_SetHome(this)); // 2018/03/21
+		getCommand("sethome").setExecutor(new Cmd_SetHome()); // 2018/03/21
 		getCommand("delhome").setExecutor(new Cmd_DelHome(this)); // 2018/03/21
-		getCommand("g").setExecutor(new Cmd_G(this)); // 2018/03/21
-		getCommand("dedrain").setExecutor(new Cmd_DedRain(this)); // 2018/03/21
-		getCommand("wt").setExecutor(new Cmd_WT(this)); // 2018/03/21
-		getCommand("discordlink").setExecutor(new Cmd_DiscordLink(this)); // 2018/03/21
-		getCommand("spawn").setExecutor(new Cmd_Spawn(this)); // 2018/03/25
-		getCommand("jao").setExecutor(new Cmd_jao(this)); // 2018/03/25
+		getCommand("g").setExecutor(new Cmd_G()); // 2018/03/21
+		getCommand("dedrain").setExecutor(new Cmd_DedRain()); // 2018/03/21
+		getCommand("wt").setExecutor(new Cmd_WT()); // 2018/03/21
+		getCommand("discordlink").setExecutor(new Cmd_DiscordLink()); // 2018/03/21
+		getCommand("spawn").setExecutor(new Cmd_Spawn()); // 2018/03/25
+		getCommand("jao").setExecutor(new Cmd_jao()); // 2018/03/25
 		getCommand("head").setExecutor(new Cmd_Head()); // 2018/03/25
-		getCommand("test").setExecutor(new Cmd_Test(this)); // 2018/03/25
+		getCommand("test").setExecutor(new Cmd_Test()); // 2018/03/25
 		getCommand("color").setExecutor(new Cmd_Color()); // 2018/03/26
-		getCommand("elytra").setExecutor(new Cmd_Elytra(this)); // 2018/03/27
-		getCommand("messenger").setExecutor(new Cmd_Messenger(this)); // 2018/03/29
-		getCommand("selector").setExecutor(new Cmd_Selector(this)); // 2018/03/29
-		getCommand("chat").setExecutor(new Cmd_Chat(this)); // 2018/03/29
-		getCommand("player").setExecutor(new Cmd_Player(this)); // 2018/03/31
-		getCommand("eban").setExecutor(new Cmd_EBan(this)); // 2018/04/01
+		getCommand("elytra").setExecutor(new Cmd_Elytra()); // 2018/03/27
+		getCommand("messenger").setExecutor(new Cmd_Messenger()); // 2018/03/29
+		getCommand("selector").setExecutor(new Cmd_Selector()); // 2018/03/29
+		getCommand("chat").setExecutor(new Cmd_Chat()); // 2018/03/29
+		getCommand("player").setExecutor(new Cmd_Player()); // 2018/03/31
+		getCommand("eban").setExecutor(new Cmd_EBan()); // 2018/04/01
 		getCommand("jail").setExecutor(new Cmd_Jail(this)); // 2018/04/01
-		getCommand("hat").setExecutor(new Cmd_Hat(this)); // 2018/04/01
-		getCommand("body").setExecutor(new Cmd_Body(this)); // 2018/04/01
-		getCommand("leg").setExecutor(new Cmd_Leg(this)); // 2018/04/01
-		getCommand("boots").setExecutor(new Cmd_Boots(this)); // 2018/04/01
-		getCommand("ck").setExecutor(new Cmd_Ck(this)); // 2018/04/05
-		getCommand("sign").setExecutor(new Cmd_Sign(this)); // 2018/04/09
-		getCommand("account").setExecutor(new Cmd_Account(this)); // 2018/05/01
-		getCommand("pin").setExecutor(new Cmd_Pin(this)); // 2018/05/02
-		getCommand("respawn").setExecutor(new Cmd_Respawn(this)); // 2018/05/06
-		getCommand("testment").setExecutor(new Cmd_Testment(this)); // 2018/05/09
-		getCommand("book").setExecutor(new Cmd_Book(this)); // 2018/05/12
-		getCommand("report").setExecutor(new Cmd_Report(this)); // 2018/05/19
-		getCommand("wtp").setExecutor(new Cmd_Wtp(this)); // 2018/05/19
-		getCommand("var").setExecutor(new Cmd_Var(this)); // 2018/06/03
-		getCommand("invload").setExecutor(new Cmd_InvLoad(this)); // 2018/06/06
-		getCommand("invsave").setExecutor(new Cmd_InvSave(this)); // 2018/06/06
-		getCommand("invedit").setExecutor(new Cmd_InvEdit(this)); // 2018/06/08
-		getCommand("invshow").setExecutor(new Cmd_InvShow(this)); // 2018/06/08
-		getCommand("enderchest").setExecutor(new Cmd_EnderChest(this)); // 2018/06/08
-		getCommand("protector").setExecutor(new Cmd_Protector(this)); // 2018/06/30
-		getCommand("chuocity").setExecutor(new Cmd_ChuoCity(this)); // 2018/06/30
-		getCommand("show").setExecutor(new Cmd_Show(this)); // 2018/07/19
-		getCommand("hide").setExecutor(new Cmd_Hide(this)); // 2018/07/19
-		getCommand("ded").setExecutor(new Cmd_Ded(this)); // 2018/07/22
-		getCommand("restarttitle").setExecutor(new Cmd_RestartTitle(this)); // 2018/07/25
-		getCommand("summer").setExecutor(new Cmd_Summer(this)); // 2018/08/01
-		getCommand("glookup").setExecutor(new Cmd_GLookup(this)); // 2018/08/02
+		getCommand("hat").setExecutor(new Cmd_Hat()); // 2018/04/01
+		getCommand("body").setExecutor(new Cmd_Body()); // 2018/04/01
+		getCommand("leg").setExecutor(new Cmd_Leg()); // 2018/04/01
+		getCommand("boots").setExecutor(new Cmd_Boots()); // 2018/04/01
+		getCommand("ck").setExecutor(new Cmd_Ck()); // 2018/04/05
+		getCommand("sign").setExecutor(new Cmd_Sign()); // 2018/04/09
+		getCommand("account").setExecutor(new Cmd_Account()); // 2018/05/01
+		getCommand("pin").setExecutor(new Cmd_Pin()); // 2018/05/02
+		getCommand("respawn").setExecutor(new Cmd_Respawn()); // 2018/05/06
+		getCommand("testment").setExecutor(new Cmd_Testment()); // 2018/05/09
+		getCommand("book").setExecutor(new Cmd_Book()); // 2018/05/12
+		getCommand("report").setExecutor(new Cmd_Report()); // 2018/05/19
+		getCommand("wtp").setExecutor(new Cmd_Wtp()); // 2018/05/19
+		getCommand("var").setExecutor(new Cmd_Var()); // 2018/06/03
+		getCommand("invload").setExecutor(new Cmd_InvLoad()); // 2018/06/06
+		getCommand("invsave").setExecutor(new Cmd_InvSave()); // 2018/06/06
+		getCommand("invedit").setExecutor(new Cmd_InvEdit()); // 2018/06/08
+		getCommand("invshow").setExecutor(new Cmd_InvShow()); // 2018/06/08
+		getCommand("enderchest").setExecutor(new Cmd_EnderChest()); // 2018/06/08
+		getCommand("protector").setExecutor(new Cmd_Protector()); // 2018/06/30
+		getCommand("chuocity").setExecutor(new Cmd_ChuoCity()); // 2018/06/30
+		getCommand("show").setExecutor(new Cmd_Show()); // 2018/07/19
+		getCommand("hide").setExecutor(new Cmd_Hide()); // 2018/07/19
+		getCommand("ded").setExecutor(new Cmd_Ded()); // 2018/07/22
+		getCommand("restarttitle").setExecutor(new Cmd_RestartTitle()); // 2018/07/25
+		getCommand("summer").setExecutor(new Cmd_Summer()); // 2018/08/01
+		getCommand("glookup").setExecutor(new Cmd_GLookup()); // 2018/08/02
 		getCommand("chatjail").setExecutor(new Cmd_ChatJail(this)); // 2018/09/09
-		getCommand("rider").setExecutor(new Cmd_Rider(this)); // 2018/09/16
-		getCommand("itemedit").setExecutor(new Cmd_ItemEdit(this)); // 2018/10/06
-		getCommand("lead").setExecutor(new Cmd_Lead(this)); // 2018/10/06
+		getCommand("rider").setExecutor(new Cmd_Rider()); // 2018/09/16
+		getCommand("itemedit").setExecutor(new Cmd_ItemEdit()); // 2018/10/06
+		getCommand("lead").setExecutor(new Cmd_Lead()); // 2018/10/06
 	}
 
 	/**
@@ -292,7 +292,7 @@ public class MyMaid2 extends JavaPlugin implements Listener {
 	 * @author mine_book000
 	 */
 	private void Import_Task(){
-		new AFKChecker().runTaskTimerAsynchronously(this, 0L, 1200L);
+		new Task_AFK().runTaskTimerAsynchronously(this, 0L, 1200L);
 		new TPSChange().runTaskTimerAsynchronously(this, 0L, 1200L);
 		new AutoMessenger().runTaskTimerAsynchronously(this, 0L, 12000L);
 		new Team1000Observer().runTaskTimerAsynchronously(this, 0L, 1200L);
@@ -306,53 +306,53 @@ public class MyMaid2 extends JavaPlugin implements Listener {
 	private void Import_Listener(){
 		// 日付は制作完了(登録)の日付
 		registEvent(this);
-		registEvent(new Event_PlayerCheckPreLogin(this));// 2018/03/20
-		registEvent(new Event_CommandBlockLogger(this));// 2018/03/20
-		registEvent(new Event_LoginSuccessCheck(this));// 2018/03/20
-		registEvent(new Event_PlayerQuit(this));// 2018/03/20
-		registEvent(new Event_DedRain(this));// 2018/03/21
+		registEvent(new Event_PlayerCheckPreLogin());// 2018/03/20
+		registEvent(new Event_CommandBlockLogger());// 2018/03/20
+		registEvent(new Event_LoginSuccessCheck());// 2018/03/20
+		registEvent(new Event_PlayerQuit());// 2018/03/20
+		registEvent(new Event_DedRain());// 2018/03/21
 		registEvent(new Event_AFK());// 2018/03/21
 		registEvent(new Event_QD_NOTSpectator());// 2018/03/21
 		registEvent(new Event_MoveToChunkActionbar());// 2018/03/21
 		registEvent(new Event_FarmNOBreak());// 2018/03/21
 		registEvent(new Event_NOConcretePowderToConcrete());// 2018/03/21
-		registEvent(new Event_VoteReceived(this));// 2018/03/24
-		registEvent(new Event_PlayerCommandSendAdmin(this));// 2018/03/25
-		registEvent(new Event_JoinjaoPoint(this));// 2018/03/25
-		registEvent(new Event_Antijaoium(this));// 2018/03/25
+		registEvent(new Event_VoteReceived());// 2018/03/24
+		registEvent(new Event_PlayerCommandSendAdmin());// 2018/03/25
+		registEvent(new Event_JoinjaoPoint());// 2018/03/25
+		registEvent(new Event_Antijaoium());// 2018/03/25
 		registEvent(new Event_SKKColor(this));// 2018/03/26
 		registEvent(new Event_JoinHeaderFooterChange(this));// 2018/03/26
 		registEvent(new Event_QuitHeaderFooterChange(this));// 2018/03/26
-		registEvent(new Event_VoteMissFillerEvent(this));// 2018/03/27
-		registEvent(new Event_AntiProblemCommand(this));// 2018/03/29
-		registEvent(new Event_ChatSpamKickDisable(this));// 2018/04/01
-		registEvent(new Event_EBan(this));// 2018/04/01
-		registEvent(new Event_Jail(this));// 2018/04/01
-		registEvent(new Event_LoginLeftPlayerCountNotice(this));// 2018/04/01
-		registEvent(new Event_JoinAutoQPPE(this));// 2018/04/07
-		registEvent(new Event_SignClick(this));// 2018/04/09
-		registEvent(new Event_AntiTNTMinecart(this));// 2018/04/22
-		registEvent(new Event_AntiWither(this));// 2018/05/27
-		registEvent(new Event_LoginVoteCheck(this));// 2018/05/31
-		registEvent(new Event_CommandBlockVariable(this));// 2018/06/03
-		registEvent(new Event_BanLogger(this));// 2018/06/10
-		registEvent(new Event_OnlineTime(this));// 2018/07/12
-		registEvent(new Event_AntiNetherPortal(this)); // 2018/07/14
-		registEvent(new Event_BanChecker(this)); // 2018/07/15
-		registEvent(new Event_AntiQDTeleport(this)); // 2018/07/18
-		registEvent(new Event_AntiPotion(this)); // 2018/07/19
-		registEvent(new Event_Ded(this)); // 2018/07/22
-		registEvent(new Event_Summer2018(this)); // 2018/07/30
-		registEvent(new Event_PlayerCommandSendRegular(this)); // 2018/08/07
-		registEvent(new Event_DeathToDeath(this)); // 2018/08/07
-		registEvent(new Event_LongTimeNoSee(this)); // 2018/08/18
-		registEvent(new Event_CheckChatOPME(this)); // 2018/09/02
-		registEvent(new Event_VeryVeryStrongAntiLQD(this)); // 2018/09/08
-		registEvent(new Event_ChatJail(this)); // 2018/09/09
-		registEvent(new Event_SandBoxRoad(this)); // 2018/10/08
-		registEvent(new Event_SandBoxBuildProtectionNotice(this)); // 2018/10/19
-		registEvent(new Event_LoginTutorialSpawn(this)); // 2018/10/29
-		registEvent(new Event_Tips(this)); // 2018/11/13
+		registEvent(new Event_VoteMissFillerEvent());// 2018/03/27
+		registEvent(new Event_AntiProblemCommand());// 2018/03/29
+		registEvent(new Event_ChatSpamKickDisable());// 2018/04/01
+		registEvent(new Event_EBan());// 2018/04/01
+		registEvent(new Event_Jail());// 2018/04/01
+		registEvent(new Event_LoginLeftPlayerCountNotice());// 2018/04/01
+		registEvent(new Event_JoinAutoQPPE());// 2018/04/07
+		registEvent(new Event_SignClick());// 2018/04/09
+		registEvent(new Event_AntiTNTMinecart());// 2018/04/22
+		registEvent(new Event_AntiWither());// 2018/05/27
+		registEvent(new Event_LoginVoteCheck());// 2018/05/31
+		registEvent(new Event_CommandBlockVariable());// 2018/06/03
+		registEvent(new Event_BanLogger());// 2018/06/10
+		registEvent(new Event_OnlineTime());// 2018/07/12
+		registEvent(new Event_AntiNetherPortal()); // 2018/07/14
+		registEvent(new Event_BanChecker()); // 2018/07/15
+		registEvent(new Event_AntiQDTeleport()); // 2018/07/18
+		registEvent(new Event_AntiPotion()); // 2018/07/19
+		registEvent(new Event_Ded()); // 2018/07/22
+		registEvent(new Event_Summer2018()); // 2018/07/30
+		registEvent(new Event_PlayerCommandSendRegular()); // 2018/08/07
+		registEvent(new Event_DeathToDeath()); // 2018/08/07
+		registEvent(new Event_LongTimeNoSee()); // 2018/08/18
+		registEvent(new Event_CheckChatOPME()); // 2018/09/02
+		registEvent(new Event_VeryVeryStrongAntiLQD()); // 2018/09/08
+		registEvent(new Event_ChatJail()); // 2018/09/09
+		registEvent(new Event_SandBoxRoad()); // 2018/10/08
+		registEvent(new Event_SandBoxBuildProtectionNotice()); // 2018/10/19
+		registEvent(new Event_LoginTutorialSpawn()); // 2018/10/29
+		registEvent(new Event_Tips()); // 2018/11/13
 	}
 
 	/**

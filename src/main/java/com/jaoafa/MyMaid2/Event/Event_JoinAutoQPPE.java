@@ -12,7 +12,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.plugin.java.JavaPlugin;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
@@ -22,11 +21,6 @@ import com.jaoafa.MyMaid2.Lib.PermissionsManager;
 import com.jaoafa.MyMaid2.Lib.Discord.DiscordEmbed;
 
 public class Event_JoinAutoQPPE extends MyMaid2Premise implements Listener {
-	JavaPlugin plugin;
-	public Event_JoinAutoQPPE(JavaPlugin plugin) {
-		this.plugin = plugin;
-	}
-
 	@EventHandler
 	public void OnEvent_JoinjaoPoint(PlayerJoinEvent event){
 		Player player = event.getPlayer();
@@ -39,7 +33,7 @@ public class Event_JoinAutoQPPE extends MyMaid2Premise implements Listener {
 
 		String url = MyMaid2.MCBansRepAPI;
 		if(url == null){
-			plugin.getLogger().warning("コンフィグにMCBansのReputationを取得するためのAPIが記載されていなかったため、Reputationチェックは動作しません。");
+			Bukkit.getLogger().warning("コンフィグにMCBansのReputationを取得するためのAPIが記載されていなかったため、Reputationチェックは動作しません。");
 			return;
 		}
 
@@ -51,7 +45,7 @@ public class Event_JoinAutoQPPE extends MyMaid2Premise implements Listener {
 		Boolean status = (Boolean) json.get("status");
 		String reputation = "取得失敗";
 		if(!status){
-			plugin.getLogger().warning("Reputationチェックが正常に完了しませんでした。");
+			Bukkit.getLogger().warning("Reputationチェックが正常に完了しませんでした。");
 			// return;
 		}else{
 			reputation = (String) json.get("reputation");
@@ -59,11 +53,11 @@ public class Event_JoinAutoQPPE extends MyMaid2Premise implements Listener {
 
 		boolean jaotanAutoUp;
 		if(reputation.equalsIgnoreCase("10")){
-			plugin.getLogger().warning("Reputation: " + reputation + " -> UP to QPPE");
+			Bukkit.getLogger().warning("Reputation: " + reputation + " -> UP to QPPE");
 			PermissionsManager.setPermissionsGroup(player, "QPPE");
 			jaotanAutoUp = true;
 		}else{
-			plugin.getLogger().warning("Reputation: " + reputation + " -> NOT UP");
+			Bukkit.getLogger().warning("Reputation: " + reputation + " -> NOT UP");
 			jaotanAutoUp = false;
 		}
 

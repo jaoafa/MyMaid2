@@ -9,16 +9,10 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
-import org.bukkit.plugin.java.JavaPlugin;
 
 import com.jaoafa.MyMaid2.MyMaid2Premise;
 
 public class Event_LoginLeftPlayerCountNotice extends MyMaid2Premise implements Listener {
-	JavaPlugin plugin;
-	public Event_LoginLeftPlayerCountNotice(JavaPlugin plugin) {
-		this.plugin = plugin;
-	}
-
 	@EventHandler
 	public void OnEvent_LoginPlayerCountNotice(PlayerJoinEvent event){
 		SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");

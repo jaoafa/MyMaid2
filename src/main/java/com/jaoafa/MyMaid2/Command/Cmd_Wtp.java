@@ -12,15 +12,10 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.plugin.java.JavaPlugin;
 
 import com.jaoafa.MyMaid2.MyMaid2Premise;
 
 public class Cmd_Wtp extends MyMaid2Premise implements CommandExecutor {
-	JavaPlugin plugin;
-	public Cmd_Wtp(JavaPlugin plugin) {
-		this.plugin = plugin;
-	}
 	public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args){
 		// /wtp <World> <X> <Y> <Z> : 4
 		// /wtp <Player> <World> <X> <Y> <Z> : 5
@@ -36,7 +31,7 @@ public class Cmd_Wtp extends MyMaid2Premise implements CommandExecutor {
 			Player player = (Player) sender;
 			// /wtp <World> <X> <Y> <Z> : 4
 			String worldname = args[0];
-			World world = plugin.getServer().getWorld(worldname);
+			World world = Bukkit.getServer().getWorld(worldname);
 			if(world == null){
 				SendMessage(sender, cmd, "指定されたワールドは見つかりません。");
 				return true;
@@ -79,13 +74,13 @@ public class Cmd_Wtp extends MyMaid2Premise implements CommandExecutor {
 			return true;
 		}else if(args.length == 5){
 			// /wtp <Player> <World> <X> <Y> <Z> : 5
-			Player tpplayer = plugin.getServer().getPlayer(args[0]);
+			Player tpplayer = Bukkit.getServer().getPlayer(args[0]);
 			if(tpplayer == null){
 				SendMessage(sender, cmd, "指定されたプレイヤーはオフラインか見つかりませんでした。");
 				return true;
 			}
 			String worldname = args[1];
-			World world = plugin.getServer().getWorld(worldname);
+			World world = Bukkit.getServer().getWorld(worldname);
 			if(world == null){
 				SendMessage(sender, cmd, "指定されたワールドは見つかりません。");
 				return true;

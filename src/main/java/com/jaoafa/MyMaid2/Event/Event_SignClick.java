@@ -8,15 +8,10 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.plugin.java.JavaPlugin;
 
 import com.jaoafa.MyMaid2.Command.Cmd_Sign;
 
 public class Event_SignClick implements Listener {
-	JavaPlugin plugin;
-	public Event_SignClick(JavaPlugin plugin) {
-		this.plugin = plugin;
-	}
 	@EventHandler
 	public void onSignClick(PlayerInteractEvent event) {
 	    if(event.getAction() != Action.RIGHT_CLICK_BLOCK) return;

@@ -14,7 +14,6 @@ import org.bukkit.inventory.meta.SkullMeta;
 import com.jaoafa.MyMaid2.MyMaid2Premise;
 
 public class Cmd_Head extends MyMaid2Premise implements CommandExecutor {
-	public Cmd_Head() {}
 	@SuppressWarnings("deprecation")
 	public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args){
 		if(args.length >= 1 && args[0].equalsIgnoreCase("help")){

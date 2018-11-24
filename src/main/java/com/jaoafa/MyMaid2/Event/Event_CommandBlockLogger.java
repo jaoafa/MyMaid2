@@ -9,17 +9,11 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.server.ServerCommandEvent;
-import org.bukkit.plugin.java.JavaPlugin;
 
 import com.jaoafa.MyMaid2.MyMaid2Premise;
 import com.jaoafa.MyMaid2.Lib.MySQL;
 
 public class Event_CommandBlockLogger extends MyMaid2Premise implements Listener {
-	JavaPlugin plugin;
-	public Event_CommandBlockLogger(JavaPlugin plugin) {
-		this.plugin = plugin;
-	}
-
 	@EventHandler
 	public void onCommandBlockCall(ServerCommandEvent event) {
 		if (!(event.getSender() instanceof BlockCommandSender)) return;

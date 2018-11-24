@@ -12,17 +12,11 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.plugin.java.JavaPlugin;
 
 import com.jaoafa.MyMaid2.MyMaid2Premise;
 import com.jaoafa.MyMaid2.Lib.MySQL;
 
 public class Event_LongTimeNoSee extends MyMaid2Premise implements Listener {
-	JavaPlugin plugin;
-	public Event_LongTimeNoSee(JavaPlugin plugin) {
-		this.plugin = plugin;
-	}
-
 	@EventHandler
 	public void OnEvent_LongTimeNoSee(PlayerJoinEvent event){
 		Player player = event.getPlayer();

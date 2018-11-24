@@ -9,16 +9,11 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
-import org.bukkit.plugin.java.JavaPlugin;
 
 import com.jaoafa.MyMaid2.Lib.ChatJail;
 import com.jaoafa.MyMaid2.Lib.PermissionsManager;
 
 public class Event_ChatJail implements Listener {
-	JavaPlugin plugin;
-	public Event_ChatJail(JavaPlugin plugin) {
-		this.plugin = plugin;
-	}
 	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
 	public void OnEvent_LoginChatJailCheck(PlayerJoinEvent event){
 		Player player = event.getPlayer();

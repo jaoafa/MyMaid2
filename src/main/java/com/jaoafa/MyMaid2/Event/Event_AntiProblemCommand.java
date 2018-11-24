@@ -15,7 +15,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
-import org.bukkit.plugin.java.JavaPlugin;
 
 import com.jaoafa.MyMaid2.MyMaid2Premise;
 import com.jaoafa.MyMaid2.Lib.ParseSelector;
@@ -24,10 +23,6 @@ import com.jaoafa.MyMaid2.Lib.Pointjao;
 import com.jaoafa.jaoReputation.Lib.ReputationManager;
 
 public class Event_AntiProblemCommand extends MyMaid2Premise implements Listener {
-	JavaPlugin plugin;
-	public Event_AntiProblemCommand(JavaPlugin plugin) {
-		this.plugin = plugin;
-	}
 	Set<UUID> AlreadyHelp = new HashSet<>();
 	@EventHandler
 	public void onEvent_AntiProblemCommand(PlayerCommandPreprocessEvent event){

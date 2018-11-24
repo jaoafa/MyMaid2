@@ -146,25 +146,17 @@ public class ParseSelector {
 		if(valid == false){
 			return false;
 		}
-		if(args.containsKey("x")){
-			if(!isNumber(args.get("x"))){
+		if(args.containsKey("x") && !isNumber(args.get("x"))){
 				return false;
-			}
 		}
-		if(args.containsKey("y")){
-			if(!isNumber(args.get("y"))){
+		if(args.containsKey("y") && !isNumber(args.get("y"))){
 				return false;
-			}
 		}
-		if(args.containsKey("z")){
-			if(!isNumber(args.get("z"))){
+		if(args.containsKey("z") && !isNumber(args.get("z"))){
 				return false;
-			}
 		}
-		if(args.containsKey("r")){
-			if(!isNumber(args.get("r"))){
+		if(args.containsKey("r") && !isNumber(args.get("r"))){
 				return false;
-			}
 		}
 		if(args.containsKey("type")){
 			boolean TypeCheck = false;

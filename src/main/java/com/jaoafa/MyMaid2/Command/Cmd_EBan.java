@@ -8,17 +8,12 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.plugin.java.JavaPlugin;
 
 import com.jaoafa.MyMaid2.MyMaid2Premise;
 import com.jaoafa.MyMaid2.Lib.EBan;
 import com.jaoafa.MyMaid2.Lib.PermissionsManager;
 
 public class Cmd_EBan extends MyMaid2Premise implements CommandExecutor {
-	JavaPlugin plugin;
-	public Cmd_EBan(JavaPlugin plugin) {
-		this.plugin = plugin;
-	}
 	@SuppressWarnings("deprecation")
 	public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args){
 		if(args.length >= 1 && args[0].equalsIgnoreCase("help")){

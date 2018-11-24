@@ -19,16 +19,11 @@ import org.bukkit.event.player.PlayerBucketEmptyEvent;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
-import org.bukkit.plugin.java.JavaPlugin;
 
 import com.jaoafa.MyMaid2.Lib.Jail;
 import com.jaoafa.MyMaid2.Lib.PermissionsManager;
 
 public class Event_Jail implements Listener {
-	JavaPlugin plugin;
-	public Event_Jail(JavaPlugin plugin) {
-		this.plugin = plugin;
-	}
 	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
 	public void OnEvent_LoginJailCheck(PlayerJoinEvent event){
 		Player player = event.getPlayer();

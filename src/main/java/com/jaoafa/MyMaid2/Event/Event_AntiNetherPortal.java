@@ -9,16 +9,11 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityCreatePortalEvent;
 import org.bukkit.event.world.PortalCreateEvent;
-import org.bukkit.plugin.java.JavaPlugin;
 
 import com.jaoafa.MyMaid2.MyMaid2Premise;
 import com.jaoafa.MyMaid2.Lib.PermissionsManager;
 
 public class Event_AntiNetherPortal extends MyMaid2Premise implements Listener {
-	JavaPlugin plugin;
-	public Event_AntiNetherPortal(JavaPlugin plugin) {
-		this.plugin = plugin;
-	}
 	@EventHandler
 	public void onEntityCreatePortalEvent(EntityCreatePortalEvent event){
 		event.setCancelled(true);

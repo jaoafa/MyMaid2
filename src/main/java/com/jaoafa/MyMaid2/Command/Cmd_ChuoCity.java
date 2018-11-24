@@ -10,7 +10,6 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.plugin.java.JavaPlugin;
 
 import com.jaoafa.MyMaid2.MyMaid2;
 import com.jaoafa.MyMaid2.MyMaid2Premise;
@@ -20,10 +19,6 @@ import com.sk89q.worldguard.protection.managers.RegionManager;
 import com.sk89q.worldguard.protection.regions.ProtectedRegion;
 
 public class Cmd_ChuoCity extends MyMaid2Premise implements CommandExecutor {
-	JavaPlugin plugin;
-	public Cmd_ChuoCity(JavaPlugin plugin) {
-		this.plugin = plugin;
-	}
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args) {
 		if(!(sender instanceof Player)){

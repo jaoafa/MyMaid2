@@ -7,7 +7,6 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.plugin.java.JavaPlugin;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -15,11 +14,6 @@ import org.json.simple.parser.ParseException;
 import com.jaoafa.MyMaid2.MyMaid2Premise;
 
 public class Cmd_Account extends MyMaid2Premise implements CommandExecutor {
-	JavaPlugin plugin;
-	public Cmd_Account(JavaPlugin plugin) {
-		this.plugin = plugin;
-	}
-
 	String url = "https://jaoafa.com/wp-login.php";
 	public static String jaoAccountAPI = null;
 

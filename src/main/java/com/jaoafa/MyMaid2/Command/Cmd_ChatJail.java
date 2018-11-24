@@ -20,7 +20,7 @@ import com.jaoafa.MyMaid2.MyMaid2Premise;
 import com.jaoafa.MyMaid2.Lib.ChatJail;
 
 public class Cmd_ChatJail extends MyMaid2Premise implements CommandExecutor, TabCompleter {
-	JavaPlugin plugin;
+	private JavaPlugin plugin;
 	public Cmd_ChatJail(JavaPlugin plugin) {
 		this.plugin = plugin;
 	}

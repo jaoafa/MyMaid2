@@ -33,7 +33,7 @@ import com.sk89q.worldguard.protection.managers.RegionManager;
 import com.sk89q.worldguard.protection.regions.ProtectedRegion;
 
 public class Cmd_City extends MyMaid2Premise implements CommandExecutor {
-	JavaPlugin plugin;
+	private JavaPlugin plugin;
 	public Cmd_City(JavaPlugin plugin) {
 		this.plugin = plugin;
 	}
@@ -41,11 +41,11 @@ public class Cmd_City extends MyMaid2Premise implements CommandExecutor {
 	 * デバックモードか<br>
 	 * デバックモードならtrue, そうでなければfalse
 	 */
-	final boolean DebugMode = true;
+	//final boolean DebugMode = true;
 	static final int LOCATION_X = 0;
 	static final int LOCATION_Z = 1;
 
-	Map<String, Set<Location>> Corner = new HashMap<>();
+	private Map<String, Set<Location>> Corner = new HashMap<>();
 	public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args){
 		Plugin dynmap = plugin.getServer().getPluginManager().getPlugin("dynmap");
 		if(dynmap == null || !dynmap.isEnabled()){
@@ -463,36 +463,34 @@ ocation playerloc = player.getLocation();
 						+ "新説明: " + desc);
 				return true;
 			}
-		}else if(args.length >= 3){
-			if(args[0].equalsIgnoreCase("setdesc")){
-				String cityName = args[1];
-				String desc = "";
-				int c = 2;
-				while(args.length > c){
-					desc += args[c]+" ";
-					c++;
+		}else if(args.length >= 3 && args[0].equalsIgnoreCase("setdesc")){
+			String cityName = args[1];
+			String desc = "";
+			int c = 2;
+			while(args.length > c){
+				desc += args[c]+" ";
+				c++;
 
+			}
+			AreaMarker select = null;
+			MarkerSet markerset = markerapi.getMarkerSet("towns");
+			for(AreaMarker areamarker : markerset.getAreaMarkers()){
+				if(areamarker.getLabel().equals(cityName)){
+					select = areamarker;
 				}
-				AreaMarker select = null;
-				MarkerSet markerset = markerapi.getMarkerSet("towns");
-				for(AreaMarker areamarker : markerset.getAreaMarkers()){
-					if(areamarker.getLabel().equals(cityName)){
-						select = areamarker;
-					}
-				}
-				if(select == null){
-					SendMessage(sender, cmd, "指定されたエリア名のエリアは見つかりませんでした。");
-					return true;
-				}
-				desc = htmlspecialchars(desc);
-				select.setDescription("<b>" + select.getLabel() + "</b><br />" +  desc);
-				SendMessage(sender, cmd, "指定されたエリア名のエリアへ説明文を追加しました。");
-				DiscordSend("254166905852657675", "::cityscape:**Cityデータが変更されました。(" + sdf.format(new Date()) + ") - SETDESC**\n"
-						+ "プレイヤー: `"  + player.getName() + "`\n"
-						+ "市名: `" + select.getLabel() + "`\n"
-						+ "新説明: " + desc);
+			}
+			if(select == null){
+				SendMessage(sender, cmd, "指定されたエリア名のエリアは見つかりませんでした。");
 				return true;
 			}
+			desc = htmlspecialchars(desc);
+			select.setDescription("<b>" + select.getLabel() + "</b><br />" +  desc);
+			SendMessage(sender, cmd, "指定されたエリア名のエリアへ説明文を追加しました。");
+			DiscordSend("254166905852657675", "::cityscape:**Cityデータが変更されました。(" + sdf.format(new Date()) + ") - SETDESC**\n"
+					+ "プレイヤー: `"  + player.getName() + "`\n"
+					+ "市名: `" + select.getLabel() + "`\n"
+					+ "新説明: " + desc);
+			return true;
 		}
 		SendUsageMessage(sender, cmd);
 		return true;
@@ -572,7 +570,9 @@ ocation playerloc = player.getLocation();
 	}
 
 	public Location getSW(List<Location> locs) throws IllegalArgumentException {
-		double x = Double.MIN_VALUE, y, z = Double.MIN_VALUE;
+		double x = Double.MIN_VALUE;
+		double y;
+		double z = Double.MIN_VALUE;
 		if (locs.size() == 0){
 			throw new IllegalArgumentException();
 		}else{
@@ -604,7 +604,7 @@ ocation playerloc = player.getLocation();
 	 * @param locs
 	 * @return
 	 */
-	boolean isSquare(List<Location> locs){
+	private boolean isSquare(List<Location> locs){
 		return locs.size() == 4 ? true : false; // 4つの点だったら四角形
 	}
 
@@ -613,7 +613,7 @@ ocation playerloc = player.getLocation();
 	 * @param locs
 	 * @return
 	 */
-	boolean isTriangle(List<Location> locs){
+	private boolean isTriangle(List<Location> locs){
 		return locs.size() == 3 ? true : false; // 3つの点だったら三角形
 	}
 

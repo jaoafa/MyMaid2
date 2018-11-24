@@ -827,11 +827,7 @@ public class Jail extends MyMaid2Premise {
 			return false;
 		}
 		if(block.containsKey(player.getUniqueId().toString())){
-			if(block.get(player.getUniqueId().toString())){
-				return true;
-			}else{
-				return false;
-			}
+			return block.get(player.getUniqueId().toString());
 		}else{
 			return false;
 		}

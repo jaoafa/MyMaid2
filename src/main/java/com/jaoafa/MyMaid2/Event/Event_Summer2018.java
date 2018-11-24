@@ -20,17 +20,12 @@ import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.event.player.PlayerGameModeChangeEvent;
 import org.bukkit.event.player.PlayerTeleportEvent;
 import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
-import org.bukkit.plugin.java.JavaPlugin;
 
 import com.jaoafa.MyMaid2.MyMaid2Premise;
 import com.jaoafa.MyMaid2.Command.Cmd_AFK;
 import com.jaoafa.MyMaid2.Lib.PermissionsManager;
 
 public class Event_Summer2018 extends MyMaid2Premise implements Listener {
-	JavaPlugin plugin;
-	public Event_Summer2018(JavaPlugin plugin) {
-		this.plugin = plugin;
-	}
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onPlayerGameModeChangeEvent(PlayerGameModeChangeEvent event) {
 		Player player = event.getPlayer();

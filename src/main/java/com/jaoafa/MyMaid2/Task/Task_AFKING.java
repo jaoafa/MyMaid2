@@ -3,16 +3,13 @@ package com.jaoafa.MyMaid2.Task;
 import org.bukkit.ChatColor;
 import org.bukkit.Effect;
 import org.bukkit.entity.Player;
-import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import com.jaoafa.MyMaid2.Command.Cmd_AFK;
 
 public class Task_AFKING extends BukkitRunnable {
-	JavaPlugin plugin;
-	Player player;
-	public Task_AFKING(JavaPlugin plugin, Player player) {
-		this.plugin = plugin;
+	private Player player;
+	public Task_AFKING(Player player) {
 		this.player = player;
 	}
 

@@ -7,13 +7,8 @@ import org.bukkit.entity.Vehicle;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.vehicle.VehicleCreateEvent;
-import org.bukkit.plugin.java.JavaPlugin;
 
 public class Event_AntiTNTMinecart implements Listener {
-	JavaPlugin plugin;
-	public Event_AntiTNTMinecart(JavaPlugin plugin) {
-		this.plugin = plugin;
-	}
 	@EventHandler
 	public void onVehicleCreateEvent(VehicleCreateEvent event){
 		Vehicle vehicle = event.getVehicle();

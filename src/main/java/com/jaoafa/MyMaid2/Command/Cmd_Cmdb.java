@@ -12,8 +12,6 @@ import org.bukkit.inventory.PlayerInventory;
 import com.jaoafa.MyMaid2.MyMaid2Premise;
 
 public class Cmd_Cmdb extends MyMaid2Premise implements CommandExecutor {
-	public Cmd_Cmdb() {}
-
 	public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args){
 		if(args.length >= 1 && args[0].equalsIgnoreCase("help")){
 			SendUsageMessage(sender, cmd);

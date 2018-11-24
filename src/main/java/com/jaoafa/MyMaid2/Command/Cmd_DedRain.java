@@ -3,16 +3,11 @@ package com.jaoafa.MyMaid2.Command;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitTask;
 
 import com.jaoafa.MyMaid2.MyMaid2Premise;
 
 public class Cmd_DedRain extends MyMaid2Premise implements CommandExecutor {
-	JavaPlugin plugin;
-	public Cmd_DedRain(JavaPlugin plugin) {
-		this.plugin = plugin;
-	}
 	public static boolean flag = true;
 	BukkitTask task = null;
 	public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args){

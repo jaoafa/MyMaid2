@@ -19,16 +19,11 @@ import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
-import org.bukkit.plugin.java.JavaPlugin;
 
 import com.jaoafa.MyMaid2.Lib.EBan;
 import com.jaoafa.MyMaid2.Lib.PermissionsManager;
 
 public class Event_EBan implements Listener {
-	JavaPlugin plugin;
-	public Event_EBan(JavaPlugin plugin) {
-		this.plugin = plugin;
-	}
 	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
 	public void OnEvent_LoginEBanCheck(PlayerJoinEvent event){
 		Player player = event.getPlayer();

@@ -11,16 +11,10 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
-import org.bukkit.plugin.java.JavaPlugin;
 
 import com.jaoafa.MyMaid2.MyMaid2Premise;
 
 public class Cmd_Lead extends MyMaid2Premise implements CommandExecutor {
-	JavaPlugin plugin;
-	public Cmd_Lead(JavaPlugin plugin) {
-		this.plugin = plugin;
-	}
-
 	public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args){
 		if(args.length == 0 || args[0].equalsIgnoreCase("help")){
 			SendUsageMessage(sender, cmd);

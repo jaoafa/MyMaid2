@@ -20,7 +20,6 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.BookMeta;
-import org.bukkit.plugin.java.JavaPlugin;
 
 import com.jaoafa.MyMaid2.MyMaid2Premise;
 import com.jaoafa.MyMaid2.Command.MyMaidBookHistory.MyMaidBookHistoryType;
@@ -28,10 +27,6 @@ import com.jaoafa.MyMaid2.Lib.MySQL;
 import com.jaoafa.MyMaid2.Lib.Pointjao;
 
 public class Cmd_Book extends MyMaid2Premise implements CommandExecutor {
-	JavaPlugin plugin;
-	public Cmd_Book(JavaPlugin plugin) {
-		this.plugin = plugin;
-	}
 	public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args){
 		if(args.length >= 1 && args[0].equalsIgnoreCase("help")){
 			SendUsageMessage(sender, cmd);
@@ -210,7 +205,6 @@ public class Cmd_Book extends MyMaid2Premise implements CommandExecutor {
 					Pjao.use(bookdata.getRequiredjao(), "本「" + bookdata.getTitle() + "」の購入のため");
 					if(bookdata.getAuthor() != null){
 						try{
-							@SuppressWarnings("deprecation")
 							Pointjao Pjao_wasbought = new Pointjao(bookdata.getAuthor());
 							Pjao_wasbought.add(bookdata.getRequiredjao(), "本「" + bookdata.getTitle() + "」を" + player.getName() + "が購入したため");
 						}catch (UnsupportedOperationException e){
@@ -605,7 +599,7 @@ class MyMaidBookData extends MyMaid2Premise {
 	private Date createdate;
 	private int createdate_unixtime;
 
-	MyMaidBookData(int id, String title, String author_name, String pages_str, int requiredjao, int count, String history, String status, int createdate_unixtime){
+	public MyMaidBookData(int id, String title, String author_name, String pages_str, int requiredjao, int count, String history, String status, int createdate_unixtime){
 		this.id = id;
 		this.title = title;
 		this.author_name = author_name;
@@ -619,11 +613,11 @@ class MyMaidBookData extends MyMaid2Premise {
 		this.requiredjao = requiredjao;
 		this.history = history;
 		this.status = status;
-		createdate = new Date(createdate_unixtime);
+		createdate = new Date(Integer.toUnsignedLong(createdate_unixtime));
 		this.createdate_unixtime = createdate_unixtime;
 	}
 
-	MyMaidBookData(int id, String title, UUID author_uuid, String pages_str, int requiredjao, int count, String history, String status, int createdate_unixtime) throws IllegalArgumentException{
+	public MyMaidBookData(int id, String title, UUID author_uuid, String pages_str, int requiredjao, int count, String history, String status, int createdate_unixtime) throws IllegalArgumentException{
 		this.id = id;
 		this.title = title;
 		this.author_uuid = author_uuid;
@@ -638,47 +632,47 @@ class MyMaidBookData extends MyMaid2Premise {
 		this.requiredjao = requiredjao;
 		this.history = history;
 		this.status = status;
-		createdate = new Date(createdate_unixtime);
+		createdate = new Date(Integer.toUnsignedLong(createdate_unixtime));
 		this.createdate_unixtime = createdate_unixtime;
 	}
 
-	int getID(){
+	public int getID(){
 		return id;
 	}
 
-	String getTitle(){
+	public String getTitle(){
 		return title;
 	}
 
-	OfflinePlayer getAuthor(){
+	public OfflinePlayer getAuthor(){
 		return author;
 	}
 
-	String getAuthorName(){
+	public String getAuthorName(){
 		return author_name;
 	}
 
-	UUID getAuthorUUID(){
+	public UUID getAuthorUUID(){
 		return author_uuid;
 	}
 
-	List<String> getPages(){
+	public List<String> getPages(){
 		return pages;
 	}
 
-	String getPagesToString(){
+	public String getPagesToString(){
 		return implode(getPages(), "§j");
 	}
 
-	int getRequiredjao(){
+	public int getRequiredjao(){
 		return requiredjao;
 	}
 
-	int getCount(){
+	public int getCount(){
 		return count;
 	}
 
-	List<MyMaidBookHistory> getHistory(){
+	public List<MyMaidBookHistory> getHistory(){
 		// 一行ごとに「mine_book000|create|1514732400」など。
 		List<String> lines = Arrays.asList(getRawHistory().replaceAll("\r\n", "\n").split("\n"));
 		List<MyMaidBookHistory> historyList = new ArrayList<MyMaidBookHistory>();
@@ -696,28 +690,28 @@ class MyMaidBookData extends MyMaid2Premise {
 		return historyList;
 	}
 
-	String getRawHistory(){
+	public String getRawHistory(){
 		return history;
 	}
 
-	void addHistory(Player player, MyMaidBookHistoryType type, String date){
+	public void addHistory(Player player, MyMaidBookHistoryType type, String date){
 		String rawhistory = getRawHistory();
 		history = rawhistory + "\n" + player.getName() + "," + type.getRawName() + "," + date;
 	}
 
-	String getStatus(){
+	public String getStatus(){
 		return status;
 	}
 
-	Date getCreateDate(){
+	public Date getCreateDate(){
 		return createdate;
 	}
 
-	int getCreateDateUnixTime(){
+	public int getCreateDateUnixTime(){
 		return createdate_unixtime;
 	}
 
-	ItemStack getBook(){
+	public ItemStack getBook(){
 		ItemStack item = new ItemStack(Material.WRITTEN_BOOK, 1);
 		BookMeta bm = (BookMeta) item.getItemMeta();
 		bm.setAuthor(getAuthorName());
@@ -731,7 +725,7 @@ class MyMaidBookData extends MyMaid2Premise {
 		return item;
 	}
 
-	<T> String implode(List<T> list, String glue) {
+	public <T> String implode(List<T> list, String glue) {
 		StringBuilder sb = new StringBuilder();
 		for (T e : list) {
 			sb.append(glue).append(e);
@@ -750,11 +744,11 @@ class MyMaidBookHistory {
 		this.date = date;
 	}
 
-	String getName(){
+	public String getName(){
 		return name;
 	}
 
-	MyMaidBookHistoryType getType(){
+	public MyMaidBookHistoryType getType(){
 		if(type.equalsIgnoreCase("create")){
 			return MyMaidBookHistoryType.CREATE;
 		}else if(type.equalsIgnoreCase("buy")){
@@ -766,11 +760,11 @@ class MyMaidBookHistory {
 		}
 	}
 
-	String getRawType(){
+	public String getRawType(){
 		return type;
 	}
 
-	String getDate(){
+	public String getDate(){
 		return date;
 	}
 
@@ -787,11 +781,11 @@ class MyMaidBookHistory {
 			this.rawname = rawname;
 		}
 
-		String getName(){
+		public String getName(){
 			return name;
 		}
 
-		String getRawName(){
+		public String getRawName(){
 			return rawname;
 		}
 	}

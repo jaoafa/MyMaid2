@@ -11,20 +11,14 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
-import org.bukkit.plugin.java.JavaPlugin;
 
 import com.jaoafa.MyMaid2.MyMaid2Premise;
 import com.jaoafa.MyMaid2.Lib.PermissionsManager;
 import com.jaoafa.MyMaid2.Task.Task_LoginjaoafaTips;
 
 public class Event_Tips extends MyMaid2Premise implements Listener {
-	JavaPlugin plugin;
-	public Event_Tips(JavaPlugin plugin) {
-		this.plugin = plugin;
-	}
 	private static Set<UUID> jaoafa_jao = new HashSet<>();
 	public static Set<UUID> jaoafa = new HashSet<>();
-
 	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
 	public void OnEvent_LoginjaoafaTips(PlayerJoinEvent event){
 		Player player = event.getPlayer();
@@ -40,7 +34,7 @@ public class Event_Tips extends MyMaid2Premise implements Listener {
 		if(jaoafa.contains(player.getUniqueId())){
 			jaoafa.remove(player.getUniqueId());
 		}
-		new Task_LoginjaoafaTips(plugin, player).runTaskLater(JavaPlugin(), 1200L); // 1分
+		new Task_LoginjaoafaTips(player).runTaskLater(JavaPlugin(), 1200L); // 1分
 	}
 
 	@EventHandler(priority = EventPriority.MONITOR)

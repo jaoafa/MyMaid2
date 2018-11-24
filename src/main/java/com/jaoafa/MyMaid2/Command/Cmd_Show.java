@@ -8,17 +8,12 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.plugin.java.JavaPlugin;
 
+import com.jaoafa.MyMaid2.MyMaid2;
 import com.jaoafa.MyMaid2.MyMaid2Premise;
 import com.jaoafa.MyMaid2.Lib.PermissionsManager;
 
 public class Cmd_Show extends MyMaid2Premise implements CommandExecutor {
-	JavaPlugin plugin;
-	public Cmd_Show(JavaPlugin plugin) {
-		this.plugin = plugin;
-	}
-
 	public static List<Player> hidePlayers = new ArrayList<>();
 	public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args){
 		if(!(sender instanceof Player)){
@@ -32,7 +27,7 @@ public class Cmd_Show extends MyMaid2Premise implements CommandExecutor {
 			return true;
 		}
 		for(Player p: Bukkit.getServer().getOnlinePlayers()) {
-			p.showPlayer(plugin, player);
+			p.showPlayer(MyMaid2.mymaid2, player);
 		}
 		SendMessage(sender, cmd, "あなたは他のプレイヤーから見えるようになりました。見えなくするには/hideを実行しましょう。");
 		return true;

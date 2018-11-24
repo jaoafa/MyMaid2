@@ -259,8 +259,8 @@ public class SKKColors extends MyMaid2Premise {
 	 * @return 処理された文字列
 	 * @author mine_book000
 	 */
-	public static String ReplacePlayerSKKChatColor(Player player, String oldstr, String Message){
-		Message = Message.replaceFirst(oldstr, getPlayerSKKChatColor(player) + "■" + ChatColor.WHITE + oldstr);
+	public static String ReplacePlayerSKKChatColor(Player player, String oldstr, String _Message){
+		String Message = _Message.replaceFirst(oldstr, getPlayerSKKChatColor(player) + "■" + ChatColor.WHITE + oldstr);
 		return Message;
 	}
 
