@@ -63,6 +63,7 @@ import com.jaoafa.MyMaid2.Command.Cmd_Summer;
 import com.jaoafa.MyMaid2.Command.Cmd_Test;
 import com.jaoafa.MyMaid2.Command.Cmd_Testment;
 import com.jaoafa.MyMaid2.Command.Cmd_Var;
+import com.jaoafa.MyMaid2.Command.Cmd_VoteFill;
 import com.jaoafa.MyMaid2.Command.Cmd_WT;
 import com.jaoafa.MyMaid2.Command.Cmd_Wtp;
 import com.jaoafa.MyMaid2.Command.Cmd_jao;
@@ -272,6 +273,7 @@ public class MyMaid2 extends JavaPlugin implements Listener {
 		getCommand("rider").setExecutor(new Cmd_Rider()); // 2018/09/16
 		getCommand("itemedit").setExecutor(new Cmd_ItemEdit()); // 2018/10/06
 		getCommand("lead").setExecutor(new Cmd_Lead()); // 2018/10/06
+		getCommand("votefill").setExecutor(new Cmd_VoteFill()); // 2018/12/02
 	}
 
 	/**

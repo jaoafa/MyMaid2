@@ -33,7 +33,7 @@ public class Event_VoteReceived extends MyMaid2Premise implements Listener {
 	}
 
 
-	public static void VoteReceive(String name){
+	public static boolean VoteReceive(String name){
 		final int VOTEPOINT = 20;
 
 		String oldVote = "取得できませんでした";
@@ -86,19 +86,19 @@ public class Event_VoteReceived extends MyMaid2Premise implements Listener {
 			// TODO 自動生成された catch ブロック
 			DiscordSend("499922840871632896", ":outbox_tray:**投票受信エラー**: " + name + "のプレイヤーデータをデータベースから取得している最中にClassNotFoundExceptionもしくはSQLExceptionが発生したため、投票処理が正常に行われませんでした。");
 			BugReporter(e);
-			return;
+			return false;
 		}
 
 		if(uuid == null){
 			DiscordSend("499922840871632896", ":outbox_tray:**投票受信エラー**: " + name + "のプレイヤーデータがデータベースから取得できなかったため、投票処理が正常に行われませんでした。");
-			return;
+			return false;
 		}
 
 		OfflinePlayer offplayer = Bukkit.getOfflinePlayer(uuid);
 
 		if(offplayer == null){
 			DiscordSend("499922840871632896", ":outbox_tray:**投票受信エラー**: " + name + "のOfflinePlayerを取得できなかったため、投票処理が正常に行われませんでした。");
-			return;
+			return false;
 		}
 
 		if(!offplayer.getName().equals(name)){
@@ -119,10 +119,10 @@ public class Event_VoteReceived extends MyMaid2Premise implements Listener {
 		}catch(ClassNotFoundException | SQLException e){
 			DiscordSend("499922840871632896", ":outbox_tray:**投票受信エラー**: " + name + "の投票処理時にClassNotFoundExceptionもしくはSQLExceptionが発生したため、投票処理(投票数追加)が正常に行われませんでした。");
 			BugReporter(e);
-			return;
+			return false;
 		}catch(NullPointerException e){
 			DiscordSend("499922840871632896", ":outbox_tray:**投票受信エラー**: " + name + "のプレイヤー投票データが取得できなかったため、投票処理(投票数追加)が正常に行われませんでした。");
-			return;
+			return false;
 		}
 
 		try{
@@ -151,11 +151,11 @@ public class Event_VoteReceived extends MyMaid2Premise implements Listener {
 
 		}catch(NullPointerException e){
 			DiscordSend("499922840871632896", ":outbox_tray:**投票受信エラー**: " + name + "のプレイヤーデータが取得できなかったため、投票処理(ポイント追加)が正常に行われませんでした。");
-			return;
+			return false;
 		}catch(ClassNotFoundException | SQLException e){
 			DiscordSend("499922840871632896", ":outbox_tray:**投票受信エラー**: " + name + "の投票処理時にClassNotFoundExceptionもしくはSQLExceptionが発生したため、投票処理(投票数追加)が正常に行われませんでした。");
 			BugReporter(e);
-			return;
+			return false;
 		}
 
 		SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
@@ -202,5 +202,6 @@ public class Event_VoteReceived extends MyMaid2Premise implements Listener {
     			DiscordSend(player.getName() + "さんが投票し、2月ポイント補填ボーナスを" + random + "ポイント追加しました。");
     		}
 		 */
+		return true;
 	}
 }

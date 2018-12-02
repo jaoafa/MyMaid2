@@ -16,10 +16,11 @@ public class Task_WorldSave extends BukkitRunnable {
 	@Override
 	public void run() {
 		List<World> worlds = Bukkit.getServer().getWorlds();
+		plugin.getLogger().info("World Save Start...");
 		for (World w : worlds){
-			plugin.getLogger().info("World Save Start... | world: " + w.getName());
+			//plugin.getLogger().info("World Save Start... | world: " + w.getName());
 			w.save();
-			plugin.getLogger().info("World Save End. | world: " + w.getName());
 		}
+		plugin.getLogger().info("World Save End.");
 	}
 }

@@ -369,3 +369,8 @@ commands:
              /lead <Rider Player/EntityName> <Riding Player/EntityName>: プレイヤーもしくはエンティティ(Rider)からプレイヤーもしくはエンティティ(Riding)にリードをつけます。
              /lead leave: 乗っているプレイヤー・エンティティのリードを外します
              /lead leave <Player/EntityName>: プレイヤーもしくはエンティティから乗っているプレイヤー・エンティティのリードを外します
+   votefill:
+      description: 投票補填用のコマンドです。管理部・モデレーターのみ使用できます。
+      usage: /<command> <Player>: Playerに対して投票を補填します。
+      permission: mymaid.votefill
+      permission-message: You do not have permission to perform this command.
