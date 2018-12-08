@@ -29,7 +29,7 @@ public class Cmd_VoteFill extends MyMaid2Premise implements CommandExecutor {
 			SendMessage(sender, cmd, "引数には投票を補填するプレイヤー名を入力してください。");
 			return true;
 		}
-		String name = args[1];
+		String name = args[0];
 		DiscordSend("499922840871632896", ":mailbox_with_mail: **投票手動補填通知**: " + player.getName() + "によって" + name + "の補填処理を開始しました。");
 		boolean res = Event_VoteReceived.VoteReceive(name);
 		if(res){

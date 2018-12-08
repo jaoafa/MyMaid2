@@ -4,373 +4,382 @@ version: ${project.version}
 description: General Plugin Version 2
 database: true
 author: mine_book000
-softdepend: [PermissionsEx, LuckPerms, GeoipAPI, dynmap, Votifier, jaoSuperAchievement, MinecraftJPVoteMissFiller]
+softdepend:
+  [
+    PermissionsEx,
+    LuckPerms,
+    GeoipAPI,
+    dynmap,
+    Votifier,
+    jaoSuperAchievement,
+    MinecraftJPVoteMissFiller,
+  ]
 commands:
-   afk:
-      description: AFK(Away From Keyboard)モードをオン・オフにします。
-      usage: "/afk: AFK(Away From Keyboard)モードをオン・オフにします。(トグル)"
-      permission: mymaid.afk
-      permission-message: You do not have permission to perform this command.
-   dt:
-      description: Dynmapのマーカー地点にテレポートします。
-      usage: |-
-             /dt [Player] <MarkerName...>: MarkerNameにテレポートします。Playerを指定した場合はそのPlayerをテレポートさせます。
-             /dt near: あなたの近くのマーカーを表示します。
-             /dt random: 現在いるワールドのマーカーのどれかにランダムでテレポートします。
-             /dt add <MarkerName> <MarkerType>: Markerを追加します。
-             /dt del <MarkerName>: Markerを削除します。
-             /dt list: Markerリストを表示します。
-             /dt list <Page>: 指定されたページのMarkerリストを表示します。
-      permission: mymaid.dt
-      permission-message: You do not have permission to perform this command.
-   city:
-      description: 市の範囲を登録したり削除したりできます。
-      usage: |-
-             /city addcorner: コーナーを追加
-             /city addcorner <Name>: 既存のエリアにコーナーを追加
-             /city undocorner: ひとつ前に追加したコーナーを削除
-             /city clearcorner: コーナーを削除
-             /city show: いまいる地点の情報を表示。(未完成)
-             /city add <Name> <Color>: エリアの範囲を色と共に設定(Dynmapに表示)
-             /city del <Name>: エリアの範囲を削除
-             /city setcolor <Name> <Color>: エリアの色を変更
-             /city editcorner <Name>: 指定されたエリアのコーナーエディタを使用してコーナーを編集
-             /city setdesc <Name> <Description>: エリアの説明を設定
-             /city show <Name>: エリアの情報を表示。
-      permission: mymaid.city
-      permission-message: You do not have permission to perform this command.
-   cmdb:
-      description: コマンドブロックを与えます。
-      usage: |-
-             /cmdb: メインハンドにコマンドブロックを設定します。すでに持っていたアイテムは別のスロットに移動するかドロップします。
-             /cmdb <Player>: 指定したプレイヤーのメインハンドにコマンドブロックを設定します。すでに持っていたアイテムは別のスロットに移動するかドロップします。
-      permission: mymaid.cmdb
-      permission-message: You do not have permission to perform this command.
-   home:
-      description: ホームにテレポートします。
-      usage: |-
-             /home: デフォルトのホームにテレポートします。
-             /home <Name>: Nameのホームにテレポートします。
-      permission: mymaid.home
-      permission-message: You do not have permission to perform this command.
-   sethome:
-      description: ホームを設定します。
-      usage: |-
-             /sethome: デフォルト(default)でホームを設定します。上書きはできないため、事前に削除する必要があります。
-             /sethome <Name>: 指定した名前でホームを設定します。上書きはできないため、事前に削除する必要があります。
-      permission: mymaid.sethome
-      permission-message: You do not have permission to perform this command.
-   delhome:
-      description: ホームを削除します。
-      usage: "/delhome <Name>: 指定された名前のホームを削除します。"
-      permission: mymaid.delhome
-      permission-message: You do not have permission to perform this command.
-   g:
-      description: ゲームモードを変更します。
-      usage: |-
-             /g: クリエイティブモードならスペクテイターモードに、スペクテイターモードならクリエイティブモードに、それ以外ならクリエイティブモードに変更します。
-             /g <0-3>: 指定された数値に合うゲームモードに変更します。
-             /g <0-3> <Player>: 指定したプレイヤーのゲームモードを指定された数値に合うゲームモードに変更します。
-      permission: mymaid.g
-      permission-message: You do not have permission to perform this command.
-   dedrain:
-      description: 雨を降らすかどうか設定します。
-      usage: |-
-             /dedrain: 現在の降水禁止設定を確認します。
-             /dedrain <true/false>: 降水禁止設定を変更します。
-      permission: mymaid.dedrain
-      permission-message: You do not have permission to perform this command.
-   wt:
-      description: 他ワールドにテレポートできるようになります。
-      usage: "/wt <WorldID/WorldName>: 指定されたWorldIDもしくはWorldNameのワールドのスポーン地点にテレポートします。"
-      permission: mymaid.wt
-      permission-message: You do not have permission to perform this command.
-   discordlink:
-      description: DiscordアカウントとMinecraftアカウントを紐づけます。
-      usage: "/wt <AuthKey>: 指定されたAuthKeyに合うDiscordアカウントがあればそれと紐づけます。"
-      permission: mymaid.discordlink
-      permission-message: You do not have permission to perform this command.
-   spawn:
-      description: スポーン地点にテレポートします。
-      usage: |-
-             /spawn: ワールドの初期スポーン地点にテレポートします。
-             /spawn true: プレイヤーのスポーン地点にテレポートします。
-      aliases: [hub, lobby, warp]
-      permission: mymaid.spawn
-      permission-message: You do not have permission to perform this command.
-   jao:
-      description: jaoポイントの確認・送受信などを行えます。
-      usage: |-
-             /jao: あなたのjaoポイント残高を確認します。
-             /jao history: あなたのjaoポイントを履歴を表示します。
-             /jao help: このヘルプを表示します。
-             /jao add <Player> <Point> <Reason>: PlayerにReasonという理由でPointを追加します。
-             /jao use <Player> <Point> <Reason>: PlayerからReasonという理由でPointを減算します。
-             /jao pay <Player> <Point> <Reason>: PlayerからReasonという理由でPointを支払います。
-      permission: mymaid.jao
-      permission-message: You do not have permission to perform this command.
-   head:
-      description: プレイヤーの頭ブロックを入手できます。
-      usage: |-
-             /head: メインハンドに自身の頭ブロックを設定します。すでに持っていたアイテムは別のスロットに移動するかドロップします。
-             /head <Player>: メインハンドに指定したプレイヤーの頭ブロックを設定します。すでに持っていたアイテムは別のスロットに移動するかドロップします。
-      permission: mymaid.jao
-      permission-message: You do not have permission to perform this command.
-   test:
-      description: TEST
-      usage: TEST
-      permission: mymaid.test
-      permission-message: You do not have permission to perform this command.
-   color:
-      description: チャット欄の四角色を取得・変更します。
-      usage: |-
-             /color: 現在の四角指定色を取得します。
-             /color <Color>: 四角色を変更します。
-      permission: mymaid.color
-      permission-message: You do not have permission to perform this command.
-   elytra:
-      description: エリトラと花火を装備します。
-      usage: "/elytra: エリトラと花火を装備します。"
-      permission: mymaid.elytra
-      permission-message: You do not have permission to perform this command.
-   messenger:
-      description: 定期メッセージについての設定をします。
-      usage: |-
-             /messenger list: メッセージのリストを表示します。
-             /messenger broadcast: メッセージを今すぐランダムに1つ放送します。
-             /messenger broadcast <MessageID>: メッセージを今すぐMessageIDのメッセージを放送します。
-             /messenger add <Message>: メッセージを追加します。
-             /messenger del <MessageID>: 指定されたメッセージIDのメッセージを削除します
-             /messenger setspeaker <Speaker>: メッセージのスピーカーを変更します。
-      permission: mymaid.messenger
-      permission-message: You do not have permission to perform this command.
-   selector:
-      description: Selectorが適切かどうか調べます。
-      usage: "/selector <Selector>: Selectorが適切かどうか調べます。"
-      permission: mymaid.selector
-      permission-message: You do not have permission to perform this command.
-   chat:
-      description: 偽のプレイヤーをしゃべらせます。
-      usage: "/chat <FakePlayer> <Message...>: 偽のプレイヤーをしゃべらせます。"
-      permission: mymaid.chat
-      permission-message: You do not have permission to perform this command.
-   player:
-      description: プレイヤーの現在の権限を確認します。
-      usage: "/player [Player]: プレイヤーの現在の権限を確認します。"
-      permission: mymaid.player
-      permission-message: You do not have permission to perform this command.
-   eban:
-      description: 指定されたプレイヤーをEBanしたり、解除したりできます。 ※このコマンドは一部を除き管理部・モデレーターのみ使用できます。
-      usage: |-
-             /eban add <Player> <Reason>: Reasonという理由でPlayerをEBanします。
-             /eban remove <Player>: PlayerをEBanを解除します。
-             /eban status [Player]: プレイヤーが指定されていればそのプレイヤーのステータスを表示し、指定されていなければ現在のEBan状況を表示します。
-   jail:
-      description: 南の楽園関連の処理をします。
-      usage: |-
-             /jail add <Player> [Reason]: プレイヤーを南の楽園に移動し、出られなくします。
-             /jail remove <Player>: プレイヤーを南の楽園リストから削除します。
-             /jail list: 南の楽園リストを表示します。
-             /jail area <Player> <true|false>: プレイヤーが南の楽園から出られるかどうかを設定します。
-             /jail block <Player> <true|false>: プレイヤーがコマンドを実行できるかを設定します。
-             /jail lasttext <Text>: 遺言を残します。
-   hat:
-      description: 手に持っているブロックを頭に載せます。
-      usage: "/hat: 手に持っているブロックを頭に載せます。"
-      permission: mymaid.hat
-      permission-message: You do not have permission to perform this command.
-   body:
-      description: 手に持っているブロックを背中に装備します。
-      usage: "/body: 手に持っているブロックを背中に装備します。"
-      permission: mymaid.body
-      permission-message: You do not have permission to perform this command.
-   leg:
-      description: 手に持っているブロックを背中につけます。
-      usage: "/leg: 手に持っているブロックを背中につけます。"
-      permission: mymaid.leg
-      permission-message: You do not have permission to perform this command.
-   boots:
-      description: 手に持っているブロックを足につけます。
-      usage: "/boots: 手に持っているブロックを足につけます。"
-      permission: mymaid.boots
-      permission-message: You do not have permission to perform this command.
-   ck:
-      description: 近くの誰も乗っていないトロッコを削除します。
-      usage: |-
-             /ck: 近くの誰も乗っていないトロッコを削除します。乗っているエンティティがいても削除しません。
-             /ck true: 近くの誰も乗っていないトロッコを削除します。また、乗っているエンティティも削除します。
-      permission: mymaid.ck
-      permission-message: You do not have permission to perform this command.
-   sign:
-      description: すでに設置した看板のテキストを変更します。
-      usage: "/sign <Line> <Text>: すでに設置した看板の指定した行のテキストを変更します。"
-      permission: mymaid.sign
-      permission-message: You do not have permission to perform this command.
-   account:
-      description: jaoアカウントに関連した作業が行えます。
-      usage: |-
-             /account: jaoアカウントの情報を取得します。
-             /account create: jaoアカウントを作成します。
-             /account reset: jaoアカウントのパスワードをリセットします。
-             /account setdesc <Description>: jaoアカウントに自己紹介を追加します。
-      permission: mymaid.account
-      permission-message: You do not have permission to perform this command.
-   pin:
-      description: アカウントアクティベーションを行います。
-      usage: "/pin <Code>: アカウントアクティベーションを行います。"
-      permission: mymaid.pin
-      permission-message: You do not have permission to perform this command.
-   respawn:
-      description: 指定したプレイヤーをリスポーンさせます。
-      usage: "/respawn <Player>: 指定したプレイヤーをリスポーンさせます。"
-      permission: mymaid.respawn
-      permission-message: You do not have permission to perform this command.
-   testment:
-      description: Jailでの遺言を残します。
-      usage: "/testment <Message>: Jailでの遺言を残します。"
-      permission: mymaid.testment
-      permission-message: You do not have permission to perform this command.
-   book:
-      description: 本を販売したり購入したりできます。
-      usage: |-
-             /book list: 本リストを表示します。
-             /book list <Page>: 指定されたページの本リストを表示します。
-             /book sell <jaoPoint>: 手に持っている本を指定したjaoPoint数で販売します。
-             /book get <Name|ID>: NameもしくはIDに合う本を購入します。
-             /book delete <Name|ID>: NameもしくはIDに合う本を販売終了します。販売者のみ実行できます。
-             /book history <Name|ID>: NameもしくはIDに合う本のログリストを表示します。
-      permission: mymaid.book
-      permission-message: You do not have permission to perform this command.
-   report:
-      description: 管理部に報告します。
-      usage: "/report <Message>: 管理部に報告します。"
-      permission: mymaid.report
-      permission-message: You do not have permission to perform this command.
-   wtp:
-      description: ワールドを超えてテレポートできます。
-      usage: |-
-             /wtp <World> <X> <Y> <Z>: <World>の<X> <Y> <Z>座標にテレポートします。
-             /wtp <Player> <World> <X> <Y> <Z>: <Player>を<World>の<X> <Y> <Z>座標にテレポートします。
-      permission: mymaid.wtp
-      permission-message: You do not have permission to perform this command.
-   var:
-      description: 変数に関することを利用できます。
-      usage: |-
-             /var text <Key> <Value>: 変数に代入します。
-             /var plus <Key1> <Key2>: 変数を利用して加算します。
-             /var minus <Key1> <Key2>: 変数を利用して減算します。
-             /var block: 未実装
-             /var equal <Key1> <Key2>: 変数がイコールかどうか調べます。
-             /var list: 変数のリストを表示します。
-             /var clear <Key>: 変数を削除します。
-      permission: mymaid.var
-      permission-message: You do not have permission to perform this command.
-   invsave:
-      description: インベントリを保存します。
-      usage: |-
-             /invsave: 実行者のインベントリを保存します。
-             /invsave <Player>: <Player>のインベントリを保存します。
-             /invsave <Name>: 実行者のインベントリを<Name>という名前で保存します。
-             /invsave <Player> <Name>: <Player>のインベントリを<Name>という名前で保存します。
-      permission: mymaid.invsave
-      permission-message: You do not have permission to perform this command.
-   invload:
-      description: インベントリを復旧します。
-      usage: |-
-             /invload: 実行者のインベントリを復旧します。
-             /invload <Player>: <Player>のインベントリを復旧します。
-             /invload <Name>: 実行者のインベントリを<Name>という名前のインベントリデータから復旧します。
-             /invload <Player> <Name>: <Player>のインベントリを<Name>という名前のインベントリデータから復旧します。
-             /invload <FromPlayer> <ToPlayer> <Name>: <ToPlayer>のインベントリを<FromPlayer>の<Name>という名前のインベントリデータから復旧します。
-      permission: mymaid.invload
-      permission-message: You do not have permission to perform this command.
-   invshow:
-      description: インベントリを閲覧します。(管理部・モデレーター・常連のみ)
-      usage: "/invshow <Player>: プレイヤーのインベントリを閲覧します。"
-      permission: mymaid.invshow
-      permission-message: You do not have permission to perform this command.
-   invedit:
-      description: インベントリを編集します。(管理部・モデレーターのみ)
-      usage: "/invedit <Player>: プレイヤーのインベントリを編集します。"
-      permission: mymaid.invedit
-      permission-message: You do not have permission to perform this command.
-   enderchest:
-      description: エンダーチェストを閲覧・編集します。(管理部・モデレーターのみ)
-      usage: "/enderchest <Player>: プレイヤーのエンダーチェストを閲覧・編集します。"
-      permission: mymaid.invedit
-      permission-message: You do not have permission to perform this command.
-   protector:
-      description: WorldGuardの範囲をWorldEditに指定します。
-      usage: /<command>
-      permission: mymaid.protector
-      permission-message: You do not have permission to perform this command.
-   chuocity:
-      description: 中央市に関する作業が行えます。
-      usage: /<command>
-      permission: mymaid.chuocity
-      permission-message: You do not have permission to perform this command.
-   show:
-      description: 姿が見えるようにします。
-      usage: /<command>
-      permission: mymaid.show
-      permission-message: You do not have permission to perform this command.
-   hide:
-      description: 姿を隠します。
-      usage: /<command>
-      permission: mymaid.hide
-      permission-message: You do not have permission to perform this command.
-   ded:
-      description: 死亡地点にテレポートします。
-      usage: /<command>
-      permission: mymaid.ded
-      permission-message: You do not have permission to perform this command.
-   restarttitle:
-      description: Discordで実行される/restartのタイトル表示用のコマンドです。プレイヤー・コマンドブロックからは使用できません。
-      usage: /<command>
-      permission: mymaid.restarttitle
-      permission-message: You do not have permission to perform this command.
-   summer:
-      description: Summer2018ワールドに関連した作業が行えます。
-      usage: |-
-             /summer exchange <jP|jSP> <ExchangePoint>: jaoPointとjaoSurvivalPoint(/money)の交換をします。
-             jP: jaoSurvivalPointからjaoPointに交換します。
-             jSP: jaoPointからjaoSurvivalPointに交換します。
-      permission: mymaid.summer
-      permission-message: You do not have permission to perform this command.
-   glookup:
-      description: プレイヤーのゲームモードを調べます。
-      usage: /<command>
-      permission: mymaid.glookup
-      permission-message: You do not have permission to perform this command.
-   chatjail:
-      description: プレイヤーをチャットできないようにします。
-      usage: |-
-             /chatjail add <Player> [Reason]: プレイヤーをチャット規制リストに追加し、一切のチャットができないようにします。
-             /chatjail remove <Player>: プレイヤーをチャット規制リストから削除します。
-             /chatjail list: チャット規制リストを表示します。
-   rider:
-      description: プレイヤーやエンティティに乗ったり下ろしたりします。
-      usage: |-
-             /rider <Player>: プレイヤーに乗ります
-             /rider <EntityName>: 1辺30ブロックの立方体内にある指定された名前のエンティティに乗ります
-             /rider <Rider Player/EntityName> <Riding Player/EntityName>: プレイヤーもしくはエンティティ(Rider)をプレイヤーもしくはエンティティ(Riding)に乗せます
-             /rider leave: 乗っているプレイヤー・エンティティを下ろします
-             /rider leave <Player/EntityName>: プレイヤーもしくはエンティティから乗っているプレイヤー・エンティティを下ろします
-   itemedit:
-      description: 手に持っているアイテムの名前などを変更します。
-      usage: |-
-             /itemedit name <Name...>: 持っているアイテムのNameを変更します。
-             /itemedit lore <Lore...>: 持っているアイテムのLoreを変更します。
-   lead:
-      description: プレイヤーやエンティティをリードで繋いだりします。
-      usage: |-
-             /lead <Player>: プレイヤーにリードをつけます。
-             /lead <EntityName>: 1辺30ブロックの立方体内にある指定された名前のエンティティにリードをつけます。
-             /lead <Rider Player/EntityName> <Riding Player/EntityName>: プレイヤーもしくはエンティティ(Rider)からプレイヤーもしくはエンティティ(Riding)にリードをつけます。
-             /lead leave: 乗っているプレイヤー・エンティティのリードを外します
-             /lead leave <Player/EntityName>: プレイヤーもしくはエンティティから乗っているプレイヤー・エンティティのリードを外します
-   votefill:
-      description: 投票補填用のコマンドです。管理部・モデレーターのみ使用できます。
-      usage: /<command> <Player>: Playerに対して投票を補填します。
-      permission: mymaid.votefill
-      permission-message: You do not have permission to perform this command.
+  afk:
+    description: AFK(Away From Keyboard)モードをオン・オフにします。
+    usage: "/afk: AFK(Away From Keyboard)モードをオン・オフにします。(トグル)"
+    permission: mymaid.afk
+    permission-message: You do not have permission to perform this command.
+  dt:
+    description: Dynmapのマーカー地点にテレポートします。
+    usage: |-
+      /dt [Player] <MarkerName...>: MarkerNameにテレポートします。Playerを指定した場合はそのPlayerをテレポートさせます。
+      /dt near: あなたの近くのマーカーを表示します。
+      /dt random: 現在いるワールドのマーカーのどれかにランダムでテレポートします。
+      /dt add <MarkerName> <MarkerType>: Markerを追加します。
+      /dt del <MarkerName>: Markerを削除します。
+      /dt list: Markerリストを表示します。
+      /dt list <Page>: 指定されたページのMarkerリストを表示します。
+    permission: mymaid.dt
+    permission-message: You do not have permission to perform this command.
+  city:
+    description: 市の範囲を登録したり削除したりできます。
+    usage: |-
+      /city addcorner: コーナーを追加
+      /city addcorner <Name>: 既存のエリアにコーナーを追加
+      /city undocorner: ひとつ前に追加したコーナーを削除
+      /city clearcorner: コーナーを削除
+      /city show: いまいる地点の情報を表示。(未完成)
+      /city add <Name> <Color>: エリアの範囲を色と共に設定(Dynmapに表示)
+      /city del <Name>: エリアの範囲を削除
+      /city setcolor <Name> <Color>: エリアの色を変更
+      /city editcorner <Name>: 指定されたエリアのコーナーエディタを使用してコーナーを編集
+      /city setdesc <Name> <Description>: エリアの説明を設定
+      /city show <Name>: エリアの情報を表示。
+    permission: mymaid.city
+    permission-message: You do not have permission to perform this command.
+  cmdb:
+    description: コマンドブロックを与えます。
+    usage: |-
+      /cmdb: メインハンドにコマンドブロックを設定します。すでに持っていたアイテムは別のスロットに移動するかドロップします。
+      /cmdb <Player>: 指定したプレイヤーのメインハンドにコマンドブロックを設定します。すでに持っていたアイテムは別のスロットに移動するかドロップします。
+    permission: mymaid.cmdb
+    permission-message: You do not have permission to perform this command.
+  home:
+    description: ホームにテレポートします。
+    usage: |-
+      /home: デフォルトのホームにテレポートします。
+      /home <Name>: Nameのホームにテレポートします。
+    permission: mymaid.home
+    permission-message: You do not have permission to perform this command.
+  sethome:
+    description: ホームを設定します。
+    usage: |-
+      /sethome: デフォルト(default)でホームを設定します。上書きはできないため、事前に削除する必要があります。
+      /sethome <Name>: 指定した名前でホームを設定します。上書きはできないため、事前に削除する必要があります。
+    permission: mymaid.sethome
+    permission-message: You do not have permission to perform this command.
+  delhome:
+    description: ホームを削除します。
+    usage: "/delhome <Name>: 指定された名前のホームを削除します。"
+    permission: mymaid.delhome
+    permission-message: You do not have permission to perform this command.
+  g:
+    description: ゲームモードを変更します。
+    usage: |-
+      /g: クリエイティブモードならスペクテイターモードに、スペクテイターモードならクリエイティブモードに、それ以外ならクリエイティブモードに変更します。
+      /g <0-3>: 指定された数値に合うゲームモードに変更します。
+      /g <0-3> <Player>: 指定したプレイヤーのゲームモードを指定された数値に合うゲームモードに変更します。
+    permission: mymaid.g
+    permission-message: You do not have permission to perform this command.
+  dedrain:
+    description: 雨を降らすかどうか設定します。
+    usage: |-
+      /dedrain: 現在の降水禁止設定を確認します。
+      /dedrain <true/false>: 降水禁止設定を変更します。
+    permission: mymaid.dedrain
+    permission-message: You do not have permission to perform this command.
+  wt:
+    description: 他ワールドにテレポートできるようになります。
+    usage: "/wt <WorldID/WorldName>: 指定されたWorldIDもしくはWorldNameのワールドのスポーン地点にテレポートします。"
+    permission: mymaid.wt
+    permission-message: You do not have permission to perform this command.
+  discordlink:
+    description: DiscordアカウントとMinecraftアカウントを紐づけます。
+    usage: "/wt <AuthKey>: 指定されたAuthKeyに合うDiscordアカウントがあればそれと紐づけます。"
+    permission: mymaid.discordlink
+    permission-message: You do not have permission to perform this command.
+  spawn:
+    description: スポーン地点にテレポートします。
+    usage: |-
+      /spawn: ワールドの初期スポーン地点にテレポートします。
+      /spawn true: プレイヤーのスポーン地点にテレポートします。
+    aliases: [hub, lobby, warp]
+    permission: mymaid.spawn
+    permission-message: You do not have permission to perform this command.
+  jao:
+    description: jaoポイントの確認・送受信などを行えます。
+    usage: |-
+      /jao: あなたのjaoポイント残高を確認します。
+      /jao history: あなたのjaoポイントを履歴を表示します。
+      /jao help: このヘルプを表示します。
+      /jao add <Player> <Point> <Reason>: PlayerにReasonという理由でPointを追加します。
+      /jao use <Player> <Point> <Reason>: PlayerからReasonという理由でPointを減算します。
+      /jao pay <Player> <Point> <Reason>: PlayerからReasonという理由でPointを支払います。
+    permission: mymaid.jao
+    permission-message: You do not have permission to perform this command.
+  head:
+    description: プレイヤーの頭ブロックを入手できます。
+    usage: |-
+      /head: メインハンドに自身の頭ブロックを設定します。すでに持っていたアイテムは別のスロットに移動するかドロップします。
+      /head <Player>: メインハンドに指定したプレイヤーの頭ブロックを設定します。すでに持っていたアイテムは別のスロットに移動するかドロップします。
+    permission: mymaid.jao
+    permission-message: You do not have permission to perform this command.
+  test:
+    description: TEST
+    usage: TEST
+    permission: mymaid.test
+    permission-message: You do not have permission to perform this command.
+  color:
+    description: チャット欄の四角色を取得・変更します。
+    usage: |-
+      /color: 現在の四角指定色を取得します。
+      /color <Color>: 四角色を変更します。
+    permission: mymaid.color
+    permission-message: You do not have permission to perform this command.
+  elytra:
+    description: エリトラと花火を装備します。
+    usage: "/elytra: エリトラと花火を装備します。"
+    permission: mymaid.elytra
+    permission-message: You do not have permission to perform this command.
+  messenger:
+    description: 定期メッセージについての設定をします。
+    usage: |-
+      /messenger list: メッセージのリストを表示します。
+      /messenger broadcast: メッセージを今すぐランダムに1つ放送します。
+      /messenger broadcast <MessageID>: メッセージを今すぐMessageIDのメッセージを放送します。
+      /messenger add <Message>: メッセージを追加します。
+      /messenger del <MessageID>: 指定されたメッセージIDのメッセージを削除します
+      /messenger setspeaker <Speaker>: メッセージのスピーカーを変更します。
+    permission: mymaid.messenger
+    permission-message: You do not have permission to perform this command.
+  selector:
+    description: Selectorが適切かどうか調べます。
+    usage: "/selector <Selector>: Selectorが適切かどうか調べます。"
+    permission: mymaid.selector
+    permission-message: You do not have permission to perform this command.
+  chat:
+    description: 偽のプレイヤーをしゃべらせます。
+    usage: "/chat <FakePlayer> <Message...>: 偽のプレイヤーをしゃべらせます。"
+    permission: mymaid.chat
+    permission-message: You do not have permission to perform this command.
+  player:
+    description: プレイヤーの現在の権限を確認します。
+    usage: "/player [Player]: プレイヤーの現在の権限を確認します。"
+    permission: mymaid.player
+    permission-message: You do not have permission to perform this command.
+  eban:
+    description: 指定されたプレイヤーをEBanしたり、解除したりできます。 ※このコマンドは一部を除き管理部・モデレーターのみ使用できます。
+    usage: |-
+      /eban add <Player> <Reason>: Reasonという理由でPlayerをEBanします。
+      /eban remove <Player>: PlayerをEBanを解除します。
+      /eban status [Player]: プレイヤーが指定されていればそのプレイヤーのステータスを表示し、指定されていなければ現在のEBan状況を表示します。
+  jail:
+    description: 南の楽園関連の処理をします。
+    usage: |-
+      /jail add <Player> [Reason]: プレイヤーを南の楽園に移動し、出られなくします。
+      /jail remove <Player>: プレイヤーを南の楽園リストから削除します。
+      /jail list: 南の楽園リストを表示します。
+      /jail area <Player> <true|false>: プレイヤーが南の楽園から出られるかどうかを設定します。
+      /jail block <Player> <true|false>: プレイヤーがコマンドを実行できるかを設定します。
+      /jail lasttext <Text>: 遺言を残します。
+  hat:
+    description: 手に持っているブロックを頭に載せます。
+    usage: "/hat: 手に持っているブロックを頭に載せます。"
+    permission: mymaid.hat
+    permission-message: You do not have permission to perform this command.
+  body:
+    description: 手に持っているブロックを背中に装備します。
+    usage: "/body: 手に持っているブロックを背中に装備します。"
+    permission: mymaid.body
+    permission-message: You do not have permission to perform this command.
+  leg:
+    description: 手に持っているブロックを背中につけます。
+    usage: "/leg: 手に持っているブロックを背中につけます。"
+    permission: mymaid.leg
+    permission-message: You do not have permission to perform this command.
+  boots:
+    description: 手に持っているブロックを足につけます。
+    usage: "/boots: 手に持っているブロックを足につけます。"
+    permission: mymaid.boots
+    permission-message: You do not have permission to perform this command.
+  ck:
+    description: 近くの誰も乗っていないトロッコを削除します。
+    usage: |-
+      /ck: 近くの誰も乗っていないトロッコを削除します。乗っているエンティティがいても削除しません。
+      /ck true: 近くの誰も乗っていないトロッコを削除します。また、乗っているエンティティも削除します。
+    permission: mymaid.ck
+    permission-message: You do not have permission to perform this command.
+  sign:
+    description: すでに設置した看板のテキストを変更します。
+    usage: "/sign <Line> <Text>: すでに設置した看板の指定した行のテキストを変更します。"
+    permission: mymaid.sign
+    permission-message: You do not have permission to perform this command.
+  account:
+    description: jaoアカウントに関連した作業が行えます。
+    usage: |-
+      /account: jaoアカウントの情報を取得します。
+      /account create: jaoアカウントを作成します。
+      /account reset: jaoアカウントのパスワードをリセットします。
+      /account setdesc <Description>: jaoアカウントに自己紹介を追加します。
+    permission: mymaid.account
+    permission-message: You do not have permission to perform this command.
+  pin:
+    description: アカウントアクティベーションを行います。
+    usage: "/pin <Code>: アカウントアクティベーションを行います。"
+    permission: mymaid.pin
+    permission-message: You do not have permission to perform this command.
+  respawn:
+    description: 指定したプレイヤーをリスポーンさせます。
+    usage: "/respawn <Player>: 指定したプレイヤーをリスポーンさせます。"
+    permission: mymaid.respawn
+    permission-message: You do not have permission to perform this command.
+  testment:
+    description: Jailでの遺言を残します。
+    usage: "/testment <Message>: Jailでの遺言を残します。"
+    permission: mymaid.testment
+    permission-message: You do not have permission to perform this command.
+  book:
+    description: 本を販売したり購入したりできます。
+    usage: |-
+      /book list: 本リストを表示します。
+      /book list <Page>: 指定されたページの本リストを表示します。
+      /book sell <jaoPoint>: 手に持っている本を指定したjaoPoint数で販売します。
+      /book get <Name|ID>: NameもしくはIDに合う本を購入します。
+      /book delete <Name|ID>: NameもしくはIDに合う本を販売終了します。販売者のみ実行できます。
+      /book history <Name|ID>: NameもしくはIDに合う本のログリストを表示します。
+    permission: mymaid.book
+    permission-message: You do not have permission to perform this command.
+  report:
+    description: 管理部に報告します。
+    usage: "/report <Message>: 管理部に報告します。"
+    permission: mymaid.report
+    permission-message: You do not have permission to perform this command.
+  wtp:
+    description: ワールドを超えてテレポートできます。
+    usage: |-
+      /wtp <World> <X> <Y> <Z>: <World>の<X> <Y> <Z>座標にテレポートします。
+      /wtp <Player> <World> <X> <Y> <Z>: <Player>を<World>の<X> <Y> <Z>座標にテレポートします。
+    permission: mymaid.wtp
+    permission-message: You do not have permission to perform this command.
+  var:
+    description: 変数に関することを利用できます。
+    usage: |-
+      /var text <Key> <Value>: 変数に代入します。
+      /var plus <Key1> <Key2>: 変数を利用して加算します。
+      /var minus <Key1> <Key2>: 変数を利用して減算します。
+      /var block: 未実装
+      /var equal <Key1> <Key2>: 変数がイコールかどうか調べます。
+      /var list: 変数のリストを表示します。
+      /var clear <Key>: 変数を削除します。
+    permission: mymaid.var
+    permission-message: You do not have permission to perform this command.
+  invsave:
+    description: インベントリを保存します。
+    usage: |-
+      /invsave: 実行者のインベントリを保存します。
+      /invsave <Player>: <Player>のインベントリを保存します。
+      /invsave <Name>: 実行者のインベントリを<Name>という名前で保存します。
+      /invsave <Player> <Name>: <Player>のインベントリを<Name>という名前で保存します。
+    permission: mymaid.invsave
+    permission-message: You do not have permission to perform this command.
+  invload:
+    description: インベントリを復旧します。
+    usage: |-
+      /invload: 実行者のインベントリを復旧します。
+      /invload <Player>: <Player>のインベントリを復旧します。
+      /invload <Name>: 実行者のインベントリを<Name>という名前のインベントリデータから復旧します。
+      /invload <Player> <Name>: <Player>のインベントリを<Name>という名前のインベントリデータから復旧します。
+      /invload <FromPlayer> <ToPlayer> <Name>: <ToPlayer>のインベントリを<FromPlayer>の<Name>という名前のインベントリデータから復旧します。
+    permission: mymaid.invload
+    permission-message: You do not have permission to perform this command.
+  invshow:
+    description: インベントリを閲覧します。(管理部・モデレーター・常連のみ)
+    usage: "/invshow <Player>: プレイヤーのインベントリを閲覧します。"
+    permission: mymaid.invshow
+    permission-message: You do not have permission to perform this command.
+  invedit:
+    description: インベントリを編集します。(管理部・モデレーターのみ)
+    usage: "/invedit <Player>: プレイヤーのインベントリを編集します。"
+    permission: mymaid.invedit
+    permission-message: You do not have permission to perform this command.
+  enderchest:
+    description: エンダーチェストを閲覧・編集します。(管理部・モデレーターのみ)
+    usage: "/enderchest <Player>: プレイヤーのエンダーチェストを閲覧・編集します。"
+    permission: mymaid.invedit
+    permission-message: You do not have permission to perform this command.
+  protector:
+    description: WorldGuardの範囲をWorldEditに指定します。
+    usage: /<command>
+    permission: mymaid.protector
+    permission-message: You do not have permission to perform this command.
+  chuocity:
+    description: 中央市に関する作業が行えます。
+    usage: /<command>
+    permission: mymaid.chuocity
+    permission-message: You do not have permission to perform this command.
+  show:
+    description: 姿が見えるようにします。
+    usage: /<command>
+    permission: mymaid.show
+    permission-message: You do not have permission to perform this command.
+  hide:
+    description: 姿を隠します。
+    usage: /<command>
+    permission: mymaid.hide
+    permission-message: You do not have permission to perform this command.
+  ded:
+    description: 死亡地点にテレポートします。
+    usage: /<command>
+    permission: mymaid.ded
+    permission-message: You do not have permission to perform this command.
+  restarttitle:
+    description: Discordで実行される/restartのタイトル表示用のコマンドです。プレイヤー・コマンドブロックからは使用できません。
+    usage: /<command>
+    permission: mymaid.restarttitle
+    permission-message: You do not have permission to perform this command.
+  summer:
+    description: Summer2018ワールドに関連した作業が行えます。
+    usage: |-
+      /summer exchange <jP|jSP> <ExchangePoint>: jaoPointとjaoSurvivalPoint(/money)の交換をします。
+      jP: jaoSurvivalPointからjaoPointに交換します。
+      jSP: jaoPointからjaoSurvivalPointに交換します。
+    permission: mymaid.summer
+    permission-message: You do not have permission to perform this command.
+  glookup:
+    description: プレイヤーのゲームモードを調べます。
+    usage: /<command>
+    permission: mymaid.glookup
+    permission-message: You do not have permission to perform this command.
+  chatjail:
+    description: プレイヤーをチャットできないようにします。
+    usage: |-
+      /chatjail add <Player> [Reason]: プレイヤーをチャット規制リストに追加し、一切のチャットができないようにします。
+      /chatjail remove <Player>: プレイヤーをチャット規制リストから削除します。
+      /chatjail list: チャット規制リストを表示します。
+  rider:
+    description: プレイヤーやエンティティに乗ったり下ろしたりします。
+    usage: |-
+      /rider <Player>: プレイヤーに乗ります
+      /rider <EntityName>: 1辺30ブロックの立方体内にある指定された名前のエンティティに乗ります
+      /rider <Rider Player/EntityName> <Riding Player/EntityName>: プレイヤーもしくはエンティティ(Rider)をプレイヤーもしくはエンティティ(Riding)に乗せます
+      /rider leave: 乗っているプレイヤー・エンティティを下ろします
+      /rider leave <Player/EntityName>: プレイヤーもしくはエンティティから乗っているプレイヤー・エンティティを下ろします
+  itemedit:
+    description: 手に持っているアイテムの名前などを変更します。
+    usage: |-
+      /itemedit name <Name...>: 持っているアイテムのNameを変更します。
+      /itemedit lore <Lore...>: 持っているアイテムのLoreを変更します。
+  lead:
+    description: プレイヤーやエンティティをリードで繋いだりします。
+    usage: |-
+      /lead <Player>: プレイヤーにリードをつけます。
+      /lead <EntityName>: 1辺30ブロックの立方体内にある指定された名前のエンティティにリードをつけます。
+      /lead <Rider Player/EntityName> <Riding Player/EntityName>: プレイヤーもしくはエンティティ(Rider)からプレイヤーもしくはエンティティ(Riding)にリードをつけます。
+      /lead leave: 乗っているプレイヤー・エンティティのリードを外します
+      /lead leave <Player/EntityName>: プレイヤーもしくはエンティティから乗っているプレイヤー・エンティティのリードを外します
+  votefill:
+    description: 投票補填用のコマンドです。管理部・モデレーターのみ使用できます。
+    usage: "/<command> <Player>: Playerに対して投票を補填します。"
+    permission: mymaid.votefill
+    permission-message: You do not have permission to perform this command.

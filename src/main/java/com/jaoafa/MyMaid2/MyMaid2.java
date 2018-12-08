@@ -68,6 +68,7 @@ import com.jaoafa.MyMaid2.Command.Cmd_WT;
 import com.jaoafa.MyMaid2.Command.Cmd_Wtp;
 import com.jaoafa.MyMaid2.Command.Cmd_jao;
 import com.jaoafa.MyMaid2.Event.Event_AFK;
+import com.jaoafa.MyMaid2.Event.Event_Anti4BYTES;
 import com.jaoafa.MyMaid2.Event.Event_AntiNetherPortal;
 import com.jaoafa.MyMaid2.Event.Event_AntiPotion;
 import com.jaoafa.MyMaid2.Event.Event_AntiProblemCommand;
@@ -355,6 +356,7 @@ public class MyMaid2 extends JavaPlugin implements Listener {
 		registEvent(new Event_SandBoxBuildProtectionNotice()); // 2018/10/19
 		registEvent(new Event_LoginTutorialSpawn()); // 2018/10/29
 		registEvent(new Event_Tips()); // 2018/11/13
+		registEvent(new Event_Anti4BYTES()); // 2018/12/09
 	}
 
 	/**
