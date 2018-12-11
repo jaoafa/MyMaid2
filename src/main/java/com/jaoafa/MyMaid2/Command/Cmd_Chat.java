@@ -13,13 +13,15 @@ import com.jaoafa.MyMaid2.MyMaid2Premise;
 
 public class Cmd_Chat implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args){
-        if(args.length >= 1 && args[0].equalsIgnoreCase("help")){
-            return true;
-        }
-        if(args.length >= 2){
-            if(Bukkit.getPlayerExact(args[0]) != null){
-                return true;
-            }
+		if(args.length >= 1 && args[0].equalsIgnoreCase("help")){
+			SendUsageMessage(sender, cmd);
+			return true;
+		}
+		if(args.length >= 2){
+			if(Bukkit.getPlayerExact(args[0]) != null){
+				SendMessage(sender, cmd, "オンラインユーザーを話者に指定できません。");
+				return true;
+			}
             ChatColor color = ChatColor.GRAY;
             boolean chatcolor = true;
             String coloring = args[args.length-1].toLowerCase();
