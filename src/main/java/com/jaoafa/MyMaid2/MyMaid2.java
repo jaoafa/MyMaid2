@@ -308,62 +308,62 @@ public class MyMaid2 extends JavaPlugin implements Listener {
 	 */
 	private void Import_Listener(){
 		// 日付は制作完了(登録)の日付
-		registEvent(this);
-		registEvent(new Event_PlayerCheckPreLogin());// 2018/03/20
-		registEvent(new Event_CommandBlockLogger());// 2018/03/20
-		registEvent(new Event_LoginSuccessCheck());// 2018/03/20
-		registEvent(new Event_PlayerQuit());// 2018/03/20
-		registEvent(new Event_DedRain());// 2018/03/21
-		registEvent(new Event_AFK());// 2018/03/21
-		registEvent(new Event_QD_NOTSpectator());// 2018/03/21
-		registEvent(new Event_MoveToChunkActionbar());// 2018/03/21
-		registEvent(new Event_FarmNOBreak());// 2018/03/21
-		registEvent(new Event_NOConcretePowderToConcrete());// 2018/03/21
-		registEvent(new Event_VoteReceived());// 2018/03/24
-		registEvent(new Event_PlayerCommandSendAdmin());// 2018/03/25
-		registEvent(new Event_JoinjaoPoint());// 2018/03/25
-		registEvent(new Event_Antijaoium());// 2018/03/25
-		registEvent(new Event_SKKColor(this));// 2018/03/26
-		registEvent(new Event_JoinHeaderFooterChange(this));// 2018/03/26
-		registEvent(new Event_QuitHeaderFooterChange(this));// 2018/03/26
-		registEvent(new Event_VoteMissFillerEvent());// 2018/03/27
-		registEvent(new Event_AntiProblemCommand());// 2018/03/29
-		registEvent(new Event_ChatSpamKickDisable());// 2018/04/01
-		registEvent(new Event_EBan());// 2018/04/01
-		registEvent(new Event_Jail());// 2018/04/01
-		registEvent(new Event_LoginLeftPlayerCountNotice());// 2018/04/01
-		registEvent(new Event_JoinAutoQPPE());// 2018/04/07
-		registEvent(new Event_SignClick());// 2018/04/09
-		registEvent(new Event_AntiTNTMinecart());// 2018/04/22
-		registEvent(new Event_AntiWither());// 2018/05/27
-		registEvent(new Event_LoginVoteCheck());// 2018/05/31
-		registEvent(new Event_CommandBlockVariable());// 2018/06/03
-		registEvent(new Event_BanLogger());// 2018/06/10
-		registEvent(new Event_OnlineTime());// 2018/07/12
-		registEvent(new Event_AntiNetherPortal()); // 2018/07/14
-		registEvent(new Event_BanChecker()); // 2018/07/15
-		registEvent(new Event_AntiQDTeleport()); // 2018/07/18
-		registEvent(new Event_AntiPotion()); // 2018/07/19
-		registEvent(new Event_Ded()); // 2018/07/22
-		registEvent(new Event_Summer2018()); // 2018/07/30
-		registEvent(new Event_PlayerCommandSendRegular()); // 2018/08/07
-		registEvent(new Event_DeathToDeath()); // 2018/08/07
-		registEvent(new Event_LongTimeNoSee()); // 2018/08/18
-		registEvent(new Event_CheckChatOPME()); // 2018/09/02
-		registEvent(new Event_VeryVeryStrongAntiLQD()); // 2018/09/08
-		registEvent(new Event_ChatJail()); // 2018/09/09
-		registEvent(new Event_SandBoxRoad()); // 2018/10/08
-		registEvent(new Event_SandBoxBuildProtectionNotice()); // 2018/10/19
-		registEvent(new Event_LoginTutorialSpawn()); // 2018/10/29
-		registEvent(new Event_Tips()); // 2018/11/13
-		registEvent(new Event_Anti4BYTES()); // 2018/12/09
+		registerEvent(this);
+		registerEvent(new Event_PlayerCheckPreLogin());// 2018/03/20
+		registerEvent(new Event_CommandBlockLogger());// 2018/03/20
+		registerEvent(new Event_LoginSuccessCheck());// 2018/03/20
+		registerEvent(new Event_PlayerQuit());// 2018/03/20
+		registerEvent(new Event_DedRain());// 2018/03/21
+		registerEvent(new Event_AFK());// 2018/03/21
+		registerEvent(new Event_QD_NOTSpectator());// 2018/03/21
+		registerEvent(new Event_MoveToChunkActionbar());// 2018/03/21
+		registerEvent(new Event_FarmNOBreak());// 2018/03/21
+		registerEvent(new Event_NOConcretePowderToConcrete());// 2018/03/21
+		registerEvent(new Event_VoteReceived());// 2018/03/24
+		registerEvent(new Event_PlayerCommandSendAdmin());// 2018/03/25
+		registerEvent(new Event_JoinjaoPoint());// 2018/03/25
+		registerEvent(new Event_Antijaoium());// 2018/03/25
+		registerEvent(new Event_SKKColor(this));// 2018/03/26
+		registerEvent(new Event_JoinHeaderFooterChange(this));// 2018/03/26
+		registerEvent(new Event_QuitHeaderFooterChange(this));// 2018/03/26
+		registerEvent(new Event_VoteMissFillerEvent());// 2018/03/27
+		registerEvent(new Event_AntiProblemCommand());// 2018/03/29
+		registerEvent(new Event_ChatSpamKickDisable());// 2018/04/01
+		registerEvent(new Event_EBan());// 2018/04/01
+		registerEvent(new Event_Jail());// 2018/04/01
+		registerEvent(new Event_LoginLeftPlayerCountNotice());// 2018/04/01
+		registerEvent(new Event_JoinAutoQPPE());// 2018/04/07
+		registerEvent(new Event_SignClick());// 2018/04/09
+		registerEvent(new Event_AntiTNTMinecart());// 2018/04/22
+		registerEvent(new Event_AntiWither());// 2018/05/27
+		registerEvent(new Event_LoginVoteCheck());// 2018/05/31
+		registerEvent(new Event_CommandBlockVariable());// 2018/06/03
+		registerEvent(new Event_BanLogger());// 2018/06/10
+		registerEvent(new Event_OnlineTime());// 2018/07/12
+		registerEvent(new Event_AntiNetherPortal()); // 2018/07/14
+		registerEvent(new Event_BanChecker()); // 2018/07/15
+		registerEvent(new Event_AntiQDTeleport()); // 2018/07/18
+		registerEvent(new Event_AntiPotion()); // 2018/07/19
+		registerEvent(new Event_Ded()); // 2018/07/22
+		registerEvent(new Event_Summer2018()); // 2018/07/30
+		registerEvent(new Event_PlayerCommandSendRegular()); // 2018/08/07
+		registerEvent(new Event_DeathToDeath()); // 2018/08/07
+		registerEvent(new Event_LongTimeNoSee()); // 2018/08/18
+		registerEvent(new Event_CheckChatOPME()); // 2018/09/02
+		registerEvent(new Event_VeryVeryStrongAntiLQD()); // 2018/09/08
+		registerEvent(new Event_ChatJail()); // 2018/09/09
+		registerEvent(new Event_SandBoxRoad()); // 2018/10/08
+		registerEvent(new Event_SandBoxBuildProtectionNotice()); // 2018/10/19
+		registerEvent(new Event_LoginTutorialSpawn()); // 2018/10/29
+		registerEvent(new Event_Tips()); // 2018/11/13
+		registerEvent(new Event_Anti4BYTES()); // 2018/12/09
 	}
 
 	/**
 	 * リスナー設定の簡略化用
 	 * @param listener Listener
 	 */
-	private void registEvent(Listener l) {
+	private void registerEvent(Listener l) {
 		getServer().getPluginManager().registerEvents(l, this);
 	}
 
