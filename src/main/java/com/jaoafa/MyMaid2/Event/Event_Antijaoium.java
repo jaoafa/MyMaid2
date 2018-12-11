@@ -48,8 +48,8 @@ import com.jaoafa.jaoSuperAchievement.jaoAchievement.Achievementjao;
 import net.minecraft.server.v1_12_R1.NBTTagCompound;
 
 public class Event_Antijaoium extends MyMaid2Premise implements Listener {
-	List<Integer> HEAL_jaoium = new ArrayList<Integer>();
-	List<Integer> HEALTH_BOOST_jaoium = new ArrayList<Integer>();
+	List<Integer> HEAL_jaoium = new ArrayList<>();
+	List<Integer> HEALTH_BOOST_jaoium = new ArrayList<>();
 	public Event_Antijaoium() {
 		HEAL_jaoium.add(-3);
 		HEAL_jaoium.add(29);
@@ -227,7 +227,7 @@ public class Event_Antijaoium extends MyMaid2Premise implements Listener {
 	}
 
 	@EventHandler
-    public void PlayerCreativeInv(InventoryCreativeEvent event){
+	public void PlayerCreativeInv(InventoryCreativeEvent event){
 		Player player = (Player) event.getWhoClicked();
 		ItemStack hand = event.getCurrentItem();
 		if(hand == null){
@@ -297,7 +297,7 @@ public class Event_Antijaoium extends MyMaid2Premise implements Listener {
 		if(Jail.isJail(player)){
 			return;
 		}
-		Boolean jaoium = false;
+		boolean jaoium = false;
 		for(int n=0; n < is.length; n++)
 		{
 			if(is[n] == null){
@@ -362,7 +362,7 @@ public class Event_Antijaoium extends MyMaid2Premise implements Listener {
 		if(Jail.isJail(player)){
 			return;
 		}
-		Boolean jaoium = false;
+		boolean jaoium = false;
 		for(int n=0; n < is.length; n++)
 		{
 			if(is[n] == null){
@@ -382,7 +382,7 @@ public class Event_Antijaoium extends MyMaid2Premise implements Listener {
 			inventory.clear();
 		}
 
-		Boolean enderjaoium = false;
+		boolean enderjaoium = false;
 		if(enderchestinventory != null) {
 			is = enderchestinventory.getContents();
 			for(int n=0; n < is.length; n++)
@@ -430,7 +430,7 @@ public class Event_Antijaoium extends MyMaid2Premise implements Listener {
 		if(Jail.isJail(player)){
 			return;
 		}
-		Boolean jaoium = false;
+		boolean jaoium = false;
 		for(int n=0; n < is.length; n++)
 		{
 			if(is[n] == null){
@@ -495,7 +495,7 @@ public class Event_Antijaoium extends MyMaid2Premise implements Listener {
 		if(Jail.isJail(player)){
 			return;
 		}
-		Boolean jaoium = false;
+		boolean jaoium = false;
 		for(int n=0; n < is.length; n++)
 		{
 			if(is[n] == null){
@@ -514,7 +514,7 @@ public class Event_Antijaoium extends MyMaid2Premise implements Listener {
 		if(jaoium){
 			inventory.clear();
 		}
-		Boolean enderjaoium = false;
+		boolean enderjaoium = false;
 		if(enderchestinventory != null) {
 			is = enderchestinventory.getContents();
 			for(int n=0; n < is.length; n++)
@@ -564,7 +564,7 @@ public class Event_Antijaoium extends MyMaid2Premise implements Listener {
 		if(Jail.isJail(player)){
 			return;
 		}
-		Boolean jaoium = false;
+		boolean jaoium = false;
 		for(int n=0; n < is.length; n++)
 		{
 			if(is[n] == null){
@@ -583,7 +583,7 @@ public class Event_Antijaoium extends MyMaid2Premise implements Listener {
 		if(jaoium){
 			inventory.clear();
 		}
-		Boolean ender_jaoium = false;
+		boolean ender_jaoium = false;
 		if(enderchestinventory != null) {
 			is = enderchestinventory.getContents();
 			for(int n=0; n < is.length; n++)
@@ -622,7 +622,7 @@ public class Event_Antijaoium extends MyMaid2Premise implements Listener {
 	}
 	@EventHandler
 	public void OnBlockDispenseEvent(BlockDispenseEvent event){
-		Boolean jaoium = false;
+		boolean jaoium = false;
 		ItemStack is = event.getItem();
 		if(is.getType() == Material.SPLASH_POTION || is.getType() == Material.LINGERING_POTION){
 			PotionMeta potion = (PotionMeta) is.getItemMeta();
