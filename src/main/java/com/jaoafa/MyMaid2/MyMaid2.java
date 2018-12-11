@@ -492,7 +492,7 @@ public class MyMaid2 extends JavaPlugin implements Listener {
 	public static WorldEditPlugin getWorldEdit() {
 		Plugin plugin = Bukkit.getServer().getPluginManager().getPlugin("WorldEdit");
 
-		// WorldGuard may not be loaded
+		// WorldEdit may not be loaded
 		if (plugin == null || !(plugin instanceof WorldEditPlugin)) {
 			return null; // Maybe you want throw an exception instead
 		}
