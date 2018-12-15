@@ -115,6 +115,7 @@ import com.jaoafa.MyMaid2.Event.Event_Tips;
 import com.jaoafa.MyMaid2.Event.Event_VeryVeryStrongAntiLQD;
 import com.jaoafa.MyMaid2.Event.Event_VoteMissFillerEvent;
 import com.jaoafa.MyMaid2.Event.Event_VoteReceived;
+import com.jaoafa.MyMaid2.Event.OnChunkLoad;
 import com.jaoafa.MyMaid2.Lib.InventoryManager;
 import com.jaoafa.MyMaid2.Lib.Jail;
 import com.jaoafa.MyMaid2.Lib.MySQL;
@@ -357,6 +358,7 @@ public class MyMaid2 extends JavaPlugin implements Listener {
 		registEvent(new Event_LoginTutorialSpawn()); // 2018/10/29
 		registEvent(new Event_Tips()); // 2018/11/13
 		registEvent(new Event_Anti4BYTES()); // 2018/12/09
+		registEvent(new OnChunkLoad()); // 2018/12/16
 	}
 
 	/**

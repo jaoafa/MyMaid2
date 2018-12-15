@@ -17,6 +17,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.net.ssl.HttpsURLConnection;
 
@@ -621,5 +623,33 @@ public abstract class MyMaid2Premise {
 	        sb.append(glue).append(e.getName());
 	    }
 	    return sb.substring(glue.length());
+	}
+
+	/**
+	 * 4バイトの文字列を含むかどうかを調べます
+	 * @param str 文字列
+	 * @return 含むならtrue
+	 */
+	public static boolean check4bytechars(String str){
+		Pattern pattern = Pattern.compile(".*([^\\u0000-\\uFFFF]).*");
+		Matcher m = pattern.matcher(str);
+        if(m.matches()) return true;
+
+		return false;
+	}
+
+	/**
+	 * 4バイトの文字列を含むかどうかを調べ、含んでいればその文字列を返します。
+	 * @param str 文字列
+	 * @return 含むならその文字列、そうでなければnull
+	 */
+	public static String check4bytechars_MatchText(String str){
+		Pattern pattern = Pattern.compile(".*([^\\u0000-\\uFFFF]).*");
+		Matcher m = pattern.matcher(str);
+		if(m.matches()){
+			return m.group(1);
+		}
+
+		return null;
 	}
 }
