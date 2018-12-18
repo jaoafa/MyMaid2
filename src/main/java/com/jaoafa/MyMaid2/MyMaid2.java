@@ -81,6 +81,7 @@ import com.jaoafa.MyMaid2.Event.Event_BanLogger;
 import com.jaoafa.MyMaid2.Event.Event_ChatJail;
 import com.jaoafa.MyMaid2.Event.Event_ChatSpamKickDisable;
 import com.jaoafa.MyMaid2.Event.Event_CheckChatOPME;
+import com.jaoafa.MyMaid2.Event.Event_ChunkLoad;
 import com.jaoafa.MyMaid2.Event.Event_CommandBlockLogger;
 import com.jaoafa.MyMaid2.Event.Event_CommandBlockVariable;
 import com.jaoafa.MyMaid2.Event.Event_DeathToDeath;
@@ -115,7 +116,6 @@ import com.jaoafa.MyMaid2.Event.Event_Tips;
 import com.jaoafa.MyMaid2.Event.Event_VeryVeryStrongAntiLQD;
 import com.jaoafa.MyMaid2.Event.Event_VoteMissFillerEvent;
 import com.jaoafa.MyMaid2.Event.Event_VoteReceived;
-import com.jaoafa.MyMaid2.Event.OnChunkLoad;
 import com.jaoafa.MyMaid2.Lib.InventoryManager;
 import com.jaoafa.MyMaid2.Lib.Jail;
 import com.jaoafa.MyMaid2.Lib.MySQL;
@@ -300,7 +300,7 @@ public class MyMaid2 extends JavaPlugin implements Listener {
 		new TPSChange().runTaskTimerAsynchronously(this, 0L, 1200L);
 		new AutoMessenger().runTaskTimerAsynchronously(this, 0L, 12000L);
 		new Team1000Observer().runTaskTimerAsynchronously(this, 0L, 1200L);
-		new Task_WorldSave(this).runTaskTimerAsynchronously(this, 0L, 1200L);
+		new Task_WorldSave().runTaskTimerAsynchronously(this, 0L, 1200L);
 	}
 
 	/**
@@ -358,7 +358,7 @@ public class MyMaid2 extends JavaPlugin implements Listener {
 		registEvent(new Event_LoginTutorialSpawn()); // 2018/10/29
 		registEvent(new Event_Tips()); // 2018/11/13
 		registEvent(new Event_Anti4BYTES()); // 2018/12/09
-		registEvent(new OnChunkLoad()); // 2018/12/16
+		registEvent(new Event_ChunkLoad()); // 2018/12/16
 	}
 
 	/**

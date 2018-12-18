@@ -7,7 +7,7 @@ import org.bukkit.event.world.ChunkLoadEvent;
 import com.jaoafa.MyMaid2.MyMaid2Premise;
 import com.jaoafa.MyMaid2.Task.Task_CheckChunk;
 
-public class OnChunkLoad extends MyMaid2Premise implements Listener {
+public class Event_ChunkLoad extends MyMaid2Premise implements Listener {
 	@EventHandler
 	public void onChunkLoadEvent(ChunkLoadEvent event) {
 		new Task_CheckChunk(event.getChunk()).runTaskAsynchronously(JavaPlugin());

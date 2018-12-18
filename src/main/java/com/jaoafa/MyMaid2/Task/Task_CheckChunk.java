@@ -1,6 +1,7 @@
 package com.jaoafa.MyMaid2.Task;
 
 import org.bukkit.Chunk;
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.CommandBlock;
@@ -25,6 +26,10 @@ public class Task_CheckChunk extends BukkitRunnable {
 					if(block == null){
 						continue;
 					}
+					Location loc = block.getLocation();
+					int X = loc.getBlockX();
+					int Y = loc.getBlockY();
+					int Z = loc.getBlockZ();
 					Material type = block.getType();
 					if(type == Material.SIGN || type == Material.SIGN_POST || type == Material.WALL_SIGN){
 						// 看板
@@ -34,7 +39,7 @@ public class Task_CheckChunk extends BukkitRunnable {
 							if(!MyMaid2Premise.check4bytechars(message)){
 								continue;
 							}
-							MyMaid2Premise.DiscordSend("293856671799967744", "__**[4BYTESChecker_ChunkSearch]**__ " + "看板(" + world + " " + x + " " + y + " " + z + ")内に4バイト文字が含まれていました。\nメッセージ: ```" + message + "```\n判定された対象文字列: ```" + MyMaid2Premise.check4bytechars_MatchText(message) + "```");
+							MyMaid2Premise.DiscordSend("293856671799967744", "__**[4BYTESChecker_ChunkSearch]**__ " + "看板(" + world + " " + X + " " + Y + " " + Z + ")内に4バイト文字が含まれていました。\nメッセージ: ```" + message + "```\n判定された対象文字列: ```" + MyMaid2Premise.check4bytechars_MatchText(message) + "```");
 						}
 					}else if(type == Material.COMMAND || type == Material.COMMAND_CHAIN || type == Material.COMMAND_REPEATING){
 						// コマンドブロック
@@ -43,7 +48,7 @@ public class Task_CheckChunk extends BukkitRunnable {
 						if(!MyMaid2Premise.check4bytechars(message)){
 							continue;
 						}
-						MyMaid2Premise.DiscordSend("293856671799967744", "__**[4BYTESChecker_ChunkSearch]**__ " + "コマンドブロック(" + world + " " + x + " " + y + " " + z + ")内に4バイト文字が含まれていました。\nメッセージ: ```" + message + "```\n判定された対象文字列: ```" + MyMaid2Premise.check4bytechars_MatchText(message) + "```");
+						MyMaid2Premise.DiscordSend("293856671799967744", "__**[4BYTESChecker_ChunkSearch]**__ " + "コマンドブロック(" + world + " " + X + " " + Y + " " + Z + ")内に4バイト文字が含まれていました。\nメッセージ: ```" + message + "```\n判定された対象文字列: ```" + MyMaid2Premise.check4bytechars_MatchText(message) + "```");
 					}
 				}
 			}
