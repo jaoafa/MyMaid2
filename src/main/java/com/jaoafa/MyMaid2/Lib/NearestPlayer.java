@@ -5,9 +5,9 @@ import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
 public class NearestPlayer {
-	Boolean status;
-	Player player = null;
-	double closest = -1;
+	private boolean status;
+	private Player player = null;
+	private double closest = -1;
 	public NearestPlayer(Location loc){
 		double closest = Double.MAX_VALUE;
 		Player closestp = null;
