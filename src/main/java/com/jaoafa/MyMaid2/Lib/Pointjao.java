@@ -27,7 +27,7 @@ public class Pointjao extends MyMaid2Premise {
 	 * @author mine_book000
 	 */
 	public Pointjao(Player player) throws ClassNotFoundException, NullPointerException, SQLException {
-		if(player == null) throw new NullPointerException("We could not get the player.");
+		checkPlayer(player);
 		this.offplayer = player;
 
 		create();
@@ -41,7 +41,7 @@ public class Pointjao extends MyMaid2Premise {
 	 * @author mine_book000
 	 */
 	public Pointjao(OfflinePlayer offplayer) throws ClassNotFoundException, NullPointerException, SQLException {
-		if(offplayer == null) throw new NullPointerException("We could not get the player.");
+		checkPlayer(offplayer);
 		this.offplayer = offplayer;
 
 		if(offplayer.hasPlayedBefore()){
@@ -67,7 +67,7 @@ public class Pointjao extends MyMaid2Premise {
 	@Deprecated
 	public Pointjao(String name) throws NullPointerException, ClassNotFoundException, SQLException, UnsupportedOperationException {
 		OfflinePlayer offplayer = Bukkit.getOfflinePlayer(name);
-		if(offplayer == null) throw new NullPointerException("We could not get the player.");
+		checkPlayer(offplayer);
 		this.offplayer = offplayer;
 
 		if(offplayer.hasPlayedBefore()){
@@ -91,7 +91,7 @@ public class Pointjao extends MyMaid2Premise {
 	 */
 	public Pointjao(UUID uuid) throws NullPointerException, ClassNotFoundException, SQLException {
 		OfflinePlayer offplayer = Bukkit.getOfflinePlayer(uuid);
-		if(offplayer == null) throw new NullPointerException("We could not get the player.");
+		checkPlayer(offplayer);
 		this.offplayer = offplayer;
 
 		if(offplayer.hasPlayedBefore()){
@@ -115,7 +115,7 @@ public class Pointjao extends MyMaid2Premise {
 	 * @author mine_book000
 	 */
 	public int getID() throws SQLException, ClassNotFoundException, NullPointerException, UnsupportedOperationException {
-		if(offplayer == null) throw new NullPointerException("We could not get the player.");
+		// if(offplayer == null) throw new NullPointerException("We could not get the player.");
 		PreparedStatement statement = MySQL.getNewPreparedStatement("SELECT * FROM jaopoint WHERE uuid = ? ORDER BY id DESC");
 		statement.setString(1, offplayer.getUniqueId().toString()); // uuid
 		ResultSet res = statement.executeQuery();
@@ -133,7 +133,7 @@ public class Pointjao extends MyMaid2Premise {
 	 * @throws NullPointerException 内部でNullPointerExceptionが発生した場合
 	 */
 	public boolean create() throws ClassNotFoundException, SQLException, NullPointerException {
-		if(offplayer == null) throw new NullPointerException("We could not get the player.");
+		// if(offplayer == null) throw new NullPointerException("We could not get the player.");
 		if(exists()) return false;
 		PreparedStatement statement = MySQL.getNewPreparedStatement("INSERT INTO jaopoint (player, uuid, jao) VALUES (?, ?, ?);");
 		statement.setString(1, offplayer.getName()); // player
@@ -156,7 +156,7 @@ public class Pointjao extends MyMaid2Premise {
 	 * @author mine_book000
 	 */
 	public boolean exists() throws SQLException, ClassNotFoundException, NullPointerException, UnsupportedOperationException {
-		if(offplayer == null) throw new NullPointerException("We could not get the player.");
+		// if(offplayer == null) throw new NullPointerException("We could not get the player.");
 		PreparedStatement statement = MySQL.getNewPreparedStatement("SELECT * FROM jaopoint WHERE uuid = ? ORDER BY id DESC");
 		statement.setString(1, offplayer.getUniqueId().toString()); // uuid
 		ResultSet res = statement.executeQuery();
@@ -175,7 +175,7 @@ public class Pointjao extends MyMaid2Premise {
 	 * @author mine_book000
 	 */
 	public int get() throws SQLException, ClassNotFoundException, NullPointerException {
-		if(offplayer == null) throw new NullPointerException("We could not get the player.");
+		// if(offplayer == null) throw new NullPointerException("We could not get the player.");
 		PreparedStatement statement = MySQL.getNewPreparedStatement("SELECT * FROM jaopoint WHERE uuid = ? ORDER BY id DESC");
 		statement.setString(1, offplayer.getUniqueId().toString()); // uuid
 		ResultSet res = statement.executeQuery();
@@ -195,7 +195,7 @@ public class Pointjao extends MyMaid2Premise {
 	 * @author mine_book000
 	 */
 	public boolean has(int i) throws ClassNotFoundException, SQLException, NullPointerException {
-		if(offplayer == null) throw new NullPointerException("We could not get the player.");
+		// if(offplayer == null) throw new NullPointerException("We could not get the player.");
 		int now = get();
 		if(now >= i){
 			return true;
@@ -214,7 +214,7 @@ public class Pointjao extends MyMaid2Premise {
 	 * @author mine_book000
 	 */
 	public boolean add(int add, String reason) throws ClassNotFoundException, SQLException, NullPointerException {
-		if(offplayer == null) throw new NullPointerException("We could not get the player.");
+		// if(offplayer == null) throw new NullPointerException("We could not get the player.");
 		if(EBan.isEBan(offplayer)){
 			if(offplayer.isOnline()){
 				((Player) offplayer).sendMessage("[jaoPoint] " + ChatColor.RED + "あなたはEBanされているため、jaoポイントアカウントが凍結されています。");
@@ -251,7 +251,7 @@ public class Pointjao extends MyMaid2Premise {
 	 * @author mine_book000
 	 */
 	public boolean use(int use, String reason) throws ClassNotFoundException, SQLException, NullPointerException {
-		if(offplayer == null) throw new NullPointerException("We could not get the player.");
+		// if(offplayer == null) throw new NullPointerException("We could not get the player.");
 		if(EBan.isEBan(offplayer)){
 			if(offplayer.isOnline()){
 				((Player) offplayer).sendMessage("[jaoPoint] " + ChatColor.RED + "あなたはEBanされているため、jaoポイントアカウントが凍結されています。");
@@ -302,7 +302,7 @@ public class Pointjao extends MyMaid2Premise {
 	 * @param type
 	 * @param reason
 	 */
-	private void SendPlayerNotice(int jao, int next, NoticeType type, String reason){
+	private void SendPlayerNotice(int jao, int next, NoticeType type, String reason) {
 		Player player = offplayer.getPlayer();
 		if(player == null){
 			return;
@@ -320,8 +320,8 @@ public class Pointjao extends MyMaid2Premise {
 	 * @return 実行できたかどうか
 	 * @author mine_book000
 	*/
-	private void DiscordNotice(int jao, NoticeType type, String reason){
-		if(offplayer == null) throw new NullPointerException("We could not get the player.");
+	private void DiscordNotice(int jao, NoticeType type, String reason) {
+		// if(offplayer == null) throw new NullPointerException("We could not get the player.");
 		if(offplayer.getUniqueId() == null){
 			DiscordSend("293856671799967744", ":scroll:**jaoPoint Logger**: " + offplayer.getName() + type.getConjunction() + jao + "ポイントを" + type.getName() + "しました。\n" + "理由: " + reason + "\n" + "***警告: UUIDがnullを返しました。***");
 		}else{
@@ -377,5 +377,9 @@ public class Pointjao extends MyMaid2Premise {
 		public String getConjunction(){
 			return conjunction;
 		}
+	}
+	
+	private Player checkPlayer(Player who) {
+		return java.util.Objects.requireNonNull(who, "We could not get the player.")
 	}
 }
