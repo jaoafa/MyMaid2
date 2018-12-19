@@ -380,6 +380,6 @@ public class Pointjao extends MyMaid2Premise {
 	}
 	
 	private Player checkPlayer(Player who) {
-		return java.util.Objects.requireNonNull(who, "We could not get the player.")
+		return java.util.Objects.requireNonNull(who, "We could not get the player.");
 	}
 }
