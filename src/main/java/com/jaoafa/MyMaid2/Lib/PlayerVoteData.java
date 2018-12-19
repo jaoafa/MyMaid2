@@ -22,7 +22,7 @@ public class PlayerVoteData extends MyMaid2Premise {
 	 * @author mine_book000
 	 */
 	public PlayerVoteData(Player player) {
-		if(player == null) throw new NullPointerException("We could not get the player.");
+		java.util.Objects.requireNonNull(player, "We could not get the player.");
 		this.offplayer = player;
 
 		changePlayerName();
@@ -33,7 +33,7 @@ public class PlayerVoteData extends MyMaid2Premise {
 	 * @author mine_book000
 	 */
 	public PlayerVoteData(OfflinePlayer offplayer) {
-		if(offplayer == null) throw new NullPointerException("We could not get the player.");
+		java.util.Objects.requireNonNull(offplayer, "We could not get the player.");
 		this.offplayer = offplayer;
 
 		changePlayerName();
@@ -48,7 +48,7 @@ public class PlayerVoteData extends MyMaid2Premise {
 	@Deprecated
 	public PlayerVoteData(String name) throws NullPointerException {
 		OfflinePlayer offplayer = Bukkit.getOfflinePlayer(name);
-		if(offplayer == null) throw new NullPointerException("We could not get the player.");
+		java.util.Objects.requireNonNull(offplayer, "We could not get the player.");
 		this.offplayer = offplayer;
 
 		changePlayerName();
@@ -63,7 +63,6 @@ public class PlayerVoteData extends MyMaid2Premise {
 	 * @throws NullPointerException プレイヤーが取得できなかったとき
 	 */
 	public int get() throws ClassNotFoundException, SQLException, UnsupportedOperationException, NullPointerException {
-		if(offplayer == null) throw new NullPointerException("We could not get the player.");
 		if(!exists()) return 0;
 		PreparedStatement statement = MySQL.getNewPreparedStatement("SELECT * FROM vote WHERE id = ?");
 		statement.setInt(1, getID());
@@ -131,7 +130,6 @@ public class PlayerVoteData extends MyMaid2Premise {
 	 * @throws NumberFormatException 最終投票日時が正常に取得できなかったとき
 	 */
 	public Long getLastVoteUnixTime() throws ClassNotFoundException, SQLException, UnsupportedOperationException, NullPointerException, NumberFormatException {
-		if(offplayer == null) throw new NullPointerException("We could not get the player.");
 		if(!exists()) return -1L;
 		PreparedStatement statement = MySQL.getNewPreparedStatement("SELECT * FROM vote WHERE id = ?");
 		statement.setInt(1, getID());
@@ -193,7 +191,6 @@ public class PlayerVoteData extends MyMaid2Premise {
 	 * @throws NullPointerException 内部でNullPointerExceptionが発生した場合
 	 */
 	public boolean create() throws ClassNotFoundException, SQLException, NullPointerException {
-		if(offplayer == null) throw new NullPointerException("We could not get the player.");
 		if(exists()) return false;
 		PreparedStatement statement = MySQL.getNewPreparedStatement("INSERT INTO vote (player, uuid, count, first, lasttime, last) VALUES (?, ?, ?, ?, ?, ?);");
 		statement.setString(1, offplayer.getName()); // player
@@ -223,7 +220,6 @@ public class PlayerVoteData extends MyMaid2Premise {
 	 * @author mine_book000
 	 */
 	public boolean exists() throws SQLException, ClassNotFoundException, NullPointerException, UnsupportedOperationException {
-		if(offplayer == null) throw new NullPointerException("We could not get the player.");
 		PreparedStatement statement = MySQL.getNewPreparedStatement("SELECT * FROM vote WHERE uuid = ? ORDER BY id DESC");
 		statement.setString(1, offplayer.getUniqueId().toString()); // uuid
 		ResultSet res = statement.executeQuery();
@@ -242,7 +238,6 @@ public class PlayerVoteData extends MyMaid2Premise {
 	 * @throws NullPointerException プレイヤーが取得できなかったとき
 	 */
 	public boolean add() throws ClassNotFoundException, SQLException, NullPointerException {
-		if(offplayer == null) throw new NullPointerException("We could not get the player.");
 		if(!exists()){
 			create();
 			return true;
@@ -272,7 +267,6 @@ public class PlayerVoteData extends MyMaid2Premise {
 	 * @author mine_book000
 	 */
 	public int getID() throws SQLException, ClassNotFoundException, NullPointerException, UnsupportedOperationException {
-		if(offplayer == null) throw new NullPointerException("We could not get the player.");
 		PreparedStatement statement = MySQL.getNewPreparedStatement("SELECT * FROM vote WHERE uuid = ? ORDER BY id DESC");
 		statement.setString(1, offplayer.getUniqueId().toString()); // uuid
 		ResultSet res = statement.executeQuery();
@@ -289,7 +283,6 @@ public class PlayerVoteData extends MyMaid2Premise {
 	 * @author mine_book000
 	 */
 	public void changePlayerName(){
-		if(offplayer == null) throw new NullPointerException("We could not get the player.");
 		try {
 			if(!exists()) return;
 
