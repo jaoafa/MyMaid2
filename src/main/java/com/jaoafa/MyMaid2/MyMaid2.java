@@ -89,6 +89,7 @@ import com.jaoafa.MyMaid2.Event.Event_Ded;
 import com.jaoafa.MyMaid2.Event.Event_DedRain;
 import com.jaoafa.MyMaid2.Event.Event_EBan;
 import com.jaoafa.MyMaid2.Event.Event_FarmNOBreak;
+import com.jaoafa.MyMaid2.Event.Event_Hide;
 import com.jaoafa.MyMaid2.Event.Event_Jail;
 import com.jaoafa.MyMaid2.Event.Event_JoinAutoQPPE;
 import com.jaoafa.MyMaid2.Event.Event_JoinHeaderFooterChange;
@@ -116,6 +117,7 @@ import com.jaoafa.MyMaid2.Event.Event_Tips;
 import com.jaoafa.MyMaid2.Event.Event_VeryVeryStrongAntiLQD;
 import com.jaoafa.MyMaid2.Event.Event_VoteMissFillerEvent;
 import com.jaoafa.MyMaid2.Event.Event_VoteReceived;
+import com.jaoafa.MyMaid2.Event.Event_getUsingMods;
 import com.jaoafa.MyMaid2.Lib.InventoryManager;
 import com.jaoafa.MyMaid2.Lib.Jail;
 import com.jaoafa.MyMaid2.Lib.MySQL;
@@ -359,6 +361,8 @@ public class MyMaid2 extends JavaPlugin implements Listener {
 		registEvent(new Event_Tips()); // 2018/11/13
 		registEvent(new Event_Anti4BYTES()); // 2018/12/09
 		registEvent(new Event_ChunkLoad()); // 2018/12/16
+		registEvent(new Event_Hide()); // 2018/12/30
+		registEvent(new Event_getUsingMods()); // 2019/01/04
 	}
 
 	/**

@@ -29,6 +29,9 @@ public class Cmd_Show extends MyMaid2Premise implements CommandExecutor {
 		for(Player p: Bukkit.getServer().getOnlinePlayers()) {
 			p.showPlayer(MyMaid2.mymaid2, player);
 		}
+		if(Cmd_Hide.hided.contains(player.getUniqueId())){
+			Cmd_Hide.hided.remove(player.getUniqueId());
+		}
 		SendMessage(sender, cmd, "あなたは他のプレイヤーから見えるようになりました。見えなくするには/hideを実行しましょう。");
 		return true;
 	}
