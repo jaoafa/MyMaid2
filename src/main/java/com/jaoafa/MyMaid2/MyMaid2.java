@@ -302,7 +302,7 @@ public class MyMaid2 extends JavaPlugin implements Listener {
 		new TPSChange().runTaskTimerAsynchronously(this, 0L, 1200L);
 		new AutoMessenger().runTaskTimerAsynchronously(this, 0L, 12000L);
 		new Team1000Observer().runTaskTimerAsynchronously(this, 0L, 1200L);
-		new Task_WorldSave().runTaskTimerAsynchronously(this, 0L, 1200L);
+		new Task_WorldSave().runTaskTimer(this, 0L, 1200L);
 	}
 
 	/**
