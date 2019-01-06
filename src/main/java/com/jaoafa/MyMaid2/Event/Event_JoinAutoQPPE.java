@@ -26,14 +26,32 @@ public class Event_JoinAutoQPPE extends MyMaid2Premise implements Listener {
 		Player player = event.getPlayer();
 		UUID uuid = player.getUniqueId();
 
-		String pex = PermissionsManager.getPermissionMainGroup(player);
-		if(!pex.equalsIgnoreCase("Limited")){
-			return;
-		}
-
 		String url = MyMaid2.MCBansRepAPI;
 		if(url == null){
 			Bukkit.getLogger().warning("コンフィグにMCBansのReputationを取得するためのAPIが記載されていなかったため、Reputationチェックは動作しません。");
+			return;
+		}
+
+		String pex = PermissionsManager.getPermissionMainGroup(player);
+		if(!pex.equalsIgnoreCase("Limited")){
+			if(pex.equalsIgnoreCase("QPPE")){
+				JSONObject json = getHttpJson(url + "?u=" + uuid.toString());
+				if(!json.containsKey("status")){
+					return;
+				}
+				Boolean status = (Boolean) json.get("status");
+				if(!status){
+					Bukkit.getLogger().warning("Reputationチェックが正常に完了しませんでした。");
+					return;
+				}
+				String reputation = (String) json.get("reputation");
+				if(reputation.equalsIgnoreCase("10")){
+					return;
+				}
+				Bukkit.getLogger().warning("Reputation: " + reputation + " -> QPPE -> Limited DOWN");
+				PermissionsManager.setPermissionsGroup(player, "Limited");
+				DiscordSend("223582668132974594", player.getName() + ": QPPEでしたが、Reputationが10ではなかったため(" + reputation + ")、Limitedに変更しました。");
+			}
 			return;
 		}
 
