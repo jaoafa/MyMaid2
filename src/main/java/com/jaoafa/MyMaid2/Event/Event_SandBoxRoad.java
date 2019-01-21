@@ -26,6 +26,9 @@ public class Event_SandBoxRoad implements Listener {
 		}
 
 		Block block = event.getBlock();
+		if(block == null){
+			return;
+		}
 
 		if(check(block)){
 			SendMessage(player, "Sorry, but you can't place that block here.");
@@ -43,6 +46,9 @@ public class Event_SandBoxRoad implements Listener {
 		}
 
 		Block block = event.getBlock();
+		if(block == null){
+			return;
+		}
 
 		if(check(block)){
 			SendMessage(player, "Sorry, but you can't break that block here.");
@@ -53,6 +59,9 @@ public class Event_SandBoxRoad implements Listener {
 	@EventHandler
 	public void onBlockPistonExtendEvent(BlockPistonExtendEvent event){
 		for(Block block : event.getBlocks()){
+			if(block == null){
+				continue;
+			}
 			if(check(block)){
 				event.setCancelled(true);
 				return;
@@ -62,6 +71,9 @@ public class Event_SandBoxRoad implements Listener {
 	@EventHandler
 	public void onBlockPistonRetractEvent(BlockPistonRetractEvent event){
 		for(Block block : event.getBlocks()){
+			if(block == null){
+				continue;
+			}
 			if(check(block)){
 				event.setCancelled(true);
 				return;
@@ -82,6 +94,9 @@ public class Event_SandBoxRoad implements Listener {
 		}
 
 		Block block = event.getClickedBlock();
+		if(block == null){
+			return;
+		}
 		if(check(block)){
 			SendMessage(player, "Sorry, but you can't use that block here.");
 			event.setCancelled(true);
