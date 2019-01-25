@@ -35,7 +35,7 @@ public class Event_Hide extends MyMaid2Premise implements Listener {
 			}
 			player.hidePlayer(MyMaid2.mymaid2, p);
 
-			p.sendMessage("[Hide] " + ChatColor.RED + "プレイヤー「" + player.getName() + "」のあなたのhideモードを反映しました。");
+			p.sendMessage("[Hide] " + ChatColor.RED + "プレイヤー「" + player.getName() + "」にあなたのhideモードを反映しました。");
 		}
 
 	}

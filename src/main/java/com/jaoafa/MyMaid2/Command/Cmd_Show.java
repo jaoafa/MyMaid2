@@ -1,8 +1,5 @@
 package com.jaoafa.MyMaid2.Command;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -14,7 +11,6 @@ import com.jaoafa.MyMaid2.MyMaid2Premise;
 import com.jaoafa.MyMaid2.Lib.PermissionsManager;
 
 public class Cmd_Show extends MyMaid2Premise implements CommandExecutor {
-	public static List<Player> hidePlayers = new ArrayList<>();
 	public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args){
 		if(!(sender instanceof Player)){
 			SendMessage(sender, cmd, "このコマンドはプレイヤーから実行してください。");

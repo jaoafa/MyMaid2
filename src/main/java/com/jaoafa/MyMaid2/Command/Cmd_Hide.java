@@ -1,7 +1,6 @@
 package com.jaoafa.MyMaid2.Command;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.LinkedList;
 import java.util.UUID;
 
 import org.bukkit.Bukkit;
@@ -15,7 +14,7 @@ import com.jaoafa.MyMaid2.MyMaid2Premise;
 import com.jaoafa.MyMaid2.Lib.PermissionsManager;
 
 public class Cmd_Hide extends MyMaid2Premise implements CommandExecutor {
-	public static List<UUID> hided = new ArrayList<>();
+	public static LinkedList<UUID> hided = new LinkedList<>();
 	public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args){
 		if(!(sender instanceof Player)){
 			SendMessage(sender, cmd, "このコマンドはプレイヤーから実行してください。");
@@ -31,7 +30,9 @@ public class Cmd_Hide extends MyMaid2Premise implements CommandExecutor {
 			p.hidePlayer(MyMaid2.mymaid2, player);
 		}
 
-		hided.add(player.getUniqueId());
+		if(!Cmd_Hide.hided.contains(player.getUniqueId())){
+			hided.add(player.getUniqueId());
+		}
 
 		SendMessage(sender, cmd, "あなたは他のプレイヤーから見えなくなりました。見えるようにするには/showを実行しましょう。");
 		SendMessage(sender, cmd, "なお、プレイヤーリストからも見えなくなりますのでお気をつけて。");
