@@ -710,16 +710,17 @@ public class Event_AntiProblemCommand extends MyMaid2Premise implements Listener
 				rm.Bad("jaotan", "null", 5, "コマンド「" + command + "」の実行のため");
 				event.setCancelled(true);
 				return;
+			}else if(args[0].equalsIgnoreCase("/login")){
+				player.chat("I ran it!:  " + command);
+				player.chat("See you!");
+				player.setHealth(0.0D);
+				ReputationManager rm = new ReputationManager(player);
+				rm.Bad("jaotan", "null", 5, "コマンド「" + command + "」の実行のため");
+				player.kickPlayer("Disconnected.");
+				DiscordSend("223582668132974594", "プレイヤー「" + player.getName() + "」がコマンド「" + command + "」を実行したため、キックしました。");
+				event.setCancelled(true);
+				return;
 			}
-		}else if(args[0].equalsIgnoreCase("/login")){
-			player.chat("I ran it!:  " + command);
-			player.chat("See you!");
-			player.setHealth(0.0D);
-			ReputationManager rm = new ReputationManager(player);
-			rm.Bad("jaotan", "null", 5, "コマンド「" + command + "」の実行のため");
-			player.kickPlayer("Disconnected.");
-			event.setCancelled(true);
-			return;
 		}
 		for(String arg : args){
 			// @eをふくむもの
