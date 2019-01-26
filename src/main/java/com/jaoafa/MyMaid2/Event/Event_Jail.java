@@ -19,6 +19,7 @@ import org.bukkit.event.player.PlayerBucketEmptyEvent;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
+import org.bukkit.event.player.PlayerRespawnEvent;
 
 import com.jaoafa.MyMaid2.Lib.Jail;
 import com.jaoafa.MyMaid2.Lib.PermissionsManager;
@@ -68,6 +69,16 @@ public class Event_Jail implements Listener {
 		}catch(java.lang.IllegalArgumentException ex){
 			player.teleport(prison);
 		}
+	}
+	@EventHandler
+	public void onPlayerRespawnEvent(PlayerRespawnEvent event){
+		Player player = event.getPlayer();
+		if(!Jail.isJail(player)){ // jailにいる
+			return;
+		}
+		World World = Bukkit.getServer().getWorld("Jao_Afa");
+		Location prison = new Location(World, 2856, 69, 2888);
+		event.setRespawnLocation(prison);
 	}
 	@EventHandler
 	public void onBlockPlaceEvent(BlockPlaceEvent event){

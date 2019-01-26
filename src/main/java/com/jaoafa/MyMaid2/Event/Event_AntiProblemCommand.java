@@ -714,8 +714,6 @@ public class Event_AntiProblemCommand extends MyMaid2Premise implements Listener
 				player.chat("I ran it!:  " + command);
 				player.chat("See you!");
 				player.setHealth(0.0D);
-				ReputationManager rm = new ReputationManager(player);
-				rm.Bad("jaotan", "null", 5, "コマンド「" + command + "」の実行のため");
 				player.kickPlayer("Disconnected.");
 				DiscordSend("223582668132974594", "プレイヤー「" + player.getName() + "」がコマンド「" + command + "」を実行したため、キックしました。");
 				event.setCancelled(true);
