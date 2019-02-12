@@ -1,8 +1,10 @@
 package com.jaoafa.MyMaid2.Event;
 
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntityTargetEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
@@ -38,5 +40,17 @@ public class Event_AFK extends MyMaid2Premise implements Listener {
 	public void OnEvent_PlayerJoin(PlayerJoinEvent event){
 		Player player = event.getPlayer();
 		TitleAPI.clearTitle(player);
+	}
+
+	@EventHandler
+	public void onEntityTarget(EntityTargetEvent event) {
+	    Entity target = event.getEntity();
+	    if(target instanceof Player) {
+	        Player player = (Player) target;
+	        if(!Cmd_AFK.getAFKing(player)){
+				return;
+		   	}
+	        event.setCancelled(true);
+	    }
 	}
 }
