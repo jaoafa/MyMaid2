@@ -15,6 +15,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import com.jaoafa.MyMaid2.MyMaid2Premise;
+import com.jaoafa.MyMaid2.Lib.EscapeJailException;
 import com.jaoafa.MyMaid2.Lib.Jail;
 
 public class Cmd_Jail extends MyMaid2Premise implements CommandExecutor, TabCompleter {
@@ -112,6 +113,10 @@ public class Cmd_Jail extends MyMaid2Premise implements CommandExecutor, TabComp
 						SendMessage(sender, cmd, "詳しくはサーバコンソールをご確認ください");
 						SendMessage(sender, cmd, "再度実行しなおすと動作するかもしれません。");
 						return true;
+					} catch (EscapeJailException e) {
+						// EscapeJailアイテムで止められた
+						// でもオフラインプレイヤーだからこれが実行されることはない？
+						return true;
 					}
 					return true;
 				}
@@ -123,6 +128,13 @@ public class Cmd_Jail extends MyMaid2Premise implements CommandExecutor, TabComp
 					SendMessage(sender, cmd, "操作に失敗しました。");
 					SendMessage(sender, cmd, "詳しくはサーバコンソールをご確認ください");
 					SendMessage(sender, cmd, "再度実行しなおすと動作するかもしれません。");
+					return true;
+				} catch (EscapeJailException e) {
+					// EscapeJailアイテムで止められた
+					// 痛くもない雷を落とす
+					player.getWorld().strikeLightningEffect(player.getLocation());
+					SendMessage(sender, cmd, "EscapeJailアイテムによって、Jailを無効化されてしまいました…。");
+					SendMessage(player, cmd, "EscapeJailアイテムによって、" + sender.getName() + "からの「" + text + "」という理由によるJailを無効化しました！");
 					return true;
 				}
 				return true;

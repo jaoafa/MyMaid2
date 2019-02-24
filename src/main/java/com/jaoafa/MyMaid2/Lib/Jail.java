@@ -22,11 +22,16 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
+import org.bukkit.craftbukkit.v1_12_R1.inventory.CraftItemStack;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.PlayerInventory;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -37,6 +42,8 @@ import com.jaoafa.MyMaid2.MyMaid2Premise;
 import com.jaoafa.jaoSuperAchievement.AchievementAPI.AchievementAPI;
 import com.jaoafa.jaoSuperAchievement.jaoAchievement.AchievementType;
 import com.jaoafa.jaoSuperAchievement.jaoAchievement.Achievementjao;
+
+import net.minecraft.server.v1_12_R1.NBTTagCompound;
 
 public class Jail extends MyMaid2Premise {
 	// 2017/10/30 Update: UUID管理に変更
@@ -57,9 +64,10 @@ public class Jail extends MyMaid2Premise {
 	 * @throws SQLException
 	 * @throws NullPointerException
 	 * @throws ClassNotFoundException
+	 * @throws EscapeJailException
 	*/
 	@Deprecated
-	public static boolean JailAdd(Player player, CommandSender banned_by) throws ClassNotFoundException, NullPointerException, SQLException{
+	public static boolean JailAdd(Player player, CommandSender banned_by) throws ClassNotFoundException, NullPointerException, SQLException, EscapeJailException{
 		if(player == null){
 			banned_by.sendMessage("[JAIL] " + ChatColor.GREEN + "指定されたプレイヤーは見つかりません。");
 			try{
@@ -83,6 +91,88 @@ public class Jail extends MyMaid2Premise {
 			banned_by.sendMessage("[JAIL] " + ChatColor.GREEN + "指定されたプレイヤーはすでに牢獄にいるため追加できません。");
 			return false;
 		}
+
+		// Item Check
+		if(player.isOnline()){
+			Boolean EscapeFlag = false;
+			Player target = player.getPlayer();
+			PlayerInventory inv = target.getInventory();
+			for(int n=0; n < inv.getSize(); n++){
+				ItemStack is = inv.getItem(n);
+				if(is == null){
+					continue;
+				}
+				if(is.getType() == Material.AIR){
+					continue;
+				}
+				net.minecraft.server.v1_12_R1.ItemStack nms = CraftItemStack.asNMSCopy(is);
+				NBTTagCompound nbttag = nms.getTag();
+				if(nbttag == null){
+					continue;
+				}
+				String id = nbttag.getString("MyMaid_EscapeJailID");
+				if(id == null){
+					continue;
+				}else if(id.equals("")){
+					continue;
+				}
+				PreparedStatement statement = MySQL.getNewPreparedStatement("SELECT * FROM uniqueitem WHERE id = ? AND type = ?");
+				statement.setString(1, id);
+				statement.setString(2, "MyMaid_EscapeJailID");
+				ResultSet res = statement.executeQuery();
+				if(res.next()){
+					// ある
+					if(res.getBoolean("used")){
+						// 使ってる
+						nbttag.remove("MyMaid_testID");
+				        nms.setTag(nbttag);
+				        is = CraftItemStack.asBukkitCopy(nms);
+						ItemMeta meta = is.getItemMeta();
+						meta.setDisplayName(meta.getDisplayName() + ChatColor.RED + " [使用済]");
+						is.setItemMeta(meta);
+						inv.setItem(n, is);
+						continue;
+					}
+				}else{
+					// ない
+					nbttag.remove("MyMaid_testID");
+			        nms.setTag(nbttag);
+			        is = CraftItemStack.asBukkitCopy(nms);
+					ItemMeta meta = is.getItemMeta();
+					meta.setDisplayName(meta.getDisplayName() + ChatColor.RED + " [無効]");
+					is.setItemMeta(meta);
+					inv.setItem(n, is);
+					continue;
+				}
+				// 使ってない
+				PreparedStatement statement_disable = MySQL.getNewPreparedStatement("UPDATE uniqueitem SET used = ? WHERE id = ? AND type = ?");
+				statement_disable.setBoolean(1, true);
+				statement_disable.setString(2, id);
+				statement_disable.setString(3, "MyMaid_EscapeJailID");
+				statement_disable.executeUpdate();
+
+				nbttag.remove("MyMaid_testID");
+		        nms.setTag(nbttag);
+		        is = CraftItemStack.asBukkitCopy(nms);
+				ItemMeta meta = is.getItemMeta();
+				meta.setDisplayName(meta.getDisplayName() + ChatColor.RED + " [使用済]");
+				is.setItemMeta(meta);
+				inv.setItem(n, is);
+
+				EscapeFlag = true;
+				break;
+			}
+			target.updateInventory();
+			if(EscapeFlag){
+				if(banned_by instanceof Player){
+					Player banned_by_player = (Player) banned_by;
+					Pointjao pointjao = new Pointjao(banned_by_player);
+					pointjao.use(REQUIRED_jao, player.getName() + "をJailに追加しようとしたため。(EscapeJailによって失敗)");
+				}
+				throw new EscapeJailException();
+			}
+		}
+
 		Jail.add(player.getUniqueId().toString());
 		block.put(player.getUniqueId().toString(), false); // 設置破壊不可
 		area.put(player.getUniqueId().toString(), false); // 範囲外移動
@@ -124,9 +214,10 @@ public class Jail extends MyMaid2Premise {
 	 * @throws SQLException
 	 * @throws NullPointerException
 	 * @throws ClassNotFoundException
+	 * @throws EscapeJailException
 	*/
 	@Deprecated
-	public static boolean JailAdd(OfflinePlayer player, CommandSender banned_by) throws ClassNotFoundException, NullPointerException, SQLException{
+	public static boolean JailAdd(OfflinePlayer player, CommandSender banned_by) throws ClassNotFoundException, NullPointerException, SQLException, EscapeJailException{
 		if(player == null){
 			banned_by.sendMessage("[JAIL] " + ChatColor.GREEN + "指定されたプレイヤーは見つかりません。");
 			try{
@@ -150,6 +241,88 @@ public class Jail extends MyMaid2Premise {
 			banned_by.sendMessage("[JAIL] " + ChatColor.GREEN + "指定されたプレイヤーはすでに牢獄にいるため追加できません。");
 			return false;
 		}
+
+		// Item Check
+		if(player.isOnline()){
+			Boolean EscapeFlag = false;
+			Player target = player.getPlayer();
+			PlayerInventory inv = target.getInventory();
+			for(int n=0; n < inv.getSize(); n++){
+				ItemStack is = inv.getItem(n);
+				if(is == null){
+					continue;
+				}
+				if(is.getType() == Material.AIR){
+					continue;
+				}
+				net.minecraft.server.v1_12_R1.ItemStack nms = CraftItemStack.asNMSCopy(is);
+				NBTTagCompound nbttag = nms.getTag();
+				if(nbttag == null){
+					continue;
+				}
+				String id = nbttag.getString("MyMaid_EscapeJailID");
+				if(id == null){
+					continue;
+				}else if(id.equals("")){
+					continue;
+				}
+				PreparedStatement statement = MySQL.getNewPreparedStatement("SELECT * FROM uniqueitem WHERE id = ? AND type = ?");
+				statement.setString(1, id);
+				statement.setString(2, "MyMaid_EscapeJailID");
+				ResultSet res = statement.executeQuery();
+				if(res.next()){
+					// ある
+					if(res.getBoolean("used")){
+						// 使ってる
+						nbttag.remove("MyMaid_testID");
+				        nms.setTag(nbttag);
+				        is = CraftItemStack.asBukkitCopy(nms);
+						ItemMeta meta = is.getItemMeta();
+						meta.setDisplayName(meta.getDisplayName() + ChatColor.RED + " [使用済]");
+						is.setItemMeta(meta);
+						inv.setItem(n, is);
+						continue;
+					}
+				}else{
+					// ない
+					nbttag.remove("MyMaid_testID");
+			        nms.setTag(nbttag);
+			        is = CraftItemStack.asBukkitCopy(nms);
+					ItemMeta meta = is.getItemMeta();
+					meta.setDisplayName(meta.getDisplayName() + ChatColor.RED + " [無効]");
+					is.setItemMeta(meta);
+					inv.setItem(n, is);
+					continue;
+				}
+				// 使ってない
+				PreparedStatement statement_disable = MySQL.getNewPreparedStatement("UPDATE uniqueitem SET used = ? WHERE id = ? AND type = ?");
+				statement_disable.setBoolean(1, true);
+				statement_disable.setString(2, id);
+				statement_disable.setString(3, "MyMaid_EscapeJailID");
+				statement_disable.executeUpdate();
+
+				nbttag.remove("MyMaid_testID");
+		        nms.setTag(nbttag);
+		        is = CraftItemStack.asBukkitCopy(nms);
+				ItemMeta meta = is.getItemMeta();
+				meta.setDisplayName(meta.getDisplayName() + ChatColor.RED + " [使用済]");
+				is.setItemMeta(meta);
+				inv.setItem(n, is);
+
+				EscapeFlag = true;
+				break;
+			}
+			target.updateInventory();
+			if(EscapeFlag){
+				if(banned_by instanceof Player){
+					Player banned_by_player = (Player) banned_by;
+					Pointjao pointjao = new Pointjao(banned_by_player);
+					pointjao.use(REQUIRED_jao, player.getName() + "をJailに追加しようとしたため。(EscapeJailによって失敗)");
+				}
+				throw new EscapeJailException();
+			}
+		}
+
 		Jail.add(player.getUniqueId().toString());
 		block.put(player.getUniqueId().toString(), false); // 設置破壊不可
 		area.put(player.getUniqueId().toString(), false); // 範囲外移動
@@ -180,8 +353,9 @@ public class Jail extends MyMaid2Premise {
 	 * @throws SQLException
 	 * @throws NullPointerException
 	 * @throws ClassNotFoundException
+	 * @throws EscapeJailException
 	*/
-	public static boolean JailAdd(Player player, CommandSender banned_by, String reason, boolean InvRemove) throws ClassNotFoundException, NullPointerException, SQLException{
+	public static boolean JailAdd(Player player, CommandSender banned_by, String reason, boolean InvRemove) throws ClassNotFoundException, NullPointerException, SQLException, EscapeJailException{
 		if(player == null){
 			banned_by.sendMessage("[JAIL] " + ChatColor.GREEN + "指定されたプレイヤーは見つかりません。");
 			try{
@@ -205,6 +379,88 @@ public class Jail extends MyMaid2Premise {
 			banned_by.sendMessage("[JAIL] " + ChatColor.GREEN + "指定されたプレイヤーはすでに牢獄にいるため追加できません。");
 			return false;
 		}
+
+		// Item Check
+		if(player.isOnline()){
+			Boolean EscapeFlag = false;
+			Player target = player.getPlayer();
+			PlayerInventory inv = target.getInventory();
+			for(int n=0; n < inv.getSize(); n++){
+				ItemStack is = inv.getItem(n);
+				if(is == null){
+					continue;
+				}
+				if(is.getType() == Material.AIR){
+					continue;
+				}
+				net.minecraft.server.v1_12_R1.ItemStack nms = CraftItemStack.asNMSCopy(is);
+				NBTTagCompound nbttag = nms.getTag();
+				if(nbttag == null){
+					continue;
+				}
+				String id = nbttag.getString("MyMaid_EscapeJailID");
+				if(id == null){
+					continue;
+				}else if(id.equals("")){
+					continue;
+				}
+				PreparedStatement statement = MySQL.getNewPreparedStatement("SELECT * FROM uniqueitem WHERE id = ? AND type = ?");
+				statement.setString(1, id);
+				statement.setString(2, "MyMaid_EscapeJailID");
+				ResultSet res = statement.executeQuery();
+				if(res.next()){
+					// ある
+					if(res.getBoolean("used")){
+						// 使ってる
+						nbttag.remove("MyMaid_testID");
+				        nms.setTag(nbttag);
+				        is = CraftItemStack.asBukkitCopy(nms);
+						ItemMeta meta = is.getItemMeta();
+						meta.setDisplayName(meta.getDisplayName() + ChatColor.RED + " [使用済]");
+						is.setItemMeta(meta);
+						inv.setItem(n, is);
+						continue;
+					}
+				}else{
+					// ない
+					nbttag.remove("MyMaid_testID");
+			        nms.setTag(nbttag);
+			        is = CraftItemStack.asBukkitCopy(nms);
+					ItemMeta meta = is.getItemMeta();
+					meta.setDisplayName(meta.getDisplayName() + ChatColor.RED + " [無効]");
+					is.setItemMeta(meta);
+					inv.setItem(n, is);
+					continue;
+				}
+				// 使ってない
+				PreparedStatement statement_disable = MySQL.getNewPreparedStatement("UPDATE uniqueitem SET used = ? WHERE id = ? AND type = ?");
+				statement_disable.setBoolean(1, true);
+				statement_disable.setString(2, id);
+				statement_disable.setString(3, "MyMaid_EscapeJailID");
+				statement_disable.executeUpdate();
+
+				nbttag.remove("MyMaid_testID");
+		        nms.setTag(nbttag);
+		        is = CraftItemStack.asBukkitCopy(nms);
+				ItemMeta meta = is.getItemMeta();
+				meta.setDisplayName(meta.getDisplayName() + ChatColor.RED + " [使用済]");
+				is.setItemMeta(meta);
+				inv.setItem(n, is);
+
+				EscapeFlag = true;
+				break;
+			}
+			target.updateInventory();
+			if(EscapeFlag){
+				if(banned_by instanceof Player){
+					Player banned_by_player = (Player) banned_by;
+					Pointjao pointjao = new Pointjao(banned_by_player);
+					pointjao.use(REQUIRED_jao, player.getName() + "をJailに追加しようとしたため。(理由: " + reason + " | EscapeJailによって失敗)");
+				}
+				throw new EscapeJailException();
+			}
+		}
+
 		Jail.add(player.getUniqueId().toString());
 		block.put(player.getUniqueId().toString(), false); // 設置破壊不可
 		area.put(player.getUniqueId().toString(), false); // 範囲外移動
@@ -282,8 +538,9 @@ public class Jail extends MyMaid2Premise {
 	 * @throws SQLException
 	 * @throws NullPointerException
 	 * @throws ClassNotFoundException
+	 * @throws EscapeJailException
 	*/
-	public static boolean JailAdd(OfflinePlayer player, CommandSender banned_by, String reason) throws ClassNotFoundException, NullPointerException, SQLException{
+	public static boolean JailAdd(OfflinePlayer player, CommandSender banned_by, String reason) throws ClassNotFoundException, NullPointerException, SQLException, EscapeJailException{
 		if(player == null){
 			banned_by.sendMessage("[JAIL] " + ChatColor.GREEN + "指定されたプレイヤーは見つかりません。");
 			try{
@@ -307,6 +564,88 @@ public class Jail extends MyMaid2Premise {
 			banned_by.sendMessage("[JAIL] " + ChatColor.GREEN + "指定されたプレイヤーはすでに牢獄にいるため追加できません。");
 			return false;
 		}
+
+		// Item Check
+		if(player.isOnline()){
+			Boolean EscapeFlag = false;
+			Player target = player.getPlayer();
+			PlayerInventory inv = target.getInventory();
+			for(int n=0; n < inv.getSize(); n++){
+				ItemStack is = inv.getItem(n);
+				if(is == null){
+					continue;
+				}
+				if(is.getType() == Material.AIR){
+					continue;
+				}
+				net.minecraft.server.v1_12_R1.ItemStack nms = CraftItemStack.asNMSCopy(is);
+				NBTTagCompound nbttag = nms.getTag();
+				if(nbttag == null){
+					continue;
+				}
+				String id = nbttag.getString("MyMaid_EscapeJailID");
+				if(id == null){
+					continue;
+				}else if(id.equals("")){
+					continue;
+				}
+				PreparedStatement statement = MySQL.getNewPreparedStatement("SELECT * FROM uniqueitem WHERE id = ? AND type = ?");
+				statement.setString(1, id);
+				statement.setString(2, "MyMaid_EscapeJailID");
+				ResultSet res = statement.executeQuery();
+				if(res.next()){
+					// ある
+					if(res.getBoolean("used")){
+						// 使ってる
+						nbttag.remove("MyMaid_testID");
+				        nms.setTag(nbttag);
+				        is = CraftItemStack.asBukkitCopy(nms);
+						ItemMeta meta = is.getItemMeta();
+						meta.setDisplayName(meta.getDisplayName() + ChatColor.RED + " [使用済]");
+						is.setItemMeta(meta);
+						inv.setItem(n, is);
+						continue;
+					}
+				}else{
+					// ない
+					nbttag.remove("MyMaid_testID");
+			        nms.setTag(nbttag);
+			        is = CraftItemStack.asBukkitCopy(nms);
+					ItemMeta meta = is.getItemMeta();
+					meta.setDisplayName(meta.getDisplayName() + ChatColor.RED + " [無効]");
+					is.setItemMeta(meta);
+					inv.setItem(n, is);
+					continue;
+				}
+				// 使ってない
+				PreparedStatement statement_disable = MySQL.getNewPreparedStatement("UPDATE uniqueitem SET used = ? WHERE id = ? AND type = ?");
+				statement_disable.setBoolean(1, true);
+				statement_disable.setString(2, id);
+				statement_disable.setString(3, "MyMaid_EscapeJailID");
+				statement_disable.executeUpdate();
+
+				nbttag.remove("MyMaid_testID");
+		        nms.setTag(nbttag);
+		        is = CraftItemStack.asBukkitCopy(nms);
+				ItemMeta meta = is.getItemMeta();
+				meta.setDisplayName(meta.getDisplayName() + ChatColor.RED + " [使用済]");
+				is.setItemMeta(meta);
+				inv.setItem(n, is);
+
+				EscapeFlag = true;
+				break;
+			}
+			target.updateInventory();
+			if(EscapeFlag){
+				if(banned_by instanceof Player){
+					Player banned_by_player = (Player) banned_by;
+					Pointjao pointjao = new Pointjao(banned_by_player);
+					pointjao.use(REQUIRED_jao, player.getName() + "をJailに追加しようとしたため。(理由: " + reason + " | EscapeJailによって失敗)");
+				}
+				throw new EscapeJailException();
+			}
+		}
+
 		Jail.add(player.getUniqueId().toString());
 		block.put(player.getUniqueId().toString(), false); // 設置破壊不可
 		area.put(player.getUniqueId().toString(), false); // 範囲外移動
@@ -362,8 +701,9 @@ public class Jail extends MyMaid2Premise {
 	 * @throws SQLException
 	 * @throws NullPointerException
 	 * @throws ClassNotFoundException
+	 * @throws EscapeJailException
 	*/
-	public static boolean JailAdd(Player player, OfflinePlayer banned_by, String reason, boolean InvRemove) throws ClassNotFoundException, NullPointerException, SQLException{
+	public static boolean JailAdd(Player player, OfflinePlayer banned_by, String reason, boolean InvRemove) throws ClassNotFoundException, NullPointerException, SQLException, EscapeJailException{
 		if(player == null){
 			try{
 				throw new java.lang.NullPointerException("JailAdd Player is null...!");
@@ -393,6 +733,88 @@ public class Jail extends MyMaid2Premise {
 			// 既に牢獄にいるので無理
 			return false;
 		}
+
+		// Item Check
+		if(player.isOnline()){
+			Boolean EscapeFlag = false;
+			Player target = player.getPlayer();
+			PlayerInventory inv = target.getInventory();
+			for(int n=0; n < inv.getSize(); n++){
+				ItemStack is = inv.getItem(n);
+				if(is == null){
+					continue;
+				}
+				if(is.getType() == Material.AIR){
+					continue;
+				}
+				net.minecraft.server.v1_12_R1.ItemStack nms = CraftItemStack.asNMSCopy(is);
+				NBTTagCompound nbttag = nms.getTag();
+				if(nbttag == null){
+					continue;
+				}
+				String id = nbttag.getString("MyMaid_EscapeJailID");
+				if(id == null){
+					continue;
+				}else if(id.equals("")){
+					continue;
+				}
+				PreparedStatement statement = MySQL.getNewPreparedStatement("SELECT * FROM uniqueitem WHERE id = ? AND type = ?");
+				statement.setString(1, id);
+				statement.setString(2, "MyMaid_EscapeJailID");
+				ResultSet res = statement.executeQuery();
+				if(res.next()){
+					// ある
+					if(res.getBoolean("used")){
+						// 使ってる
+						nbttag.remove("MyMaid_testID");
+				        nms.setTag(nbttag);
+				        is = CraftItemStack.asBukkitCopy(nms);
+						ItemMeta meta = is.getItemMeta();
+						meta.setDisplayName(meta.getDisplayName() + ChatColor.RED + " [使用済]");
+						is.setItemMeta(meta);
+						inv.setItem(n, is);
+						continue;
+					}
+				}else{
+					// ない
+					nbttag.remove("MyMaid_testID");
+			        nms.setTag(nbttag);
+			        is = CraftItemStack.asBukkitCopy(nms);
+					ItemMeta meta = is.getItemMeta();
+					meta.setDisplayName(meta.getDisplayName() + ChatColor.RED + " [無効]");
+					is.setItemMeta(meta);
+					inv.setItem(n, is);
+					continue;
+				}
+				// 使ってない
+				PreparedStatement statement_disable = MySQL.getNewPreparedStatement("UPDATE uniqueitem SET used = ? WHERE id = ? AND type = ?");
+				statement_disable.setBoolean(1, true);
+				statement_disable.setString(2, id);
+				statement_disable.setString(3, "MyMaid_EscapeJailID");
+				statement_disable.executeUpdate();
+
+				nbttag.remove("MyMaid_testID");
+		        nms.setTag(nbttag);
+		        is = CraftItemStack.asBukkitCopy(nms);
+				ItemMeta meta = is.getItemMeta();
+				meta.setDisplayName(meta.getDisplayName() + ChatColor.RED + " [使用済]");
+				is.setItemMeta(meta);
+				inv.setItem(n, is);
+
+				EscapeFlag = true;
+				break;
+			}
+			target.updateInventory();
+			if(EscapeFlag){
+				if(banned_by instanceof Player){
+					Player banned_by_player = (Player) banned_by;
+					Pointjao pointjao = new Pointjao(banned_by_player);
+					pointjao.use(REQUIRED_jao, player.getName() + "をJailに追加しようとしたため。(理由: " + reason + " | EscapeJailによって失敗)");
+				}
+				throw new EscapeJailException();
+			}
+		}
+
 		Jail.add(player.getUniqueId().toString());
 		block.put(player.getUniqueId().toString(), false); // 設置破壊不可
 		area.put(player.getUniqueId().toString(), false); // 範囲外移動

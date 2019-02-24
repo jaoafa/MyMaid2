@@ -39,6 +39,7 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 import com.jaoafa.MyMaid2.MyMaid2Premise;
+import com.jaoafa.MyMaid2.Lib.EscapeJailException;
 import com.jaoafa.MyMaid2.Lib.Jail;
 import com.jaoafa.MyMaid2.Lib.MySQL;
 import com.jaoafa.jaoSuperAchievement.AchievementAPI.AchievementAPI;
@@ -349,6 +350,12 @@ public class Event_Antijaoium extends MyMaid2Premise implements Listener {
 				Jail.JailAdd(player, Bukkit.getOfflinePlayer("jaotan"), "jaoium所持", true);
 			} catch (ClassNotFoundException | NullPointerException | SQLException e) {
 				BugReporter(e);
+			} catch (EscapeJailException e) {
+				// EscapeJailアイテムで止められた
+				// 痛くもない雷を落とす
+				player.getWorld().strikeLightningEffect(player.getLocation());
+				player.sendMessage("[jaoium_Checker] " + ChatColor.GREEN + "EscapeJailアイテムによって、jaotanからの「jaoium所持」という理由によるJailを無効化しました！");
+				player.sendMessage("[jaoium_Checker] " + ChatColor.GREEN + "早くjaoiumを始末しよう！");
 			}
 		}
 	}
@@ -416,6 +423,12 @@ public class Event_Antijaoium extends MyMaid2Premise implements Listener {
 				Jail.JailAdd(player, Bukkit.getOfflinePlayer("jaotan"), "jaoium所持", true);
 			} catch (ClassNotFoundException | NullPointerException | SQLException e) {
 				BugReporter(e);
+			} catch (EscapeJailException e) {
+				// EscapeJailアイテムで止められた
+				// 痛くもない雷を落とす
+				player.getWorld().strikeLightningEffect(player.getLocation());
+				player.sendMessage("[jaoium_Checker] " + ChatColor.GREEN + "EscapeJailアイテムによって、jaotanからの「jaoium所持」という理由によるJailを無効化しました！");
+				player.sendMessage("[jaoium_Checker] " + ChatColor.GREEN + "早くjaoiumを始末しよう！");
 			}
 		}
 	}
@@ -479,6 +492,12 @@ public class Event_Antijaoium extends MyMaid2Premise implements Listener {
 			} catch (ClassNotFoundException | NullPointerException | SQLException e) {
 				// TODO 自動生成された catch ブロック
 				e.printStackTrace();
+			} catch (EscapeJailException e) {
+				// EscapeJailアイテムで止められた
+				// 痛くもない雷を落とす
+				player.getWorld().strikeLightningEffect(player.getLocation());
+				player.sendMessage("[jaoium_Checker] " + ChatColor.GREEN + "EscapeJailアイテムによって、jaotanからの「jaoium所持」という理由によるJailを無効化しました！");
+				player.sendMessage("[jaoium_Checker] " + ChatColor.GREEN + "早くjaoiumを始末しよう！");
 			}
 		}
 	}
@@ -547,6 +566,12 @@ public class Event_Antijaoium extends MyMaid2Premise implements Listener {
 				Jail.JailAdd(player, Bukkit.getOfflinePlayer("jaotan"), "jaoium所持", true);
 			} catch (ClassNotFoundException | NullPointerException | SQLException e) {
 				BugReporter(e);
+			} catch (EscapeJailException e) {
+				// EscapeJailアイテムで止められた
+				// 痛くもない雷を落とす
+				player.getWorld().strikeLightningEffect(player.getLocation());
+				player.sendMessage("[jaoium_Checker] " + ChatColor.GREEN + "EscapeJailアイテムによって、jaotanからの「jaoium所持」という理由によるJailを無効化しました！");
+				player.sendMessage("[jaoium_Checker] " + ChatColor.GREEN + "早くjaoiumを始末しよう！");
 			}
 			event.setCancelled(true);
 		}
@@ -616,6 +641,12 @@ public class Event_Antijaoium extends MyMaid2Premise implements Listener {
 				Jail.JailAdd(player, Bukkit.getOfflinePlayer("jaotan"), "jaoium所持", true);
 			} catch (ClassNotFoundException | NullPointerException | SQLException e) {
 				BugReporter(e);
+			} catch (EscapeJailException e) {
+				// EscapeJailアイテムで止められた
+				// 痛くもない雷を落とす
+				player.getWorld().strikeLightningEffect(player.getLocation());
+				player.sendMessage("[jaoium_Checker] " + ChatColor.GREEN + "EscapeJailアイテムによって、jaotanからの「jaoium所持」という理由によるJailを無効化しました！");
+				player.sendMessage("[jaoium_Checker] " + ChatColor.GREEN + "早くjaoiumを始末しよう！");
 			}
 			event.setCancelled(true);
 		}

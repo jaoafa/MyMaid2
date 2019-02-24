@@ -94,6 +94,13 @@ public class Event_JoinAutoQPPE extends MyMaid2Premise implements Listener {
 			embed.addFields("ブロック編集等のデータ", "https://jaoafa.com/tomachi/co.php?player=" + player.getName(), false);
 		}
 
+		embed.setThumbnail(
+				"https://crafatar.com/renders/body/" + uuid.toString() + ".png?overlay=true&scale=10",
+				"https://crafatar.com/renders/body/" + uuid.toString() + ".png?overlay=true&scale=10",
+				451,
+				200
+		);
+
 		DiscordSend("223582668132974594", "", embed);
 
 		if(!reputation.equalsIgnoreCase("10")){

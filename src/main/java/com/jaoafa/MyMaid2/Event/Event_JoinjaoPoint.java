@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.Random;
 import java.util.TimeZone;
 
 import org.bukkit.Bukkit;
@@ -60,27 +59,6 @@ public class Event_JoinjaoPoint extends MyMaid2Premise implements Listener {
 		}catch(NullPointerException e){
 			BugReporter(e);
 			return;
-		}catch(ClassNotFoundException | SQLException e){
-			BugReporter(e);
-			return;
-		}
-
-		try {
-			Pointjao Pjao = new Pointjao(player);
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
-			SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-			Date start = format.parse("2018/08/12 00:00:00");
-			Date end = format.parse("2018/08/31 23:59:59");
-			if(isPeriod(start, end)){
-				Random rnd = new Random();
-				int random = rnd.nextInt(20)+11;
-				Pjao.add(random, sdf.format(new Date()) + "のログインボーナス (サバイバルイベント分)");
-
-				Bukkit.broadcastMessage("[jaoPoint] " + ChatColor.GREEN + player.getName() + "さんがサバイバルイベントログインボーナスによってjaoポイントを追加で" + random + "ポイント追加しました。");
-				DiscordSend(player.getName() + "さんがサバイバルイベントログインボーナスによってjaoポイントを追加で" + random + "ポイント追加しました。");
-			}
-		} catch (ParseException e) {
-			BugReporter(e);
 		}catch(ClassNotFoundException | SQLException e){
 			BugReporter(e);
 			return;

@@ -383,3 +383,9 @@ commands:
     usage: "/<command> <Player>: Playerに対して投票を補填します。"
     permission: mymaid.votefill
     permission-message: You do not have permission to perform this command.
+  getesc:
+    description: 「EscapeJail」アイテムを購入します。
+    usage: "/<command>: 「EscapeJail」アイテムを購入します。"
+    permission: mymaid.getesc
+    permission-message: You do not have permission to perform this command.
+
