@@ -124,7 +124,7 @@ public class Jail extends MyMaid2Premise {
 					// ある
 					if(res.getBoolean("used")){
 						// 使ってる
-						nbttag.remove("MyMaid_testID");
+						nbttag.remove("MyMaid_EscapeJailID");
 				        nms.setTag(nbttag);
 				        is = CraftItemStack.asBukkitCopy(nms);
 						ItemMeta meta = is.getItemMeta();
@@ -135,7 +135,7 @@ public class Jail extends MyMaid2Premise {
 					}
 				}else{
 					// ない
-					nbttag.remove("MyMaid_testID");
+					nbttag.remove("MyMaid_EscapeJailID");
 			        nms.setTag(nbttag);
 			        is = CraftItemStack.asBukkitCopy(nms);
 					ItemMeta meta = is.getItemMeta();
@@ -151,7 +151,7 @@ public class Jail extends MyMaid2Premise {
 				statement_disable.setString(3, "MyMaid_EscapeJailID");
 				statement_disable.executeUpdate();
 
-				nbttag.remove("MyMaid_testID");
+				nbttag.remove("MyMaid_EscapeJailID");
 		        nms.setTag(nbttag);
 		        is = CraftItemStack.asBukkitCopy(nms);
 				ItemMeta meta = is.getItemMeta();
@@ -274,7 +274,7 @@ public class Jail extends MyMaid2Premise {
 					// ある
 					if(res.getBoolean("used")){
 						// 使ってる
-						nbttag.remove("MyMaid_testID");
+						nbttag.remove("MyMaid_EscapeJailID");
 				        nms.setTag(nbttag);
 				        is = CraftItemStack.asBukkitCopy(nms);
 						ItemMeta meta = is.getItemMeta();
@@ -285,7 +285,7 @@ public class Jail extends MyMaid2Premise {
 					}
 				}else{
 					// ない
-					nbttag.remove("MyMaid_testID");
+					nbttag.remove("MyMaid_EscapeJailID");
 			        nms.setTag(nbttag);
 			        is = CraftItemStack.asBukkitCopy(nms);
 					ItemMeta meta = is.getItemMeta();
@@ -301,7 +301,7 @@ public class Jail extends MyMaid2Premise {
 				statement_disable.setString(3, "MyMaid_EscapeJailID");
 				statement_disable.executeUpdate();
 
-				nbttag.remove("MyMaid_testID");
+				nbttag.remove("MyMaid_EscapeJailID");
 		        nms.setTag(nbttag);
 		        is = CraftItemStack.asBukkitCopy(nms);
 				ItemMeta meta = is.getItemMeta();
@@ -412,7 +412,7 @@ public class Jail extends MyMaid2Premise {
 					// ある
 					if(res.getBoolean("used")){
 						// 使ってる
-						nbttag.remove("MyMaid_testID");
+						nbttag.remove("MyMaid_EscapeJailID");
 				        nms.setTag(nbttag);
 				        is = CraftItemStack.asBukkitCopy(nms);
 						ItemMeta meta = is.getItemMeta();
@@ -423,7 +423,7 @@ public class Jail extends MyMaid2Premise {
 					}
 				}else{
 					// ない
-					nbttag.remove("MyMaid_testID");
+					nbttag.remove("MyMaid_EscapeJailID");
 			        nms.setTag(nbttag);
 			        is = CraftItemStack.asBukkitCopy(nms);
 					ItemMeta meta = is.getItemMeta();
@@ -439,7 +439,7 @@ public class Jail extends MyMaid2Premise {
 				statement_disable.setString(3, "MyMaid_EscapeJailID");
 				statement_disable.executeUpdate();
 
-				nbttag.remove("MyMaid_testID");
+				nbttag.remove("MyMaid_EscapeJailID");
 		        nms.setTag(nbttag);
 		        is = CraftItemStack.asBukkitCopy(nms);
 				ItemMeta meta = is.getItemMeta();
@@ -597,7 +597,7 @@ public class Jail extends MyMaid2Premise {
 					// ある
 					if(res.getBoolean("used")){
 						// 使ってる
-						nbttag.remove("MyMaid_testID");
+						nbttag.remove("MyMaid_EscapeJailID");
 				        nms.setTag(nbttag);
 				        is = CraftItemStack.asBukkitCopy(nms);
 						ItemMeta meta = is.getItemMeta();
@@ -608,7 +608,7 @@ public class Jail extends MyMaid2Premise {
 					}
 				}else{
 					// ない
-					nbttag.remove("MyMaid_testID");
+					nbttag.remove("MyMaid_EscapeJailID");
 			        nms.setTag(nbttag);
 			        is = CraftItemStack.asBukkitCopy(nms);
 					ItemMeta meta = is.getItemMeta();
@@ -624,7 +624,7 @@ public class Jail extends MyMaid2Premise {
 				statement_disable.setString(3, "MyMaid_EscapeJailID");
 				statement_disable.executeUpdate();
 
-				nbttag.remove("MyMaid_testID");
+				nbttag.remove("MyMaid_EscapeJailID");
 		        nms.setTag(nbttag);
 		        is = CraftItemStack.asBukkitCopy(nms);
 				ItemMeta meta = is.getItemMeta();
@@ -766,7 +766,7 @@ public class Jail extends MyMaid2Premise {
 					// ある
 					if(res.getBoolean("used")){
 						// 使ってる
-						nbttag.remove("MyMaid_testID");
+						nbttag.remove("MyMaid_EscapeJailID");
 				        nms.setTag(nbttag);
 				        is = CraftItemStack.asBukkitCopy(nms);
 						ItemMeta meta = is.getItemMeta();
@@ -777,7 +777,7 @@ public class Jail extends MyMaid2Premise {
 					}
 				}else{
 					// ない
-					nbttag.remove("MyMaid_testID");
+					nbttag.remove("MyMaid_EscapeJailID");
 			        nms.setTag(nbttag);
 			        is = CraftItemStack.asBukkitCopy(nms);
 					ItemMeta meta = is.getItemMeta();
@@ -793,7 +793,7 @@ public class Jail extends MyMaid2Premise {
 				statement_disable.setString(3, "MyMaid_EscapeJailID");
 				statement_disable.executeUpdate();
 
-				nbttag.remove("MyMaid_testID");
+				nbttag.remove("MyMaid_EscapeJailID");
 		        nms.setTag(nbttag);
 		        is = CraftItemStack.asBukkitCopy(nms);
 				ItemMeta meta = is.getItemMeta();

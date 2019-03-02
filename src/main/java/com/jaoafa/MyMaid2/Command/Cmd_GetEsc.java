@@ -10,6 +10,7 @@ import java.util.UUID;
 
 import javax.xml.bind.DatatypeConverter;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
@@ -129,8 +130,10 @@ public class Cmd_GetEsc extends MyMaid2Premise implements CommandExecutor {
         if(player.getInventory().firstEmpty() == -1){
         	player.getLocation().getWorld().dropItem(player.getLocation(), item);
             SendMessage(sender, cmd, "インベントリがいっぱいだったため、あなたの足元にアイテムをドロップしました。");
+        	Bukkit.getLogger().info("[EscapeJail] dropped to " + player.getName());
 		}else{
 			player.getInventory().addItem(item);
+        	Bukkit.getLogger().info("[EscapeJail] gived to " + player.getName());
 		}
         return true;
 	}

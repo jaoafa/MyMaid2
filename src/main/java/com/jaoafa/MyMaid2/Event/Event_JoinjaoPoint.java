@@ -1,5 +1,7 @@
 package com.jaoafa.MyMaid2.Event;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -10,10 +12,15 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.TimeZone;
+import java.util.UUID;
+
+import javax.xml.bind.DatatypeConverter;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.craftbukkit.v1_12_R1.inventory.CraftItemStack;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -23,7 +30,10 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import com.jaoafa.MyMaid2.MyMaid2Premise;
 import com.jaoafa.MyMaid2.Lib.MySQL;
+import com.jaoafa.MyMaid2.Lib.PermissionsManager;
 import com.jaoafa.MyMaid2.Lib.Pointjao;
+
+import net.minecraft.server.v1_12_R1.NBTTagCompound;
 
 public class Event_JoinjaoPoint extends MyMaid2Premise implements Listener {
 	@EventHandler
@@ -65,38 +75,75 @@ public class Event_JoinjaoPoint extends MyMaid2Premise implements Listener {
 		}
 
 		try {
-			Pointjao Pjao = new Pointjao(player);
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
 			SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-			Date start = format.parse("2019/02/14 00:00:00");
-			Date end = format.parse("2019/02/14 23:59:59");
+			Date start = format.parse("2019/03/05 00:00:00");
+			Date end = format.parse("2019/03/15 23:59:59");
 			if(isPeriod(start, end)){
-				int point = 100;
-				Pjao.add(point, sdf.format(new Date()) + "のログインボーナス (バレンタインイベント分)");
+				String group = PermissionsManager.getPermissionMainGroup(player);
+				if(!group.equalsIgnoreCase("Admin") && !group.equalsIgnoreCase("Moderator") && !group.equalsIgnoreCase("Regular") && !group.equalsIgnoreCase("Default")){
+					return;
+				}
 
-				Bukkit.broadcastMessage("[jaoPoint] " + ChatColor.GREEN + player.getName() + "さんがjaotanからバレンタインプレゼントを貰いました！おめでとうございます！");
-				DiscordSend(player.getName() + "さんがjaotanからバレンタインプレゼントを貰いました！おめでとうございます！");
+				ItemStack item = new ItemStack(Material.POTATO_ITEM);
+				net.minecraft.server.v1_12_R1.ItemStack nms = CraftItemStack.asNMSCopy(item);
+				NBTTagCompound nbttag = nms.getTag();
+				if(nbttag == null){
+					nbttag = new NBTTagCompound();
+				}
+				UUID item_uuid = UUID.randomUUID();
+				MessageDigest md;
+				try {
+					md = MessageDigest.getInstance("SHA-1");
+				} catch (NoSuchAlgorithmException e) {
+					BugReporter(e);
+					player.sendMessage("[EscapeJail] " + ChatColor.RED + "新しいEscapeJailアイテムの精製に失敗しました。(2)");
+					return;
+				}
+		        byte[] digest = md.digest(item_uuid.toString().getBytes());
+		        String id = DatatypeConverter.printHexBinary(digest);
+		        if(id == null){
+		        	player.sendMessage("[EscapeJail] " + ChatColor.RED + "新しいEscapeJailアイテムの精製に失敗しました。(3)");
+					return;
+				}
+		        nbttag.setString("MyMaid_EscapeJailID", id);
+		        nms.setTag(nbttag);
 
-				ItemStack cookie = new ItemStack(Material.COOKIE);
-				ItemMeta cookiemeta = cookie.getItemMeta();
-				List<String> lore = new ArrayList<>();
-				lore.add("jaotanからのバレンタインプレゼント(2019年)");
-				cookiemeta.setLore(lore);
-				cookie.setItemMeta(cookiemeta);
-				SimpleDateFormat sdfchat = new SimpleDateFormat("HH:mm:ss");
-				if(player.getInventory().firstEmpty() == -1){
-					player.getLocation().getWorld().dropItem(player.getLocation(), cookie);
-					player.sendMessage(ChatColor.GRAY + "["+ sdfchat.format(new Date()) + "]" + ChatColor.GOLD + "[private]" + ChatColor.RESET + "jaotan=>" + player.getName() + ": " + "ボクからのバレンタインプレゼントだよ！インベントリがいっぱいだったから、足元に置いておいたよ！拾ってね！");
+		        item = CraftItemStack.asBukkitCopy(nms);
+
+		        ItemMeta meta = item.getItemMeta();
+		        meta.setDisplayName("EscapeItem - IMO");
+		        List<String> lore = new ArrayList<String>();
+		        lore.add("このアイテムをインベントリ内に配置しておくと、Jail(EBan除く)を無効化できます！(アイテム1つにつき1回限り)");
+		        lore.add(ChatColor.RED + "NBTデータを削除してしまうと、アイテムは無効となります。また、複製をしても1つしか有効ではありません。");
+		        meta.setLore(lore);
+		        meta.addEnchant(Enchantment.LOOT_BONUS_BLOCKS, 999, true);
+		        item.setItemMeta(meta);
+
+		        try {
+					PreparedStatement statement = MySQL.getNewPreparedStatement("INSERT INTO uniqueitem (id, type) VALUES (?, ?)");
+					statement.setString(1, id);
+					statement.setString(2, "MyMaid_EscapeJailID");
+					statement.executeUpdate();
+				} catch (SQLException | ClassNotFoundException e) {
+					BugReporter(e);
+					player.sendMessage("[EscapeJail] " + ChatColor.RED + "新しいEscapeJailアイテムの精製に失敗しました。(3)");
+					return;
+				}
+
+		        player.sendMessage("[EscapeJail] " + ChatColor.RED + "新しいEscapeJailアイテムの精製に成功しました。");
+		        player.sendMessage("[EscapeJail] " + ChatColor.RED + "このアイテムをインベントリの中に配置しておくと、Jail(EBan除く)をアイテム個数分だけ無効化できます！");
+
+		        if(player.getInventory().firstEmpty() == -1){
+		        	player.getLocation().getWorld().dropItem(player.getLocation(), item);
+		        	player.sendMessage("[EscapeJail] " + ChatColor.RED + "インベントリがいっぱいだったため、あなたの足元にアイテムをドロップしました。");
+		        	Bukkit.getLogger().info("[EscapeJail] dropped to " + player.getName());
 				}else{
-					player.getInventory().addItem(cookie);
-					player.sendMessage(ChatColor.GRAY + "["+ sdfchat.format(new Date()) + "]" + ChatColor.GOLD + "[private]" + ChatColor.RESET + "jaotan=>" + player.getName() + ": " + "ボクからのバレンタインプレゼントだよ！");
+					player.getInventory().addItem(item);
+		        	Bukkit.getLogger().info("[EscapeJail] gived to " + player.getName());
 				}
 			}
 		} catch (ParseException e) {
 			BugReporter(e);
-		}catch(ClassNotFoundException | SQLException e){
-			BugReporter(e);
-			return;
 		}
 	}
 }
