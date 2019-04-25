@@ -4,13 +4,14 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import javax.annotation.Nullable;
 
 import org.bukkit.Bukkit;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import com.jaoafa.MyMaid2.MyMaid2Premise;
@@ -41,42 +42,71 @@ public class MuteManager extends MyMaid2Premise {
 			MuteManager.file = null;
 		}
 	}
+
 	/**
-	 * Muteリストにプレイヤーを追加します。
-	 * @param player 追加するプレイヤー
+	 * Muteリストにオフラインプレイヤーを追加します。
+	 * @param offplayer 追加するオフラインプレイヤー
 	 * @return 追加し、保存できたかどうか
 	 */
-	public static boolean Add(Player player) {
+	public static boolean Add(OfflinePlayer offplayer) {
+		return Add(offplayer.getUniqueId());
+	}
+	/**
+	 * MuteリストにUUIDを追加します。
+	 * @param uuid 追加するUUID
+	 * @return 追加し、保存できたかどうか
+	 */
+	public static boolean Add(UUID uuid) {
 		List<String> mutes = loadMutes();
 		if(mutes == null) return false;
-		mutes.add(player.getUniqueId().toString());
+		mutes.add(uuid.toString());
 		return saveMutes(mutes);
 	}
+
 	/**
-	 * Muteリストにプレイヤーがあるかどうかを調べます。
-	 * @param player 調べるプレイヤー
+	 * Muteリストにオフラインプレイヤーがあるかどうかを調べます。
+	 * @param offplayer 調べるオフラインプレイヤー
 	 * @return Muteリストにあるかどうか
 	 */
-	public static boolean Exists(Player player) {
-		List<String> mutes = loadMutes();
-		if(mutes == null) return false;
-		return mutes.contains(player.getUniqueId().toString());
+	public static boolean Exists(OfflinePlayer offplayer) {
+		return Exists(offplayer.getUniqueId());
 	}
 	/**
-	 * Muteリストからプレイヤーを削除します。
-	 * @param player 削除するプレイヤー
-	 * @return 削除し、保存できたかどうか
+	 * MuteリストにUUIDがあるかどうかを調べます。
+	 * @param uuid 調べるUUID
+	 * @return Muteリストにあるかどうか
 	 */
-	public static boolean Remove(Player player) {
+	public static boolean Exists(UUID uuid) {
 		List<String> mutes = loadMutes();
 		if(mutes == null) return false;
-		if(!mutes.contains(player.getUniqueId().toString())) {
+		return mutes.contains(uuid.toString());
+	}
+
+	/**
+	 * Muteリストからオフラインプレイヤーを削除します。
+	 * @param offplayer 削除するオフラインプレイヤー
+	 * @return 削除し、保存できたかどうか
+	 */
+	public static boolean Remove(OfflinePlayer offplayer) {
+		return Remove(offplayer.getUniqueId());
+	}
+	/**
+	 * MuteリストからUUIDを削除します。
+	 * @param uuid 削除するUUID
+	 * @return 削除し、保存できたかどうか
+	 */
+	public static boolean Remove(UUID uuid) {
+		List<String> mutes = loadMutes();
+		if(mutes == null) return false;
+		if(!mutes.contains(uuid.toString())) {
 			// not found
 			return false;
 		}
-		mutes.remove(player.getUniqueId().toString());
+		mutes.remove(uuid.toString());
 		return saveMutes(mutes);
 	}
+
+
 	public static boolean saveMutes(List<String> mutes) {
 		if(file == null) return false;
 		FileConfiguration c = YamlConfiguration.loadConfiguration(file);

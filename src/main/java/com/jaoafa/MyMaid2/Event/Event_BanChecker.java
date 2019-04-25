@@ -14,6 +14,7 @@ import org.bukkit.event.player.AsyncPlayerPreLoginEvent;
 import org.bukkit.event.player.AsyncPlayerPreLoginEvent.Result;
 
 import com.jaoafa.MyMaid2.MyMaid2Premise;
+import com.jaoafa.MyMaid2.Lib.MuteManager;
 import com.jaoafa.MyMaid2.Lib.MySQL;
 import com.jaoafa.MyMaid2.Lib.PermissionsManager;
 
@@ -35,13 +36,17 @@ public class Event_BanChecker extends MyMaid2Premise implements Listener {
 								+ ChatColor.RESET + "あなたは、" + time + "に「" + reason + "」という理由にてGLOBAL BANされました。\n"
 								+ ChatColor.RESET + ChatColor.WHITE + "もしこの判定が誤判定と思われる場合は、公式Discordからお問い合わせを行ってください。\n"
 								+ "サイト内お問い合わせでお問い合わせをして頂いても構いません。");
-				for(Player p: Bukkit.getServer().getOnlinePlayers()) {
-					String group = PermissionsManager.getPermissionMainGroup(p);
-					if(group.equalsIgnoreCase("Admin") || group.equalsIgnoreCase("Moderator") || group.equalsIgnoreCase("Regular")) {
-						p.sendMessage("[MyMaid2-LoginChecker] " + ChatColor.GREEN + event.getName() + "==>[" + "GLOBAL BAN" + "] " + ChatColor.stripColor(reason) + " (" + time + ")");
+				if(!MuteManager.Exists(event.getUniqueId())){
+					// NOT MUTE
+					for(Player p: Bukkit.getServer().getOnlinePlayers()) {
+						String group = PermissionsManager.getPermissionMainGroup(p);
+						if(group.equalsIgnoreCase("Admin") || group.equalsIgnoreCase("Moderator") || group.equalsIgnoreCase("Regular")) {
+							p.sendMessage("[MyMaid2-LoginChecker] " + ChatColor.GREEN + event.getName() + "==>[" + "GLOBAL BAN" + "] " + ChatColor.stripColor(reason) + " (" + time + ")");
+						}
 					}
+					DiscordSend("223582668132974594", "[MyMaid2-LoginChecker] " + event.getName() + "==>[" + "GLOBAL BAN" + "] " + ChatColor.stripColor(reason) + " (" + time + ")");
 				}
-				DiscordSend("223582668132974594", "[MyMaid2-LoginChecker] " + event.getName() + "==>[" + "GLOBAL BAN" + "] " + ChatColor.stripColor(reason) + " (" + time + ")");
+
 			}
 
 			PreparedStatement statement_lban = MySQL.getNewPreparedStatement("SELECT * FROM banlist WHERE uuid = ? AND type = ? AND disabled = ?");
@@ -57,13 +62,16 @@ public class Event_BanChecker extends MyMaid2Premise implements Listener {
 								+ ChatColor.RESET + "あなたは、" + time + "に「" + reason + "」という理由にてLOCAL BANされました。\n"
 								+ ChatColor.RESET + ChatColor.WHITE + "もしこの判定が誤判定と思われる場合は、公式Discordからお問い合わせを行ってください。\n"
 								+ "サイト内お問い合わせでお問い合わせをして頂いても構いません。");
-				for(Player p: Bukkit.getServer().getOnlinePlayers()) {
-					String group = PermissionsManager.getPermissionMainGroup(p);
-					if(group.equalsIgnoreCase("Admin") || group.equalsIgnoreCase("Moderator") || group.equalsIgnoreCase("Regular")) {
-						p.sendMessage("[MyMaid2-LoginChecker] " + ChatColor.GREEN + event.getName() + "==>[" + "LOCAL BAN" + "] " + ChatColor.stripColor(reason) + " (" + time + ")");
+				if(!MuteManager.Exists(event.getUniqueId())){
+					// NOT MUTE
+					for(Player p: Bukkit.getServer().getOnlinePlayers()) {
+						String group = PermissionsManager.getPermissionMainGroup(p);
+						if(group.equalsIgnoreCase("Admin") || group.equalsIgnoreCase("Moderator") || group.equalsIgnoreCase("Regular")) {
+							p.sendMessage("[MyMaid2-LoginChecker] " + ChatColor.GREEN + event.getName() + "==>[" + "LOCAL BAN" + "] " + ChatColor.stripColor(reason) + " (" + time + ")");
+						}
 					}
+					DiscordSend("223582668132974594", "[MyMaid2-LoginChecker] " + event.getName() + "==>[" + "LOCAL BAN" + "] " + ChatColor.stripColor(reason) + " (" + time + ")");
 				}
-				DiscordSend("223582668132974594", "[MyMaid2-LoginChecker] " + event.getName() + "==>[" + "LOCAL BAN" + "] " + ChatColor.stripColor(reason) + " (" + time + ")");
 			}
 		}catch(SQLException | ClassNotFoundException e){
 			BugReporter(e);
