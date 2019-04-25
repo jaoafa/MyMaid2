@@ -60,10 +60,10 @@ public class Event_BanChecker extends MyMaid2Premise implements Listener {
 				for(Player p: Bukkit.getServer().getOnlinePlayers()) {
 					String group = PermissionsManager.getPermissionMainGroup(p);
 					if(group.equalsIgnoreCase("Admin") || group.equalsIgnoreCase("Moderator") || group.equalsIgnoreCase("Regular")) {
-						p.sendMessage("[MyMaid2-LoginChecker] " + ChatColor.GREEN + event.getName() + "==>[" + "GLOBAL BAN" + "] " + ChatColor.stripColor(reason) + " (" + time + ")");
+						p.sendMessage("[MyMaid2-LoginChecker] " + ChatColor.GREEN + event.getName() + "==>[" + "LOCAL BAN" + "] " + ChatColor.stripColor(reason) + " (" + time + ")");
 					}
 				}
-				DiscordSend("223582668132974594", "[MyMaid2-LoginChecker] " + event.getName() + "==>[" + "GLOBAL BAN" + "] " + ChatColor.stripColor(reason) + " (" + time + ")");
+				DiscordSend("223582668132974594", "[MyMaid2-LoginChecker] " + event.getName() + "==>[" + "LOCAL BAN" + "] " + ChatColor.stripColor(reason) + " (" + time + ")");
 			}
 		}catch(SQLException | ClassNotFoundException e){
 			BugReporter(e);

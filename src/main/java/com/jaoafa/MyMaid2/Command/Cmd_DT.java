@@ -395,7 +395,7 @@ public class Cmd_DT extends MyMaid2Premise implements CommandExecutor, TabComple
 					markericon = markericondef;
 				}
 
-				Marker marker = MarkerType.createMarker(null, markerlabel, loc.getWorld().getName(), loc.getX(), loc.getY(), loc.getZ(), markericon, true);
+				Marker marker = MarkerType.createMarker(null, markerlabel, loc.getWorld().getName(), loc.getBlockX(), loc.getBlockY(), loc.getBlockZ(), markericon, true);
 
 				if(marker == null){
 					SendMessage(sender, cmd, "指定されたマーカー「" + markerlabel +"」を作成できませんでした。");
