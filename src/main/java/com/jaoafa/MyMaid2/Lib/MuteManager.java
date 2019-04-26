@@ -30,8 +30,8 @@ public class MuteManager extends MyMaid2Premise {
 		File file = new File(path);
 		if(!file.exists()){
 			Bukkit.getLogger().info("「" + path + "」が存在しません。作成します。");
-			List<String> mutes = new ArrayList<String>();
-			saveMutes(mutes);
+			List<String> mutes = new ArrayList<>();
+			saveMutes(file, mutes);
 
 			MuteManager.file = file;
 		}else if(file.exists() && file.canRead() && file.canWrite()){
@@ -59,6 +59,9 @@ public class MuteManager extends MyMaid2Premise {
 	public static boolean Add(UUID uuid) {
 		List<String> mutes = loadMutes();
 		if(mutes == null) return false;
+		if(mutes.contains(uuid)){
+			return false;
+		}
 		mutes.add(uuid.toString());
 		return saveMutes(mutes);
 	}
@@ -108,6 +111,10 @@ public class MuteManager extends MyMaid2Premise {
 
 
 	public static boolean saveMutes(List<String> mutes) {
+		return saveMutes(file, mutes);
+	}
+
+	public static boolean saveMutes(File file, List<String> mutes) {
 		if(file == null) return false;
 		FileConfiguration c = YamlConfiguration.loadConfiguration(file);
 		c.set("mutes", mutes);

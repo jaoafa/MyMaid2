@@ -388,4 +388,10 @@ commands:
     usage: "/<command>: 「EscapeJail」アイテムを購入します。"
     permission: mymaid.getesc
     permission-message: You do not have permission to perform this command.
+  mute:
+    description: ミュート機能を操作します。
+    usage: |-
+      /mute add <Player|UUID>: ミュートリストにプレイヤーを追加します。
+      /mute remove <Player|UUID>: ミュートリストからプレイヤーを削除します。
+      /mute list: ミュートリストを表示する。
 

@@ -48,6 +48,7 @@ import com.jaoafa.MyMaid2.Command.Cmd_Jail;
 import com.jaoafa.MyMaid2.Command.Cmd_Lead;
 import com.jaoafa.MyMaid2.Command.Cmd_Leg;
 import com.jaoafa.MyMaid2.Command.Cmd_Messenger;
+import com.jaoafa.MyMaid2.Command.Cmd_Mute;
 import com.jaoafa.MyMaid2.Command.Cmd_Pin;
 import com.jaoafa.MyMaid2.Command.Cmd_Player;
 import com.jaoafa.MyMaid2.Command.Cmd_Protector;
@@ -282,6 +283,7 @@ public class MyMaid2 extends JavaPlugin implements Listener {
 		getCommand("lead").setExecutor(new Cmd_Lead()); // 2018/10/06
 		getCommand("votefill").setExecutor(new Cmd_VoteFill()); // 2018/12/02
 		getCommand("getesc").setExecutor(new Cmd_GetEsc()); // 2019/02/24
+		getCommand("mute").setExecutor(new Cmd_Mute()); // 2019/04/26
 	}
 
 	/**
