@@ -6,7 +6,7 @@
 [![License](https://img.shields.io/badge/license-None-yellow.svg)](https://img.shields.io)  
 [![jao Minecraft Server](https://raw.githubusercontent.com/jaoafa/jao-Minecraft-Server/master/logo/new_logo-421x97.png)](https://jaoafa.com)
 
-このプロジェクトは、今まで[book000/MyMaid](https://github.com/book000/MyMaid)で開発されてきた「MyMaid」の後継にあたる「MyMaid2プラグイン」のソースコード公開場所です。  
+このプロジェクトは、今まで[book000/MyMaid(jaoafa/MyMaid)](https://github.com/jaoafa/MyMaid)で開発されてきた「MyMaid」の後継にあたる「MyMaid2プラグイン」のソースコード公開場所です。  
 [jao Minecraft Server](https://jaoafa.com/)に関係するサーバのみで使用され、それ以外でのサーバでの使用は原則禁止しています。  
 
 ## ライセンス
