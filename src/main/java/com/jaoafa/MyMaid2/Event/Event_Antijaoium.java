@@ -39,6 +39,7 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 import com.jaoafa.MyMaid2.MyMaid2Premise;
+import com.jaoafa.MyMaid2.Lib.EBan;
 import com.jaoafa.MyMaid2.Lib.EscapeJailException;
 import com.jaoafa.MyMaid2.Lib.Jail;
 import com.jaoafa.MyMaid2.Lib.MySQL;
@@ -82,6 +83,17 @@ public class Event_Antijaoium extends MyMaid2Premise implements Listener {
 			}
 		}
 		return jaoium;
+	}
+
+	private String isMalicious(PotionMeta potion){
+		if(!potion.hasDisplayName()){
+			return null;
+		}
+		if(potion.getDisplayName().contains("§4§lDEATH")){
+			// Worst?
+			return "Worst";
+		}
+		return null;
 	}
 
 	// -------------- ↓jaoium取得方法判定↓ -------------- //
@@ -299,6 +311,7 @@ public class Event_Antijaoium extends MyMaid2Premise implements Listener {
 			return;
 		}
 		boolean jaoium = false;
+		String malicious = null;
 		for(int n=0; n < is.length; n++)
 		{
 			if(is[n] == null){
@@ -307,10 +320,15 @@ public class Event_Antijaoium extends MyMaid2Premise implements Listener {
 			ItemStack hand = is[n];
 			if(hand.getType() == Material.SPLASH_POTION || hand.getType() == Material.LINGERING_POTION){
 				PotionMeta potion = (PotionMeta) hand.getItemMeta();
-				jaoium = isjaoium(potion.getCustomEffects());
-				if(jaoium){
+				boolean _jaoium = isjaoium(potion.getCustomEffects());
+				if(_jaoium){
 					setjaoiumItemData(player, hand);
 					if(inventory.getItem(n) != null) inventory.clear(n);
+					jaoium = _jaoium;
+
+					if(isMalicious(potion) != null){
+						malicious = isMalicious(potion);
+					}
 				}
 			}
 		}
@@ -327,10 +345,15 @@ public class Event_Antijaoium extends MyMaid2Premise implements Listener {
 				ItemStack hand = is[n];
 				if(hand.getType() == Material.SPLASH_POTION || hand.getType() == Material.LINGERING_POTION){
 					PotionMeta potion = (PotionMeta) hand.getItemMeta();
-					jaoium = isjaoium(potion.getCustomEffects());
-					if(jaoium){
+					boolean _jaoium = isjaoium(potion.getCustomEffects());
+					if(_jaoium){
 						setjaoiumItemData(player, hand);
 						clickedinventory.clear(n);
+						jaoium = _jaoium;
+
+						if(isMalicious(potion) != null){
+							malicious = isMalicious(potion);
+						}
 					}
 				}
 			}
@@ -347,7 +370,11 @@ public class Event_Antijaoium extends MyMaid2Premise implements Listener {
 			}
 			checkjaoiumLocation(player);
 			try {
-				Jail.JailAdd(player, Bukkit.getOfflinePlayer("jaotan"), "jaoium所持", true);
+				if(malicious != null){
+					EBan.Add(player, Bukkit.getOfflinePlayer("jaotan"), "禁止クライアントMod「" + malicious + "」使用の疑い。方針「クライアントModの導入・利用に関する規則」の「禁止事項」への違反");
+				}else{
+					Jail.JailAdd(player, Bukkit.getOfflinePlayer("jaotan"), "jaoium所持", true);
+				}
 			} catch (ClassNotFoundException | NullPointerException | SQLException e) {
 				BugReporter(e);
 			} catch (EscapeJailException e) {
@@ -370,6 +397,7 @@ public class Event_Antijaoium extends MyMaid2Premise implements Listener {
 			return;
 		}
 		boolean jaoium = false;
+		String malicious = null;
 		for(int n=0; n < is.length; n++)
 		{
 			if(is[n] == null){
@@ -378,10 +406,15 @@ public class Event_Antijaoium extends MyMaid2Premise implements Listener {
 			ItemStack hand = is[n];
 			if(hand.getType() == Material.SPLASH_POTION || hand.getType() == Material.LINGERING_POTION){
 				PotionMeta potion = (PotionMeta) hand.getItemMeta();
-				jaoium = isjaoium(potion.getCustomEffects());
-				if(jaoium){
+				boolean _jaoium = isjaoium(potion.getCustomEffects());
+				if(_jaoium){
 					setjaoiumItemData(player, hand);
 					inventory.clear(n);
+					jaoium = _jaoium;
+
+					if(isMalicious(potion) != null){
+						malicious = isMalicious(potion);
+					}
 				}
 			}
 		}
@@ -400,10 +433,15 @@ public class Event_Antijaoium extends MyMaid2Premise implements Listener {
 				ItemStack hand = is[n];
 				if(hand.getType() == Material.SPLASH_POTION || hand.getType() == Material.LINGERING_POTION){
 					PotionMeta potion = (PotionMeta) hand.getItemMeta();
-					enderjaoium = isjaoium(potion.getCustomEffects());
-					if(enderjaoium){
+					boolean _enderjaoium = isjaoium(potion.getCustomEffects());
+					if(_enderjaoium){
 						setjaoiumItemData(player, hand);
 						enderchestinventory.clear(n);
+						enderjaoium = _enderjaoium;
+
+						if(isMalicious(potion) != null){
+							malicious = isMalicious(potion);
+						}
 					}
 				}
 			}
@@ -420,7 +458,11 @@ public class Event_Antijaoium extends MyMaid2Premise implements Listener {
 			}
 			checkjaoiumLocation(player);
 			try {
-				Jail.JailAdd(player, Bukkit.getOfflinePlayer("jaotan"), "jaoium所持", true);
+				if(malicious != null){
+					EBan.Add(player, Bukkit.getOfflinePlayer("jaotan"), "禁止クライアントMod「" + malicious + "」使用の疑い。方針「クライアントModの導入・利用に関する規則」の「禁止事項」への違反");
+				}else{
+					Jail.JailAdd(player, Bukkit.getOfflinePlayer("jaotan"), "jaoium所持", true);
+				}
 			} catch (ClassNotFoundException | NullPointerException | SQLException e) {
 				BugReporter(e);
 			} catch (EscapeJailException e) {
@@ -444,6 +486,7 @@ public class Event_Antijaoium extends MyMaid2Premise implements Listener {
 			return;
 		}
 		boolean jaoium = false;
+		String malicious = null;
 		for(int n=0; n < is.length; n++)
 		{
 			if(is[n] == null){
@@ -452,10 +495,15 @@ public class Event_Antijaoium extends MyMaid2Premise implements Listener {
 			ItemStack hand = is[n];
 			if(hand.getType() == Material.SPLASH_POTION || hand.getType() == Material.LINGERING_POTION){
 				PotionMeta potion = (PotionMeta) hand.getItemMeta();
-				jaoium = isjaoium(potion.getCustomEffects());
-				if(jaoium){
+				boolean _jaoium = isjaoium(potion.getCustomEffects());
+				if(_jaoium){
 					setjaoiumItemData(player, hand);
 					inventory.clear(n);
+					jaoium = _jaoium;
+
+					if(isMalicious(potion) != null){
+						malicious = isMalicious(potion);
+					}
 				}
 			}
 		}
@@ -473,10 +521,15 @@ public class Event_Antijaoium extends MyMaid2Premise implements Listener {
 				ItemStack hand = is[n];
 				if(hand.getType() == Material.SPLASH_POTION || hand.getType() == Material.LINGERING_POTION){
 					PotionMeta potion = (PotionMeta) hand.getItemMeta();
-					enderjaoium = isjaoium(potion.getCustomEffects());
-					if(enderjaoium){
+					boolean _enderjaoium = isjaoium(potion.getCustomEffects());
+					if(_enderjaoium){
 						setjaoiumItemData(player, hand);
 						enderchestinventory.clear(n);
+						enderjaoium = _enderjaoium;
+
+						if(isMalicious(potion) != null){
+							malicious = isMalicious(potion);
+						}
 					}
 				}
 			}
@@ -488,9 +541,12 @@ public class Event_Antijaoium extends MyMaid2Premise implements Listener {
 			Bukkit.broadcastMessage("[jaoium_Checker] " + ChatColor.GREEN + "プレイヤー「" + player.getName() + "」からjaoiumと同等の性能を持つアイテムが検出されました。");
 			checkjaoiumLocation(player);
 			try {
-				Jail.JailAdd(player, Bukkit.getOfflinePlayer("jaotan"), "jaoium所持", true);
+				if(malicious != null){
+					EBan.Add(player, Bukkit.getOfflinePlayer("jaotan"), "禁止クライアントMod「" + malicious + "」使用の疑い。方針「クライアントModの導入・利用に関する規則」の「禁止事項」への違反");
+				}else{
+					Jail.JailAdd(player, Bukkit.getOfflinePlayer("jaotan"), "jaoium所持", true);
+				}
 			} catch (ClassNotFoundException | NullPointerException | SQLException e) {
-				// TODO 自動生成された catch ブロック
 				e.printStackTrace();
 			} catch (EscapeJailException e) {
 				// EscapeJailアイテムで止められた
@@ -515,6 +571,7 @@ public class Event_Antijaoium extends MyMaid2Premise implements Listener {
 			return;
 		}
 		boolean jaoium = false;
+		String malicious = null;
 		for(int n=0; n < is.length; n++)
 		{
 			if(is[n] == null){
@@ -523,10 +580,15 @@ public class Event_Antijaoium extends MyMaid2Premise implements Listener {
 			ItemStack hand = is[n];
 			if(hand.getType() == Material.SPLASH_POTION || hand.getType() == Material.LINGERING_POTION){
 				PotionMeta potion = (PotionMeta) hand.getItemMeta();
-				jaoium = isjaoium(potion.getCustomEffects());
-				if(jaoium){
+				boolean _jaoium = isjaoium(potion.getCustomEffects());
+				if(_jaoium){
 					setjaoiumItemData(player, hand);
 					inventory.clear(n);
+					jaoium = _jaoium;
+
+					if(isMalicious(potion) != null){
+						malicious = isMalicious(potion);
+					}
 				}
 			}
 		}
@@ -544,10 +606,15 @@ public class Event_Antijaoium extends MyMaid2Premise implements Listener {
 				ItemStack hand = is[n];
 				if(hand.getType() == Material.SPLASH_POTION || hand.getType() == Material.LINGERING_POTION){
 					PotionMeta potion = (PotionMeta) hand.getItemMeta();
-					enderjaoium = isjaoium(potion.getCustomEffects());
-					if(enderjaoium){
+					boolean _enderjaoium = isjaoium(potion.getCustomEffects());
+					if(_enderjaoium){
 						setjaoiumItemData(player, hand);
 						enderchestinventory.clear(n);
+						enderjaoium = _enderjaoium;
+
+						if(isMalicious(potion) != null){
+							malicious = isMalicious(potion);
+						}
 					}
 				}
 			}
@@ -563,7 +630,11 @@ public class Event_Antijaoium extends MyMaid2Premise implements Listener {
 			}
 			checkjaoiumLocation(player);
 			try {
-				Jail.JailAdd(player, Bukkit.getOfflinePlayer("jaotan"), "jaoium所持", true);
+				if(malicious != null){
+					EBan.Add(player, Bukkit.getOfflinePlayer("jaotan"), "禁止クライアントMod「" + malicious + "」使用の疑い。方針「クライアントModの導入・利用に関する規則」の「禁止事項」への違反");
+				}else{
+					Jail.JailAdd(player, Bukkit.getOfflinePlayer("jaotan"), "jaoium所持", true);
+				}
 			} catch (ClassNotFoundException | NullPointerException | SQLException e) {
 				BugReporter(e);
 			} catch (EscapeJailException e) {
@@ -590,6 +661,7 @@ public class Event_Antijaoium extends MyMaid2Premise implements Listener {
 			return;
 		}
 		boolean jaoium = false;
+		String malicious = null;
 		for(int n=0; n < is.length; n++)
 		{
 			if(is[n] == null){
@@ -598,17 +670,22 @@ public class Event_Antijaoium extends MyMaid2Premise implements Listener {
 			ItemStack hand = is[n];
 			if(hand.getType() == Material.SPLASH_POTION || hand.getType() == Material.LINGERING_POTION){
 				PotionMeta potion = (PotionMeta) hand.getItemMeta();
-				jaoium = isjaoium(potion.getCustomEffects());
-				if(jaoium){
+				boolean _jaoium = isjaoium(potion.getCustomEffects());
+				if(_jaoium){
 					setjaoiumItemData(player, hand);
 					inventory.clear(n);
+					jaoium = _jaoium;
+
+					if(isMalicious(potion) != null){
+						malicious = isMalicious(potion);
+					}
 				}
 			}
 		}
 		if(jaoium){
 			inventory.clear();
 		}
-		boolean ender_jaoium = false;
+		boolean enderjaoium = false;
 		if(enderchestinventory != null) {
 			is = enderchestinventory.getContents();
 			for(int n=0; n < is.length; n++)
@@ -619,18 +696,23 @@ public class Event_Antijaoium extends MyMaid2Premise implements Listener {
 				ItemStack hand = is[n];
 				if(hand.getType() == Material.SPLASH_POTION || hand.getType() == Material.LINGERING_POTION){
 					PotionMeta potion = (PotionMeta) hand.getItemMeta();
-					ender_jaoium = isjaoium(potion.getCustomEffects());
-					if(ender_jaoium){
+					boolean _enderjaoium = isjaoium(potion.getCustomEffects());
+					if(_enderjaoium){
 						setjaoiumItemData(player, hand);
 						enderchestinventory.clear(n);
+						enderjaoium = _enderjaoium;
+
+						if(isMalicious(potion) != null){
+							malicious = isMalicious(potion);
+						}
 					}
 				}
 			}
-			if(ender_jaoium){
+			if(enderjaoium){
 				enderchestinventory.clear();
 			}
 		}
-		if(jaoium || ender_jaoium){
+		if(jaoium || enderjaoium){
 			if(!Achievementjao.getAchievement(player, new AchievementType(13))){
 				player.sendMessage(AchievementAPI.getPrefix() + "実績の解除中に問題が発生しました。もう一度お試しください。");
 				return;
@@ -638,7 +720,11 @@ public class Event_Antijaoium extends MyMaid2Premise implements Listener {
 			Bukkit.broadcastMessage("[jaoium_Checker] " + ChatColor.GREEN + "プレイヤー「" + player.getName() + "」からjaoiumと同等の性能を持つアイテムが検出されました。");
 			checkjaoiumLocation(player);
 			try {
-				Jail.JailAdd(player, Bukkit.getOfflinePlayer("jaotan"), "jaoium所持", true);
+				if(malicious != null){
+					EBan.Add(player, Bukkit.getOfflinePlayer("jaotan"), "禁止クライアントMod「" + malicious + "」使用の疑い。方針「クライアントModの導入・利用に関する規則」の「禁止事項」への違反");
+				}else{
+					Jail.JailAdd(player, Bukkit.getOfflinePlayer("jaotan"), "jaoium所持", true);
+				}
 			} catch (ClassNotFoundException | NullPointerException | SQLException e) {
 				BugReporter(e);
 			} catch (EscapeJailException e) {

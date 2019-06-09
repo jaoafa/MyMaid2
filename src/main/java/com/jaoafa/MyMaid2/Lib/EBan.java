@@ -156,6 +156,66 @@ public class EBan extends MyMaid2Premise {
 		EBanCache.put(player.getUniqueId(), true);
 		return true;
 	}
+	/**
+	 * プレイヤーを理由つきでEBanする
+	 * @param cmd コマンド情報
+	 * @param player プレイヤー
+	 * @param banned_by 追加したプレイヤー
+	 * @param reason 理由
+	 * @return 実行できたかどうか
+	 * @author mine_book000
+	 */
+	public static boolean Add(OfflinePlayer player, OfflinePlayer banned_by, String reason){
+		if(player == null){
+			try{
+				throw new java.lang.NullPointerException("EBanAdd Player is null...!");
+			}catch(java.lang.NullPointerException e){
+				BugReporter(e);
+			}
+			return false;
+		}
+
+		if(isEBan(player)){
+			// 既に牢獄にいるので無理
+			return false;
+		}
+		//EBan.add(player.getUniqueId().toString());
+
+		SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		String date = format.format(new Date());
+
+		try {
+			PreparedStatement statement = MySQL.getNewPreparedStatement("INSERT INTO eban (player, uuid, banned_by, reason, status, date) VALUES (?, ?, ?, ?, ?, ?);");
+			statement.setString(1, player.getName());
+			statement.setString(2, player.getUniqueId().toString());
+			statement.setString(3, banned_by.getName());
+			statement.setString(4, reason);
+			statement.setString(5, "punishing");
+			statement.setString(6, date);
+			statement.executeUpdate();
+
+			PreparedStatement statement2 = MySQL.getNewPreparedStatement("INSERT INTO banlist (player, uuid, type, bannedby, reason, time) VALUES (?, ?, ?, ?, ?, ?);");
+			statement2.setString(1, player.getName());
+			statement2.setString(2, player.getUniqueId().toString());
+			statement2.setString(3, "eban");
+			statement2.setString(4, banned_by.getName());
+			statement2.setString(5, reason);
+			statement2.setString(6, date);
+			statement2.executeUpdate();
+		} catch (SQLException | ClassNotFoundException e) {
+			BugReporter(e);
+		}
+
+		Bukkit.broadcastMessage("[EBan] " + ChatColor.RED + "プレイヤー:「" + player.getName() + "」を「" + reason + "」という理由でEBanしました。");
+		DiscordSend("223582668132974594", "__**EBan[追加]**__: プレイヤー「" + player.getName() +"」が「" + banned_by.getName() +"」によって「" + reason + "」という理由でEBanしました。");
+		if(player.isOnline()){
+			((Player) player).sendMessage("[EBan] " + ChatColor.RED + "解除申請の方法や、Banの方針などは以下ページをご覧ください。");
+			((Player) player).sendMessage("[EBan] " + ChatColor.RED + "https://jaoafa.com/rule/management/ban");
+		}
+
+		EBanCache.put(player.getUniqueId(), true);
+		return true;
+	}
 
 	/**
 	 * プレイヤーのEBanを解除
