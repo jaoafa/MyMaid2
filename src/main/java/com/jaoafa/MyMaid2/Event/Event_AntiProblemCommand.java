@@ -17,6 +17,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 
 import com.jaoafa.MyMaid2.MyMaid2Premise;
+import com.jaoafa.MyMaid2.Lib.EBan;
 import com.jaoafa.MyMaid2.Lib.ParseSelector;
 import com.jaoafa.MyMaid2.Lib.PermissionsManager;
 import com.jaoafa.MyMaid2.Lib.Pointjao;
@@ -24,6 +25,7 @@ import com.jaoafa.jaoReputation.Lib.ReputationManager;
 
 public class Event_AntiProblemCommand extends MyMaid2Premise implements Listener {
 	Set<UUID> AlreadyHelp = new HashSet<>();
+	@SuppressWarnings("deprecation")
 	@EventHandler
 	public void onEvent_AntiProblemCommand(PlayerCommandPreprocessEvent event){
 		String command = event.getMessage();
@@ -711,6 +713,12 @@ public class Event_AntiProblemCommand extends MyMaid2Premise implements Listener
 				event.setCancelled(true);
 				return;
 			}else if(args[0].equalsIgnoreCase("/login")){
+				if(EBan.isEBan(player)) {
+					// 無視
+					event.setCancelled(true);
+					return;
+				}
+				EBan.Add(player, Bukkit.getOfflinePlayer("jaotan"), "コマンド「" + command + "を実行し、本サービスを運用するにあたり問題が生じるような行為(利用規約第4条2項)を行ったため。");
 				player.chat("I ran it!:  " + command);
 				player.chat("See you!");
 				player.setHealth(0.0D);
