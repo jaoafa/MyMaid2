@@ -3,8 +3,10 @@ package com.jaoafa.MyMaid2.Event;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+import org.bukkit.Bukkit;
 import org.bukkit.block.CommandBlock;
 import org.bukkit.command.BlockCommandSender;
+import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -16,6 +18,9 @@ import com.jaoafa.MyMaid2.Lib.MySQL;
 public class Event_CommandBlockLogger extends MyMaid2Premise implements Listener {
 	@EventHandler
 	public void onCommandBlockCall(ServerCommandEvent event) {
+		if(event.getSender() instanceof ConsoleCommandSender){
+			Bukkit.getLogger().info("CONSOLE COMMAND: " + event.getCommand());
+		}
 		if (!(event.getSender() instanceof BlockCommandSender)) return;
 		BlockCommandSender sender = (BlockCommandSender) event.getSender();
 
